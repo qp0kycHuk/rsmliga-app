@@ -1,9 +1,0 @@
-.logo {
-  background             : linear-gradient(228deg, rgba(89, 61, 202, 0.77) 0%, #5A3C6F 100%, #5A3077 100%, #272140 100%);
-  background-clip        : text;
-  -webkit-background-clip: text;
-  font-size              : 32px;
-  font-weight            : 800;
-  text-transform         : uppercase;
-  -webkit-text-fill-color: transparent;
-}

@@ -6,5 +6,9 @@ interface ITableProps extends React.PropsWithChildren {
 }
 
 export function Table({ children, className }: ITableProps) {
-  return <table className={classnames(classes.table, className)}>{children}</table>
+  return (
+    <table className={classnames(classes.table, className)}>
+      <tbody>{children}</tbody>
+    </table>
+  )
 }
