@@ -1,0 +1,21 @@
+.header {
+  position      : sticky;
+  top           : 0;
+  padding-left  : 0;
+  background: #fff;
+  border-bottom : 1px solid #ddd;
+  z-index       : theme('zIndex[2]');
+
+  @media(min-width: 1350px) {
+    --section-width: 1320px;
+  }
+
+
+}
+
+.user {
+  width        : 300px;
+  padding-right: 8px;
+  padding-left : 16px;
+
+}

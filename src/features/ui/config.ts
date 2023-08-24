@@ -4,15 +4,15 @@ export const colors = {
   transparent: 'rgba(0,0,0,0)',
   green: '#009432',
   yellow: '#f79f1f',
-  primary: '#6C5BAF',
+  primary: '#CF0F3F',
   red: '#d63031',
   gray: '#333',
 }
 
 export const elementsSizes = {
   xs: '32px',
-  sm: '42px',
-  base: '52px',
+  sm: '40px',
+  base: '48px',
   lg: '64px',
 }
 
@@ -30,6 +30,8 @@ export const container = {
   lg: 1366 + 'px',
 }
 
+export const zIndex = [0, 321, 322, 323, 324, 325, 326, 327, 328, 329, 'auto']
+
 export const ui = {
   colors,
   elementsSizes,
@@ -37,4 +39,5 @@ export const ui = {
   inputSize: elementsSizes,
   screens,
   container,
+  zIndex,
 }

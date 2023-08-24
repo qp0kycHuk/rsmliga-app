@@ -1,5 +1,5 @@
 const tailwindButtonPlugin = require('@qpokychuk/tailwind-button-plugin')
-const { ui } = require('./src/features/ui/const/uiData.ts')
+const { ui } = require('./src/features/ui/config.ts')
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,6 +9,7 @@ export default {
     screens: ui.screens,
     container: ui.container,
     colors: ui.colors,
+    zIndex: ui.zIndex,
     extend: {
       btnSize: ui.btnSize,
       inputSize: ui.inputSize,

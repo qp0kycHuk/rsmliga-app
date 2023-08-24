@@ -1,3 +1,8 @@
+export { ReactComponent as BallIcon } from './Ball.svg'
 export { ReactComponent as EyeIcon } from './Eye.svg'
 export { ReactComponent as EyeClosedIcon } from './EyeClosed.svg'
+export { ReactComponent as FileDocIcon } from './FileDoc.svg'
+export { ReactComponent as FileFolderIcon } from './FileFolder.svg'
+export { ReactComponent as LogOutIcon } from './LogOut.svg'
+export { ReactComponent as MenuIcon } from './Menu.svg'
 export { ReactComponent as ToRightIcon } from './ToRight.svg'
