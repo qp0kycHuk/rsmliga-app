@@ -13,10 +13,12 @@
     "@headlessui/react": "^1.7.17",
     "@qpokychuk/fonts": "^1.0.9",
     "@tippyjs/react": "^4.2.6",
+    "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "convert-layout": "^0.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-file-drop": "^3.1.6",
     "react-hook-form": "^7.45.4",
     "react-router-dom": "^6.15.0"
   },

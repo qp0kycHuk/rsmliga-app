@@ -1,12 +1,12 @@
 export const colors = {
   white: '#fff',
-  black: '#222',
+  black: '#242424',
   transparent: 'rgba(0,0,0,0)',
   green: '#009432',
   yellow: '#f79f1f',
-  primary: '#CF0F3F',
+  primary: '#d35400',
   red: '#d63031',
-  gray: '#333',
+  gray: '#DDD',
 }
 
 export const elementsSizes = {

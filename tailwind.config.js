@@ -17,7 +17,7 @@ export default {
   },
   plugins: [
     tailwindButtonPlugin({
-      withFocusStyles: true,
+      withFocusStyles: false,
     }),
     require('./tailwind.input.js'),
   ],

@@ -1,5 +1,5 @@
-import { ReportTable } from './ReportTable/ReportTable'
-import { ReportFilter } from './ReportFilter'
+import { ReportTable } from './components/ReportTable/ReportTable'
+import { ReportFilter } from './components/ReportFilter'
 
 export function Report() {
   return (

@@ -1,5 +1,4 @@
-import { Button } from '@features/ui'
-import { Tooltip } from '@lib/Tooltip'
+import { Button, Tooltip } from '@features/ui'
 
 interface ICellTooltipProps extends React.PropsWithChildren {
   content?: string

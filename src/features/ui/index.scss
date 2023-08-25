@@ -7,11 +7,11 @@
 
 @layer components {
   .input {
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   :is(.btn-fill, .btn-light, .btn-whitebg, .btn-contur, .btn-default) {
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
     font-weight  : 500;
 

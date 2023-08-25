@@ -17,7 +17,7 @@ export function ReportFilter() {
   const [contest, setContest] = useState(contests[0])
   const [area, setArea] = useState(areas[0])
 
-  const [isDialogOpen, openDialog, closeDialog] = useToggle(false)
+  const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
 
   return (
     <>

@@ -13,8 +13,8 @@ body {
   display       : flex;
   flex-direction: column;
   min-height    : 100vh;
-  background: #F5F7FB;
-  font-family: var(--font-base);
+  background    : #F5F7FB;
+  font-family   : var(--font-base);
 
   * {
     outline: none;
@@ -25,4 +25,27 @@ body {
   display       : flex;
   flex-direction: column;
   flex-grow     : 1;
+}
+
+.filedrop {
+  &-target {
+    @apply transition absolute inset-0 pointer-events-none opacity-0 flex;
+
+    &.over-frame {
+      @apply border border-primary bg-primary bg-opacity-10 z-2 pointer-events-auto opacity-100;
+    }
+
+    &.over-target {
+      @apply bg-primary bg-opacity-20;
+    }
+  }
+}
+
+
+.air-datepicker {
+  --adp-accent-color                        : theme(colors.primary);
+  --adp-cell-background-color-selected      : theme(colors.primary);
+  --adp-cell-background-color-selected-hover: theme(colors.primary);
+  --adp-day-name-color                      : theme(colors.yellow);
+  --adp-day-name-color-hover                : theme(colors.primary / 10%);
 }

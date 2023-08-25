@@ -2,7 +2,7 @@ import { EyeClosedIcon, EyeIcon } from '@assets/icons/fill'
 import { Button } from '@features/ui'
 import { Field } from '@features/ui/components/Field/Field'
 import { ComponentProps, useState } from 'react'
-import { Tooltip } from '@lib/Tooltip'
+import { Tooltip } from '@features/ui/components/Tooltip'
 
 export function PasswordField(props: IPasswordFieldProps) {
   const [isHide, setHide] = useState(

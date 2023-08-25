@@ -14,3 +14,4 @@ export { MenuButton, MenuItem, Menu } from './components/Menu/Menu'
 export { MenuItems } from './components/Menu/MenuItems'
 
 export { Dialog } from './components/Dialog/Dialog'
+export { Tooltip } from './components/Tooltip'

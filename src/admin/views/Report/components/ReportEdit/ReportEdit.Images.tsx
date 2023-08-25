@@ -1,0 +1,41 @@
+import { useMemo } from 'react'
+import { Uploader } from '@features/fileUploader'
+import { useReportEditContext } from './ReportEdit.Context'
+import { getFileItems } from '@utils/helpers/files'
+
+// control upload and remove images
+export function ReportEditImages() {
+  const { report, update, loadingStart, loadingEnd } = useReportEditContext()
+
+  const fileItems = useMemo(() => {
+    return report?.images?.map((item) => ({
+      id: item.id,
+      src: item.src,
+      name: item.name,
+    }))
+  }, [report])
+
+  async function changeHandler(fileItems: IFileItem[]) {
+    const files = fileItems.map((item) => (item as Required<IFileItem>).file)
+
+    loadingStart()
+    const updatedFiles = await getFileItems(files)
+    loadingEnd()
+
+    update({
+      images: [...(report?.images || []), ...updatedFiles],
+    })
+  }
+
+  function removeHandler(fileItem: IFileItem) {
+    update({
+      images: report?.images?.filter((item) => item.id !== fileItem.id),
+    })
+  }
+
+  return (
+    <Uploader fileItems={fileItems} onChange={changeHandler} onRemove={removeHandler}>
+      <div className="text-lg font-semibold">Общее фото</div>
+    </Uploader>
+  )
+}
