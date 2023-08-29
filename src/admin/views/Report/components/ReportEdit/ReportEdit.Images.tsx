@@ -3,13 +3,13 @@ import { Uploader } from '@features/uploader'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
 
-interface IReportEditImagesProps extends React.PropsWithChildren {
+interface IImagesProps extends React.PropsWithChildren {
   keyOfImages: 'generalImages' | 'contestImages'
   max: number
 }
 
 // control upload and remove images
-export function ReportEditImages({ children, keyOfImages, max }: IReportEditImagesProps) {
+export function Images({ children, keyOfImages, max }: IImagesProps) {
   const { report, update, loadingStart, loadingEnd } = useReportEditContext()
 
   const fileItems = useMemo(() => {

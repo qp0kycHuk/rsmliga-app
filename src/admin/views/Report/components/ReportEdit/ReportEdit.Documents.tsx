@@ -3,7 +3,7 @@ import { useReportEditContext } from './ReportEdit.Context'
 import { PaperClipIcon } from '@assets/icons/fill'
 import { Button } from '@features/ui'
 
-export function ReportEditDocuments() {
+export function Documents() {
   const { report, update } = useReportEditContext()
 
   return (

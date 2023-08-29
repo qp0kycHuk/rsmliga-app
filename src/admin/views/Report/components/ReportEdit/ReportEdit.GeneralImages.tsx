@@ -1,9 +1,9 @@
-import { ReportEditImages } from './ReportEdit.Images'
+import { Images } from './ReportEdit.Images'
 
-export function ReportEditGeneralImages() {
+export function GeneralImages() {
   return (
-    <ReportEditImages max={5} keyOfImages="generalImages">
+    <Images max={5} keyOfImages="generalImages">
       <div className="text-lg font-semibold">Общее фото</div>
-    </ReportEditImages>
+    </Images>
   )
 }
