@@ -1,5 +1,5 @@
 import { ReportEditContextProvider } from './ReportEdit.Context'
-import { ReportEditForm } from './ReportEdit.Form'
+import { Form } from './ReportEdit.Form'
 
 interface IReportEditProps {
   contest: IContest
@@ -8,7 +8,7 @@ interface IReportEditProps {
 export function ReportEdit({ contest }: IReportEditProps) {
   return (
     <ReportEditContextProvider contest={contest}>
-      <ReportEditForm />
+      <Form />
     </ReportEditContextProvider>
   )
 }

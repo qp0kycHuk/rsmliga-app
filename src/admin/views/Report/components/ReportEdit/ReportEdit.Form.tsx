@@ -4,6 +4,7 @@ import { Documents } from './ReportEdit.Documents'
 import { ContestImages } from './ReportEdit.ContestImages'
 import { GeneralImages } from './ReportEdit.GeneralImages'
 import { Separator } from './ReportEdit.Separator'
+import { TeamImages } from './ReportEdit.TeamImages'
 
 export function Form() {
   const { contest } = useReportEditContext()
@@ -56,15 +57,15 @@ export function Form() {
       </div>
 
       <Separator />
-
       <Documents />
 
       <Separator />
+      <TeamImages />
 
+      <Separator />
       <GeneralImages />
 
       <Separator />
-
       <ContestImages />
 
       <div className="flex gap-4 mt-8">

@@ -9,6 +9,7 @@ interface IProps {
 
 export function ReportTableItem({ item }: IProps) {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
+
   return (
     <>
       <Row>

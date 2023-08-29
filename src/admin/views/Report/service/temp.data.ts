@@ -51,6 +51,19 @@ export function createReport(): IReport {
         src: '/img/test.gif',
       },
     ],
+    teamsImages: [
+      {
+        team: {
+          id: 1,
+          name: 'COUU #1',
+        },
+        image: {
+          id: 1,
+          name: 'OgrGEpOtIA_attachment.jpg',
+          src: '/img/test.gif',
+        },
+      },
+    ],
   }
 }
 
@@ -75,5 +88,19 @@ export function createContest(): IContest {
     place: 'ГБУ РО СШОР №5 (Первощихся 5-6 классов и так далее и тому подобное)',
     date: arrayRandomEl<string>('12.04.2021', '09.05.2022', '22.11.2023', '01.01.2024'),
     report: createReport(),
+    teams: [
+      {
+        id: 1,
+        name: 'COUU #1',
+      },
+      {
+        id: 2,
+        name: 'COUU #2',
+      },
+      {
+        id: 3,
+        name: 'COUU #3',
+      },
+    ],
   }
 }

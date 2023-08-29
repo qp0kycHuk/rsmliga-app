@@ -36,7 +36,7 @@ interface IReportEditContextProviderProps extends React.PropsWithChildren {
 
 interface IReportEditContextValue {
   contest: IContest
-  report?: Partial<IReport>
+  report: Partial<IReport>
   loading: boolean
   update(updated: DispatchEditableEntity<IEditableReport>): void
   loadingStart(): void

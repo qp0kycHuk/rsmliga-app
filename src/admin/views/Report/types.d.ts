@@ -7,6 +7,7 @@ interface IContest {
   place: string
   date: string
   report: IReport | null
+  teams: ITeam[]
 }
 
 interface IReport {
@@ -14,5 +15,10 @@ interface IReport {
   documents: IDoc[]
   generalImages: IFile[]
   contestImages: IFile[]
-  teamsImages?: Record<EntityId, IFile>
+  teamsImages: { team: ITeam; image: IImage }[]
+}
+
+interface ITeam {
+  id: EntityId
+  name: string
 }
