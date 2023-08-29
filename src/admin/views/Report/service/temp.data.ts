@@ -37,7 +37,14 @@ export function createReport(): IReport {
         file_remove: false,
       },
     ],
-    images: [
+    generalImages: [
+      {
+        id: 1,
+        name: 'OgrGEpOtIA_attachment.jpg',
+        src: '/img/test.gif',
+      },
+    ],
+    contestImages: [
       {
         id: 1,
         name: 'OgrGEpOtIA_attachment.jpg',

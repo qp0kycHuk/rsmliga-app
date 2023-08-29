@@ -12,5 +12,7 @@ interface IContest {
 interface IReport {
   id: EntityId
   documents: IDoc[]
-  images: IFile[]
+  generalImages: IFile[]
+  contestImages: IFile[]
+  teamsImages?: Record<EntityId, IFile>
 }

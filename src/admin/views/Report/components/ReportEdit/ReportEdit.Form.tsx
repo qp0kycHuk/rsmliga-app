@@ -1,7 +1,9 @@
 import { Button, Field } from '@features/ui'
 import { useReportEditContext } from './ReportEdit.Context'
 import { ReportEditDocuments } from './ReportEdit.Documents'
-import { ReportEditImages } from './ReportEdit.Images'
+import { ReportEditContestImages } from './ReportEdit.ContestImages'
+import { ReportEditGeneralImages } from './ReportEdit.GeneralImages'
+import { ReportEditSeparator } from './ReportEdit.Separator'
 
 export function ReportEditForm() {
   const { contest } = useReportEditContext()
@@ -53,13 +55,23 @@ export function ReportEditForm() {
         </div>
       </div>
 
-      <div className="my-8 border-t border-black border-opacity-20"></div>
+      <ReportEditSeparator />
 
       <ReportEditDocuments />
 
-      <div className="my-8 border-t border-black border-opacity-20"></div>
+      <ReportEditSeparator />
 
-      <ReportEditImages />
+      <ReportEditGeneralImages />
+
+      <ReportEditSeparator />
+
+      <ReportEditContestImages />
+
+      <div className="flex gap-4 mt-8">
+        <Button>Отправить отчет в департамент проведения соревнований</Button>
+        <Button variant="contur">Сохранить</Button>
+        <Button variant="light">Отмена</Button>
+      </div>
     </>
   )
 }

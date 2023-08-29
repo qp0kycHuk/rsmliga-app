@@ -3,12 +3,17 @@ import { Uploader } from '@features/uploader'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
 
+interface IReportEditImagesProps extends React.PropsWithChildren {
+  keyOfImages: 'generalImages' | 'contestImages'
+  max: number
+}
+
 // control upload and remove images
-export function ReportEditImages() {
+export function ReportEditImages({ children, keyOfImages, max }: IReportEditImagesProps) {
   const { report, update, loadingStart, loadingEnd } = useReportEditContext()
 
   const fileItems = useMemo(() => {
-    return report?.images?.map((item) => ({
+    return report?.[keyOfImages]?.map((item) => ({
       id: item.id,
       src: item.src,
       name: item.name,
@@ -23,19 +28,19 @@ export function ReportEditImages() {
     loadingEnd()
 
     update({
-      images: [...(report?.images || []), ...updatedFiles],
+      [keyOfImages]: [...(report?.[keyOfImages] || []), ...updatedFiles],
     })
   }
 
   function removeHandler(fileItem: IFile) {
     update({
-      images: report?.images?.filter((item) => item.id !== fileItem.id),
+      [keyOfImages]: report?.[keyOfImages]?.filter((item) => item.id !== fileItem.id),
     })
   }
 
   return (
-    <Uploader max={5} fileItems={fileItems} onChange={changeHandler} onRemove={removeHandler}>
-      <div className="text-lg font-semibold">Общее фото</div>
+    <Uploader max={max} fileItems={fileItems} onChange={changeHandler} onRemove={removeHandler}>
+      {children}
     </Uploader>
   )
 }
