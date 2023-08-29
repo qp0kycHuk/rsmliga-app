@@ -1,4 +1,3 @@
-import { PaperClipIcon } from '@assets/icons/fill'
 import { Button, Field } from '@features/ui'
 import { useReportEditContext } from './ReportEdit.Context'
 import { ReportEditDocuments } from './ReportEdit.Documents'
@@ -57,10 +56,6 @@ export function ReportEditForm() {
       <div className="my-8 border-t border-black border-opacity-20"></div>
 
       <ReportEditDocuments />
-      <Button variant="text" className="mt-4">
-        <PaperClipIcon className="mr-2 text-xl" />
-        <div className="underline underline-offset-4">Прикрепить файл</div>
-      </Button>
 
       <div className="my-8 border-t border-black border-opacity-20"></div>
 

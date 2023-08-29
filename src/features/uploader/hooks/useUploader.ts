@@ -1,40 +1,23 @@
-import { imageExtention } from '@utils/const/extentions'
-import { filterFiles } from '@utils/helpers/files'
 import { getRandomUUID } from '@utils/index'
-import { useCallback, useEffect } from 'react'
-
-interface IUploaderParams {
-  initialFiles?: IFileItem[]
-  extention?: IExtention
-  multiple?: boolean
-  rounded?: boolean
-  sign?: boolean
-  onChange?: (fileItems: IFileItem[]) => any
-  onRemove?: (fileItem: IFileItem) => any
-  // onChange?: (fileItems: IFileItem[]) => any
-}
+import { imageExtention } from '../extentions'
+import { useCallback } from 'react'
+import { filterFiles } from '../helpers'
 
 export function useUploader({
-  initialFiles = [],
+  fileItems = [],
   extention = imageExtention,
   multiple = true,
   rounded = false,
   sign = true,
   onChange,
   onRemove,
-}: IUploaderParams): IUplodaer {
-  const fileItems = initialFiles
-
-  useEffect(() => {
-    // setFileItems(initialFiles || [])
-  }, [initialFiles])
-
+}: IUploaderProps): IUplodaer {
   const addItems = useCallback(
     (items: File[]) => {
       const newItems = filterFiles(items, extention ? [extention.regex] : []).map((file) => ({
         key: getRandomUUID(),
         file,
-        title: file.name,
+        name: file.name,
       }))
 
       onChange?.([...(multiple ? newItems : newItems[0] ? [newItems[0]] : [])])
@@ -42,7 +25,7 @@ export function useUploader({
     [extention, multiple, onChange]
   )
 
-  const updateItem = useCallback((item: IFileItem, data: Partial<IFileItem>) => {
+  const updateItem = useCallback((item: IFile, data: Partial<IFile>) => {
     const changedItem = {
       ...item,
       ...data,
@@ -52,7 +35,7 @@ export function useUploader({
   }, [])
 
   const removeItem = useCallback(
-    (item: IFileItem) => {
+    (item: IFile) => {
       onRemove?.(item)
     },
     [onRemove]

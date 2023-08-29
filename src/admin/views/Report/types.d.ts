@@ -6,7 +6,7 @@ interface IContest {
   area: string
   place: string
   date: string
-  report: IReport
+  report: IReport | null
 }
 
 interface IReport {

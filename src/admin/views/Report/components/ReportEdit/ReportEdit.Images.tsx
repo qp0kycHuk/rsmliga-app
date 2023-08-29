@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Uploader } from '@features/fileUploader'
+import { Uploader } from '@features/uploader'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
 
@@ -15,8 +15,8 @@ export function ReportEditImages() {
     }))
   }, [report])
 
-  async function changeHandler(fileItems: IFileItem[]) {
-    const files = fileItems.map((item) => (item as Required<IFileItem>).file)
+  async function changeHandler(fileItems: IFile[]) {
+    const files = fileItems.map((item) => (item as Required<IFile>).file)
 
     loadingStart()
     const updatedFiles = await getFileItems(files)
@@ -27,7 +27,7 @@ export function ReportEditImages() {
     })
   }
 
-  function removeHandler(fileItem: IFileItem) {
+  function removeHandler(fileItem: IFile) {
     update({
       images: report?.images?.filter((item) => item.id !== fileItem.id),
     })
