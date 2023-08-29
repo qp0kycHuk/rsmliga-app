@@ -34,7 +34,7 @@ export function ReportEditImages() {
   }
 
   return (
-    <Uploader fileItems={fileItems} onChange={changeHandler} onRemove={removeHandler}>
+    <Uploader max={5} fileItems={fileItems} onChange={changeHandler} onRemove={removeHandler}>
       <div className="text-lg font-semibold">Общее фото</div>
     </Uploader>
   )

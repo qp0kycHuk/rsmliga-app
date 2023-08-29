@@ -12,6 +12,10 @@ export function UploaderLabel({ uploader }: IUploaderLabelProps) {
     uploader.addItems(Array.from(event.target.files || []))
   }
 
+  if (uploader.max && uploader.fileItems.length >= uploader.max) {
+    return null
+  }
+
   return (
     <label
       className={classNames(

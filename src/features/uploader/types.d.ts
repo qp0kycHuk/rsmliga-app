@@ -7,6 +7,7 @@ interface IUplodaer {
   multiple?: boolean
   rounded?: boolean
   sign?: boolean
+  max?: number
 }
 
 type ExtentionType = 'image' | 'doc' | 'video'
@@ -23,6 +24,7 @@ interface IUploaderProps extends React.PropsWithChildren {
   multiple?: boolean
   rounded?: boolean
   sign?: boolean
+  max?: number
   onChange?: (fileItems: IFile[]) => unknown
   onRemove?: (fileItem: IFile) => unknown
 }

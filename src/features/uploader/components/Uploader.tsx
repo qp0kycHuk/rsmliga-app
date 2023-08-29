@@ -11,6 +11,7 @@ export function Uploader({
   onChange,
   onRemove,
   children,
+  max,
 }: IUploaderProps) {
   const uploader = useUploader({
     multiple,
@@ -19,6 +20,7 @@ export function Uploader({
     fileItems: fileItems,
     onChange,
     onRemove,
+    max,
   })
 
   const isNonMultipleAccept = !(!uploader.multiple && uploader.fileItems.length > 0)

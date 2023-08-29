@@ -9,6 +9,7 @@ export function useUploader({
   multiple = true,
   rounded = false,
   sign = true,
+  max,
   onChange,
   onRemove,
 }: IUploaderProps): IUplodaer {
@@ -20,7 +21,10 @@ export function useUploader({
         name: file.name,
       }))
 
-      onChange?.([...(multiple ? newItems : newItems[0] ? [newItems[0]] : [])])
+      const updateditems = [...(multiple ? newItems : newItems[0] ? [newItems[0]] : [])]
+      updateditems.splice((max || updateditems.length) - fileItems.length)
+
+      onChange?.(updateditems)
     },
     [extention, multiple, onChange]
   )
@@ -50,5 +54,6 @@ export function useUploader({
     addItems,
     updateItem,
     removeItem,
+    max,
   }
 }
