@@ -3,40 +3,56 @@ import { arrayRandomEl, getRandomUUID } from '@utils/index'
 export function createReport(): IReport {
   return {
     id: getRandomUUID(),
-    documents: [
-      {
+    documents: {
+      skan: {
         name: 'skan',
         title: 'Скан-копия подписанной заявки',
         files: [],
         file_remove: false,
         required: true,
       },
-      {
+      vedomost: {
         name: 'vedomost',
         title: 'Ведомость о вручении денежных призов (Приложение 1)',
         files: [],
         file_remove: false,
         required: true,
       },
-      {
+      strah: {
         name: 'strah',
         title: 'Страхование',
         files: [],
         file_remove: false,
       },
-      {
+      lichnost: {
         name: 'lichnost',
         title: 'Документ подтверждающий личность',
         files: [],
         file_remove: false,
       },
-      {
+      perdan: {
         name: 'perdan',
         title: 'Заявление об обработке персональных данных',
-        files: ['/1.pdf', '/2.pdf', '/3.pdf'],
+        files: [
+          {
+            id: 1,
+            name: '1',
+            src: '/1.pdf',
+          },
+          {
+            id: 2,
+            name: '2',
+            src: '/2.pdf',
+          },
+          {
+            id: 3,
+            name: '3',
+            src: '/3.pdf',
+          },
+        ],
         file_remove: false,
       },
-    ],
+    },
     generalImages: [
       {
         id: 1,

@@ -1,14 +1,16 @@
 import { FileAddIcon } from '@assets/icons/fill'
 import { Button, Input } from '@features/ui'
+import { getFileItems } from '@utils/helpers/files'
 
 interface IFileFieldProps {
   item: IDoc
-  onChange?: (files: Array<File | string>) => void
+  onChange?: (files: Array<IFile>) => void
 }
 
 export function FileField({ item, onChange }: IFileFieldProps) {
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    const files = [...item.files, ...Array.from(event.target.files || [])]
+  async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    const newFiles = await getFileItems(Array.from(event.target.files || []))
+    const files = [...item.files, ...newFiles]
     onChange?.(files)
   }
 
@@ -18,7 +20,7 @@ export function FileField({ item, onChange }: IFileFieldProps) {
         <FileAddIcon className="mr-2 text-xl text-primary" />
         <div className="underline underline-offset-4">{item.title}</div>
         {item.files?.length > 0 ? (
-          <Button variant="text" className="ml-4 border-b">
+          <Button variant="text" className="ml-4 border-b" onClick={() => onChange?.([])}>
             Удалить
           </Button>
         ) : (
@@ -32,7 +34,7 @@ export function FileField({ item, onChange }: IFileFieldProps) {
   } else {
     return (
       <>
-        {item.files.map((_, index) => (
+        {item.files.map((file, index) => (
           <div className="flex items-center mb-4" key={index}>
             <FileAddIcon className="mr-2 text-xl text-primary" />
             <div className="underline underline-offset-4">
@@ -40,7 +42,8 @@ export function FileField({ item, onChange }: IFileFieldProps) {
               <Input
                 className="inline w-8 px-1 text-sm text-center"
                 size="xs"
-                defaultValue={index + 1}
+                defaultValue={file.name}
+                onChange={(event) => {}}
               />
               )
             </div>

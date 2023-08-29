@@ -12,7 +12,7 @@ interface IContest {
 
 interface IReport {
   id: EntityId
-  documents: IDoc[]
+  documents: Record<string, IDoc>
   generalImages: IFile[]
   contestImages: IFile[]
   teamsImages: { team: ITeam; image: IImage }[]

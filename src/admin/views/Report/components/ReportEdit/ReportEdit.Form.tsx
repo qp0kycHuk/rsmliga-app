@@ -7,7 +7,8 @@ import { Separator } from './ReportEdit.Separator'
 import { TeamImages } from './ReportEdit.TeamImages'
 
 export function Form() {
-  const { contest } = useReportEditContext()
+  const { contest, report } = useReportEditContext()
+  console.log(report)
 
   return (
     <>

@@ -6,22 +6,27 @@ import { Button } from '@features/ui'
 export function Documents() {
   const { report, update } = useReportEditContext()
 
+  if (!report.documents) return null
+
   return (
     <>
       <div className="mb-5 text-lg font-semibold">Файлы и документы</div>
-      {report?.documents
-        ?.filter((doc) => doc.files?.length > 0 || doc.required)
-        .map((doc) => (
+      {Object.entries(report.documents)
+        ?.filter(([key, doc]) => doc.files?.length > 0 || doc.required)
+        .map(([key, doc]) => (
           <FileField
             onChange={(files) => {
               update({
-                documents: report.documents?.map((item) => ({
-                  ...item,
-                  files: item.name === doc.name ? files : item.files,
-                })),
+                documents: {
+                  ...report.documents,
+                  [key]: {
+                    ...(report.documents as Record<string, IDoc>)[key],
+                    files: files,
+                  },
+                },
               })
             }}
-            key={doc.name}
+            key={key}
             item={doc}
           ></FileField>
         ))}
