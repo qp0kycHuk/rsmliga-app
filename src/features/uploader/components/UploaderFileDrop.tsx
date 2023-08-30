@@ -12,8 +12,8 @@ export function UploaderFileDrop({ uploader }: IUploaderFileDropProps) {
 
   return (
     <FileDrop
-      className="absolute -inset-4"
-      targetClassName="filedrop-target"
+      className="absolute inset-0"
+      targetClassName="filedrop-target absolute -inset-4"
       draggingOverFrameClassName="over-frame"
       draggingOverTargetClassName="over-target"
       onDrop={dropHandler}

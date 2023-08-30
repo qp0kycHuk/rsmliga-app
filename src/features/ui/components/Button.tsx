@@ -23,6 +23,7 @@ const colorClassNames: PartialRecord<Color, string> = {
   primary: 'btn-primary',
   red: 'btn-red',
   gray: 'btn-gray',
+  ['gray-light']: 'btn-gray-light',
 }
 
 const sizeClassNames: PartialRecord<Size, string> = {

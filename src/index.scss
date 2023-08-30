@@ -3,6 +3,7 @@
 @import 'tippy.js/dist/tippy.css';
 @import 'tippy.js/dist/backdrop.css';
 @import 'tippy.js/animations/shift-away.css';
+@import 'react-toastify/dist/ReactToastify.css';
 @import '@ui/index.scss';
 
 :root {
@@ -25,13 +26,17 @@ body {
   display       : flex;
   flex-direction: column;
   flex-grow     : 1;
+  position: relative;
+
 }
 
 .filedrop {
   &-target {
-    @apply transition absolute inset-0 pointer-events-none opacity-0 flex;
+    display: none;
+    @apply transition absolute pointer-events-none opacity-0;
 
     &.over-frame {
+      display: flex;
       @apply border border-primary bg-primary bg-opacity-10 z-2 pointer-events-auto opacity-100;
     }
 

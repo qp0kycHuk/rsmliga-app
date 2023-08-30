@@ -22,7 +22,7 @@ export function SideBar({}: ISideBarProps) {
         onClick={toggleIsOpen}
       >
         <MenuIcon className="flex-shrink-0 text-2xl" />
-        {isOpen && <div className="ml-2 text-base text-gray">Свернуть меню</div>}
+        {isOpen && <div className="ml-2 text-base text-black">Свернуть меню</div>}
       </Button>
       <Button
         as={Link}
@@ -31,7 +31,7 @@ export function SideBar({}: ISideBarProps) {
         variant="none"
       >
         <FileDocIcon className="flex-shrink-0 text-2xl" />
-        {isOpen && <div className="ml-2 text-base text-gray">Заявки</div>}
+        {isOpen && <div className="ml-2 text-base text-black">Заявки</div>}
       </Button>
       <Button
         as={Link}
@@ -40,7 +40,7 @@ export function SideBar({}: ISideBarProps) {
         variant="none"
       >
         <FileFolderIcon className="flex-shrink-0 text-2xl" />
-        {isOpen && <div className="ml-2 text-base text-gray">Отчеты</div>}
+        {isOpen && <div className="ml-2 text-base text-black">Отчеты</div>}
       </Button>
     </div>
   )

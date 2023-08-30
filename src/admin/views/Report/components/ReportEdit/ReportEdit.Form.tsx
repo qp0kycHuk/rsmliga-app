@@ -7,11 +7,10 @@ import { Separator } from './ReportEdit.Separator'
 import { TeamImages } from './ReportEdit.TeamImages'
 
 export function Form() {
-  const { contest, report } = useReportEditContext()
-  console.log(report)
+  const { contest, submit } = useReportEditContext()
 
   return (
-    <>
+    <form onSubmit={submit}>
       <div className="mb-8 text-2xl font-bold">Отчет о проведении соревнований</div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -71,9 +70,11 @@ export function Form() {
 
       <div className="flex gap-4 mt-8">
         <Button>Отправить отчет в департамент проведения соревнований</Button>
-        <Button variant="contur">Сохранить</Button>
+        <Button type="submit" variant="contur">
+          Сохранить
+        </Button>
         <Button variant="light">Отмена</Button>
       </div>
-    </>
+    </form>
   )
 }

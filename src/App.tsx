@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AdminRoutes } from './admin'
+import { ToastContainer } from '@lib/Toast'
 
 function App() {
   return (
@@ -7,6 +8,8 @@ function App() {
       <BrowserRouter>
         <AdminRoutes />
       </BrowserRouter>
+
+      <ToastContainer />
     </>
   )
 }

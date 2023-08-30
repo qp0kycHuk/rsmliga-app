@@ -1,7 +1,5 @@
-interface IDoc {
+interface IDocSchema {
   name: string
   title: string
-  files: Array<IFile> // : string | File | null
-  file_remove?: boolean
   required?: boolean
 }

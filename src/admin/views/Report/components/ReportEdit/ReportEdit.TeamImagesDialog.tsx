@@ -1,14 +1,18 @@
-import { PaperClipIcon } from '@assets/icons/fill'
+import { PaperClipIcon, PlusIcon } from '@assets/icons/fill'
 import { Button, Select } from '@features/ui'
 import { getFileItems } from '@utils/helpers/files'
 import { useState } from 'react'
 import { useReportEditContext } from './ReportEdit.Context'
+import { FileDrop } from 'react-file-drop'
+import { filterFiles } from '@features/uploader/helpers'
+import { imageExtention } from '@features/uploader/extentions'
+import { toast } from '@lib/Toast'
 
-interface ITeamDialogProps {
+interface ITeamImagesDialogProps {
   onClose: () => void
 }
 
-export function TeamDialog({ onClose }: ITeamDialogProps) {
+export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
   const { report, contest, update } = useReportEditContext()
   const [selectedTeamId, setSelectedTeamId] = useState<EntityId>()
   const [selectedFile, setSelectedFile] = useState<File>()
@@ -21,17 +25,36 @@ export function TeamDialog({ onClose }: ITeamDialogProps) {
     }
   }
 
+  function dropHandler(files: FileList | null) {
+    if (files?.[0]) {
+      const filteredFiles = filterFiles(Array.from(files), [imageExtention.regex])
+
+      if (filteredFiles[0]) {
+        setSelectedFile(filteredFiles[0])
+      } else {
+        toast.error('Неверный тип файла!', {
+          autoClose: 1500,
+          closeButton: false,
+        })
+      }
+    }
+  }
+
   async function submitHandler(event: React.FormEvent) {
     event.preventDefault()
-    setErrors(() => [])
+    const checkErrors = []
 
     if (!selectedTeamId) {
-      setErrors((prev) => [...prev, 'Выберите команду'])
-      return
+      checkErrors.push('Выберите команду')
     }
 
     if (!selectedFile) {
-      setErrors((prev) => [...prev, 'Загрузите фото'])
+      checkErrors.push('Загрузите фото')
+    }
+
+    setErrors(checkErrors)
+
+    if (checkErrors.length > 0) {
       return
     }
 
@@ -69,7 +92,7 @@ export function TeamDialog({ onClose }: ITeamDialogProps) {
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <div className="relative">
       <div className="p-7 bg-gray rounded-t-xl">
         <div className="text-3xl font-bold text-center">Загрузить документ</div>
       </div>
@@ -118,12 +141,22 @@ export function TeamDialog({ onClose }: ITeamDialogProps) {
         </Select>
 
         <div className="grid grid-cols-2 mt-6 gap-4 w-full">
-          <Button type="submit">Добавить</Button>
+          <Button onClick={submitHandler}>Добавить</Button>
           <Button variant="light" onClick={onClose}>
             Отмена
           </Button>
         </div>
       </div>
-    </form>
+
+      <FileDrop
+        className=""
+        targetClassName="filedrop-target absolute -inset-4"
+        draggingOverFrameClassName="over-frame"
+        draggingOverTargetClassName="over-target"
+        onDrop={dropHandler}
+      >
+        <PlusIcon className="m-auto text-4xl text-primary" />
+      </FileDrop>
+    </div>
   )
 }

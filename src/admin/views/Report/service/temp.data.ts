@@ -4,54 +4,27 @@ export function createReport(): IReport {
   return {
     id: getRandomUUID(),
     documents: {
-      skan: {
-        name: 'skan',
-        title: 'Скан-копия подписанной заявки',
-        files: [],
-        file_remove: false,
-        required: true,
-      },
-      vedomost: {
-        name: 'vedomost',
-        title: 'Ведомость о вручении денежных призов (Приложение 1)',
-        files: [],
-        file_remove: false,
-        required: true,
-      },
-      strah: {
-        name: 'strah',
-        title: 'Страхование',
-        files: [],
-        file_remove: false,
-      },
-      lichnost: {
-        name: 'lichnost',
-        title: 'Документ подтверждающий личность',
-        files: [],
-        file_remove: false,
-      },
-      perdan: {
-        name: 'perdan',
-        title: 'Заявление об обработке персональных данных',
-        files: [
-          {
-            id: 1,
-            name: '1',
-            src: '/1.pdf',
-          },
-          {
-            id: 2,
-            name: '2',
-            src: '/2.pdf',
-          },
-          {
-            id: 3,
-            name: '3',
-            src: '/3.pdf',
-          },
-        ],
-        file_remove: false,
-      },
+      skan: [],
+      vedomost: [],
+      strah: [],
+      lichnost: [],
+      perdan: [
+        {
+          id: 1,
+          name: '1',
+          src: '/1.pdf',
+        },
+        {
+          id: 2,
+          name: '2',
+          src: '/2.pdf',
+        },
+        {
+          id: 3,
+          name: '3',
+          src: '/3.pdf',
+        },
+      ],
     },
     generalImages: [
       {
@@ -88,6 +61,7 @@ export function createContest(): IContest {
     id: getRandomUUID(),
     season: arrayRandomEl<string>('2002-2003', '1922-1923', '2122-2123', '1812-1813', '2007-2008'),
     name: arrayRandomEl<string>(
+      'Олимпиада',
       'Спартакиада по тэг-регби среди учащихся 5-6 классови так далее и тому подобное',
       'Соревнования по регби-7 среди спортивных школ Ростовской области',
       'Олимпиада по регби среди учащихся 5-6 классови так далее и тому подобное',
@@ -103,7 +77,7 @@ export function createContest(): IContest {
     ),
     place: 'ГБУ РО СШОР №5 (Первощихся 5-6 классов и так далее и тому подобное)',
     date: arrayRandomEl<string>('12.04.2021', '09.05.2022', '22.11.2023', '01.01.2024'),
-    report: createReport(),
+    report: Math.random() > 0.5 ? createReport() : null,
     teams: [
       {
         id: 1,

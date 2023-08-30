@@ -21,9 +21,14 @@ export function ReportEditContextProvider({ children, contest }: IReportEditCont
 
   const [editableReport, update] = useEditableEntity<IEditableReport>(report)
 
+  function submit(event: React.FormEvent) {
+    event.preventDefault()
+    console.log(editableReport)
+  }
+
   return (
     <ReportEditContext.Provider
-      value={{ contest, report: editableReport, update, loading, loadingStart, loadingEnd }}
+      value={{ contest, report: editableReport, update, loading, loadingStart, loadingEnd, submit }}
     >
       {children}
     </ReportEditContext.Provider>
@@ -39,6 +44,7 @@ interface IReportEditContextValue {
   report: Partial<IReport>
   loading: boolean
   update(updated: DispatchEditableEntity<IEditableReport>): void
+  submit(event: React.FormEvent): void
   loadingStart(): void
   loadingEnd(): void
 }

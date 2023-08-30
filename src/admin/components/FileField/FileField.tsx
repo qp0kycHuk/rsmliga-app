@@ -3,23 +3,24 @@ import { Button, Input } from '@features/ui'
 import { getFileItems } from '@utils/helpers/files'
 
 interface IFileFieldProps {
-  item: IDoc
+  docs: IFile[]
+  schema: IDocSchema
   onChange?: (files: Array<IFile>) => void
 }
 
-export function FileField({ item, onChange }: IFileFieldProps) {
+export function FileField({ docs, schema, onChange }: IFileFieldProps) {
   async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const newFiles = await getFileItems(Array.from(event.target.files || []))
-    const files = [...item.files, ...newFiles]
+    const files = [...docs, ...newFiles]
     onChange?.(files)
   }
 
-  if (item.required) {
+  if (schema.required) {
     return (
       <div className="flex items-center mb-4">
         <FileAddIcon className="mr-2 text-xl text-primary" />
-        <div className="underline underline-offset-4">{item.title}</div>
-        {item.files?.length > 0 ? (
+        <div className="underline underline-offset-4">{schema.title}</div>
+        {docs?.length > 0 ? (
           <Button variant="text" className="ml-4 border-b" onClick={() => onChange?.([])}>
             Удалить
           </Button>
@@ -34,23 +35,27 @@ export function FileField({ item, onChange }: IFileFieldProps) {
   } else {
     return (
       <>
-        {item.files.map((file, index) => (
-          <div className="flex items-center mb-4" key={index}>
+        {docs.map((file) => (
+          <div className="flex items-center mb-4" key={file.id}>
             <FileAddIcon className="mr-2 text-xl text-primary" />
             <div className="underline underline-offset-4">
-              {item.title} (Файл{' '}
+              {schema.title} (Файл{' '}
               <Input
                 className="inline w-8 px-1 text-sm text-center"
                 size="xs"
-                defaultValue={file.name}
-                onChange={(event) => {}}
+                value={file.name}
+                onChange={(event) =>
+                  onChange?.(
+                    docs.map((d) => (d.id !== file.id ? d : { ...d, name: event.target.value }))
+                  )
+                }
               />
               )
             </div>
             <Button
               variant="text"
               className="ml-4 border-b"
-              onClick={() => onChange?.(item.files.filter((_, i) => i !== index))}
+              onClick={() => onChange?.(docs.filter(({ id }) => id !== file.id))}
             >
               Удалить
             </Button>

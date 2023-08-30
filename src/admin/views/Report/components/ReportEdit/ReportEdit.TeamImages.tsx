@@ -2,10 +2,10 @@ import { Button, Dialog } from '@features/ui'
 import { useReportEditContext } from './ReportEdit.Context'
 import { CameraIcon, CrossIcon } from '@assets/icons/fill'
 import { useToggle } from '@hooks/useToggle'
-import { TeamDialog } from './ReportEdit.TeamDialog'
+import { TeamImagesDialog } from './ReportEdit.TeamImagesDialog'
 
 export function TeamImages() {
-  const { report, contest, update } = useReportEditContext()
+  const { report, update } = useReportEditContext()
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
 
   function removeHandler(teamId: EntityId) {
@@ -46,7 +46,7 @@ export function TeamImages() {
       </div>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="max-w-lg w-full ">
-        <TeamDialog onClose={closeDialog} />
+        <TeamImagesDialog onClose={closeDialog} />
       </Dialog>
     </>
   )

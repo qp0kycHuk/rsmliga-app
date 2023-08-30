@@ -7,6 +7,7 @@ export const colors = {
   primary: '#d35400',
   red: '#d63031',
   gray: '#DDD',
+  ['gray-light']: '#F5F7FB',
 }
 
 export const elementsSizes = {
