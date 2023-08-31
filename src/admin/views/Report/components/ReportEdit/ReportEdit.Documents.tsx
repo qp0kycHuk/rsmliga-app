@@ -36,7 +36,7 @@ export function Documents() {
         <div className="underline underline-offset-4">Прикрепить файл</div>
       </Button>
 
-      <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="max-w-lg w-full ">
+      <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="max-w-lg w-full">
         <DocumentsDialog onClose={closeDialog} />
       </Dialog>
     </>

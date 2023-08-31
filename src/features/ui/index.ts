@@ -14,4 +14,8 @@ export { MenuButton, MenuItem, Menu } from './components/Menu/Menu'
 export { MenuItems } from './components/Menu/MenuItems'
 
 export { Dialog } from './components/Dialog/Dialog'
+export { DialogHeader } from './components/Dialog/DialogHeader'
+export { DialogTitle } from './components/Dialog/DialogTitle'
+export { DialogErrors } from './components/Dialog/DialogErrors'
+
 export { Tooltip } from './components/Tooltip'

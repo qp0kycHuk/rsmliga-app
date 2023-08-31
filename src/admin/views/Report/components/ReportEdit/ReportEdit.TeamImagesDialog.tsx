@@ -1,5 +1,5 @@
 import { PaperClipIcon, PlusIcon } from '@assets/icons/fill'
-import { Button, Select } from '@features/ui'
+import { Button, DialogErrors, DialogHeader, DialogTitle, Select } from '@features/ui'
 import { getFileItems } from '@utils/helpers/files'
 import { useState } from 'react'
 import { useReportEditContext } from './ReportEdit.Context'
@@ -93,17 +93,11 @@ export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
 
   return (
     <div className="relative">
-      <div className="p-7 bg-gray rounded-t-xl">
-        <div className="text-3xl font-bold text-center">Загрузить документ</div>
-      </div>
+      <DialogHeader>
+        <DialogTitle>Загрузить документ</DialogTitle>
+      </DialogHeader>
       <div className="p-16 pt-8 flex flex-col items-start">
-        {errors.length > 0 && (
-          <div className="bg-red bg-opacity-10 text-red p-4 w-full mb-4">
-            {errors.map((text) => (
-              <div key={text}>{text}</div>
-            ))}
-          </div>
-        )}
+        <DialogErrors errors={errors} />
 
         {selectedFile ? (
           // if file selected show filename and delete button

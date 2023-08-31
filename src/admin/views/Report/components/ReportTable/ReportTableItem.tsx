@@ -3,13 +3,17 @@ import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { ReportEdit } from '../ReportEdit/ReportEdit'
 import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
+import { ConfirmDialog } from '@admin/components/ConfirmDialog'
+import { ReportView } from '../ReportView/ReportView'
 
 interface IProps {
   item: IContest
 }
 
 export function ReportTableItem({ item }: IProps) {
-  const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
+  const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
+  const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
+  const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
   return (
     <>
@@ -28,7 +32,7 @@ export function ReportTableItem({ item }: IProps) {
           <div>Загружен</div>
           <div className="flex mt-1.5 gap-1">
             {!item.report?.id ? (
-              <Button size={null} icon className="btn-[22px]" onClick={openDialog}>
+              <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
                 +
               </Button>
             ) : (
@@ -38,7 +42,7 @@ export function ReportTableItem({ item }: IProps) {
                   icon
                   className="btn-[22px]"
                   color="gray-light"
-                  onClick={openDialog}
+                  onClick={openViewDialog}
                 >
                   <EyeIcon className="text-primary text-lg" />
                 </Button>
@@ -47,7 +51,7 @@ export function ReportTableItem({ item }: IProps) {
                   icon
                   className="btn-[22px]"
                   color="gray-light"
-                  onClick={openDialog}
+                  onClick={openEditDialog}
                 >
                   <PencilIcon className="text-primary text-lg" />
                 </Button>
@@ -56,7 +60,7 @@ export function ReportTableItem({ item }: IProps) {
                   icon
                   className="btn-[22px]"
                   color="gray-light"
-                  onClick={openDialog}
+                  onClick={openDeleteDialog}
                 >
                   <TrashIcon className="text-primary text-lg" />
                 </Button>
@@ -64,8 +68,25 @@ export function ReportTableItem({ item }: IProps) {
             )}
           </div>
 
-          <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
+          <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
             <ReportEdit contest={item} />
+          </Dialog>
+
+          <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
+            <ReportView contest={item} />
+          </Dialog>
+
+          <Dialog
+            isOpen={isDeleteDialogOpen}
+            onClose={closeDeleteDialog}
+            className="max-w-lg w-full"
+          >
+            <ConfirmDialog
+              title="Удалить отчет?"
+              confirmText="Удалить"
+              cancelText="Отмена"
+              onCancel={closeDeleteDialog}
+            />
           </Dialog>
         </Cell>
       </Row>

@@ -8,18 +8,18 @@ const ReportEditContext = createContext<IReportEditContextValue>({} as IReportEd
 export const useReportEditContext = () => useContext(ReportEditContext)
 
 export function ReportEditContextProvider({ children, contest }: IReportEditContextProviderProps) {
-  const [report, setReport] = useState<IReport>()
+  // const [report, setReport] = useState<IReport>()
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
 
-  useEffect(() => {
-    api()
-      .getReportByContestId(contest.id)
-      .then((item) => {
-        setReport(item)
-      })
-  }, [])
+  // useEffect(() => {
+  //   api()
+  //     .getReportByContestId(contest.id)
+  //     .then((item) => {
+  //       setReport(item)
+  //     })
+  // }, [])
 
-  const [editableReport, update] = useEditableEntity<IEditableReport>(report)
+  const [editableReport, update] = useEditableEntity<IEditableReport>(contest.report || {})
 
   function submit(event: React.FormEvent) {
     event.preventDefault()

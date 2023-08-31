@@ -65,3 +65,33 @@ export function FileField({ docs, schema, onChange }: IFileFieldProps) {
     )
   }
 }
+
+export function FileFieldView({ docs, schema }: IFileFieldProps) {
+  if (schema.required) {
+    return (
+      <a target="_blank" href={docs[0].src} className="flex items-center mb-4" rel="noreferrer">
+        <FileAddIcon className="mr-2 text-xl text-primary" />
+        <div className="underline underline-offset-4">{schema.title}</div>
+      </a>
+    )
+  } else {
+    return (
+      <>
+        {docs.map((file) => (
+          <a
+            target="_blank"
+            href={file.src}
+            className="flex items-center mb-4"
+            key={file.id}
+            rel="noreferrer"
+          >
+            <FileAddIcon className="mr-2 text-xl text-primary" />
+            <div className="underline underline-offset-4">
+              {schema.title} (Файл {file.name})
+            </div>
+          </a>
+        ))}
+      </>
+    )
+  }
+}
