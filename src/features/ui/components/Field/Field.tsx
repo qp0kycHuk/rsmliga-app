@@ -1,6 +1,5 @@
 import classnames from 'classnames'
-import classes from './Field.module.scss'
-import { Input, IProps, getInputClassname } from '../Input'
+import { Input, IProps } from '../Input'
 import { ComponentProps } from 'react'
 import { FieldWrapper } from './FieldWrapper'
 

@@ -3,9 +3,7 @@ import { Avatar, Button } from '@features/ui'
 import classes from './Header.module.scss'
 import classnames from 'classnames'
 
-interface IHeaderProps {}
-
-export function Header(props: IHeaderProps) {
+export function Header() {
   return (
     <header className={classnames(classes.header, 'flex items-center py-2')}>
       <div className={classnames(classes.user, 'flex items-center gap-2')}>

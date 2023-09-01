@@ -14,7 +14,7 @@ export function CellTooltip({ content, children }: ICellTooltipProps) {
           variant="contur"
           className="rounded-full btn-[18px] cursor-pointer"
           icon
-          size={null}
+          size={undefined}
         >
           ?
         </Button>

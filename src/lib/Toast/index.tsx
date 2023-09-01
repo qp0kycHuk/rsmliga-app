@@ -4,7 +4,7 @@ import { Button } from '@features/ui'
 import {
   CloseButtonProps,
   ToastContainer as Container,
-  IconProps,
+  // IconProps,
   ToastContainerProps,
 } from 'react-toastify'
 
@@ -34,9 +34,9 @@ const CloseButton = ({ closeToast, type }: CloseButtonProps) => {
 }
 
 // TODO
-const CustomIcon = (props: IconProps) => {
-  return <div className="self-start">{props.type}</div>
-}
+// const CustomIcon = (props: IconProps) => {
+//   return <div className="self-start">{props.type}</div>
+// }
 
 export function ToastContainer(props: ToastContainerProps & React.RefAttributes<HTMLDivElement>) {
   return (

@@ -1,5 +1,5 @@
 import { sleep } from '@utils/helpers/sleep'
-import axios from 'axios'
+// import axios from 'axios'
 import { createContest, createReport } from './temp.data'
 
 const TIMEOUT = 500
@@ -7,7 +7,7 @@ const TIMEOUT = 500
 const contests = new Array(5).fill(true).map(createContest)
 
 export function api() {
-  const instance = axios.create()
+  // const instance = axios.create()
 
   async function fetchContests(): Promise<IContest[]> {
     await sleep(TIMEOUT)
@@ -21,7 +21,7 @@ export function api() {
 
   async function getReportByContestId(contestId: EntityId): Promise<IReport | undefined> {
     await sleep(TIMEOUT)
-    return contests.find(({ id }) => id === contestId)?.report
+    return contests.find(({ id }) => id === contestId)?.report || undefined
   }
 
   return {

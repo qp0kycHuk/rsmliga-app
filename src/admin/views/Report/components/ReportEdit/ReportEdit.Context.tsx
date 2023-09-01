@@ -1,6 +1,6 @@
 import { DispatchEditableEntity, useEditableEntity } from '@hooks/useEditableEntity'
-import { createContext, useEffect, useState, useContext } from 'react'
-import { api } from '../../service/api'
+import { createContext, useContext } from 'react'
+// import { api } from '../../service/api'
 import { useToggle } from '@hooks/useToggle'
 
 const ReportEditContext = createContext<IReportEditContextValue>({} as IReportEditContextValue)
