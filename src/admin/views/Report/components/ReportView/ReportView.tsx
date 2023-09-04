@@ -1,4 +1,4 @@
-import { Separator } from '../ReportEdit/ReportEdit.Separator'
+import { Separator } from '../../../../components/Separator'
 import { ReportViewDocuments } from './ReportView.Documents'
 
 interface IReportViewProps {

@@ -1,13 +1,15 @@
 import { ReportTable } from './components/ReportTable/ReportTable'
 import { ReportFilter } from './components/ReportFilter'
+import { useDocumentTitle } from '@hooks/useDocumentTitle'
 
 export function Report() {
-  return (
-    <div>
-      <div className="mb-5 text-3xl font-bold">Отчеты</div>
+  useDocumentTitle('Отчеты')
 
+  return (
+    <>
+      <div className="mb-5 text-3xl font-bold">Отчеты</div>
       <ReportFilter />
       <ReportTable />
-    </div>
+    </>
   )
 }

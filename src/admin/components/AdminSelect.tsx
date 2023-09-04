@@ -28,7 +28,10 @@ export function AdminSelect({
         <MenuButton as={Button} variant="text" className="gap-2 ">
           {({ open }) => (
             <>
-              <div className="border-b"> {renderItem ? renderItem(value) : value}</div>
+              <div className="border-b max-w-[200px] truncate">
+                {' '}
+                {renderItem ? renderItem(value) : value}
+              </div>
               <TriangleDownIcon className={classnames('text-xs', open ? '-rotate-180' : '')} />
             </>
           )}

@@ -22,5 +22,3 @@ export function useEditableEntity<E>(entity?: E): [Partial<E>, (updated: Partial
 
   return [editableEntity, update]
 }
-
-export type DispatchEditableEntity<E> = ((prev: Partial<E>) => Partial<E>) | Partial<E>

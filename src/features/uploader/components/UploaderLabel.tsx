@@ -30,9 +30,14 @@ export function UploaderLabel({ uploader }: IUploaderLabelProps) {
         onChange={changeHandler}
         className="absolute inset-0 opacity-0 pointer-events-none"
       />
-
-      <CameraIcon className="text-5xl text-primary" />
-      <div className="text-lg text-primary">Добавить</div>
+      {uploader.label ? (
+        uploader.label
+      ) : (
+        <>
+          <CameraIcon className="text-5xl text-primary" />
+          <div className="text-lg text-primary">Добавить</div>
+        </>
+      )}
     </label>
   )
 }

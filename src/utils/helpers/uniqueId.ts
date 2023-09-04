@@ -1,3 +1,5 @@
+import uniqid from 'uniqid'
+
 /**
  * generate random id with crypto API
  *
@@ -5,5 +7,5 @@
  * @returns {string}
  */
 export function getRandomUUID(): string {
-  return crypto.randomUUID()
+  return uniqid()
 }

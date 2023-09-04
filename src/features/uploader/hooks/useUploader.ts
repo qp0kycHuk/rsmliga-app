@@ -10,6 +10,7 @@ export function useUploader({
   rounded = false,
   sign = true,
   max,
+  label,
   onChange,
   onRemove,
 }: IUploaderProps): IUplodaer {
@@ -55,5 +56,6 @@ export function useUploader({
     updateItem,
     removeItem,
     max,
+    label,
   }
 }

@@ -1,7 +1,5 @@
 import { useCallback, useState } from 'react'
 
-type IToggleResult = [boolean, () => void, () => void, () => void]
-
 export function useToggle(initial = false): IToggleResult {
   const [value, setValue] = useState(initial)
   const on = useCallback(() => setValue(true), [])

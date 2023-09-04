@@ -1,14 +1,20 @@
 import { Row, Cell, CellTooltip } from '@admin/index'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-import { ReportEdit } from '../ReportEdit/ReportEdit'
 import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
-import { ReportView } from '../ReportView/ReportView'
+import { Suspense, lazy } from 'react'
 
-interface IProps {
-  item: IContest
-}
+// import { ReportView } from '../ReportView/ReportView'
+// import { ReportEdit } from '../ReportEdit/ReportEdit'
+
+const ReportEdit = lazy(() =>
+  import('../ReportEdit/ReportEdit').then((m) => ({ default: m.ReportEdit }))
+)
+
+const ReportView = lazy(() =>
+  import('../ReportView/ReportView').then((m) => ({ default: m.ReportView }))
+)
 
 export function ReportTableItem({ item }: IProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
@@ -69,11 +75,15 @@ export function ReportTableItem({ item }: IProps) {
           </div>
 
           <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
-            <ReportEdit contest={item} />
+            <Suspense fallback="Loading...">
+              <ReportEdit contest={item} />
+            </Suspense>
           </Dialog>
 
           <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
-            <ReportView contest={item} />
+            <Suspense fallback="Loading...">
+              <ReportView contest={item} />
+            </Suspense>
           </Dialog>
 
           <Dialog
@@ -92,4 +102,8 @@ export function ReportTableItem({ item }: IProps) {
       </Row>
     </>
   )
+}
+
+interface IProps {
+  item: IContest
 }

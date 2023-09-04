@@ -3,7 +3,7 @@ import { useReportEditContext } from './ReportEdit.Context'
 import { Documents } from './ReportEdit.Documents'
 import { ContestImages } from './ReportEdit.ContestImages'
 import { GeneralImages } from './ReportEdit.GeneralImages'
-import { Separator } from './ReportEdit.Separator'
+import { Separator } from '../../../../components/Separator'
 import { TeamImages } from './ReportEdit.TeamImages'
 
 export function Form() {

@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import type { Color, Size } from '../types'
+import type { Color, Size } from '../../types'
 
 const baseClassName = 'input'
 
@@ -30,6 +30,15 @@ function InputComponent(
   return <input placeholder="" {...props} type={type} ref={ref} className={classNames} />
 }
 
+function TextareaComponent(
+  { color = 'primary', size, className, ...props }: TextareaProps,
+  ref: TextareaRef
+) {
+  const classNames = getInputClassname({ color, size, className })
+
+  return <textarea placeholder="" {...props} ref={ref} className={classNames} />
+}
+
 export function getInputClassname({ color = 'primary', size, className }: InputProps) {
   return classnames(
     baseClassName,
@@ -40,6 +49,7 @@ export function getInputClassname({ color = 'primary', size, className }: InputP
 }
 
 export const Input = React.forwardRef(InputComponent)
+export const Textarea = React.forwardRef(TextareaComponent)
 
 export interface IProps {
   color?: keyof typeof colorClassNames
@@ -49,3 +59,7 @@ export interface IProps {
 
 export type InputProps = IProps & Omit<React.InputHTMLAttributes<HTMLInputElement>, keyof IProps>
 export type InputRef = React.ForwardedRef<HTMLInputElement>
+
+export type TextareaProps = IProps &
+  Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, keyof IProps>
+export type TextareaRef = React.ForwardedRef<HTMLTextAreaElement>

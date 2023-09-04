@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import classes from './Table.module.scss'
 
-interface ICellProps extends React.PropsWithChildren {
+interface ICellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
   className?: string
   head?: boolean
 }

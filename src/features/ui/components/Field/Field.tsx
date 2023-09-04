@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import { Input, IProps } from '../Input'
+import { Input, IProps } from '../Input/Input'
 import { ComponentProps } from 'react'
 import { FieldWrapper } from './FieldWrapper'
 

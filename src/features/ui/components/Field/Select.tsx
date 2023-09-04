@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import classnames from 'classnames'
 import { FieldWrapper } from '../Field/FieldWrapper'
-import type { IProps } from '../Input'
+import type { IProps } from '../Input/Input'
 import { ToRightIcon } from '@assets/icons/fill'
 
 export function Select({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
   const selectRef = React.createRef<HTMLSelectElement>()
   const [isLabelShow, setIsLabelShow] = useState(
-    inputProps?.defaultValue === props.placeholder || !inputProps?.defaultValue
+    props.placeholder
+      ? inputProps?.defaultValue === props.placeholder || !inputProps?.defaultValue
+      : false
   )
 
   function changeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -31,7 +33,6 @@ export function Select({ children, fieldChildren, inputProps, ...props }: IField
           onChange={changeHandler}
           className={classnames(
             'input w-full border-none focus:shadow-none appearance-none cursor-pointer',
-
             inputProps?.className
           )}
         >

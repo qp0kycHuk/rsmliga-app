@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import classes from './Table.module.scss'
 
-interface IRowProps extends React.PropsWithChildren {
+interface IRowProps extends React.TableHTMLAttributes<HTMLTableRowElement> {
   className?: string
 }
 
