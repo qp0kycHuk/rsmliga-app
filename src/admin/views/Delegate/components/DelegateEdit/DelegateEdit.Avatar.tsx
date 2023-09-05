@@ -80,7 +80,9 @@ export function Avatar() {
         {delegate?.image_src ? (
           <img className="w-full h-full object-cover" src={delegate?.image_src} />
         ) : delegate.surname ? (
-          <div className="m-auto text-primary text-7xl font-semibold">{delegate.surname?.[0]}</div>
+          <div className="m-auto text-primary text-7xl font-semibold">
+            {delegate.surname?.[0].toUpperCase()}
+          </div>
         ) : (
           <CameraIcon className="m-auto text-primary text-7xl" />
         )}

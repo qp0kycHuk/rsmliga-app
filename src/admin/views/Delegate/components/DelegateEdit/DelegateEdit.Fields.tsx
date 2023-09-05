@@ -1,6 +1,8 @@
 import { Input, Select } from '@features/ui'
 import { DatePicker } from '@features/ui/components/DatePicker'
 import { useDelegateEditContext } from './DelegateEdit.Context'
+import { dateToSQLFormatString } from '@utils/helpers/dates'
+import { Asterisk } from '@components/Asterisk'
 
 export function Fields() {
   const { delegate, update } = useDelegateEditContext()
@@ -8,41 +10,56 @@ export function Fields() {
   return (
     <div className="grid grid-cols-2 gap-4">
       <label className="block">
-        <div className="font-semibold mb-1">Фамилия {delegate.surname}</div>
+        <div className="font-semibold mb-1">
+          Фамилия <Asterisk />
+        </div>
         <Input
+          required
           className="w-full"
           defaultValue={delegate.surname}
           onChange={(event) => update({ surname: event.target.value })}
         />
       </label>
       <label className="block">
-        <div className="font-semibold mb-1">Имя</div>
+        <div className="font-semibold mb-1">
+          Имя <Asterisk />
+        </div>
         <Input
+          required
           className="w-full"
           defaultValue={delegate.name}
           onChange={(event) => update({ name: event.target.value })}
         />
       </label>
       <label className="block">
-        <div className="font-semibold mb-1">Отчество</div>
+        <div className="font-semibold mb-1">
+          Отчество <Asterisk />
+        </div>
         <Input
+          required
           className="w-full"
           defaultValue={delegate.patronymic}
           onChange={(event) => update({ patronymic: event.target.value })}
         />
       </label>
       <label className="block">
-        <div className="font-semibold mb-1">Дата рождения</div>
+        <div className="font-semibold mb-1">
+          Дата рождения <Asterisk />
+        </div>
         <DatePicker
+          required
           className="w-full"
-          defaultValue={delegate.birthday}
-          onChange={(event) => update({ birthday: event.target.value })}
+          value={delegate.birthday}
+          onSelect={({ date }) => update({ birthday: dateToSQLFormatString(date as Date) })}
         />
       </label>
       <div>
-        <div className="font-semibold mb-1">Пол</div>
+        <div className="font-semibold mb-1">
+          Пол <Asterisk />
+        </div>
         <Select
           inputProps={{
+            required: true,
             defaultValue: delegate.sex,
             onChange: (event) => update({ sex: event.target.value }),
           }}

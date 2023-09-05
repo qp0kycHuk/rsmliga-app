@@ -35,7 +35,7 @@ export function Form() {
       <Statistic />
 
       <div className="flex gap-4 mt-8">
-        <Button>Сохранить</Button>
+        <Button type="submit">Сохранить</Button>
         <Button variant="light">Отмена</Button>
       </div>
     </form>

@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 import { useEditableEntity } from '@hooks/useEditableEntity'
 import { useToggle } from '@hooks/useToggle'
+import { EMPTY_OBJECT } from '@utils/const'
 // import { api } from '../../service/api'
 
 const DelegateEditContext = createContext<IDelegateEditContextValue>(
@@ -14,17 +15,17 @@ export function DelegateEditContextProvider({
   delegate,
 }: IDelegateEditContextProviderProps) {
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
-  const [editableReport, update] = useEditableEntity<IEditableReport>(delegate || {})
+  const [editableDelegate, update] = useEditableEntity<IEditableDelegate>(delegate || EMPTY_OBJECT)
 
   function submit(event: React.FormEvent) {
     event.preventDefault()
-    console.log(editableReport)
+    console.log(editableDelegate)
   }
 
   return (
     <DelegateEditContext.Provider
       value={{
-        delegate: editableReport,
+        delegate: editableDelegate,
         update,
         loading,
         loadingStart,
