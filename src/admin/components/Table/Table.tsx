@@ -1,13 +1,13 @@
 import classnames from 'classnames'
 import classes from './Table.module.scss'
 
-interface ITableProps extends React.PropsWithChildren {
+interface ITableProps extends React.TableHTMLAttributes<HTMLTableElement> {
   className?: string
 }
 
-export function Table({ children, className }: ITableProps) {
+export function Table({ children, className, ...props }: ITableProps) {
   return (
-    <table className={classnames(classes.table, className)}>
+    <table {...props} className={classnames(classes.table, className)}>
       <tbody>{children}</tbody>
     </table>
   )

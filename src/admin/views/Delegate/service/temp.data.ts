@@ -101,5 +101,10 @@ export function createDelegate(): IDelegate {
       warnings: 99,
       deletions: 99,
     })),
+    roles: {
+      main: arrayRandomEl<number>(1, 2, 33, 0),
+      support: arrayRandomEl<number>(1, 2, 33, 0),
+      delegate: arrayRandomEl<number>(1, 2, 33, 0),
+    },
   }
 }

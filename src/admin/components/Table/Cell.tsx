@@ -6,9 +6,10 @@ interface ICellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
   head?: boolean
 }
 
-export function Cell({ children, className, head }: ICellProps) {
+export function Cell({ children, className, head, ...props }: ICellProps) {
   return (
     <td
+      {...props}
       className={classnames(classes.cell, className, {
         [classes.head]: head,
       })}

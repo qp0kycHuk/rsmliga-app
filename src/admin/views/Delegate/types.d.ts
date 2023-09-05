@@ -17,6 +17,11 @@ interface IDelegate {
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]
+  roles: {
+    main: number
+    support: number
+    delegate: number
+  }
 }
 
 interface IStatistic {
