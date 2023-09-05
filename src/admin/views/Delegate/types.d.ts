@@ -1,18 +1,19 @@
 interface IDelegate {
-  image_src?: string
   id: EntityId
-  number: string
   name: string
   surname: string
   patronymic: string
-  birthday: string
-  sex: string
   category: string
-  place: string // Населенный пункт
+  location: string // Населенный пункт
+  birthdate: string
+  matchesCount: number // Матчей проведено
+
+  image_src?: string
+  number: string
+  sex: string
   email: string
   phone: string
   comment: string
-  gamesCount: number // Матчей проведено
   documents: Record<string, IFile[]>
   imageFile?: File
   image_delete?: boolean
@@ -24,6 +25,20 @@ interface IDelegate {
     delegate: number
   }
 }
+
+// interface IDelegate {
+//   // bitrix type
+//   ID: EntityId
+//   CATEGORY: string
+//   LOCATION: string // Населенный пункт
+//   BIRTH_DATE: string
+//   MATCHES_COUNT: number // Матчей проведено
+//   FIO: {
+//     SURNAME: string
+//     NAME: string
+//     PATRONNAME: string
+//   }
+// }
 
 interface IStatistic {
   id: EntityId

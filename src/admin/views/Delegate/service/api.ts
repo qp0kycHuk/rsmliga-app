@@ -1,5 +1,5 @@
 import { sleep } from '@utils/helpers/sleep'
-// import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { createDelegate } from './temp.data'
 
 const TIMEOUT = 500
@@ -7,11 +7,12 @@ const TIMEOUT = 500
 const delegates = new Array(5).fill(true).map(createDelegate)
 
 export function api() {
-  // const instance = axios.create()
+  const instance = axios.create({
+    baseURL: import.meta.env.VITE_API_ROOT_URL,
+  })
 
-  async function fetchDelegates(): Promise<IDelegate[]> {
-    await sleep(TIMEOUT)
-    return delegates
+  async function fetchDelegates(): Promise<AxiosResponse<IListResponse<IDelegate>>> {
+    return await instance.get('/list_of_judges.php')
   }
 
   return {

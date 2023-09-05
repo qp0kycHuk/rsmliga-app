@@ -37,8 +37,8 @@ export function ListTable({ items }: IListTableProps) {
           {/* for button */}
         </Cell>
       </Row>
-      {items.map((item) => (
-        <ListTableItem key={item.id} item={item} />
+      {items.map((item, index) => (
+        <ListTableItem key={item.id} item={item} index={index} />
       ))}
     </Table>
   )

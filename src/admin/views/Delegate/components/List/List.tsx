@@ -9,8 +9,8 @@ export function List() {
   useEffect(() => {
     api()
       .fetchDelegates()
-      .then((items) => {
-        setDelegates(items)
+      .then((response) => {
+        setDelegates(response.data.items)
       })
   }, [])
 
