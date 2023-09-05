@@ -1,9 +1,10 @@
-import { Row, Cell } from '@admin/index'
+import { Row, Cell, Table, CellTooltip } from '@admin/index'
 import { SettingsIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 // import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
 import { Suspense, lazy } from 'react'
+import { DelegateContests } from '../DelegateContests'
 
 const DelegateEdit = lazy(() =>
   import('../DelegateEdit/DelegateEdit').then((m) => ({ default: m.DelegateEdit }))
@@ -15,6 +16,7 @@ interface IListTableItemProps {
 
 export function ListTableItem({ item }: IListTableItemProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
+  const [isContestsDialogOpen, , openContestsDialog, closeContestsDialog] = useToggle(false)
 
   return (
     <Row>
@@ -24,7 +26,19 @@ export function ListTableItem({ item }: IListTableItemProps) {
         {item.surname} {item.name} {item.patronymic}
       </Cell>
       <Cell className="text-sm font-medium w-[228px] max-w-[228px]">
-        <Button size="xs">Открыть</Button>
+        <Button size="xs" onClick={openContestsDialog}>
+          Открыть
+        </Button>
+        <Dialog
+          isOpen={isContestsDialogOpen}
+          onClose={closeContestsDialog}
+          className="max-w-4xl p-10"
+        >
+          <DelegateContests delegate={item} />
+          <Button className="mt-6" onClick={closeContestsDialog}>
+            Закрыть
+          </Button>
+        </Dialog>
       </Cell>
       <Cell className="text-sm ">{item.category}</Cell>
       <Cell className="text-sm ">{item.place}</Cell>

@@ -1,8 +1,9 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
-import { SearchIcon } from '@assets/icons/fill'
+import { CirclePlusIcon, SearchIcon } from '@assets/icons/fill'
 import { Dialog, Button, Input } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
 
 const seasons = ['Любой', '2021-2022', '2022-2023', '2023-2024']
 const contests = [
@@ -35,13 +36,16 @@ export function ListFilter() {
           </Button>
         </div>
 
-        <Button variant="text" onClick={openDialog}>
+        <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
+          <CirclePlusIcon className="text-2xl" />
           Добавить судью
         </Button>
       </div>
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
-        Добавить судью Модалка
+        <Suspense fallback="Loading...">
+          <DelegateEdit />
+        </Suspense>
       </Dialog>
     </>
   )

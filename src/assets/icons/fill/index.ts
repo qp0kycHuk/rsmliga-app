@@ -1,5 +1,6 @@
 export { ReactComponent as BallIcon } from './Ball.svg'
 export { ReactComponent as CircleIcon } from './Circle.svg'
+export { ReactComponent as CirclePlusIcon } from './CirclePlus.svg'
 export { ReactComponent as EyeIcon } from './Eye.svg'
 export { ReactComponent as EyeClosedIcon } from './EyeClosed.svg'
 export { ReactComponent as FileAddIcon } from './FileAdd.svg'

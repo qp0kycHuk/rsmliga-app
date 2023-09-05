@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useDelegateEditContext } from './DelegateEdit.Context'
 import { getFilePreview } from '@utils/helpers/files'
 import { Uploader } from '@features/uploader'
-import { CrossIcon, PlusIcon } from '@assets/icons/fill'
+import { CameraIcon, CrossIcon, PlusIcon } from '@assets/icons/fill'
 import { FileDrop } from 'react-file-drop'
 import { filterFiles } from '@features/uploader/helpers'
 import { imageExtention } from '@features/uploader/extentions'
@@ -79,8 +79,10 @@ export function Avatar() {
       <div className="w-60 h-60 rounded-full flex bg-primary bg-opacity-20 hover:bg-opacity-30 overflow-hidden">
         {delegate?.image_src ? (
           <img className="w-full h-full object-cover" src={delegate?.image_src} />
-        ) : (
+        ) : delegate.surname ? (
           <div className="m-auto text-primary text-7xl font-semibold">{delegate.surname?.[0]}</div>
+        ) : (
+          <CameraIcon className="m-auto text-primary text-7xl" />
         )}
         {!delegate?.image_src ? (
           <label className="absolute inset-0 cursor-pointer">

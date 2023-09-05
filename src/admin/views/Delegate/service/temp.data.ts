@@ -1,61 +1,5 @@
 import { arrayRandomEl, getRandomUUID } from '@utils/index'
 
-export function createReport(): IReport {
-  return {
-    id: getRandomUUID(),
-    documents: {
-      skan: [],
-      vedomost: [],
-      strah: [],
-      lichnost: [],
-      perdan: [
-        {
-          id: 1,
-          name: '1',
-          src: '/1.pdf',
-        },
-        {
-          id: 2,
-          name: '2',
-          src: '/2.pdf',
-        },
-        {
-          id: 3,
-          name: '3',
-          src: '/3.pdf',
-        },
-      ],
-    },
-    generalImages: [
-      {
-        id: 1,
-        name: 'OgrGEpOtIA_attachment.jpg',
-        src: '/img/test.gif',
-      },
-    ],
-    contestImages: [
-      {
-        id: 1,
-        name: 'OgrGEpOtIA_attachment.jpg',
-        src: '/img/test.gif',
-      },
-    ],
-    teamsImages: [
-      {
-        team: {
-          id: 1,
-          name: 'COUU #1',
-        },
-        image: {
-          id: 1,
-          name: 'OgrGEpOtIA_attachment.jpg',
-          src: '/img/test.gif',
-        },
-      },
-    ],
-  }
-}
-
 export function createDelegate(): IDelegate {
   return {
     id: getRandomUUID(),
@@ -106,5 +50,12 @@ export function createDelegate(): IDelegate {
       support: arrayRandomEl<number>(1, 2, 33, 0),
       delegate: arrayRandomEl<number>(1, 2, 33, 0),
     },
+    contests: [
+      'Олимпиада',
+      'Спартакиада по тэг-регби среди учащихся 5-6 классови так далее и тому подобное',
+      'Соревнования по регби-7 среди спортивных школ Ростовской области',
+      'Олимпиада по регби среди учащихся 5-6 классови так далее и тому подобное',
+      'Летняя Спартакиада по тэг-регби среди спортивных школ Ростовской области',
+    ],
   }
 }

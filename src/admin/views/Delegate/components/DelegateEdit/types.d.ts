@@ -1,5 +1,5 @@
 interface IDelegateEditContextProviderProps extends React.PropsWithChildren {
-  delegate: IDelegate
+  delegate?: IDelegate
 }
 
 interface IDelegateEditContextValue extends IEditContextValue {
@@ -10,5 +10,5 @@ interface IDelegateEditContextValue extends IEditContextValue {
 interface IEditableDelegate extends Partial<IDelegate> {}
 
 interface IDelegateEditProps {
-  delegate: IDelegate
+  delegate?: IDelegate
 }

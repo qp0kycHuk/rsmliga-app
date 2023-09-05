@@ -17,6 +17,7 @@ interface IDelegate {
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]
+  contests: string[]
   roles: {
     main: number
     support: number
