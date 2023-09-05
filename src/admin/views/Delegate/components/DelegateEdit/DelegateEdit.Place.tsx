@@ -7,7 +7,12 @@ export function Place() {
   return (
     <div>
       <div className="font-semibold mb-1">Населенный пункт</div>
-      <Select inputProps={{ defaultValue: delegate.place }}>
+      <Select
+        inputProps={{
+          defaultValue: delegate.place,
+          onChange: (event) => update({ place: event.target.value }),
+        }}
+      >
         <option value="г. Геленджик">г. Геленджик</option>
         <option value="г. Краснодар">г. Краснодар</option>
         <option value="г. Ростов">г. Ростов</option>

@@ -11,15 +11,27 @@ export function Contacts() {
       <div className="grid grid-cols-12 gap-4 grid-rows-none">
         <label className="block col-span-3">
           <div className="font-semibold mb-1">E-mail</div>
-          <Input className="w-full" defaultValue={delegate.email} />
+          <Input
+            className="w-full"
+            defaultValue={delegate.email}
+            onChange={(event) => update({ email: event.target.value })}
+          />
         </label>
         <label className="block col-span-3">
           <div className="font-semibold mb-1">Телефон</div>
-          <PhoneInput className="w-full" defaultValue={delegate.phone} />
+          <PhoneInput
+            className="w-full"
+            defaultValue={delegate.phone}
+            onChange={(event) => update({ phone: event.target.value })}
+          />
         </label>
         <label className="block col-span-6 row-span-2">
           <div className="font-semibold mb-1">Комментарий</div>
-          <Textarea className="w-full min-h-[240px]" defaultValue={delegate.comment} />
+          <Textarea
+            className="w-full min-h-[240px]"
+            defaultValue={delegate.comment}
+            onChange={(event) => update({ comment: event.target.value })}
+          />
         </label>
         <div className="col-span-6">
           <Documents />
