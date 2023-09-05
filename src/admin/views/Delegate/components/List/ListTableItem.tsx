@@ -1,8 +1,7 @@
-import { Row, Cell, Table, CellTooltip } from '@admin/index'
+import { Row, Cell } from '@admin/index'
 import { SettingsIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-// import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
 import { Suspense, lazy } from 'react'
 import { DelegateContests } from '../DelegateContests'
 
