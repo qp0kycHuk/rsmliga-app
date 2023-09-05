@@ -4,7 +4,7 @@ export const colors = {
   transparent: 'rgba(0,0,0,0)',
   green: '#009432',
   yellow: '#f79f1f',
-  primary: '#d35400',
+  primary: '#778beb',
   red: '#d63031',
   gray: '#DDD',
   ['gray-light']: '#F5F7FB',
