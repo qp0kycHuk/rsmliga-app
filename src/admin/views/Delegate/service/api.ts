@@ -9,12 +9,14 @@ export function api() {
   async function fetchDelegates({
     page = 1,
     itemsPerPage = DELEGATES_PER_PAGE,
+    search = '',
   }: IFetchParams): Promise<AxiosResponse<IFetchResponse>> {
     return await instance.get('/list_of_judges.php', {
       params: {
         action: 'getlist',
         PAGEN_1: page,
         nPageSize: itemsPerPage,
+        search,
       },
     })
   }
@@ -27,6 +29,7 @@ export function api() {
 interface IFetchParams {
   page: number
   itemsPerPage?: number
+  search?: string
 }
 
 interface IFetchResponse extends IListResponse<IDelegate> {

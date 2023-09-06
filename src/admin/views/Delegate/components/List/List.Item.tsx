@@ -13,7 +13,7 @@ interface IListTableItemProps {
   item: IDelegate
 }
 
-export function ListTableItem({ item }: IListTableItemProps) {
+export function ListItem({ item }: IListTableItemProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isContestsDialogOpen, , openContestsDialog, closeContestsDialog] = useToggle(false)
 

@@ -4,9 +4,12 @@ interface IDocSchema {
   required?: boolean
 }
 
-interface IEditContextValue {
+interface ILoadingContext {
   loading: boolean
-  submit(event: React.FormEvent): void
   loadingStart(): void
   loadingEnd(): void
+}
+
+interface IEditContextValue extends ILoadingContext {
+  submit(event: React.FormEvent): void
 }

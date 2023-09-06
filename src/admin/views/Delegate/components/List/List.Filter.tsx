@@ -4,6 +4,8 @@ import { Dialog, Button, Input } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { Suspense, useState } from 'react'
 import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
+import { useDelegateListContext } from './List.Context'
+import { Search } from './List.Search'
 
 const seasons = ['Любой', '2021-2022', '2022-2023', '2023-2024']
 const contests = [
@@ -15,7 +17,7 @@ const contests = [
 
 const steps = ['Любой', 'Муниципальный', 'Железнодорожный', 'Судоходный', 'Воздушный']
 
-export function ListFilter() {
+export function Filter() {
   const [season, setSeason] = useState(seasons[0])
   const [contest, setContest] = useState(contests[0])
   const [step, setStep] = useState(steps[0])
@@ -29,12 +31,7 @@ export function ListFilter() {
         <AdminSelect label="Соревнование" value={contest} items={contests} onChange={setContest} />
         <AdminSelect label="Этап" value={step} items={steps} onChange={setStep} />
 
-        <div className="relative w-64 ml-auto">
-          <Input placeholder="Поиск по фамилии" className="w-full" size="sm" />
-          <Button className="absolute right-1 top-1" icon variant="none" size="xs">
-            <SearchIcon />
-          </Button>
-        </div>
+        <Search />
 
         <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
           <CirclePlusIcon className="text-2xl" />

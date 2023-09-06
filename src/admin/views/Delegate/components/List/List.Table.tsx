@@ -1,11 +1,15 @@
 import { Table, Row, Cell } from '@admin/index'
-import { ListTableItem } from './ListTableItem'
+import { ListItem } from './List.Item'
 
 interface IListTableProps {
   items: IDelegate[]
 }
 
 export function ListTable({ items }: IListTableProps) {
+  if (!items || items.length == 0) {
+    return 'Здесь ничего нет'
+  }
+
   return (
     <Table>
       <Row>
@@ -37,8 +41,8 @@ export function ListTable({ items }: IListTableProps) {
           {/* for button */}
         </Cell>
       </Row>
-      {items.map((item) => (
-        <ListTableItem key={item.id} item={item} />
+      {items?.map((item) => (
+        <ListItem key={item.id} item={item} />
       ))}
     </Table>
   )
