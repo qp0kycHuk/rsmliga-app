@@ -5,6 +5,10 @@ interface IDelegateContestsProps {
 }
 
 export function DelegateContests({ delegate }: IDelegateContestsProps) {
+  if (!delegate.contests || delegate.contests.length == 0) {
+    return <div className="text-2xl font-bold mb-6">Не заявлен на соревнования</div>
+  }
+
   return (
     <>
       <div className="text-2xl font-bold mb-6">Заявлен на соревнования</div>
@@ -16,7 +20,7 @@ export function DelegateContests({ delegate }: IDelegateContestsProps) {
           <Cell head>ФИО</Cell>
           <Cell head>Соревнование</Cell>
         </Row>
-        {delegate.contests.map((contest, index) => (
+        {delegate.contests?.map((contest, index) => (
           <Row className="text-sm " key={index}>
             <Cell className="text-center">{index}</Cell>
             <Cell>

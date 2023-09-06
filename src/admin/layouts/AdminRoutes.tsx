@@ -6,7 +6,7 @@ import { routes as delegateRoutes } from '../views/Delegate/const'
 export function AdminRoutes() {
   return (
     <Routes>
-      <Route path="/admin/" element={<AdminLayout />}>
+      <Route path="/dashboard/" element={<AdminLayout />}>
         <Route path="report" element={<Report />}></Route>
         <Route path={delegateRoutes.list} element={<DelegateList />}></Route>
         <Route path={delegateRoutes.analitic} element={<DelegateAnalitic />}></Route>

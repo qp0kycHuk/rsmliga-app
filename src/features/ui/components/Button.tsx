@@ -59,7 +59,6 @@ function ButtonComponent<C extends BaseComponent = 'button'>(
       as={as}
       ref={ref}
       type="button"
-      onPointerDown={variant !== 'text' ? ripplePointerdownHandler : null}
       className={classNames}
       {...(props as BaseComponentProps<C>)}
     />

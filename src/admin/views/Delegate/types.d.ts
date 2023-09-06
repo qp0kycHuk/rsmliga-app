@@ -1,4 +1,5 @@
 interface IDelegate {
+  number: string
   id: EntityId
   name: string
   surname: string
@@ -9,7 +10,6 @@ interface IDelegate {
   matchesCount: number // Матчей проведено
 
   image_src?: string
-  number: string
   sex: string
   email: string
   phone: string

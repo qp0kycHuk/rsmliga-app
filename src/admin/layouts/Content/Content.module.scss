@@ -1,4 +1,8 @@
 .content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  
   @media(min-width: 1350px) {
     --section-width: 1320px;
   }

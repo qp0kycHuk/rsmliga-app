@@ -7,7 +7,7 @@ import { Content } from './Content/Content'
 
 export function AdminLayout() {
   return (
-    <div className="flex-grow ">
+    <div className="flex-grow flex flex-col">
       <Header />
       <SideBar />
       <Content>

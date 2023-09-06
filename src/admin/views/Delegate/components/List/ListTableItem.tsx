@@ -11,18 +11,17 @@ const DelegateEdit = lazy(() =>
 
 interface IListTableItemProps {
   item: IDelegate
-  index: number
 }
 
-export function ListTableItem({ item, index }: IListTableItemProps) {
+export function ListTableItem({ item }: IListTableItemProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isContestsDialogOpen, , openContestsDialog, closeContestsDialog] = useToggle(false)
 
   return (
     <Row>
-      <Cell className="text-sm text-center">{index + 1}</Cell>
+      <Cell className="text-sm text-center w-12">{item.number}</Cell>
       <Cell className="text-sm max-w-[90px] w-[90px] truncate">{item.id}</Cell>
-      <Cell className="text-sm">
+      <Cell className="text-sm w-80">
         {item.surname} {item.name} {item.patronymic}
       </Cell>
       <Cell className="text-sm font-medium w-[228px] max-w-[228px]">
