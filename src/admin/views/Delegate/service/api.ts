@@ -5,6 +5,9 @@ export async function fetchDelegates({
   page = 1,
   itemsPerPage = DELEGATES_PER_PAGE,
   search = '',
+  sezon = '',
+  turnier = '',
+  stage = '',
 }: IFetchParams): Promise<IFetchResponse> {
   const { data } = await rootApi.get<IFetchResponse>('/list_of_judges.php', {
     params: {
@@ -12,6 +15,9 @@ export async function fetchDelegates({
       PAGEN_1: page,
       nPageSize: itemsPerPage,
       search,
+      sezon,
+      turnier,
+      stage,
     },
   })
 

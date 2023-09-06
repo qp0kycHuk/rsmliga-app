@@ -11,6 +11,11 @@ interface IListResponse<T> {
   items: T[]
 }
 
+interface IEntitesAdapter<T> {
+  ids: EntityId[]
+  entites: Record<EntityId, T>
+}
+
 interface IItemResponse<T> {
   item: T
 }

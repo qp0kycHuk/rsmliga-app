@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Input } from '@features/ui'
 import { useDelegateListContext } from './List.Context'
 import { CrossIcon, SearchIcon } from '@assets/icons/fill'
@@ -6,6 +6,12 @@ import { CrossIcon, SearchIcon } from '@assets/icons/fill'
 export function Search() {
   const { changeSearchQuery, searchQuery } = useDelegateListContext()
   const inputRef = React.createRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.value = searchQuery
+    }
+  }, [searchQuery])
 
   function searchSubmitHandler(event: React.FormEvent) {
     event.preventDefault()

@@ -4,10 +4,11 @@ import classnames from 'classnames'
 
 interface IAdminSelectProps {
   label?: string
-  value: string
-  items: string[]
-  onChange?: (value: string) => void
-  renderItem?: (value: string) => string
+  placeholder?: string
+  value?: EntityId
+  items: EntityId[]
+  onChange?: (value?: EntityId) => void
+  renderItem?: (value: EntityId) => string
   className?: string
   itemsClassName?: string
 }
@@ -15,6 +16,7 @@ interface IAdminSelectProps {
 export function AdminSelect({
   items,
   label,
+  placeholder,
   value,
   onChange,
   renderItem,
@@ -25,12 +27,11 @@ export function AdminSelect({
     <div className={classnames(className, 'flex items-center gap-2')}>
       <div>{label}</div>
       <Menu>
-        <MenuButton as={Button} variant="text" className="gap-2 ">
+        <MenuButton as={Button} variant="text" className="gap-2 " disabled={items.length === 0}>
           {({ open }) => (
             <>
               <div className="border-b max-w-[200px] truncate">
-                {' '}
-                {renderItem ? renderItem(value) : value}
+                {value ? (renderItem ? renderItem(value) : value) : placeholder}
               </div>
               <TriangleDownIcon className={classnames('text-xs', open ? '-rotate-180' : '')} />
             </>
@@ -38,6 +39,18 @@ export function AdminSelect({
         </MenuButton>
 
         <MenuItems className={classnames(itemsClassName, 'p-1 -translate-x-1/2 left-1/2 w-52')}>
+          <MenuItem>
+            {({ active }) => (
+              <Button
+                onClick={() => onChange?.()}
+                className="justify-start w-full h-auto px-2 py-1 text-left"
+                size="sm"
+                variant={active ? 'light' : 'none'}
+              >
+                {placeholder}
+              </Button>
+            )}
+          </MenuItem>
           {items.map((item) => (
             <MenuItem key={item}>
               {({ active }) => (
@@ -45,7 +58,7 @@ export function AdminSelect({
                   onClick={() => onChange?.(item)}
                   className="justify-start w-full h-auto px-2 py-1 text-left"
                   size="sm"
-                  variant={active ? 'light' : 'none'}
+                  variant={active || item === value ? 'light' : 'none'}
                 >
                   {renderItem ? renderItem(item) : item}
                 </Button>

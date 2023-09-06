@@ -1,18 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AnaliticFilter } from './AnaliticFilter'
 import { AnaliticTable } from './AnaliticTable'
-import { api } from '../../service/api'
 
 export function Analitic() {
   const [delegates, setDelegates] = useState<IDelegate[]>([])
-
-  useEffect(() => {
-    api()
-      .fetchDelegates()
-      .then((items) => {
-        setDelegates(items)
-      })
-  }, [])
 
   return (
     <>

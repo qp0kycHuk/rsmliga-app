@@ -10,3 +10,5 @@ interface IStage {
   PROPERTY_CODE: string
   PROPERTY_SORT: string
 }
+
+type IStageFetchResponse = IListResponse<IStage> & IEntitesAdapter<IStage>

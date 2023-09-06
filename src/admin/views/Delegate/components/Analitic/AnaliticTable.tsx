@@ -41,13 +41,13 @@ export function AnaliticTable({ items }: IAnaliticTableProps) {
           <Cell className="text-left">
             {delegate.surname} {delegate.name} {delegate.patronymic}
           </Cell>
-          <Cell>{delegate.birthday}</Cell>
-          <Cell>{delegate.place}</Cell>
+          <Cell>{delegate.birthdate}</Cell>
+          <Cell>{delegate.location}</Cell>
           <Cell>{delegate.category}</Cell>
           <Cell>{delegate.roles.main}</Cell>
           <Cell>{delegate.roles.support}</Cell>
           <Cell>{delegate.roles.delegate}</Cell>
-          <Cell>{delegate.gamesCount}</Cell>
+          <Cell>{delegate.matchesCount}</Cell>
         </Row>
       ))}
     </Table>

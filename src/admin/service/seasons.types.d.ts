@@ -30,3 +30,5 @@ interface ISeason {
   EXTERNAL_ID?: EntityId
   ELEMENT_CNT: string
 }
+
+type ISeasonFetchResponse = IListResponse<ISeason> & IEntitesAdapter<ISeason>
