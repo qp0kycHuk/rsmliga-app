@@ -23,3 +23,15 @@ interface TypedFormData<T> extends FormData {
   has(name: T): boolean
   set(name: T, value: string | Blob, fileName?: string): void
 }
+
+type EntityId = string | number
+
+interface IFile {
+  id?: EntityId
+  key?: EntityId
+  name?: string
+  src?: string
+  file?: File
+}
+
+type BitrixBoolean = 'Y' | 'N'

@@ -1,8 +1,7 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
-import { useToggle } from '@hooks/useToggle'
-import { api } from '../../service/api'
+import { createContext, useContext, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { DELEGATES_PER_PAGE } from '../../const'
+import { useFetchDelegates } from '../../service/queries'
 
 const DelegateListContext = createContext<IDelegateListContextValue>(
   {} as IDelegateListContextValue
@@ -11,30 +10,27 @@ const DelegateListContext = createContext<IDelegateListContextValue>(
 export const useDelegateListContext = () => useContext(DelegateListContext)
 
 export function DelegateListContextProvider({ children }: React.PropsWithChildren) {
-  const pagesCount = useRef(0)
-  const [loading, , loadingStart, loadingEnd] = useToggle(false)
-  const [delegates, setDelegates] = useState<IDelegate[]>([])
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchQuery = searchParams.get('search') || ''
   const currentPage = +(searchParams.get('page') || 1)
 
-  const pages = new Array(pagesCount.current).fill(true).map((_, index) => index + 1)
+  const { data, refetch, isLoading } = useFetchDelegates({
+    page: currentPage,
+    itemsPerPage: DELEGATES_PER_PAGE,
+    search: searchQuery,
+  })
+
+  const pagesCount = data?.NavPageCount || 0
+  const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
   useEffect(() => {
-    if (loading) return
-    loadingStart()
-    api()
-      .fetchDelegates({ page: currentPage, itemsPerPage: DELEGATES_PER_PAGE, search: searchQuery })
-      .then((response) => {
-        setDelegates(response.data.items)
-        pagesCount.current = response.data.NavPageCount
-        loadingEnd()
-      })
+    if (isLoading) return
+    refetch()
   }, [currentPage, searchQuery])
 
   function changePage(newPage: number) {
-    if (loading || newPage == currentPage) return
+    if (isLoading || newPage == currentPage) return
     setSearchParams({ search: searchQuery, page: newPage.toString() })
   }
 
@@ -47,12 +43,9 @@ export function DelegateListContextProvider({ children }: React.PropsWithChildre
       value={{
         currentPage,
         searchQuery,
-        delegates,
-        pagesCount: pagesCount.current,
+        delegates: data?.items || [],
         pages,
-        loading,
-        loadingStart,
-        loadingEnd,
+        loading: isLoading,
         changePage,
         changeSearchQuery,
       }}
@@ -62,10 +55,10 @@ export function DelegateListContextProvider({ children }: React.PropsWithChildre
   )
 }
 
-interface IDelegateListContextValue extends ILoadingContext {
+interface IDelegateListContextValue {
+  loading: boolean
   delegates: IDelegate[]
   pages: number[]
-  pagesCount: number
   currentPage: number
   searchQuery: string
   changePage(newPage: number): void

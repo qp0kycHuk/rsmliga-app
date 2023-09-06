@@ -1,1 +1,0 @@
-type EntityId = string | number
