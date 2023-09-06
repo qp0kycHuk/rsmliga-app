@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 
 export const Report = lazy(() =>
-  import('./views/Report/Report').then((m) => ({ default: m.Report }))
+  import('./views/Report/pages/Report').then((m) => ({ default: m.Report }))
 )
 
 export const DelegateAnalitic = lazy(() =>

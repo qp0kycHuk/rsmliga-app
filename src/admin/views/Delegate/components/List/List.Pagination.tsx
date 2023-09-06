@@ -3,7 +3,7 @@ import { Button } from '@features/ui'
 import { useDelegateListContext } from './List.Context'
 
 export function Pagination() {
-  const { pages, currentPage, pagesCount, changePage } = useDelegateListContext()
+  const { pages, currentPage, changePage } = useDelegateListContext()
 
   return (
     <>
@@ -34,7 +34,7 @@ export function Pagination() {
         ))}
 
         <Button
-          disabled={currentPage >= pagesCount}
+          disabled={currentPage >= pages.length}
           variant="whitebg"
           size="sm"
           icon

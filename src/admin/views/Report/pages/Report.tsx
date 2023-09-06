@@ -1,5 +1,5 @@
-import { ReportTable } from './components/ReportTable/ReportTable'
-import { ReportFilter } from './components/ReportFilter'
+import { ReportTable } from '../components/ReportTable/ReportTable'
+import { ReportFilter } from '../components/ReportFilter'
 import { useDocumentTitle } from '@hooks/useDocumentTitle'
 
 export function Report() {
