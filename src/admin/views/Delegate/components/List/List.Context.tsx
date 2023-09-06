@@ -58,8 +58,6 @@ export function DelegateListContextProvider({ children }: React.PropsWithChildre
     if (key === 'sezon') {
       setSearchParams({
         sezon: value,
-        turnier: '',
-        stage: '',
       })
 
       return
