@@ -7,10 +7,10 @@ export function createDelegate(): IDelegate {
     name: arrayRandomEl<string>('Иван', 'Борис', 'Никита', 'Саня'),
     surname: arrayRandomEl<string>('Иванов', 'Петров', 'Сидоров', 'Пупкин'),
     patronymic: arrayRandomEl<string>('Иванович', 'Борисович', 'Никитаович', 'Саняович'),
-    birthday: '01.01.2000',
+    birthdate: '01.01.2000',
     sex: 'Male',
     category: '1',
-    place: arrayRandomEl<string>(
+    location: arrayRandomEl<string>(
       'г. Геленджик',
       'г. Краснодар',
       'г. Ростов',
@@ -25,7 +25,7 @@ export function createDelegate(): IDelegate {
     ),
     phone: '+7 (999) 999 99 99',
     comment: 'lorem ipsum',
-    gamesCount: 99,
+    matchesCount: 99,
     documents: {},
     statistic: new Array(10).fill(true).map(() => ({
       id: getRandomUUID(),

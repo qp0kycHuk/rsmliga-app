@@ -3,9 +3,12 @@ import { DatePicker } from '@features/ui/components/DatePicker'
 import { useDelegateEditContext } from './DelegateEdit.Context'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
 import { Asterisk } from '@components/Asterisk'
+import { useFetchSex } from '@admin/service/sex'
 
 export function Fields() {
   const { delegate, update } = useDelegateEditContext()
+
+  const { data: sexData } = useFetchSex()
 
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -49,8 +52,8 @@ export function Fields() {
         <DatePicker
           required
           className="w-full"
-          value={delegate.birthday}
-          onSelect={({ date }) => update({ birthday: dateToSQLFormatString(date as Date) })}
+          // value={delegate.birthdate}
+          onSelect={({ date }) => update({ birthdate: dateToSQLFormatString(date as Date) })}
         />
       </label>
       <div>
@@ -60,12 +63,16 @@ export function Fields() {
         <Select
           inputProps={{
             required: true,
-            defaultValue: delegate.sex,
+            value: delegate.sex,
             onChange: (event) => update({ sex: event.target.value }),
+            placeholder: 'Не назначен',
           }}
         >
-          <option value="Male">Мужчина</option>
-          <option value="Female">Женщина</option>
+          {sexData?.items.map((sex) => (
+            <option key={sex.ID} value={sex.ID}>
+              {sex.VALUE}
+            </option>
+          ))}
         </Select>
       </div>
       <div>

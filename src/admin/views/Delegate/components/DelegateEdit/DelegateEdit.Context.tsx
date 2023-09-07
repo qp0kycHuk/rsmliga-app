@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react'
 import { useEditableEntity } from '@hooks/useEditableEntity'
 import { useToggle } from '@hooks/useToggle'
 import { EMPTY_OBJECT } from '@utils/const'
+import { useFetchCities } from '@admin/service/cities'
 // import { api } from '../../service/api'
 
 const DelegateEditContext = createContext<IDelegateEditContextValue>(

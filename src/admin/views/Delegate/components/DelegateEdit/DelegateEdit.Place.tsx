@@ -1,23 +1,25 @@
 import { Select } from '@features/ui'
 import { useDelegateEditContext } from './DelegateEdit.Context'
+import { useFetchCities } from '@admin/service/cities'
 
 export function Place() {
   const { delegate, update } = useDelegateEditContext()
+  const { data } = useFetchCities()
 
   return (
     <div>
       <div className="font-semibold mb-1">Населенный пункт</div>
       <Select
         inputProps={{
-          defaultValue: delegate.place,
-          onChange: (event) => update({ place: event.target.value }),
+          value: delegate.location,
+          onChange: (event) => update({ location: event.target.value }),
         }}
       >
-        <option value="г. Геленджик">г. Геленджик</option>
-        <option value="г. Краснодар">г. Краснодар</option>
-        <option value="г. Ростов">г. Ростов</option>
-        <option value="г. Аксай">г. Аксай</option>
-        <option value="г. Майкоп">г. Майкоп</option>
+        {data?.items.map((city) => (
+          <option key={city.ID} value={city.ID}>
+            {city.NAME}
+          </option>
+        ))}
       </Select>
     </div>
   )

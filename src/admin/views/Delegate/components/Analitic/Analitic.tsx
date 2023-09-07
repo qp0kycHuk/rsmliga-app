@@ -1,15 +1,29 @@
-import { useEffect, useState } from 'react'
-import { AnaliticFilter } from './AnaliticFilter'
 import { AnaliticTable } from './AnaliticTable'
+import {
+  DelegatesContextProvider,
+  useDelegatesContext,
+} from '../DelegatesContext/Delegates.Context'
+import { Filter } from '../DelegatesContext/Delegates.Filter'
+import { Pagination } from '../DelegatesContext/Delegates.Pagination'
 
-export function Analitic() {
-  const [delegates, setDelegates] = useState<IDelegate[]>([])
+function AnaliticInner() {
+  const { loading, delegates } = useDelegatesContext()
 
   return (
     <>
       <div className="mb-5 text-3xl font-bold">Аналитика по сезонам</div>
-      <AnaliticFilter />
-      <AnaliticTable items={delegates} />
+
+      <Filter />
+      {loading ? 'loading...' : <AnaliticTable items={delegates} />}
+      <Pagination />
     </>
+  )
+}
+
+export function Analitic() {
+  return (
+    <DelegatesContextProvider>
+      <AnaliticInner />
+    </DelegatesContextProvider>
   )
 }

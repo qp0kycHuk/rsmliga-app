@@ -2,23 +2,26 @@ import { createContext, useContext, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { DELEGATES_PER_PAGE } from '../../const'
 import { useFetchDelegates } from '../../service/queries'
+import { useSearchQuery } from '@hooks/useSearchQuery'
+import { usePagesQuery } from '@hooks/usePagesQuery'
+import { changeSearchParams } from '@utils/helpers/changeSearchParams'
 
-const DelegateListContext = createContext<IDelegateListContextValue>(
-  {} as IDelegateListContextValue
-)
+const DelegatesContext = createContext<IDelegatesContextValue>({} as IDelegatesContextValue)
 
-export const useDelegateListContext = () => useContext(DelegateListContext)
+export const useDelegatesContext = () => useContext(DelegatesContext)
 
-export function DelegateListContextProvider({ children }: React.PropsWithChildren) {
+export function DelegatesContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const searchQuery = searchParams.get('search') || ''
-  const currentPage = +(searchParams.get('page') || 1)
   const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
   const stageId = searchParams.get('stage') || ''
+  const [currentPage, changePageQuery] = usePagesQuery()
+  const [searchQuery, changeSearchQuery] = useSearchQuery({
+    savedKeys: ['sezon', 'turnier', 'stage'],
+  })
 
-  const { data, refetch, isLoading } = useFetchDelegates({
+  const { data, refetch, isLoading, isFetching } = useFetchDelegates({
     page: currentPage,
     itemsPerPage: DELEGATES_PER_PAGE,
     search: searchQuery,
@@ -31,51 +34,26 @@ export function DelegateListContextProvider({ children }: React.PropsWithChildre
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
   useEffect(() => {
-    refetch()
+    refetch({
+      cancelRefetch: true,
+    })
   }, [currentPage, searchQuery, seasonId, turnierId, stageId])
-
-  function changePage(newPage: number) {
-    if (isLoading || newPage == currentPage) return
-    setSearchParams({
-      search: searchQuery,
-      sezon: seasonId,
-      turnier: turnierId,
-      stage: stageId,
-      page: newPage.toString(),
-    })
-  }
-
-  function changeSearchQuery(query: string) {
-    setSearchParams({
-      search: query,
-      sezon: seasonId,
-      turnier: turnierId,
-      stage: stageId,
-    })
-  }
 
   function changeFilterParam(key: FilterKey, value: string) {
     if (key === 'sezon') {
-      setSearchParams({
-        sezon: value,
-      })
+      setSearchParams(changeSearchParams([key, value]))
 
       return
     }
 
-    setSearchParams({
-      sezon: seasonId,
-      turnier: turnierId,
-      stage: stageId,
-      [key]: value,
-    })
+    setSearchParams(changeSearchParams([key, value], false, ['sezon', 'turnier', 'stage']))
   }
 
   return (
-    <DelegateListContext.Provider
+    <DelegatesContext.Provider
       value={{
         delegates: data?.items || [],
-        loading: isLoading,
+        loading: isFetching,
 
         seasonId,
         turnierId,
@@ -84,18 +62,18 @@ export function DelegateListContextProvider({ children }: React.PropsWithChildre
 
         pages,
         currentPage,
-        changePage,
+        changePageQuery,
 
         searchQuery,
         changeSearchQuery,
       }}
     >
       {children}
-    </DelegateListContext.Provider>
+    </DelegatesContext.Provider>
   )
 }
 
-interface IDelegateListContextValue {
+interface IDelegatesContextValue {
   delegates: IDelegate[]
   loading: boolean
 
@@ -106,7 +84,7 @@ interface IDelegateListContextValue {
 
   pages: number[]
   currentPage: number
-  changePage(newPage: number): void
+  changePageQuery(newPage: number): void
 
   searchQuery: string
   changeSearchQuery(query: string): void

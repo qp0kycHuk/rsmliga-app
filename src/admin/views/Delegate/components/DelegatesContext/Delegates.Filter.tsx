@@ -1,14 +1,12 @@
-import { AdminSelect } from '@admin/components/AdminSelect'
 import { CirclePlusIcon } from '@assets/icons/fill'
 import { Dialog, Button } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-import { Suspense, useState } from 'react'
+import { Suspense } from 'react'
 import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
-import { useDelegateListContext } from './List.Context'
-import { Search } from './List.Search'
-import { Seasons } from './List.Filter.Seasons'
-import { Tournaments } from './List.Filter.Tournaments'
-import { Stages } from './List.Filter.Stages'
+import { Search } from './Delegates.Search'
+import { Seasons } from './Delegates.Filter.Seasons'
+import { Tournaments } from './Delegates.Filter.Tournaments'
+import { Stages } from './Delegates.Filter.Stages'
 
 export function Filter() {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)

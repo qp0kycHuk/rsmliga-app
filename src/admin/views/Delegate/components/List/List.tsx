@@ -1,10 +1,13 @@
-import { Filter } from './List.Filter'
 import { ListTable } from './List.Table'
-import { DelegateListContextProvider, useDelegateListContext } from './List.Context'
-import { Pagination } from './List.Pagination'
+import {
+  DelegatesContextProvider,
+  useDelegatesContext,
+} from '../DelegatesContext/Delegates.Context'
+import { Pagination } from '../DelegatesContext/Delegates.Pagination'
+import { Filter } from '../DelegatesContext/Delegates.Filter'
 
 function ListInner() {
-  const { loading, delegates } = useDelegateListContext()
+  const { loading, delegates } = useDelegatesContext()
 
   return (
     <>
@@ -19,8 +22,8 @@ function ListInner() {
 
 export function List() {
   return (
-    <DelegateListContextProvider>
+    <DelegatesContextProvider>
       <ListInner />
-    </DelegateListContextProvider>
+    </DelegatesContextProvider>
   )
 }

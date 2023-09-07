@@ -1,9 +1,9 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { useFetchStages } from '@admin/service/stages'
-import { useDelegateListContext } from './List.Context'
+import { useDelegatesContext } from './Delegates.Context'
 
 export function Stages() {
-  const { stageId, changeFilterParam } = useDelegateListContext()
+  const { stageId, changeFilterParam } = useDelegatesContext()
   const { data: stagesData } = useFetchStages()
 
   return (

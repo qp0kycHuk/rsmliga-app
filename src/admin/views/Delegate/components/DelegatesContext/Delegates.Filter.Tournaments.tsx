@@ -1,9 +1,9 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { useFetchTournaments } from '@admin/service/tournaments'
-import { useDelegateListContext } from './List.Context'
+import { useDelegatesContext } from './Delegates.Context'
 
 export function Tournaments() {
-  const { turnierId, seasonId, changeFilterParam } = useDelegateListContext()
+  const { turnierId, seasonId, changeFilterParam } = useDelegatesContext()
   const { data: tournamentsData } = useFetchTournaments()
 
   const ids = seasonId

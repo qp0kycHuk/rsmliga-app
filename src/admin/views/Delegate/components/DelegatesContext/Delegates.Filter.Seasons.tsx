@@ -1,9 +1,9 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { useFetchSeasons } from '@admin/service/seasons'
-import { useDelegateListContext } from './List.Context'
+import { useDelegatesContext } from './Delegates.Context'
 
 export function Seasons() {
-  const { seasonId, changeFilterParam } = useDelegateListContext()
+  const { seasonId, changeFilterParam } = useDelegatesContext()
   const { data: seasonsData } = useFetchSeasons()
 
   return (

@@ -4,6 +4,7 @@ import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { Suspense, lazy } from 'react'
 import { DelegateContests } from '../DelegateContests'
+import { useFetchCities } from '@admin/service/cities'
 
 const DelegateEdit = lazy(() =>
   import('../DelegateEdit/DelegateEdit').then((m) => ({ default: m.DelegateEdit }))
@@ -16,6 +17,8 @@ interface IListTableItemProps {
 export function ListItem({ item }: IListTableItemProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isContestsDialogOpen, , openContestsDialog, closeContestsDialog] = useToggle(false)
+
+  const { data: citiesData } = useFetchCities()
 
   return (
     <Row>
@@ -40,7 +43,7 @@ export function ListItem({ item }: IListTableItemProps) {
         </Dialog>
       </Cell>
       <Cell className="text-sm ">{item.category}</Cell>
-      <Cell className="text-sm ">{item.location}</Cell>
+      <Cell className="text-sm ">{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
       <Cell className="text-sm ">{item.birthdate}</Cell>
       <Cell className="text-sm ">{item.matchesCount}</Cell>
       <Cell className="text-sm  w-max">

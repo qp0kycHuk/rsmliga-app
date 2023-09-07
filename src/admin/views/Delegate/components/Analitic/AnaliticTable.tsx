@@ -5,6 +5,10 @@ interface IAnaliticTableProps {
 }
 
 export function AnaliticTable({ items }: IAnaliticTableProps) {
+  if (!items || items.length == 0) {
+    return 'Здесь ничего нет'
+  }
+
   return (
     <Table>
       <Row className="text-sm font-medium text-center">
@@ -37,16 +41,16 @@ export function AnaliticTable({ items }: IAnaliticTableProps) {
       </Row>
       {items.map((delegate) => (
         <Row key={delegate.id} className="text-sm text-center">
-          <Cell>1</Cell>
+          <Cell>{delegate.number}</Cell>
           <Cell className="text-left">
             {delegate.surname} {delegate.name} {delegate.patronymic}
           </Cell>
           <Cell>{delegate.birthdate}</Cell>
           <Cell>{delegate.location}</Cell>
           <Cell>{delegate.category}</Cell>
-          <Cell>{delegate.roles.main}</Cell>
-          <Cell>{delegate.roles.support}</Cell>
-          <Cell>{delegate.roles.delegate}</Cell>
+          <Cell>{delegate.roles?.main || '-'}</Cell>
+          <Cell>{delegate.roles?.support || '-'}</Cell>
+          <Cell>{delegate.roles?.delegate || '-'}</Cell>
           <Cell>{delegate.matchesCount}</Cell>
         </Row>
       ))}

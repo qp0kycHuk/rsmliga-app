@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Button, Input } from '@features/ui'
-import { useDelegateListContext } from './List.Context'
+import { useDelegatesContext } from './Delegates.Context'
 import { CrossIcon, SearchIcon } from '@assets/icons/fill'
 
 export function Search() {
-  const { changeSearchQuery, searchQuery } = useDelegateListContext()
+  const { changeSearchQuery, searchQuery } = useDelegatesContext()
   const inputRef = React.createRef<HTMLInputElement>()
 
   useEffect(() => {

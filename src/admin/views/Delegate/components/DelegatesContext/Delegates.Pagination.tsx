@@ -1,9 +1,9 @@
 import { ToRightIcon } from '@assets/icons/fill'
 import { Button } from '@features/ui'
-import { useDelegateListContext } from './List.Context'
+import { useDelegatesContext } from './Delegates.Context'
 
 export function Pagination() {
-  const { pages, currentPage, changePage } = useDelegateListContext()
+  const { pages, currentPage, changePageQuery } = useDelegatesContext()
 
   return (
     <>
@@ -15,7 +15,7 @@ export function Pagination() {
           size="sm"
           icon
           className="border border-gray"
-          onClick={() => changePage(currentPage - 1)}
+          onClick={() => changePageQuery(currentPage - 1)}
         >
           <ToRightIcon className="-scale-x-100" />
         </Button>
@@ -27,7 +27,7 @@ export function Pagination() {
             icon
             key={page}
             className="border border-gray"
-            onClick={() => changePage(page)}
+            onClick={() => changePageQuery(page)}
           >
             {page}
           </Button>
@@ -39,7 +39,7 @@ export function Pagination() {
           size="sm"
           icon
           className="border border-gray"
-          onClick={() => changePage(currentPage + 1)}
+          onClick={() => changePageQuery(currentPage + 1)}
         >
           <ToRightIcon />
         </Button>
