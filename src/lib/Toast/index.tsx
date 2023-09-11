@@ -48,7 +48,7 @@ export function ToastContainer(props: ToastContainerProps & React.RefAttributes<
       bodyClassName={() => 'flex items-center flex-grow'}
       // icon={CustomIcon}
       closeButton={CloseButton}
-      position="bottom-left"
+      position="bottom-right"
       theme="colored"
       draggablePercent={25}
       hideProgressBar={true}

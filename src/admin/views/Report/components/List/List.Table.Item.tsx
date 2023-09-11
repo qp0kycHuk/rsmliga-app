@@ -26,16 +26,16 @@ export function ReportTableItem({ item }: IProps) {
       <Row>
         <Cell className="text-sm">{item.season}</Cell>
         <Cell className="w-[264px] max-w-[264px] text-sm">
-          <CellTooltip>{item.name}</CellTooltip>
+          <CellTooltip>{item.competition}</CellTooltip>
         </Cell>
-        <Cell className="text-sm">{item.step}</Cell>
+        <Cell className="text-sm">{item.stage}</Cell>
         <Cell className="text-sm">{item.area}</Cell>
         <Cell className="w-[228px] max-w-[228px] text-sm">
-          <CellTooltip>{item.place}</CellTooltip>
+          <CellTooltip>{item.location}</CellTooltip>
         </Cell>
         <Cell className="text-sm">{item.date}</Cell>
         <Cell className="w-40 text-sm">
-          <div>Загружен</div>
+          {/* <div>Загружен</div>
           <div className="flex mt-1.5 gap-1">
             {!item.report?.id ? (
               <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
@@ -97,7 +97,7 @@ export function ReportTableItem({ item }: IProps) {
               cancelText="Отмена"
               onCancel={closeDeleteDialog}
             />
-          </Dialog>
+          </Dialog> */}
         </Cell>
       </Row>
     </>
@@ -105,5 +105,5 @@ export function ReportTableItem({ item }: IProps) {
 }
 
 interface IProps {
-  item: IContest
+  item: IReport
 }

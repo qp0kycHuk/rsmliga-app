@@ -1,16 +1,15 @@
 import { createContext, useContext, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { DELEGATES_PER_PAGE } from '../../const'
-import { useFetchDelegates } from '../../service/api'
-import { useSearchQuery } from '@hooks/useSearchQuery'
 import { usePagesQuery } from '@hooks/usePagesQuery'
 import { changeSearchParams } from '@utils/helpers/changeSearchParams'
+import { REPORT_PER_PAGE } from '../../const'
+import { useFetchReports } from '../../service/api'
 
-const DelegatesContext = createContext<IDelegatesContextValue>({} as IDelegatesContextValue)
+const ReportContext = createContext<IReportContextValue>({} as IReportContextValue)
 
-export const useDelegatesContext = () => useContext(DelegatesContext)
+export const useReportContext = () => useContext(ReportContext)
 
-export function DelegatesContextProvider({ children }: React.PropsWithChildren) {
+export function ReportContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const seasonId = searchParams.get('sezon') || ''
@@ -18,14 +17,11 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
   const stageId = searchParams.get('stage') || ''
 
   const [currentPage, changePageQuery] = usePagesQuery()
-  const [searchQuery, changeSearchQuery] = useSearchQuery({
-    savedKeys: ['sezon', 'turnier', 'stage'],
-  })
 
-  const { data, refetch, isLoading, isFetching } = useFetchDelegates({
+  const { data, refetch, isLoading, isFetching } = useFetchReports({
     page: currentPage,
-    itemsPerPage: DELEGATES_PER_PAGE,
-    search: searchQuery,
+    itemsPerPage: REPORT_PER_PAGE,
+
     sezon: seasonId,
     turnier: turnierId,
     stage: stageId,
@@ -38,7 +34,7 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
     refetch({
       cancelRefetch: true,
     })
-  }, [currentPage, searchQuery, seasonId, turnierId, stageId])
+  }, [currentPage, seasonId, turnierId, stageId])
 
   function changeFilterParam(key: FilterKey, value: string) {
     if (key === 'sezon') {
@@ -51,9 +47,9 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
   }
 
   return (
-    <DelegatesContext.Provider
+    <ReportContext.Provider
       value={{
-        delegates: data?.items || [],
+        items: data?.items || [],
         loading: isFetching,
 
         seasonId,
@@ -64,18 +60,15 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
         pages,
         currentPage,
         changePageQuery,
-
-        searchQuery,
-        changeSearchQuery,
       }}
     >
       {children}
-    </DelegatesContext.Provider>
+    </ReportContext.Provider>
   )
 }
 
-interface IDelegatesContextValue {
-  delegates: IDelegate[]
+interface IReportContextValue {
+  items: IReport[]
   loading: boolean
 
   seasonId: EntityId
@@ -86,9 +79,6 @@ interface IDelegatesContextValue {
   pages: number[]
   currentPage: number
   changePageQuery(newPage: number): void
-
-  searchQuery: string
-  changeSearchQuery(query: string): void
 }
 
 type FilterKey = 'sezon' | 'turnier' | 'stage'

@@ -1,21 +1,24 @@
-interface IContest {
-  id: EntityId
-  season: string
-  name: string
-  step: string
-  area: string
-  place: string
-  date: string
-  report: IReport | null
-  teams: ITeam[]
-}
-
 interface IReport {
+  // id: EntityId
+  // documents: Record<string, IFile[]>
+  // generalImages: IFile[]
+  // contestImages: IFile[]
+  // teamsImages: { team: ITeam; image: IImage }[]
+
+  number: number
   id: EntityId
-  documents: Record<string, IFile[]>
-  generalImages: IFile[]
-  contestImages: IFile[]
-  teamsImages: { team: ITeam; image: IImage }[]
+  season_id: EntityId
+  season: string
+  competition_id: EntityId
+  competition: string
+  stage_id: EntityId
+  stage: string
+  area_id: EntityId
+  area: string
+  location: string
+  date: BitrixDate
+  status_id: EntityId
+  status: string
 }
 
 interface ITeam {

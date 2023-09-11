@@ -1,8 +1,8 @@
-import { useDelegatesContext } from './Delegates.Context'
 import { Pagination as PaginationComponent } from '@admin/components/Pagination'
+import { useReportContext } from './Report.Context'
 
 export function Pagination() {
-  const { pages, currentPage, changePageQuery } = useDelegatesContext()
+  const { pages, currentPage, changePageQuery } = useReportContext()
 
   return (
     <>

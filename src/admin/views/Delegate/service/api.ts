@@ -1,3 +1,4 @@
+import { useQuery } from 'react-query'
 import { DELEGATES_PER_PAGE } from '../const'
 import { rootApi } from '@admin/service/api'
 
@@ -22,4 +23,10 @@ export async function fetchDelegates({
   })
 
   return data
+}
+
+export function useFetchDelegates(params: IFetchParams) {
+  return useQuery('delegates', fetchDelegates.bind(null, params), {
+    refetchOnWindowFocus: false,
+  })
 }

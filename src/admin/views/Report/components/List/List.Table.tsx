@@ -1,19 +1,11 @@
 import { Table, Row, Cell } from '@admin/index'
-import { ReportTableItem } from './ReportTableItem'
-import { useEffect, useState } from 'react'
-import { api } from '../../service/api'
+import { ReportTableItem } from './List.Table.Item'
 
-export function ReportTable() {
-  const [contests, setContests] = useState<IContest[]>([])
+interface Iprops {
+  items: IReport[]
+}
 
-  useEffect(() => {
-    api()
-      .fetchContests()
-      .then((items) => {
-        setContests(items)
-      })
-  }, [])
-
+export function ListTable({ items }: Iprops) {
   return (
     <Table>
       <Row>
@@ -39,7 +31,7 @@ export function ReportTable() {
           Отчет
         </Cell>
       </Row>
-      {contests.map((item, index) => (
+      {items.map((item, index) => (
         <ReportTableItem key={index} item={item} />
       ))}
     </Table>

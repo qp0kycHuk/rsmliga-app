@@ -1,32 +1,36 @@
-import { sleep } from '@utils/helpers/sleep'
-// import axios from 'axios'
-import { createContest, createReport } from './temp.data'
+import { rootApi } from '@admin/service/api'
+import { REPORT_PER_PAGE } from '../const'
+import { useQuery } from 'react-query'
 
-const TIMEOUT = 500
+export async function fetchReports({
+  page = 1,
+  itemsPerPage = REPORT_PER_PAGE,
+  search = '',
+  sezon = '',
+  turnier = '',
+  stage = '',
+}: IFetchParams): Promise<IFetchResponse> {
+  const { data } = await rootApi.get<IFetchResponse>('/get_reports_list.php', {
+    params: {
+      action: 'getlist',
+      PAGEN_1: page,
+      nPageSize: itemsPerPage,
+      search,
+      sezon,
+      turnier,
+      stage,
+    },
+  })
 
-const contests = new Array(5).fill(true).map(createContest)
+  return data
+}
 
-export function api() {
-  // const instance = axios.create()
+export function useFetchReports(params: IFetchParams) {
+  return useQuery('delegates', fetchReports.bind(null, params), {
+    refetchOnWindowFocus: false,
+  })
+}
 
-  async function fetchContests(): Promise<IContest[]> {
-    await sleep(TIMEOUT)
-    return contests
-  }
-
-  async function getReportById(id: EntityId): Promise<IReport | undefined> {
-    await sleep(TIMEOUT)
-    return createReport()
-  }
-
-  async function getReportByContestId(contestId: EntityId): Promise<IReport | undefined> {
-    await sleep(TIMEOUT)
-    return contests.find(({ id }) => id === contestId)?.report || undefined
-  }
-
-  return {
-    fetchContests,
-    getReportById,
-    getReportByContestId,
-  }
+interface IFetchResponse extends IListResponse<IReport> {
+  NavPageCount: number
 }

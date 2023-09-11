@@ -40,6 +40,7 @@ interface IFile {
 }
 
 type BitrixBoolean = 'Y' | 'N'
+type BitrixDate = string
 
 type IconComponent = React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & {
