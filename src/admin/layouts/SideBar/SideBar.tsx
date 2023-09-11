@@ -1,12 +1,11 @@
-import { CircleIcon, FileDocIcon, FileFolderIcon, MenuIcon, WhistleIcon } from '@assets/icons/fill'
-import classes from './SideBar.module.scss'
-import { Button } from '@features/ui'
 import classnames from 'classnames'
-import { routes as delegateRoutes } from '../../views/Delegate/const'
-import { SideBarButton } from './SideBarButton'
-import { SidebarContextProvider, useSidebarContext } from './SidebarContext'
+import { Button } from '@features/ui'
+import { MenuIcon } from '@assets/icons/fill'
 import { useFetchMenu } from '@admin/service/menu'
+import { SidebarContextProvider, useSidebarContext } from './SidebarContext'
+import { SideBarButton } from './SideBarButton'
 import { icons } from './SidebarIcons'
+import classes from './SideBar.module.scss'
 
 function SideBarInner() {
   const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()

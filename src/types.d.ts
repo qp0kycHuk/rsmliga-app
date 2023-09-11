@@ -40,3 +40,9 @@ interface IFile {
 }
 
 type BitrixBoolean = 'Y' | 'N'
+
+type IconComponent = React.FunctionComponent<
+  React.SVGProps<SVGSVGElement> & {
+    title?: string | undefined
+  }
+>

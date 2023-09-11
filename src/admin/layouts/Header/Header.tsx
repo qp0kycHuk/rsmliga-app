@@ -1,8 +1,8 @@
-import { LogOutIcon } from '@assets/icons/fill'
-import { Avatar, Button } from '@features/ui'
-import classes from './Header.module.scss'
 import classnames from 'classnames'
+import { Avatar, Button } from '@features/ui'
+import { LogOutIcon } from '@assets/icons/fill'
 import { useFetchCurrentUser } from '@admin/service/user'
+import classes from './Header.module.scss'
 
 export function Header() {
   const { data } = useFetchCurrentUser()

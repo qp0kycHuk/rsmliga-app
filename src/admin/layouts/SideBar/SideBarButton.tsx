@@ -1,11 +1,10 @@
-import { ComponentType } from 'react'
 import classNames from 'classnames'
 import { Button } from '@features/ui'
 import { Link } from '@lib/Link'
 import { useSidebarContext } from './SidebarContext'
 
 interface IProps {
-  icon: ComponentType<any>
+  icon: IconComponent
   to: string
   title: string
   sub?: boolean
