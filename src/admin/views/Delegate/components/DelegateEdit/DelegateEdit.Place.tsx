@@ -10,10 +10,8 @@ export function Place() {
     <div>
       <div className="font-semibold mb-1">Населенный пункт</div>
       <Select
-        inputProps={{
-          value: delegate.location,
-          onChange: (event) => update({ location: event.target.value }),
-        }}
+        value={delegate.location}
+        onChange={(event) => update({ location: event.target.value })}
       >
         {data?.items.map((city) => (
           <option key={city.ID} value={city.ID}>

@@ -4,11 +4,13 @@ import { useDelegateEditContext } from './DelegateEdit.Context'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
 import { Asterisk } from '@components/Asterisk'
 import { useFetchSex } from '@admin/service/sex'
+import { useFetchCategories } from '../../service/categories'
 
 export function Fields() {
   const { delegate, update } = useDelegateEditContext()
 
   const { data: sexData } = useFetchSex()
+  const { data: categoriesData } = useFetchCategories()
 
   return (
     <div className="grid grid-cols-2 gap-4">
@@ -61,12 +63,10 @@ export function Fields() {
           Пол <Asterisk />
         </div>
         <Select
-          inputProps={{
-            required: true,
-            value: delegate.sex,
-            onChange: (event) => update({ sex: event.target.value }),
-            placeholder: 'Не назначен',
-          }}
+          required
+          value={delegate.sex}
+          onChange={(event) => update({ sex: event.target.value })}
+          placeholder="Не назначен"
         >
           {sexData?.items.map((sex) => (
             <option key={sex.ID} value={sex.ID}>
@@ -78,14 +78,15 @@ export function Fields() {
       <div>
         <div className="font-semibold mb-1">Категория</div>
         <Select
-          inputProps={{
-            defaultValue: delegate.category,
-            onChange: (event) => update({ category: event.target.value }),
-          }}
+          value={delegate.category}
+          onChange={(event) => update({ category: event.target.value })}
+          placeholder="Не назначен"
         >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          {categoriesData?.items.map((cat) => (
+            <option key={cat.ID} value={cat.ID}>
+              {cat.VALUE}
+            </option>
+          ))}
         </Select>
       </div>
     </div>
