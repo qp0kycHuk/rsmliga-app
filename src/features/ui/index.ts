@@ -1,7 +1,7 @@
 export { Button } from './components/Button'
 
 export { Field } from './components/Field/Field'
-export { Select } from './components/Field/Select'
+export { SelectField } from './components/Field/SelectField'
 export { PhoneField } from './components/Field/PhoneField'
 export { MaskedField } from './components/Field/MaskedField'
 export { PasswordField } from './components/Field/PasswordField'
@@ -9,6 +9,7 @@ export { FieldCombobox } from './components/Field/FieldCombobox'
 
 export { Input, Textarea } from './components/Input/Input'
 export { PhoneInput } from './components/Input/PhoneInput'
+export { Select } from './components/Input/Select'
 
 export { Avatar } from './components/Avatar'
 

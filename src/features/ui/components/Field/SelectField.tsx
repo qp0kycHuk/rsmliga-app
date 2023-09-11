@@ -4,7 +4,7 @@ import { FieldWrapper } from '../Field/FieldWrapper'
 import type { IProps } from '../Input/Input'
 import { ToRightIcon } from '@assets/icons/fill'
 
-export function Select({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
+export function SelectField({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
   const selectRef = React.createRef<HTMLSelectElement>()
   const [isLabelShow, setIsLabelShow] = useState(
     props.placeholder

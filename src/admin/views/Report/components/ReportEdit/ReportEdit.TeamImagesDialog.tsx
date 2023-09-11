@@ -1,5 +1,5 @@
 import { PaperClipIcon, PlusIcon } from '@assets/icons/fill'
-import { Button, DialogErrors, DialogHeader, DialogTitle, Select } from '@features/ui'
+import { Button, DialogErrors, DialogHeader, DialogTitle, Select, SelectField } from '@features/ui'
 import { getFileItems } from '@utils/helpers/files'
 import { useState } from 'react'
 import { useReportEditContext } from './ReportEdit.Context'
@@ -119,7 +119,7 @@ export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
           </Button>
         )}
 
-        <Select
+        <SelectField
           placeholder="Выберите команду"
           className="mt-8 w-full"
           inputProps={{
@@ -132,7 +132,7 @@ export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
               {name}
             </option>
           ))}
-        </Select>
+        </SelectField>
 
         <div className="grid grid-cols-2 mt-6 gap-4 w-full">
           <Button onClick={submitHandler}>Добавить</Button>

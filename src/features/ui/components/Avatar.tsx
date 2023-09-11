@@ -1,14 +1,15 @@
 import classnames from 'classnames'
 import { Size } from '../types'
+import { UserIcon } from '@assets/icons/fill'
 
 interface IAvatarProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
-  src: string
+  src?: string
   size?: Size
   imageProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLImageElement>, HTMLImageElement>
 }
 
-const baseClassName = 'rounded-full relative overflow-hidden'
+const baseClassName = 'rounded-full flex relative overflow-hidden bg-gray-light'
 
 const sizeClassNames: PartialRecord<Size, string> = {
   xs: 'w-4 h-4',
@@ -20,11 +21,15 @@ const sizeClassNames: PartialRecord<Size, string> = {
 export function Avatar({ size = 'base', src, className, imageProps }: IAvatarProps) {
   return (
     <div className={classnames(baseClassName, size ? sizeClassNames[size] : null, className)}>
-      <img
-        {...imageProps}
-        src={src}
-        className={classnames('w-full h-full object-cover', imageProps?.className)}
-      />
+      {src ? (
+        <img
+          {...imageProps}
+          src={src}
+          className={classnames('w-full h-full object-cover', imageProps?.className)}
+        />
+      ) : (
+        <UserIcon className="text-primary m-auto " />
+      )}
     </div>
   )
 }
