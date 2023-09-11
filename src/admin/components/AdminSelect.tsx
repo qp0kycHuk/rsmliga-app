@@ -1,5 +1,5 @@
-import { TriangleDownIcon } from '@assets/icons/fill'
 import { Button, Menu, MenuButton, MenuItem, MenuItems } from '@features/ui'
+import { TriangleDownIcon } from '@assets/icons/fill'
 import classnames from 'classnames'
 
 interface IAdminSelectProps {

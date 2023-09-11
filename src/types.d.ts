@@ -3,7 +3,7 @@ declare module '*.module.scss' {
   export default classes
 }
 
-type PartialRecord<K extends keyof any, T> = {
+type PartialRecord<K extends keyof unknown, T> = {
   [P in K]?: T
 }
 

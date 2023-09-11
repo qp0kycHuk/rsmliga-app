@@ -1,5 +1,5 @@
-import { changeSearchParams } from '@utils/helpers/changeSearchParams'
 import { useSearchParams } from 'react-router-dom'
+import { changeSearchParams } from '@utils/helpers/changeSearchParams'
 
 interface IProps {
   key?: string
