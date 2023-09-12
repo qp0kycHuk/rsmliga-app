@@ -22,8 +22,11 @@ const contextClass = {
 const CloseButton = ({ closeToast, type }: CloseButtonProps) => {
   return (
     <Button
-      onClick={closeToast}
-      variant="text"
+      onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        event.stopPropagation()
+        closeToast(event)
+      }}
+      variant="none"
       icon
       size="sm"
       color={type === 'default' ? 'primary' : 'gray'}

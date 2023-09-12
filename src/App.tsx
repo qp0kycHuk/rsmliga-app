@@ -3,6 +3,7 @@ import { AdminRoutes } from './admin'
 import { ToastContainer } from '@lib/Toast'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { createPortal } from 'react-dom'
 
 const queryClient = new QueryClient()
 
@@ -13,8 +14,8 @@ function App() {
         <AdminRoutes />
       </BrowserRouter>
 
-      <ToastContainer />
-      <ReactQueryDevtools position="bottom-right" />
+      {createPortal(<ToastContainer />, document.body)}
+      <ReactQueryDevtools />
     </QueryClientProvider>
   )
 }

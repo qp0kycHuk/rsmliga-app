@@ -54,7 +54,7 @@ export function Fields() {
         <DatePicker
           required
           className="w-full"
-          // value={delegate.birthdate}
+          value={delegate.birthdate}
           onSelect={({ date }) => update({ birthdate: dateToSQLFormatString(date as Date) })}
         />
       </label>

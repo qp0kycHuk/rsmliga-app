@@ -14,7 +14,7 @@ interface IDelegate {
   email: string
   phone: string
   comment: string
-  documents: Record<string, IFile[]>
+  documents: Record<'SCAN' | 'STRAH' | 'LICHNOST' | 'PERDAN', IFile[]>
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]

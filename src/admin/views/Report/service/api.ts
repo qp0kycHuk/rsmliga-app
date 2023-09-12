@@ -10,7 +10,7 @@ export async function fetchReports({
   turnier = '',
   stage = '',
 }: IFetchParams): Promise<IFetchResponse> {
-  const { data } = await rootApi.get<IFetchResponse>('/get_reports_list.php', {
+  const { data } = await rootApi.get<IFetchResponse>('/reports_handler.php', {
     params: {
       action: 'getlist',
       PAGEN_1: page,

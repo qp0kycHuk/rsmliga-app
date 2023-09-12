@@ -1,20 +1,20 @@
 export const documentsSchema: Record<string, IDocSchema> = {
-  skan: {
+  SCAN: {
     name: 'skan',
     title: 'Скан-копия подписанной заявки',
     required: true,
   },
-  strah: {
+  STRAH: {
     name: 'strah',
     title: 'Страхование',
     required: true,
   },
-  lichnost: {
+  LICHNOST: {
     name: 'lichnost',
     title: 'Документ подтверждающий личность',
     required: true,
   },
-  perdan: {
+  PERDAN: {
     name: 'perdan',
     title: 'Заявление об обработке персональных данных',
     required: true,
