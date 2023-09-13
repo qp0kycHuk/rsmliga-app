@@ -26,6 +26,7 @@ function ListInner() {
       </Filter>
       <ListTable items={delegates} />
 
+      <div className="mt-8"></div>
       <Pagination />
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
