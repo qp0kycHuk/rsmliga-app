@@ -8,7 +8,7 @@ import { Place } from './DelegateEdit.Place'
 import { Fields } from './DelegateEdit.Fields'
 
 export function Form() {
-  const { delegate, submit } = useDelegateEditContext()
+  const { loading, delegate, submit } = useDelegateEditContext()
 
   return (
     <form onSubmit={submit}>
@@ -35,8 +35,12 @@ export function Form() {
       <Statistic />
 
       <div className="flex gap-4 mt-8">
-        <Button type="submit">Сохранить</Button>
-        <Button variant="light">Отмена</Button>
+        <Button type="submit" disabled={loading}>
+          Сохранить
+        </Button>
+        <Button variant="light" disabled={loading}>
+          Отмена
+        </Button>
       </div>
     </form>
   )

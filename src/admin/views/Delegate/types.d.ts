@@ -1,6 +1,7 @@
 interface IDelegate {
   number: string
   id: EntityId
+  user_id: EntityId
   name: string
   surname: string
   patronymic: string
@@ -14,7 +15,7 @@ interface IDelegate {
   email: string
   phone: string
   comment: string
-  documents: Record<'SCAN' | 'STRAH' | 'LICHNOST' | 'PERDAN', IFile[]>
+  documents: Record<DelegateDocName, IFile[]>
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]
@@ -25,6 +26,8 @@ interface IDelegate {
     delegate: number
   }
 }
+
+type DelegateDocName = 'SCAN' | 'STRAH' | 'LICHNOST' | 'PERDAN'
 
 // interface IDelegate {
 //   // bitrix type

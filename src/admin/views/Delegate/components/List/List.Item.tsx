@@ -5,6 +5,7 @@ import { useToggle } from '@hooks/useToggle'
 import { Suspense, lazy } from 'react'
 import { DelegateContests } from '../DelegateContests'
 import { useFetchCities } from '@admin/service/cities'
+import { useFetchCategories } from '../../service/categories'
 
 const DelegateEdit = lazy(() =>
   import('../DelegateEdit/DelegateEdit').then((m) => ({ default: m.DelegateEdit }))
@@ -19,6 +20,7 @@ export function ListItem({ item }: IListTableItemProps) {
   const [isContestsDialogOpen, , openContestsDialog, closeContestsDialog] = useToggle(false)
 
   const { data: citiesData } = useFetchCities()
+  const { data: categoriesData } = useFetchCategories()
 
   return (
     <Row>
@@ -27,8 +29,8 @@ export function ListItem({ item }: IListTableItemProps) {
       <Cell className="text-sm w-80">
         {item.surname} {item.name} {item.patronymic}
       </Cell>
-      <Cell className="text-sm font-medium w-[228px] max-w-[228px]">
-        <Button size="xs" onClick={openContestsDialog}>
+      <Cell className="text-sm font-medium w-[128px] max-w-[128px]">
+        <Button size="xs" onClick={openContestsDialog} className="w-full">
           Открыть
         </Button>
         <Dialog
@@ -42,10 +44,10 @@ export function ListItem({ item }: IListTableItemProps) {
           </Button>
         </Dialog>
       </Cell>
-      <Cell className="text-sm ">{item.category}</Cell>
+      <Cell className="text-sm ">{categoriesData?.entites[item.category]?.VALUE || '-'}</Cell>
       <Cell className="text-sm ">{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
-      <Cell className="text-sm ">{item.birthdate}</Cell>
-      <Cell className="text-sm ">{item.matchesCount}</Cell>
+      <Cell className="text-sm ">{new Date(item.birthdate).toLocaleDateString()}</Cell>
+      <Cell className="text-sm ">{item.matchesCount || '-'}</Cell>
       <Cell className="text-sm  w-max">
         <Button size={null} icon className="btn-[28px]" color="gray-light" onClick={openEditDialog}>
           <SettingsIcon className="text-primary text-lg" />

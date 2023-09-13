@@ -22,7 +22,7 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
     savedKeys: ['sezon', 'turnier', 'stage'],
   })
 
-  const { data, refetch, isLoading, isFetching } = useFetchDelegates({
+  const { data, isLoading, isFetching } = useFetchDelegates({
     page: currentPage,
     itemsPerPage: DELEGATES_PER_PAGE,
     search: searchQuery,
@@ -33,12 +33,6 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
 
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
-
-  useEffect(() => {
-    refetch({
-      cancelRefetch: true,
-    })
-  }, [currentPage, searchQuery, seasonId, turnierId, stageId])
 
   function changeFilterParam(key: FilterKey, value: string) {
     if (key === 'sezon') {

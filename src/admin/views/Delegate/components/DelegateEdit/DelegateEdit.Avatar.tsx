@@ -8,6 +8,7 @@ import { filterFiles } from '@features/uploader/helpers'
 import { imageExtention } from '@features/uploader/extentions'
 import { toast } from '@lib/Toast'
 import { Button } from '@features/ui'
+import { SERVER_URL } from '@utils/index'
 
 export function Avatar() {
   const { delegate, update } = useDelegateEditContext()
@@ -78,7 +79,10 @@ export function Avatar() {
     <div className="relative">
       <div className="w-60 h-60 rounded-full flex bg-primary bg-opacity-20 hover:bg-opacity-30 overflow-hidden">
         {delegate?.image_src ? (
-          <img className="w-full h-full object-cover" src={delegate?.image_src} />
+          <img
+            className="w-full h-full object-cover"
+            src={(delegate.imageFile ? '' : SERVER_URL) + delegate?.image_src}
+          />
         ) : delegate.surname ? (
           <div className="m-auto text-primary text-7xl font-semibold">
             {delegate.surname?.[0].toUpperCase()}

@@ -1,4 +1,4 @@
-export const documentsSchema: Record<string, IDocSchema> = {
+export const documentsSchema: Record<DelegateDocName, IDocSchema> = {
   SCAN: {
     name: 'skan',
     title: 'Скан-копия подписанной заявки',

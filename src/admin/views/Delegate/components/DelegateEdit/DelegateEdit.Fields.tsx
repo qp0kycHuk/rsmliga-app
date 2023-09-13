@@ -64,7 +64,7 @@ export function Fields() {
         </div>
         <Select
           required
-          value={delegate.sex}
+          value={delegate.sex || ''}
           onChange={(event) => update({ sex: event.target.value })}
           placeholder="Не назначен"
         >
@@ -78,7 +78,7 @@ export function Fields() {
       <div>
         <div className="font-semibold mb-1">Категория</div>
         <Select
-          value={delegate.category}
+          value={delegate.category || ''}
           onChange={(event) => update({ category: event.target.value })}
           placeholder="Не назначен"
         >

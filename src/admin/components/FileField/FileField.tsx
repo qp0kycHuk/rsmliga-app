@@ -1,6 +1,8 @@
 import { FileAddIcon } from '@assets/icons/fill'
-import { Button, Input } from '@features/ui'
+import { Button, Dialog, Input } from '@features/ui'
+import { useToggle } from '@hooks/useToggle'
 import { getFileItems } from '@utils/helpers/files'
+import { ConfirmDialog } from '../ConfirmDialog'
 
 interface IFileFieldProps {
   docs: IFile[]
@@ -9,6 +11,8 @@ interface IFileFieldProps {
 }
 
 export function FileField({ docs, schema, onChange }: IFileFieldProps) {
+  const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
+
   async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const newFiles = await getFileItems(Array.from(event.target.files || []))
     const files = [...docs, ...newFiles]
@@ -21,9 +25,27 @@ export function FileField({ docs, schema, onChange }: IFileFieldProps) {
         <FileAddIcon className="mr-2 text-xl text-primary" />
         <div className="underline underline-offset-4">{schema.title}</div>
         {docs?.length > 0 ? (
-          <Button variant="text" className="ml-4 border-b" onClick={() => onChange?.([])}>
-            Удалить
-          </Button>
+          <>
+            <Button variant="text" className="ml-4 border-b" onClick={openDeleteDialog}>
+              Удалить
+            </Button>
+            <Dialog
+              isOpen={isDeleteDialogOpen}
+              onClose={closeDeleteDialog}
+              className="max-w-lg w-full"
+            >
+              <ConfirmDialog
+                title="Удалить документ"
+                confirmText="Удалить"
+                cancelText="Отмена"
+                onConfirm={() => {
+                  closeDeleteDialog()
+                  onChange?.([])
+                }}
+                onCancel={closeDeleteDialog}
+              />
+            </Dialog>
+          </>
         ) : (
           <Button as="label" variant="text" className="ml-4 border-b cursor-pointer">
             <input onChange={changeHandler} type="file" accept="application/*" hidden />
