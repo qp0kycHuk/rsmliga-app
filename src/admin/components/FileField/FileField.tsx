@@ -7,7 +7,12 @@ import { ConfirmDialog } from '../ConfirmDialog'
 interface IFileFieldProps {
   docs: IFile[]
   schema: IDocSchema
-  onChange?: (files: Array<IFile>) => void
+  onChange?: (files: Array<string | IFile>) => void
+}
+
+interface IFileFieldViewProps {
+  docs: string | string[] | IFile[]
+  schema: IDocSchema
 }
 
 export function FileField({ docs, schema, onChange }: IFileFieldProps) {
@@ -57,7 +62,7 @@ export function FileField({ docs, schema, onChange }: IFileFieldProps) {
   } else {
     return (
       <>
-        {docs.map((file) => (
+        {docs.map?.((file) => (
           <div className="flex items-center mb-4" key={file.id}>
             <FileAddIcon className="mr-2 text-xl text-primary" />
             <div className="underline underline-offset-4">
@@ -88,10 +93,10 @@ export function FileField({ docs, schema, onChange }: IFileFieldProps) {
   }
 }
 
-export function FileFieldView({ docs, schema }: IFileFieldProps) {
-  if (schema.required) {
+export function FileFieldView({ docs, schema }: IFileFieldViewProps) {
+  if (schema.required && docs[0]) {
     return (
-      <a target="_blank" href={docs[0].src} className="flex items-center mb-4" rel="noreferrer">
+      <a target="_blank" href={docs as string} className="flex items-center mb-4" rel="noreferrer">
         <FileAddIcon className="mr-2 text-xl text-primary" />
         <div className="underline underline-offset-4">{schema.title}</div>
       </a>
@@ -99,17 +104,17 @@ export function FileFieldView({ docs, schema }: IFileFieldProps) {
   } else {
     return (
       <>
-        {docs.map((file) => (
+        {(docs as Array<string>).map((file, index) => (
           <a
             target="_blank"
-            href={file.src}
+            href={file as string}
             className="flex items-center mb-4"
-            key={file.id}
+            key={index}
             rel="noreferrer"
           >
             <FileAddIcon className="mr-2 text-xl text-primary" />
             <div className="underline underline-offset-4">
-              {schema.title} (Файл {file.name})
+              {schema.title} (Файл {index})
             </div>
           </a>
         ))}

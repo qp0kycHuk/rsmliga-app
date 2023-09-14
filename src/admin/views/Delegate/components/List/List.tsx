@@ -31,7 +31,7 @@ function ListInner() {
 
       <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
         <Suspense fallback="Loading...">
-          <DelegateEdit />
+          <DelegateEdit onCancel={closeDialog} />
         </Suspense>
       </Dialog>
     </>

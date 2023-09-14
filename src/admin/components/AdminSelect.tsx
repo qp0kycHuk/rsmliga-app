@@ -43,7 +43,7 @@ export function AdminSelect({
             {({ active }) => (
               <Button
                 onClick={() => onChange?.()}
-                className="justify-start w-full h-auto px-2 py-1 text-left"
+                className="justify-start w-full h-auto px-2 py-1 text-left text-black"
                 size="sm"
                 variant={active ? 'light' : 'none'}
               >
@@ -56,8 +56,9 @@ export function AdminSelect({
               {({ active }) => (
                 <Button
                   onClick={() => onChange?.(item)}
-                  className="justify-start w-full h-auto px-2 py-1 text-left"
+                  className="justify-start w-full h-auto px-2 py-1 text-left text-black"
                   size="sm"
+                  disabled={value === item}
                   variant={active || item === value ? 'light' : 'none'}
                 >
                   {renderItem ? renderItem(item) : item}

@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { PagePreloader } from '@components/PagePreloader/PagePreloader'
-import { Outlet } from 'react-router-dom'
 import { Header } from './Header/Header'
 import { SideBar } from './SideBar/SideBar'
 import { Content } from './Content/Content'
+import { PrivateOutlet } from '@layouts/PrivateOutlet'
 
 export function AdminLayout() {
   return (
@@ -12,7 +12,7 @@ export function AdminLayout() {
       <SideBar />
       <Content>
         <Suspense fallback={<PagePreloader />}>
-          <Outlet />
+          <PrivateOutlet />
         </Suspense>
       </Content>
     </div>

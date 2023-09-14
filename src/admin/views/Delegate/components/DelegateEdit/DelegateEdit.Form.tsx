@@ -8,12 +8,10 @@ import { Place } from './DelegateEdit.Place'
 import { Fields } from './DelegateEdit.Fields'
 
 export function Form() {
-  const { loading, delegate, submit } = useDelegateEditContext()
+  const { loading, delegate, submit, onCancel } = useDelegateEditContext()
 
   return (
     <form onSubmit={submit}>
-      <div className="mb-8 text-2xl font-bold">Отчет о проведении соревнований</div>
-
       <div className="flex items-start gap-9">
         <Avatar />
         <div className="flex-grow">
@@ -38,9 +36,11 @@ export function Form() {
         <Button type="submit" disabled={loading}>
           Сохранить
         </Button>
-        <Button variant="light" disabled={loading}>
-          Отмена
-        </Button>
+        {onCancel ? (
+          <Button variant="light" disabled={loading} onClick={onCancel}>
+            Отмена
+          </Button>
+        ) : null}
       </div>
     </form>
   )

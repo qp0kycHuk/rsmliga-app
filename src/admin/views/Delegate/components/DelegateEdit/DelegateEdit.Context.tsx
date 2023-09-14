@@ -19,6 +19,7 @@ export const useDelegateEditContext = () => useContext(DelegateEditContext)
 export function DelegateEditContextProvider({
   children,
   delegate,
+  onCancel,
 }: IDelegateEditContextProviderProps) {
   const queryClient = useQueryClient()
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
@@ -48,6 +49,7 @@ export function DelegateEditContextProvider({
         loadingStart,
         loadingEnd,
         submit,
+        onCancel,
       }}
     >
       {children}
