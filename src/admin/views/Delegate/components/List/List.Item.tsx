@@ -38,9 +38,14 @@ export function ListItem({ item }: IListTableItemProps) {
         </div>
       </Cell>
       <Cell className="text-sm font-medium w-[128px] max-w-[128px]">
-        <Button size="xs" onClick={openContestsDialog} className="w-full">
-          Открыть
-        </Button>
+        {item.competitions.length > 0 ? (
+          <Button size="xs" onClick={openContestsDialog} className="w-full">
+            Открыть
+          </Button>
+        ) : (
+          '-'
+        )}
+
         <Dialog
           isOpen={isContestsDialogOpen}
           onClose={closeContestsDialog}

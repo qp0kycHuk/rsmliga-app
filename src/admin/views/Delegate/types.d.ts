@@ -9,17 +9,18 @@ interface IDelegate {
   location: string // Населенный пункт
   birthdate: string
   matchesCount: number // Матчей проведено
-
+  competitions: string[]
   image_src?: string
   sex: string
   email: string
   phone: string
   comment: string
+  status: boolean // Активирован | Деактивирован
+
   documents: Record<DelegateDocName, IFile[]>
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]
-  contests: string[]
   roles: {
     main: number
     support: number
