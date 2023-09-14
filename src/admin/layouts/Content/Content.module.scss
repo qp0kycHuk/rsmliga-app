@@ -1,9 +1,13 @@
 .content {
-  display: flex;
+  display       : flex;
   flex-direction: column;
-  flex-grow: 1;
-  
+  flex-grow     : 1;
+
   @media(min-width: 1350px) {
     --section-width: 1320px;
+  }
+
+  @media(max-width: 1457px) {
+    padding-left: 67px;
   }
 }

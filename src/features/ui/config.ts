@@ -23,7 +23,7 @@ export const screens = {
   xs: 420 + 29.98 + 'px',
   sm: 580 + 29.98 + 'px',
   md: 720 + 29.98 + 'px',
-  lg: 1170 + 29.98 + 'px',
+  lg: 1366 + 29.98 + 'px',
 }
 
 export const container = {

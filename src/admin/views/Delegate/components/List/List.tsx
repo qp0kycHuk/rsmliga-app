@@ -13,7 +13,7 @@ import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
 
 function ListInner() {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
-  const { delegates } = useDelegatesContext()
+  const { delegates, loading } = useDelegatesContext()
 
   return (
     <>
@@ -24,7 +24,8 @@ function ListInner() {
           Добавить судью
         </Button>
       </Filter>
-      <ListTable items={delegates} />
+      {loading ? 'loading...' : null}
+      <ListTable items={delegates} className={loading ? 'hidden' : ''} />
 
       <div className="mt-8"></div>
       <Pagination />

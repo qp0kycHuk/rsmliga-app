@@ -3,15 +3,16 @@ import { ListItem } from './List.Item'
 
 interface IListTableProps {
   items: IDelegate[]
+  className?: string
 }
 
-export function ListTable({ items }: IListTableProps) {
+export function ListTable({ items, className }: IListTableProps) {
   if (!items || items.length == 0) {
-    return 'Здесь ничего нет'
+    return <div className={className}>Здесь ничего нет</div>
   }
 
   return (
-    <Table>
+    <Table className={className}>
       <Row>
         <Cell head className="text-sm font-medium text-center">
           №

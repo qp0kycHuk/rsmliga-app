@@ -1,10 +1,15 @@
 import { Cell, Row, Table } from '@admin/index'
+import { useFetchCities } from '@admin/service/cities'
+import { useFetchCategories } from '../../service/categories'
 
 interface IAnaliticTableProps {
   items: IDelegate[]
 }
 
 export function AnaliticTable({ items }: IAnaliticTableProps) {
+  const { data: citiesData } = useFetchCities()
+  const { data: categoriesData } = useFetchCategories()
+
   if (!items || items.length == 0) {
     return 'Здесь ничего нет'
   }
@@ -45,13 +50,13 @@ export function AnaliticTable({ items }: IAnaliticTableProps) {
           <Cell className="text-left">
             {delegate.surname} {delegate.name} {delegate.patronymic}
           </Cell>
-          <Cell>{delegate.birthdate}</Cell>
-          <Cell>{delegate.location}</Cell>
-          <Cell>{delegate.category}</Cell>
-          <Cell>{delegate.roles?.main || '-'}</Cell>
-          <Cell>{delegate.roles?.support || '-'}</Cell>
-          <Cell>{delegate.roles?.delegate || '-'}</Cell>
-          <Cell>{delegate.matchesCount}</Cell>
+          <Cell>{new Date(delegate.birthdate).toLocaleDateString()}</Cell>
+          <Cell>{citiesData?.entites[delegate.location]?.NAME || '-'}</Cell>
+          <Cell>{categoriesData?.entites[delegate.category]?.VALUE || '-'}</Cell>
+          <Cell>{delegate.analytics?.main_judge || '-'}</Cell>
+          <Cell>{delegate.analytics?.judge_helper || '-'}</Cell>
+          <Cell>{delegate.analytics?.delegate || '-'}</Cell>
+          <Cell>{delegate.analytics?.total || '-'}</Cell>
         </Row>
       ))}
     </Table>
