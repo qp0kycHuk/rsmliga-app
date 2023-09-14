@@ -6,6 +6,7 @@ import { Suspense, lazy } from 'react'
 import { DelegateContests } from '../DelegateContests'
 import { useFetchCities } from '@admin/service/cities'
 import { useFetchCategories } from '../../service/categories'
+import classNames from 'classnames'
 // import { DelegateView } from '../DelegateView/DelegateView'
 
 const DelegateEdit = lazy(() =>
@@ -28,6 +29,8 @@ export function ListItem({ item }: IListTableItemProps) {
   const { data: citiesData } = useFetchCities()
   const { data: categoriesData } = useFetchCategories()
 
+  const isCompetitions = item.competitions.length > 0
+
   return (
     <Row>
       <Cell className="text-sm text-center w-12">{item.number}</Cell>
@@ -37,25 +40,20 @@ export function ListItem({ item }: IListTableItemProps) {
           {item.surname} {item.name} {item.patronymic}
         </div>
       </Cell>
-      <Cell className="text-sm font-medium w-[128px] max-w-[128px]">
-        {item.competitions.length > 0 ? (
-          <Button size="xs" onClick={openContestsDialog} className="w-full">
+      <Cell
+        className={classNames(
+          'text-sm font-medium w-[128px] max-w-[128px] ',
+          isCompetitions ? 'btn-group cursor-pointer' : null
+        )}
+        onClick={isCompetitions ? openContestsDialog : undefined}
+      >
+        {isCompetitions ? (
+          <Button size="xs" className="w-full">
             Открыть
           </Button>
         ) : (
           '-'
         )}
-
-        <Dialog
-          isOpen={isContestsDialogOpen}
-          onClose={closeContestsDialog}
-          className="max-w-4xl p-10"
-        >
-          <DelegateContests delegate={item} />
-          <Button className="mt-6" onClick={closeContestsDialog}>
-            Закрыть
-          </Button>
-        </Dialog>
       </Cell>
       <Cell className="text-sm ">{categoriesData?.entites[item.category]?.VALUE || '-'}</Cell>
       <Cell className="text-sm ">{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
@@ -67,12 +65,26 @@ export function ListItem({ item }: IListTableItemProps) {
         </Button>
       </Cell>
       <Cell hidden>
+        {/* Модалка с соревнованиями */}
+        <Dialog
+          isOpen={isContestsDialogOpen}
+          onClose={closeContestsDialog}
+          className="max-w-4xl p-10"
+        >
+          <DelegateContests delegate={item} />
+          <Button className="mt-6" onClick={closeContestsDialog}>
+            Закрыть
+          </Button>
+        </Dialog>
+
+        {/* Модалка редактирования */}
         <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
           <Suspense fallback="Loading...">
             <DelegateEdit delegate={item} onCancel={closeEditDialog} />
           </Suspense>
         </Dialog>
 
+        {/* Модалка просмотра */}
         <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
           <Suspense fallback="Loading...">
             <DelegateView item={item} />
