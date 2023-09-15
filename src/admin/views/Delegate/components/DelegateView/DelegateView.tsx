@@ -27,11 +27,20 @@ export function DelegateView({ item }: IDelegateViewProps) {
 
       <Separator />
       <Location item={item} />
-      <Separator />
 
-      {isAccess && <Documents item={item} />}
-      <Separator />
-      {isAccess && <Contacts item={item} />}
+      {isAccess && (
+        <>
+          <Separator />
+          <Documents item={item} />
+        </>
+      )}
+
+      {isAccess && (
+        <>
+          <Separator />
+          <Contacts item={item} />
+        </>
+      )}
     </>
   )
 }
