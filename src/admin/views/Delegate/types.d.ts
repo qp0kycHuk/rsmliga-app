@@ -15,9 +15,9 @@ interface IDelegate {
   email: string
   phone: string
   comment: string
-  status: boolean // Активирован | Деактивирован
+  status: Status
 
-  documents: Record<DelegateDocName, IFile[]>
+  documents: Record<DelegateDocName, IFile[] | string>
   imageFile?: File
   image_delete?: boolean
   statistic: IStatistic[]

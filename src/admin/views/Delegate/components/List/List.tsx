@@ -10,19 +10,24 @@ import {
 import { Pagination } from '../DelegatesContext/Delegates.Pagination'
 import { Filter } from '../DelegatesContext/Delegates.Filter'
 import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
+import { canEditGroups } from '../../const'
+import { useUserAccess } from '@admin/hooks/useUserAccess'
 
 function ListInner() {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
   const { delegates, loading } = useDelegatesContext()
+  const { isAccess } = useUserAccess(canEditGroups)
 
   return (
     <>
-      <div className="mb-5 text-3xl font-bold">Список</div>
+      <div className="mb-5 text-3xl font-bold">Список судей и делегатов </div>
       <Filter>
-        <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
-          <CirclePlusIcon className="text-2xl" />
-          Добавить судью
-        </Button>
+        {isAccess && (
+          <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
+            <CirclePlusIcon className="text-2xl" />
+            Добавить судью
+          </Button>
+        )}
       </Filter>
       {loading ? 'loading...' : null}
       <ListTable items={delegates} className={loading ? 'hidden' : ''} />
@@ -30,11 +35,13 @@ function ListInner() {
       <div className="mt-8"></div>
       <Pagination />
 
-      <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
-        <Suspense fallback="Loading...">
-          <DelegateEdit onCancel={closeDialog} />
-        </Suspense>
-      </Dialog>
+      {isAccess && (
+        <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container p-10">
+          <Suspense fallback="Loading...">
+            <DelegateEdit onCancel={closeDialog} />
+          </Suspense>
+        </Dialog>
+      )}
     </>
   )
 }

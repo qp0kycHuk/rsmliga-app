@@ -7,25 +7,14 @@ import { FileDrop } from 'react-file-drop'
 import { filterFiles } from '@features/uploader/helpers'
 import { imageExtention } from '@features/uploader/extentions'
 import { toast } from '@lib/Toast'
-import { Button } from '@features/ui'
+import { Button, Dialog } from '@features/ui'
 import { SERVER_URL } from '@utils/index'
+import { ConfirmDialog } from '@admin/components/ConfirmDialog'
+import { useToggle } from '@hooks/useToggle'
 
 export function Avatar() {
   const { delegate, update } = useDelegateEditContext()
-
-  const fileItems = useMemo(() => {
-    if (delegate?.image_src) {
-      return [
-        {
-          id: delegate?.id,
-          src: delegate?.image_src,
-          // title: article?.image,
-        },
-      ]
-    }
-
-    return []
-  }, [delegate])
+  const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
   async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
@@ -51,6 +40,7 @@ export function Avatar() {
       image_src: undefined,
       image_delete: true,
     })
+    closeDeleteDialog()
   }
 
   async function dropHandler(files: FileList | null) {
@@ -104,7 +94,7 @@ export function Avatar() {
 
       {delegate?.image_src && (
         <Button
-          onClick={removeImage}
+          onClick={openDeleteDialog}
           className="absolute rounded-full right-1 top-1 shadow-lg"
           color="red"
           variant="whitebg"
@@ -123,6 +113,16 @@ export function Avatar() {
       >
         <PlusIcon className="m-auto text-4xl text-primary" />
       </FileDrop>
+
+      <Dialog isOpen={isDeleteDialogOpen} onClose={closeDeleteDialog} className="max-w-lg w-full">
+        <ConfirmDialog
+          title="Удалить аватар"
+          confirmText="Удалить"
+          cancelText="Отмена"
+          onConfirm={removeImage}
+          onCancel={closeDeleteDialog}
+        />
+      </Dialog>
     </div>
   )
 }

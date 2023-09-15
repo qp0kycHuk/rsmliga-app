@@ -25,7 +25,7 @@ export function DelegateContests({ delegate }: IDelegateContestsProps) {
         </Row>
         {delegate.competitions?.map((contestId, index) => (
           <Row className="text-sm " key={index}>
-            <Cell className="text-center">{index}</Cell>
+            <Cell className="text-center">{index + 1}</Cell>
             <Cell>
               {delegate.surname} {delegate.name} {delegate.patronymic}
             </Cell>

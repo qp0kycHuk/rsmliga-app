@@ -32,7 +32,7 @@ export function Contacts() {
         <label className="block col-span-6 row-span-2">
           <div className="font-semibold mb-1">Комментарий</div>
           <Textarea
-            className="w-full min-h-[240px]"
+            className="w-full min-h-[240px] resize-none"
             defaultValue={delegate.comment}
             onChange={(event) => update({ comment: event.target.value })}
           />

@@ -36,6 +36,7 @@ export function DelegateEditContextProvider({
     if (response.data.error) {
       toast.error(response.data.error)
     } else {
+      toast.success('Успешно сохранено')
       queryClient.invalidateQueries('delegates')
     }
   }

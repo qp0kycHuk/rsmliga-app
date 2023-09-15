@@ -6,6 +6,7 @@ import { Statistic } from './DelegateEdit.Statistic'
 import { Contacts } from './DelegateEdit.Contacts'
 import { Place } from './DelegateEdit.Place'
 import { Fields } from './DelegateEdit.Fields'
+import { Title } from '../DelegateView/DelegateView.Title'
 
 export function Form() {
   const { loading, delegate, submit, onCancel } = useDelegateEditContext()
@@ -15,10 +16,7 @@ export function Form() {
       <div className="flex items-start gap-9">
         <Avatar />
         <div className="flex-grow">
-          <div className="text-2xl font-bold mb-6">
-            Карточка представителя судейского состава <br /> (ID №{' '}
-            <span className="text-primary">{delegate.id}</span> )
-          </div>
+          <Title item={delegate as IDelegate} />
           <Fields />
         </div>
       </div>

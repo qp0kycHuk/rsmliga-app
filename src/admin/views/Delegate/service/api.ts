@@ -46,6 +46,10 @@ export async function upsertDelegate(data: IDelegate) {
 
   if (data.imageFile) {
     formData.append('PERSONAL_PHOTO', data.imageFile)
+  } else if (data.image_src) {
+    formData.append('PERSONAL_PHOTO', data.image_src)
+  } else {
+    formData.append('PERSONAL_PHOTO', '')
   }
 
   formData.append('NAME', data.name || '')
@@ -62,13 +66,19 @@ export async function upsertDelegate(data: IDelegate) {
   Object.entries(data.documents || {}).forEach(([key, items]) => {
     if (!items) return
 
-    const name = key + (items.length > 1 ? '[]' : '')
+    const name = key + (typeof items !== 'string' && items.length > 1 ? '[]' : '')
 
-    items.forEach?.(({ file }) => {
-      if (file) {
-        formData.append(name, file)
-      }
-    })
+    if (!items) {
+      formData.append(name, '')
+    } else if (typeof items === 'string') {
+      formData.append(name, items)
+    } else {
+      items.forEach?.(({ file }) => {
+        if (file) {
+          formData.append(name, file)
+        }
+      })
+    }
   })
 
   // formData.append('EDUCATION', 'test')
