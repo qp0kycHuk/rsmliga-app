@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 import { Button, Dialog } from '@features/ui'
 import { CirclePlusIcon } from '@assets/icons/fill'
 import { useToggle } from '@hooks/useToggle'
@@ -9,9 +9,12 @@ import {
 } from '../DelegatesContext/Delegates.Context'
 import { Pagination } from '../DelegatesContext/Delegates.Pagination'
 import { Filter } from '../DelegatesContext/Delegates.Filter'
-import { DelegateEdit } from '../DelegateEdit/DelegateEdit'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+
+const DelegateEdit = lazy(() =>
+  import('../DelegateEdit/DelegateEdit').then((m) => ({ default: m.DelegateEdit }))
+)
 
 function ListInner() {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
