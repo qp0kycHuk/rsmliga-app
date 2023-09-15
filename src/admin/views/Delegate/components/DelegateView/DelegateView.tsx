@@ -6,6 +6,7 @@ import { useUserAccess } from '@admin/hooks/useUserAccess'
 import { canEditGroups } from '../../const'
 import { Documents } from './DelegateView.Documents'
 import { Title } from './DelegateView.Title'
+import { Contacts } from './DelegateView.Contacts'
 
 interface IDelegateViewProps {
   item: IDelegate
@@ -29,6 +30,8 @@ export function DelegateView({ item }: IDelegateViewProps) {
       <Separator />
 
       {isAccess && <Documents item={item} />}
+      <Separator />
+      {isAccess && <Contacts item={item} />}
     </>
   )
 }

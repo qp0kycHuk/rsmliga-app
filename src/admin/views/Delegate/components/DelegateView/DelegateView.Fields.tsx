@@ -32,7 +32,7 @@ export function Fields({ item }: IFieldsProps) {
       <div className="p-4 rounded-md bg-gray bg-opacity-40">
         <div className="text-lg leading-none">
           <span className="font-semibold">Дата рождения: </span>
-          {item.birthdate}
+          {new Date(item.birthdate).toLocaleDateString()}
         </div>
       </div>
       <div className="p-4 rounded-md bg-gray bg-opacity-40">
