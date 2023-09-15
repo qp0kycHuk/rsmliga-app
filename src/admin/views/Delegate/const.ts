@@ -4,3 +4,5 @@ export const routes = {
 }
 
 export const DELEGATES_PER_PAGE = 10
+
+export const canEditGroups = [1, 9] // группы которые могут редактировать и добавлять

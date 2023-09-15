@@ -1,5 +1,7 @@
 import { Table, Row, Cell } from '@admin/index'
 import { ListItem } from './List.Item'
+import { canEditGroups } from '../../const'
+import { useUserAccess } from '@admin/hooks/useUserAccess'
 
 interface IListTableProps {
   items: IDelegate[]
@@ -7,6 +9,8 @@ interface IListTableProps {
 }
 
 export function ListTable({ items, className }: IListTableProps) {
+  const { isAccess } = useUserAccess(canEditGroups)
+
   if (!items || items.length == 0) {
     return <div className={className}>Здесь ничего нет</div>
   }
@@ -38,9 +42,11 @@ export function ListTable({ items, className }: IListTableProps) {
         <Cell head className="text-sm font-medium">
           Матчей проведено
         </Cell>
-        <Cell head className="text-sm font-medium">
-          {/* for button */}
-        </Cell>
+        {isAccess && (
+          <Cell head className="text-sm font-medium">
+            {/* for button */}
+          </Cell>
+        )}
       </Row>
       {items?.map((item) => (
         <ListItem key={item.id} item={item} />

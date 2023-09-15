@@ -7,6 +7,9 @@ import { DelegateContests } from '../DelegateContests'
 import { useFetchCities } from '@admin/service/cities'
 import { useFetchCategories } from '../../service/categories'
 import classNames from 'classnames'
+import { useFetchCurrentUser } from '@admin/service/user'
+import { canEditGroups } from '../../const'
+import { useUserAccess } from '@admin/hooks/useUserAccess'
 // import { DelegateView } from '../DelegateView/DelegateView'
 
 const DelegateEdit = lazy(() =>
@@ -28,6 +31,8 @@ export function ListItem({ item }: IListTableItemProps) {
 
   const { data: citiesData } = useFetchCities()
   const { data: categoriesData } = useFetchCategories()
+
+  const { isAccess } = useUserAccess(canEditGroups)
 
   const isCompetitions = item.competitions.length > 0
 
@@ -59,11 +64,13 @@ export function ListItem({ item }: IListTableItemProps) {
       <Cell className="text-sm ">{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
       <Cell className="text-sm ">{new Date(item.birthdate).toLocaleDateString()}</Cell>
       <Cell className="text-sm ">{item.matchesCount || '-'}</Cell>
-      <Cell className="text-sm btn-group cursor-pointer w-14" onClick={openEditDialog}>
-        <Button size={null} icon className="btn-[28px] mx-auto" color="gray-light">
-          <SettingsIcon className="text-primary text-lg" />
-        </Button>
-      </Cell>
+      {isAccess && (
+        <Cell className="text-sm btn-group cursor-pointer w-14" onClick={openEditDialog}>
+          <Button size={null} icon className="btn-[28px] mx-auto" color="gray-light">
+            <SettingsIcon className="text-primary text-lg" />
+          </Button>
+        </Cell>
+      )}
       <Cell hidden>
         {/* Модалка с соревнованиями */}
         <Dialog
@@ -78,11 +85,13 @@ export function ListItem({ item }: IListTableItemProps) {
         </Dialog>
 
         {/* Модалка редактирования */}
-        <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
-          <Suspense fallback="Loading...">
-            <DelegateEdit delegate={item} onCancel={closeEditDialog} />
-          </Suspense>
-        </Dialog>
+        {isAccess && (
+          <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
+            <Suspense fallback="Loading...">
+              <DelegateEdit delegate={item} onCancel={closeEditDialog} />
+            </Suspense>
+          </Dialog>
+        )}
 
         {/* Модалка просмотра */}
         <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
