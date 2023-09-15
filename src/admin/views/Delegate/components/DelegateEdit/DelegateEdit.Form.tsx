@@ -27,8 +27,8 @@ export function Form() {
       <Separator />
       <Contacts />
 
-      <Separator />
-      <Statistic />
+      {/* <Separator /> */}
+      {/* <Statistic /> */}
 
       <div className="flex gap-4 mt-8">
         <Button type="submit" disabled={loading}>
