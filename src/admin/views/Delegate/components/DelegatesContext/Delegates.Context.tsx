@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { DELEGATES_PER_PAGE } from '../../const'
 import { useFetchDelegates } from '../../service/api'
@@ -13,15 +13,20 @@ export const useDelegatesContext = () => useContext(DelegatesContext)
 export function DelegatesContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  // Filters
   const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
   const stageId = searchParams.get('stage') || ''
 
+  // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
+
+  // Search
   const [searchQuery, changeSearchQuery] = useSearchQuery({
     savedKeys: ['sezon', 'turnier', 'stage'],
   })
 
+  // Fetcing
   const { data, isLoading, isFetching } = useFetchDelegates({
     page: currentPage,
     itemsPerPage: DELEGATES_PER_PAGE,

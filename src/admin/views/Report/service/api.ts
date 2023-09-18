@@ -26,7 +26,7 @@ export async function fetchReports({
 }
 
 export function useFetchReports(params: IFetchParams) {
-  return useQuery('delegates', fetchReports.bind(null, params), {
+  return useQuery(['reports', params], fetchReports.bind(null, params), {
     refetchOnWindowFocus: false,
   })
 }

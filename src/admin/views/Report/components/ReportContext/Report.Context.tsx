@@ -12,16 +12,18 @@ export const useReportContext = () => useContext(ReportContext)
 export function ReportContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
+  // Filters
   const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
   const stageId = searchParams.get('stage') || ''
 
+  // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
 
-  const { data, refetch, isLoading, isFetching } = useFetchReports({
+  // Fetcing
+  const { data, isFetching } = useFetchReports({
     page: currentPage,
     itemsPerPage: REPORT_PER_PAGE,
-
     sezon: seasonId,
     turnier: turnierId,
     stage: stageId,
@@ -29,12 +31,6 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
 
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
-
-  useEffect(() => {
-    refetch({
-      cancelRefetch: true,
-    })
-  }, [currentPage, seasonId, turnierId, stageId])
 
   function changeFilterParam(key: FilterKey, value: string) {
     if (key === 'sezon') {

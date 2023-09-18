@@ -3,11 +3,12 @@ import { ReportTableItem } from './List.Table.Item'
 
 interface Iprops {
   items: IReport[]
+  className?: string
 }
 
-export function ListTable({ items }: Iprops) {
+export function ListTable({ items, className }: Iprops) {
   return (
-    <Table>
+    <Table className={className}>
       <Row>
         <Cell head className="text-sm font-medium">
           Сезон

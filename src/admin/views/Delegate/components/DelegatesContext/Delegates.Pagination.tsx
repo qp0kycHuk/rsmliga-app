@@ -5,9 +5,11 @@ export function Pagination() {
   const { pages, currentPage, changePageQuery } = useDelegatesContext()
 
   return (
-    <>
-      <div className="mt-auto"></div>
-      <PaginationComponent currentPage={currentPage} pages={pages} onChange={changePageQuery} />
-    </>
+    <PaginationComponent
+      className="mt-auto"
+      currentPage={currentPage}
+      pages={pages}
+      onChange={changePageQuery}
+    />
   )
 }
