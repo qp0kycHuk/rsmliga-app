@@ -2,12 +2,12 @@ import { ReportEditContextProvider } from './ReportEdit.Context'
 import { Form } from './ReportEdit.Form'
 
 interface IReportEditProps {
-  contest: IContest
+  item: IReport
 }
 
-export function ReportEdit({ contest }: IReportEditProps) {
+export function ReportEdit({ item }: IReportEditProps) {
   return (
-    <ReportEditContextProvider contest={contest}>
+    <ReportEditContextProvider item={item}>
       <Form />
     </ReportEditContextProvider>
   )

@@ -34,8 +34,10 @@ type EntityId = string | number
 interface IFile {
   id?: EntityId
   key?: EntityId
-  name?: string
+  fid?: EntityId
   src?: string
+  path?: string
+  name?: string
   file?: File
 }
 

@@ -2,6 +2,8 @@ import { rootApi } from '@admin/service/api'
 import { REPORT_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
 
+export const REPORTS_KEY = 'reports'
+
 export async function fetchReports({
   page = 1,
   itemsPerPage = REPORT_PER_PAGE,
@@ -25,8 +27,31 @@ export async function fetchReports({
   return data
 }
 
+export async function upsertReport(data: IReport) {
+  const formData = new FormData()
+
+  formData.append('id', data.id as string)
+  formData.append('action', 'edit')
+  formData.append('comment', data.comment)
+  formData.append('location', data.location)
+
+  data.group_photos?.forEach((item) => {
+    if (item.file) {
+      formData.append('group_photos[]', item.file)
+    }
+  })
+
+  data.competition_photo?.forEach((item) => {
+    if (item.file) {
+      formData.append('competition_photo[]', item.file)
+    }
+  })
+
+  return await rootApi.post('/reports_handler.php', formData)
+}
+
 export function useFetchReports(params: IFetchParams) {
-  return useQuery(['reports', params], fetchReports.bind(null, params), {
+  return useQuery([REPORTS_KEY, params], fetchReports.bind(null, params), {
     refetchOnWindowFocus: false,
   })
 }

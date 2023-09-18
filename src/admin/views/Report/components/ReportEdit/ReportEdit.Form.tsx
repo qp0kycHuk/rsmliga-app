@@ -1,4 +1,4 @@
-import { Button, Field } from '@features/ui'
+import { Button, Field, Textarea } from '@features/ui'
 import { useReportEditContext } from './ReportEdit.Context'
 import { Documents } from './ReportEdit.Documents'
 import { ContestImages } from './ReportEdit.ContestImages'
@@ -7,7 +7,7 @@ import { Separator } from '../../../../components/Separator'
 import { TeamImages } from './ReportEdit.TeamImages'
 
 export function Form() {
-  const { contest, submit } = useReportEditContext()
+  const { report, update, submit } = useReportEditContext()
 
   return (
     <form onSubmit={submit}>
@@ -17,25 +17,25 @@ export function Form() {
         <div className="col-span-2 p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Соревнование: </span>
-            {contest.name}
+            {report.competition}
           </div>
         </div>
         <div className="col-span-2 p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Этап: </span>
-            {contest.step}
+            {report.stage}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Город/район: </span>
-            {contest.area}
+            {report.area}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Сезон: </span>
-            {contest.season}
+            {report.season}
           </div>
         </div>
 
@@ -43,7 +43,12 @@ export function Form() {
           <Field
             placeholder="Место проведения:"
             inputProps={{
-              defaultValue: contest.place,
+              value: report.location || '',
+              onChange: (event) => {
+                update({
+                  location: event.target.value,
+                })
+              },
             }}
           />
         </div>
@@ -51,7 +56,7 @@ export function Form() {
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Дата проведения: </span>
-            {contest.date}
+            {report.date}
           </div>
         </div>
       </div>
@@ -59,14 +64,26 @@ export function Form() {
       <Separator />
       <Documents />
 
-      <Separator />
-      <TeamImages />
+      {/* <Separator />
+      <TeamImages /> */}
 
       <Separator />
       <GeneralImages />
 
       <Separator />
       <ContestImages />
+
+      <Separator />
+      <Textarea
+        className="w-full h-40 resize-none"
+        placeholder="Комментарий"
+        value={report.comment || ''}
+        onChange={(event) =>
+          update({
+            comment: event.target.value,
+          })
+        }
+      />
 
       <div className="flex gap-4 mt-8">
         <Button>Отправить отчет в департамент проведения соревнований</Button>

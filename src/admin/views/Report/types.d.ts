@@ -1,10 +1,4 @@
 interface IReport {
-  // id: EntityId
-  // documents: Record<string, IFile[]>
-  // generalImages: IFile[]
-  // contestImages: IFile[]
-  // teamsImages: { team: ITeam; image: IImage }[]
-
   number: number
   id: EntityId
   season_id: EntityId
@@ -17,9 +11,14 @@ interface IReport {
   area: string
   location: string
   date: BitrixDate
-  status_id: EntityId
+  status_id: EntityId | null
   status: string
+  comment: string
+  group_photos: IFile[] | null
+  competition_photo: IFile[] | null
 }
+
+type IImagesKey = 'group_photos' | 'competition_photo'
 
 interface ITeam {
   id: EntityId

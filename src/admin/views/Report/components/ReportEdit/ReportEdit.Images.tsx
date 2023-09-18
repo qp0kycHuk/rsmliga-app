@@ -2,9 +2,10 @@ import { useMemo } from 'react'
 import { Uploader } from '@features/uploader'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
+import { SERVER_URL } from '@utils/index'
 
 interface IImagesProps extends React.PropsWithChildren {
-  keyOfImages: 'generalImages' | 'contestImages'
+  keyOfImages: IImagesKey
   max: number
 }
 
@@ -14,11 +15,10 @@ export function Images({ children, keyOfImages, max }: IImagesProps) {
 
   const fileItems = useMemo(() => {
     return report?.[keyOfImages]?.map((item) => ({
-      id: item.id,
-      src: item.src,
-      name: item.name,
+      id: item.fid || item.id,
+      src: (item.file ? '' : SERVER_URL) + (item.path || item.src),
     }))
-  }, [report])
+  }, [report[keyOfImages]])
 
   async function changeHandler(fileItems: IFile[]) {
     const files = fileItems.map((item) => (item as Required<IFile>).file)
@@ -34,7 +34,7 @@ export function Images({ children, keyOfImages, max }: IImagesProps) {
 
   function removeHandler(fileItem: IFile) {
     update({
-      [keyOfImages]: report?.[keyOfImages]?.filter((item) => item.id !== fileItem.id),
+      [keyOfImages]: report?.[keyOfImages]?.filter((item) => (item.fid || item.id) !== fileItem.id),
     })
   }
 
