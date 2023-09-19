@@ -2,11 +2,13 @@ import classnames from 'classnames'
 import { Input, IProps } from '../Input/Input'
 import { ComponentProps } from 'react'
 import { FieldWrapper } from './FieldWrapper'
+import classes from './Field.module.scss'
 
 export function Field({ inputProps = {}, ...props }: IFieldProps) {
   return (
     <FieldWrapper
       {...props}
+      className={inputProps.value || inputProps.defaultValue ? classes.active : ''}
       input={
         <Input
           {...inputProps}

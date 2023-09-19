@@ -34,7 +34,7 @@
 .field {
 
   &:not(.inactive) :is(input, select):not(:placeholder-shown)~.placeholder,
-  &:not(.inactive) &.active .placeholder,
+  &:not(.inactive).active .placeholder,
   &:focus-within .placeholder {
     top      : calc(0% - 2px);
     font-size: 14px;
@@ -42,7 +42,7 @@
   }
 
   &:not(.inactive) :is(input, select):not(:placeholder-shown)~.fieldset .legend,
-  &:not(.inactive) &.active .legend,
+  &:not(.inactive).active .legend,
   &:focus-within .legend {
     max-width    : 100%;
     padding-right: 5px;
@@ -50,7 +50,7 @@
     font-size    : 14px;
   }
 
-  &:not(.inactive) &.active .fieldset,
+  // &:not(.inactive).active .fieldset,
   &:focus-within .fieldset {
     border-width: 2px;
     border-color: var(--tw-input-color);
@@ -58,7 +58,7 @@
   }
 
 
-  &:not(.inactive) &.active .placeholder,
+  // &:not(.inactive).active .placeholder,
   &:focus-within .placeholder {
     color  : var(--tw-input-color);
     opacity: 1 !important;
