@@ -4,7 +4,7 @@ import type { Color, Size } from '../../types'
 
 const baseClassName = 'input'
 
-const colorClassNames: PartialRecord<Color, string> = {
+const colorClassNames: Record<Color, string> = {
   white: 'input-white',
   black: 'input-black',
   green: 'input-green',
@@ -12,9 +12,11 @@ const colorClassNames: PartialRecord<Color, string> = {
   primary: 'input-primary',
   red: 'input-red',
   gray: 'input-gray',
+  ['gray-light']: 'input-gray-light',
+  transparent: '',
 }
 
-const sizeClassNames: PartialRecord<Size, string> = {
+const sizeClassNames: Record<Size, string> = {
   xs: 'input-xs',
   sm: 'input-sm',
   base: 'input-base',
