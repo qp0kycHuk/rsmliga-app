@@ -38,12 +38,26 @@ export async function upsertReport(data: IReport) {
   data.group_photos?.forEach((item) => {
     if (item.file) {
       formData.append('group_photos[]', item.file)
+    } else if (item.path) {
+      formData.append('group_photos[]', item.path)
     }
   })
 
   data.competition_photo?.forEach((item) => {
     if (item.file) {
       formData.append('competition_photo[]', item.file)
+    } else if (item.path) {
+      formData.append('competition_photo[]', item.path)
+    }
+  })
+
+  data.teams_photo?.forEach((item) => {
+    formData.append('teams_photo_name[]', item.description)
+
+    if (item.file) {
+      formData.append('teams_photo[]', item.file)
+    } else if (item.path) {
+      formData.append('teams_photo[]', item.path)
     }
   })
 

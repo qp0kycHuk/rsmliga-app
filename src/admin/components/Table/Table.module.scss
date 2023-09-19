@@ -1,15 +1,30 @@
 .table {
-  width: 100%;
+  // display: grid;
+  width       : 100%;
+  // tbody {
+  //   display: contents;
+  // }
+}
+
+.table-wrapper {
+  width   : calc(100% + 30px);
+  overflow: auto;
+  margin-left: -15px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .cell {
+  min-width: max-content;
   padding   : 8px 12px;
   background: #fff;
   border    : 1px solid #DDDDDD;
 }
 
-.row {}
+.row {
+  // display: contents;
+}
 
 .head {
   background: #F4F5F6;
-}
+} 

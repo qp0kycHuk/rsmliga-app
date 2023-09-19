@@ -7,8 +7,10 @@ interface ITableProps extends React.TableHTMLAttributes<HTMLTableElement> {
 
 export function Table({ children, className, ...props }: ITableProps) {
   return (
-    <table {...props} className={classnames(classes.table, className)}>
-      <tbody>{children}</tbody>
-    </table>
+    <div className={classnames(classes['table-wrapper'], className)}>
+      <table {...props} className={classnames(classes.table)}>
+        <tbody>{children}</tbody>
+      </table>
+    </div>
   )
 }

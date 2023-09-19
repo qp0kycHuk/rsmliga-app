@@ -4,9 +4,7 @@ import { useToggle } from '@hooks/useToggle'
 import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { Suspense, lazy } from 'react'
-
-// import { ReportView } from '../ReportView/ReportView'
-// import { ReportEdit } from '../ReportEdit/ReportEdit'
+// import { useFetchStages } from '@admin/service/stages'
 
 const ReportEdit = lazy(() =>
   import('../ReportEdit/ReportEdit').then((m) => ({ default: m.ReportEdit }))
@@ -21,18 +19,22 @@ export function ReportTableItem({ item }: IProps) {
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
+  // const { data: stagesData } = useFetchStages()
+
+  const formattedDate = new Date(item.date).toLocaleDateString()
+
   return (
     <Row>
       <Cell className="text-sm">{item.season}</Cell>
       <Cell className="w-[264px] max-w-[264px] text-sm">
         <CellTooltip>{item.competition}</CellTooltip>
       </Cell>
-      <Cell className="text-sm">{item.stage}</Cell>
+      <Cell className="text-sm">{item.stage || '-'}</Cell>
       <Cell className="text-sm">{item.area}</Cell>
       <Cell className="w-[228px] max-w-[228px] text-sm">
         <CellTooltip>{item.location}</CellTooltip>
       </Cell>
-      <Cell className="text-sm">{item.date}</Cell>
+      <Cell className="text-sm">{formattedDate}</Cell>
       <Cell className="w-40 text-sm">
         <div className={!item.status_id ? 'opacity-60' : ''}>
           {!item.status_id ? 'Отсутствует' : item.status}

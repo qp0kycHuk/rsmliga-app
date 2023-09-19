@@ -1,14 +1,16 @@
 import { Button, Tooltip } from '@features/ui'
+import classNames from 'classnames'
 
 interface ICellTooltipProps extends React.PropsWithChildren {
   content?: string
+  className?: string
 }
 
-export function CellTooltip({ content, children }: ICellTooltipProps) {
+export function CellTooltip({ content, children, className }: ICellTooltipProps) {
   return (
-    <Tooltip placement="bottom" content={content || children}>
-      <div className="flex items-center gap-2">
-        <div className="truncate">{children || content}</div>
+    <div className={classNames(className, 'flex items-center gap-2')}>
+      <div className="truncate">{children || content}</div>
+      <Tooltip placement="bottom-end" content={content || children}>
         <Button
           as="div"
           variant="contur"
@@ -18,7 +20,7 @@ export function CellTooltip({ content, children }: ICellTooltipProps) {
         >
           ?
         </Button>
-      </div>
-    </Tooltip>
+      </Tooltip>
+    </div>
   )
 }

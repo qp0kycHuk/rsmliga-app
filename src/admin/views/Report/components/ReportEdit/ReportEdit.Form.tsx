@@ -64,8 +64,8 @@ export function Form() {
       <Separator />
       <Documents />
 
-      {/* <Separator />
-      <TeamImages /> */}
+      <Separator />
+      <TeamImages />
 
       <Separator />
       <GeneralImages />

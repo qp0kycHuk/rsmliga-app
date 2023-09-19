@@ -7,17 +7,23 @@ import { FileDrop } from 'react-file-drop'
 import { filterFiles } from '@features/uploader/helpers'
 import { imageExtention } from '@features/uploader/extentions'
 import { toast } from '@lib/Toast'
+import { useFetchSchools } from '@admin/service/school'
 
 interface ITeamImagesDialogProps {
   onClose: () => void
 }
 
 export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
-  const { report, contest, update } = useReportEditContext()
+  const { report, update } = useReportEditContext()
   const [selectedTeamId, setSelectedTeamId] = useState<EntityId>()
   const [selectedFile, setSelectedFile] = useState<File>()
 
   const [errors, setErrors] = useState<string[]>([])
+
+  const { data: schoolsData } = useFetchSchools({
+    stage: report.stage_id,
+    competition: report.competition_id,
+  })
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.files?.[0]) {
@@ -59,33 +65,32 @@ export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
     }
 
     const fileItems = await getFileItems(Array.from(selectedFile ? [selectedFile] : []))
-    const selectedTeam = contest.teams.find(({ id }) => id == selectedTeamId) as ITeam
 
     let updatedItems
 
-    const existItem = report?.teamsImages?.find(({ team }) => team.id == selectedTeam?.id)
+    const existItem = report?.teams_photo?.find(({ description }) => description == selectedTeamId)
 
     if (existItem) {
-      updatedItems = report?.teamsImages?.map((item) => {
-        if (item.team.id !== selectedTeam.id) return item
+      updatedItems = report?.teams_photo?.map((item) => {
+        if (item.description !== selectedTeamId) return item
 
         return {
-          team: selectedTeam,
-          image: fileItems[0],
+          description: selectedTeamId as string,
+          ...fileItems[0],
         }
       })
     } else {
       updatedItems = [
-        ...(report.teamsImages || []),
+        ...(report.teams_photo || []),
         {
-          team: selectedTeam,
-          image: fileItems[0],
+          description: selectedTeamId as string,
+          ...fileItems[0],
         },
       ]
     }
 
     update({
-      teamsImages: updatedItems,
+      teams_photo: updatedItems,
     })
 
     onClose()
@@ -127,9 +132,9 @@ export function TeamImagesDialog({ onClose }: ITeamImagesDialogProps) {
             onChange: (event) => setSelectedTeamId(event.target.value),
           }}
         >
-          {contest.teams.map(({ id, name }) => (
+          {schoolsData?.items.map(({ id, short_name }) => (
             <option value={id} key={id}>
-              {name}
+              {short_name}
             </option>
           ))}
         </SelectField>

@@ -16,6 +16,7 @@ interface IReport {
   comment: string
   group_photos: IFile[] | null
   competition_photo: IFile[] | null
+  teams_photo: (IFile & { description: string })[] | null
 }
 
 type IImagesKey = 'group_photos' | 'competition_photo'

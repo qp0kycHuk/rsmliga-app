@@ -33,7 +33,7 @@ export function Search({ value, onChange, className, placeholder = 'Поиск' 
   }
 
   return (
-    <form className={classNames(className, 'relative  ml-auto')} onSubmit={searchSubmitHandler}>
+    <form className={classNames(className, 'relative')} onSubmit={searchSubmitHandler}>
       <Input
         required
         placeholder={placeholder}
