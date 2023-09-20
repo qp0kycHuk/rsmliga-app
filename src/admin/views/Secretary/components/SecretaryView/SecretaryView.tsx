@@ -5,8 +5,8 @@ import { Title } from './SecretaryView.Title'
 import { Fields } from './SecretaryView.Fields'
 import { Documents } from './SecretaryView.Documents'
 import { Contacts } from './SecretaryView.Contacts'
-import { Competitions } from './SecretaryView.Competitions'
 import { canEditGroups } from '../../const'
+import { Locations } from './SecretaryView.Locations'
 
 interface ISecretaryViewProps {
   item: ISecretary
@@ -26,7 +26,7 @@ export function SecretaryView({ item }: ISecretaryViewProps) {
       </div>
 
       <Separator />
-      <Competitions item={item} />
+      <Locations item={item} />
 
       {isAccess && (
         <>
