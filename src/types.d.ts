@@ -7,17 +7,19 @@ type PartialRecord<K extends keyof unknown, T> = {
   [P in K]?: T
 }
 
-interface IListResponse<T> {
-  items: T[]
-}
-
 interface IEntitesAdapter<T> {
   ids: EntityId[]
   entites: Record<EntityId, T>
 }
 
+interface IListResponse<T> {
+  items: T[]
+  error?: string
+}
+
 interface IItemResponse<T> {
   item: T
+  error?: string
 }
 
 interface TypedFormData<T> extends FormData {

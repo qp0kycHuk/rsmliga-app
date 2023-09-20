@@ -61,7 +61,7 @@ export async function upsertReport(data: IReport) {
     }
   })
 
-  return await rootApi.post('/reports_handler.php', formData)
+  return await rootApi.post<IItemResponse<IReport>>('/reports_handler.php', formData)
 }
 
 export function useFetchReports(params: IFetchParams) {

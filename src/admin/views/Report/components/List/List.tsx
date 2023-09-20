@@ -8,7 +8,7 @@ function ListInner() {
 
   return (
     <>
-      <div className="mb-5 text-3xl font-bold">Список</div>
+      <div className="mb-5 text-3xl font-bold">Отчеты</div>
       <Filter />
       {loading ? 'loading...' : null}
       <ListTable items={items} className={loading ? 'hidden' : ''} />

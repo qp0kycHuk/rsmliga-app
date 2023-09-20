@@ -83,5 +83,5 @@ export async function upsertDelegate(data: IDelegate) {
 
   // formData.append('EDUCATION', 'test')
 
-  return await rootApi.post('/judge_handler.php', formData)
+  return await rootApi.post<IItemResponse<IDelegate>>('/judge_handler.php', formData)
 }

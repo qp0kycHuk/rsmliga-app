@@ -79,5 +79,5 @@ export async function upsertSecretary(data: ISecretary) {
     }
   })
 
-  return await rootApi.post('/secretary_handler.php', formData)
+  return await rootApi.post<IItemResponse<ISecretary>>('/secretary_handler.php', formData)
 }

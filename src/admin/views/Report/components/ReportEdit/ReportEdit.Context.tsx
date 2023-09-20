@@ -26,6 +26,7 @@ export function ReportEditContextProvider({ children, item }: IReportEditContext
     if (response.data.error) {
       toast.error(response.data.error)
     } else {
+      update(response.data.item)
       toast.success('Успешно сохранено')
       queryClient.invalidateQueries(REPORTS_KEY)
     }
