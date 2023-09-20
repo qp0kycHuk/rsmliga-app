@@ -11,3 +11,7 @@ export const DelegateAnalitic = lazy(() =>
 export const DelegateList = lazy(() =>
   import('./views/Delegate/pages/DelegateList').then((m) => ({ default: m.DelegateList }))
 )
+
+export const SecretaryList = lazy(() =>
+  import('./views/Secretary/pages/SecretaryList').then((m) => ({ default: m.SecretaryList }))
+)
