@@ -7,6 +7,10 @@ interface ICompetitionsProps {
 export function Competitions({ item }: ICompetitionsProps) {
   const { data } = useFetchTournaments()
 
+  if (!item.competitions) {
+    return null
+  }
+
   return (
     <div className="space-y-4">
       {item.competitions?.map((id, index) => (

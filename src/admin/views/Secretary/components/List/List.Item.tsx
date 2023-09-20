@@ -48,13 +48,13 @@ export function Item({ item }: IItemProps) {
       <Cell>{item.category}</Cell>
       <Cell>{item.email || '-'}</Cell>
       <Cell>{item.phone || '-'}</Cell>
-      <Cell>
-        <Button size="xs" className="w-full" onClick={openContestsDialog}>
+      <Cell className="btn-group cursor-pointer" onClick={openContestsDialog}>
+        <Button size="xs" className="w-full">
           Открыть
         </Button>
       </Cell>
-      <Cell>
-        <Button size="xs" className="w-full" onClick={openLocationsDialog}>
+      <Cell className="btn-group cursor-pointer" onClick={openLocationsDialog}>
+        <Button size="xs" className="w-full">
           Открыть
         </Button>
       </Cell>
