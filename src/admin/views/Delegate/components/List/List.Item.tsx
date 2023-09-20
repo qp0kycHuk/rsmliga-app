@@ -85,7 +85,11 @@ export function ListItem({ item }: IListTableItemProps) {
 
         {/* Модалка редактирования */}
         {isAccess && (
-          <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
+          <Dialog
+            isOpen={isEditDialogOpen}
+            onClose={closeEditDialog}
+            className="container max-w-6xl p-10"
+          >
             <Suspense fallback="Loading...">
               <DelegateEdit delegate={item} onCancel={closeEditDialog} />
             </Suspense>
@@ -93,7 +97,11 @@ export function ListItem({ item }: IListTableItemProps) {
         )}
 
         {/* Модалка просмотра */}
-        <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
+        <Dialog
+          isOpen={isViewDialogOpen}
+          onClose={closeViewDialog}
+          className="container max-w-6xl p-10"
+        >
           <Suspense fallback="Loading...">
             <DelegateView item={item} />
             <Button className="mt-8" onClick={closeViewDialog}>

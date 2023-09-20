@@ -3,45 +3,46 @@ import { useEditableEntity } from '@hooks/useEditableEntity'
 import { useToggle } from '@hooks/useToggle'
 import { EMPTY_OBJECT } from '@utils/const'
 import { toast } from '@lib/Toast'
-import { upsertDelegate } from '../../service/api'
+// import { upsertDelegate } from '../../service/api'
 import { useQueryClient } from 'react-query'
+import { SECRETARY_KEY, upsertSecretary } from '../../service/api'
 // import { api } from '../../service/api'
 
-const DelegateEditContext = createContext<IDelegateEditContextValue>(
-  {} as IDelegateEditContextValue
+const SecretaryEditContext = createContext<ISecretaryEditContextValue>(
+  {} as ISecretaryEditContextValue
 )
 
-export const useDelegateEditContext = () => useContext(DelegateEditContext)
+export const useSecretaryEditContext = () => useContext(SecretaryEditContext)
 
-export function DelegateEditContextProvider({
+export function SecretaryEditContextProvider({
   children,
-  delegate,
+  item,
   onCancel,
-}: IDelegateEditContextProviderProps) {
+}: ISecretaryEditContextProviderProps) {
   const queryClient = useQueryClient()
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
-  const [editableDelegate, update] = useEditableEntity<IEditableDelegate>(delegate || EMPTY_OBJECT)
+  const [editableSecretary, update] = useEditableEntity<IEditableSecretary>(item || EMPTY_OBJECT)
 
   async function submit(event: React.FormEvent) {
     event.preventDefault()
-    const data = editableDelegate as IDelegate
+    const data = editableSecretary as ISecretary
 
     loadingStart()
-    const response = await upsertDelegate(data)
+    const response = await upsertSecretary(data)
     loadingEnd()
 
     if (response.data.error) {
       toast.error(response.data.error)
     } else {
       toast.success('Успешно сохранено')
-      queryClient.invalidateQueries('delegates')
+      queryClient.invalidateQueries(SECRETARY_KEY)
     }
   }
 
   return (
-    <DelegateEditContext.Provider
+    <SecretaryEditContext.Provider
       value={{
-        delegate: editableDelegate,
+        item: editableSecretary,
         update,
         loading,
         loadingStart,
@@ -51,6 +52,6 @@ export function DelegateEditContextProvider({
       }}
     >
       {children}
-    </DelegateEditContext.Provider>
+    </SecretaryEditContext.Provider>
   )
 }

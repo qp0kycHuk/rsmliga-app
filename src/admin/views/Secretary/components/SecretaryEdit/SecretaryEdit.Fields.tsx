@@ -1,19 +1,21 @@
 import { Input, Select } from '@features/ui'
 import { DatePicker } from '@features/ui/components/DatePicker'
-import { useDelegateEditContext } from './DelegateEdit.Context'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
 import { Asterisk } from '@components/Asterisk'
-import { useFetchCategories } from '../../service/categories'
+import { useSecretaryEditContext } from './SecretaryEdit.Context'
 import { useFetchSex } from '../../service/sex'
+import { useFetchCategories } from '../../service/categories'
+import { useFetchEducation } from '../../service/education'
 
 export function Fields() {
-  const { delegate, update } = useDelegateEditContext()
+  const { item, update } = useSecretaryEditContext()
 
   const { data: sexData } = useFetchSex()
   const { data: categoriesData } = useFetchCategories()
+  const { data: educationData } = useFetchEducation()
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 max-w-xl">
       <label className="block">
         <div className="font-semibold mb-1">
           Фамилия <Asterisk />
@@ -21,7 +23,7 @@ export function Fields() {
         <Input
           required
           className="w-full"
-          defaultValue={delegate.surname}
+          defaultValue={item.surname}
           onChange={(event) => update({ surname: event.target.value })}
         />
       </label>
@@ -32,7 +34,7 @@ export function Fields() {
         <Input
           required
           className="w-full"
-          defaultValue={delegate.name}
+          defaultValue={item.name}
           onChange={(event) => update({ name: event.target.value })}
         />
       </label>
@@ -43,7 +45,7 @@ export function Fields() {
         <Input
           required
           className="w-full"
-          defaultValue={delegate.patronymic}
+          defaultValue={item.patronymic}
           onChange={(event) => update({ patronymic: event.target.value })}
         />
       </label>
@@ -54,7 +56,7 @@ export function Fields() {
         <DatePicker
           required
           className="w-full"
-          value={delegate.birthdate}
+          value={item.birthdate}
           onSelect={({ date }) => update({ birthdate: dateToSQLFormatString(date as Date) })}
         />
       </label>
@@ -64,7 +66,7 @@ export function Fields() {
         </div>
         <Select
           required
-          value={delegate.sex || ''}
+          value={item.sex || ''}
           onChange={(event) => update({ sex: event.target.value })}
           placeholder="Не назначен"
         >
@@ -78,13 +80,27 @@ export function Fields() {
       <div>
         <div className="font-semibold mb-1">Категория</div>
         <Select
-          value={delegate.category || ''}
-          onChange={(event) => update({ category: event.target.value })}
+          value={item.category_id || ''}
+          onChange={(event) => update({ category_id: event.target.value })}
           placeholder="Не назначен"
         >
           {categoriesData?.items.map((cat) => (
             <option key={cat.ID} value={cat.ID}>
               {cat.VALUE}
+            </option>
+          ))}
+        </Select>
+      </div>
+      <div className="col-span-2">
+        <div className="font-semibold mb-1">Образование</div>
+        <Select
+          value={item.education_id || ''}
+          onChange={(event) => update({ education_id: event.target.value })}
+          placeholder="Нет"
+        >
+          {educationData?.items.map((education) => (
+            <option key={education.ID} value={education.ID}>
+              {education.VALUE}
             </option>
           ))}
         </Select>

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
-import { rootApi } from './api'
 import { getEntities, getIds } from '@utils/helpers/entites'
+import { rootApi } from '@admin/service/api'
 
 export async function fetchSex(): Promise<ISexFetchResponse> {
   const { data } = await rootApi.get<IListResponse<ISex>>('/get_fields.php', {
@@ -17,7 +17,7 @@ export async function fetchSex(): Promise<ISexFetchResponse> {
 }
 
 export function useFetchSex() {
-  return useQuery('sex', fetchSex, {
+  return useQuery('sex_judge', fetchSex, {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   })

@@ -1,6 +1,6 @@
 interface ISecretary {
   number: number
-  id: string
+  id: EntityId
   user_id: EntityId
   name: string
   surname: string
@@ -17,7 +17,10 @@ interface ISecretary {
   image_src: string
   sex: EntityId
   comment: string
-  documents: Record<DelegateDocName, IFile>
+  documents: Record<SecretaryDocName, IFile>
+
+  imageFile?: File
+  image_delete?: boolean
 }
 
 type SecretaryDocName = 'LICHNOST' | 'PERDAN' | 'FILE_1' | 'FILE_2'

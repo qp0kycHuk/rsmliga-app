@@ -79,13 +79,21 @@ export function ReportTableItem({ item }: IProps) {
       </Cell>
 
       <Cell hidden>
-        <Dialog isOpen={isEditDialogOpen} onClose={closeEditDialog} className="container p-10">
+        <Dialog
+          isOpen={isEditDialogOpen}
+          onClose={closeEditDialog}
+          className="container max-w-6xl p-10"
+        >
           <Suspense fallback="Loading...">
             <ReportEdit item={item} />
           </Suspense>
         </Dialog>
 
-        <Dialog isOpen={isViewDialogOpen} onClose={closeViewDialog} className="container p-10">
+        <Dialog
+          isOpen={isViewDialogOpen}
+          onClose={closeViewDialog}
+          className="container max-w-6xl p-10"
+        >
           <Suspense fallback="Loading...">
             <ReportView contest={item} />
           </Suspense>

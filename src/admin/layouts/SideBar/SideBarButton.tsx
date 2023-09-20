@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { Button, Tooltip } from '@features/ui'
-import { Link } from '@lib/Link'
 import { useSidebarContext } from './SidebarContext'
+import { Link } from 'react-router-dom'
 
 interface IProps {
   icon: IconComponent
@@ -21,7 +21,7 @@ export function SideBarButton({ title, icon: Icon, to, sub }: IProps) {
     <Tooltip content={!isOpen ? title : null} placement="right" disabled={isOpen}>
       <Button
         onClick={closeSidebar}
-        as={Link}
+        as={to.includes('/dashboard/') ? Link : 'a'}
         href={to}
         to={to}
         className={classNames(
