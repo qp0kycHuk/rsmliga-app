@@ -21,7 +21,9 @@ const SecretaryView = lazy(() =>
 )
 
 export function Item({ item }: IItemProps) {
-  const { isAccess } = useUserAccess(canEditGroups)
+  const { isAccess, userData } = useUserAccess(canEditGroups)
+  const canEdit =
+    isAccess || (userData?.item.id == item.user_id && userData.item.userGroups.includes('12'))
 
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
@@ -38,7 +40,7 @@ export function Item({ item }: IItemProps) {
         />
       </Cell>
       <Cell
-        onClick={isAccess ? openEditDialog : openViewDialog}
+        onClick={canEdit ? openEditDialog : openViewDialog}
         className="cursor-pointer underline"
       >
         {item.surname} {item.name} {item.patronymic}
@@ -83,28 +85,33 @@ export function Item({ item }: IItemProps) {
         </Dialog>
 
         {/* Модалка редактирования */}
-        <Dialog
-          isOpen={isEditDialogOpen}
-          onClose={closeEditDialog}
-          className="container max-w-6xl p-10"
-        >
-          <Suspense fallback="Loading...">
-            <SecretaryEdit item={item} onCancel={closeEditDialog} />
-          </Suspense>
-        </Dialog>
-        {/* Модалка редактирования */}
-        <Dialog
-          isOpen={isViewDialogOpen}
-          onClose={closeViewDialog}
-          className="container max-w-6xl p-10"
-        >
-          <Suspense fallback="Loading...">
-            <SecretaryView item={item} />
-            <Button className="mt-8" onClick={closeViewDialog}>
-              Закрыть
-            </Button>
-          </Suspense>
-        </Dialog>
+        {canEdit && (
+          <Dialog
+            isOpen={isEditDialogOpen}
+            onClose={closeEditDialog}
+            className="container max-w-6xl p-10"
+          >
+            <Suspense fallback="Loading...">
+              <SecretaryEdit item={item} onCancel={closeEditDialog} />
+            </Suspense>
+          </Dialog>
+        )}
+
+        {/* Модалка просмотра */}
+        {!canEdit && (
+          <Dialog
+            isOpen={isViewDialogOpen}
+            onClose={closeViewDialog}
+            className="container max-w-6xl p-10"
+          >
+            <Suspense fallback="Loading...">
+              <SecretaryView item={item} />
+              <Button className="mt-8" onClick={closeViewDialog}>
+                Закрыть
+              </Button>
+            </Suspense>
+          </Dialog>
+        )}
       </Cell>
     </Row>
   )

@@ -17,5 +17,8 @@ export async function fetchSeasons(): Promise<ISeasonFetchResponse> {
 }
 
 export function useFetchSeasons() {
-  return useQuery('seasons', fetchSeasons)
+  return useQuery('seasons', fetchSeasons, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  })
 }

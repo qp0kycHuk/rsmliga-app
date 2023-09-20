@@ -10,7 +10,7 @@ export function Fields({ item }: IFieldsProps) {
   const { data: categoriesData } = useFetchCategories()
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 max-w-2xl w-full">
       <div className="p-4 rounded-md bg-gray bg-opacity-40">
         <div className="text-lg leading-none">
           <span className="font-semibold">Фамилия: </span>

@@ -17,5 +17,8 @@ export async function fetchTournaments(): Promise<ITournamentFetchResponse> {
 }
 
 export function useFetchTournaments() {
-  return useQuery('tournaments', fetchTournaments)
+  return useQuery('tournaments', fetchTournaments, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  })
 }

@@ -8,7 +8,7 @@ export function AdminRoutes() {
   return (
     <Routes>
       <Route path="/dashboard/" element={<AdminLayout />}>
-        <Route path="report" element={<Report />}></Route>
+        <Route path="reports" element={<Report />}></Route>
         <Route path={delegateRoutes.list} element={<DelegateList />}></Route>
         <Route path={delegateRoutes.analitic} element={<DelegateAnalitic />}></Route>
         <Route path={secretaryRoutes.list} element={<SecretaryList />}></Route>

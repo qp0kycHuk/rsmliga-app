@@ -10,8 +10,5 @@ export async function fetchCurrentUser(): Promise<ICurrentUserFetchResponse> {
 }
 
 export function useFetchCurrentUser() {
-  return useQuery('current-user', fetchCurrentUser, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
+  return useQuery('current-user', fetchCurrentUser)
 }

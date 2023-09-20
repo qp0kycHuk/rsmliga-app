@@ -2,7 +2,9 @@ import {
   BallIcon,
   ChartIcon,
   CircleIcon,
+  CollectionIcon,
   FileDocIcon,
+  FileFolderIcon,
   MenuAltIcon,
   PlayingRugbyIcon,
   UserGroupIcon,
@@ -18,4 +20,6 @@ export const icons: Record<string, React.FunctionComponent<React.SVGProps<SVGSVG
   ['menu-1']: MenuAltIcon,
   wistle: WhistleIcon,
   sub: CircleIcon,
+  folder: FileFolderIcon,
+  collection: CollectionIcon,
 }

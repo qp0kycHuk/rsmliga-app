@@ -11,8 +11,11 @@ export function Contacts() {
       <div className="text-2xl font-bold mb-5">Контактная информация</div>
       <div className="grid grid-cols-12 gap-4 grid-rows-none">
         <label className="block col-span-3">
-          <div className="font-semibold mb-1">E-mail</div>
+          <div className="font-semibold mb-1">
+            E-mail <Asterisk />
+          </div>
           <Input
+            required
             className="w-full"
             defaultValue={item.email}
             onChange={(event) => update({ email: event.target.value })}

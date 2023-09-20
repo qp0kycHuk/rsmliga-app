@@ -4,4 +4,4 @@ export const routes = {
   list: 'secretary',
 }
 
-export const canEditGroups = []
+export const canEditGroups = [1, 8, 9]

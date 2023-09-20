@@ -1,12 +1,12 @@
 export const colors = {
-  // primary: '#d21c4b',
+  primary: '#d21c4b',
   white: '#fff',
   black: '#242424',
   transparent: 'rgba(0,0,0,0)',
   green: '#009432',
   yellow: '#f79f1f',
   // primary: '#778beb', // Фиолетовый
-  primary: '#10ac84', // Бирюзовый
+  // primary: '#10ac84', // Бирюзовый
   red: '#d63031',
   gray: '#DDD',
   ['gray-light']: '#F5F7FB',

@@ -17,5 +17,8 @@ export async function fetchStages(): Promise<IStageFetchResponse> {
 }
 
 export function useFetchStages() {
-  return useQuery('stages', fetchStages)
+  return useQuery('stages', fetchStages, {
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  })
 }

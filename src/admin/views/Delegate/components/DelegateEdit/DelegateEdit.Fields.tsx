@@ -13,7 +13,7 @@ export function Fields() {
   const { data: categoriesData } = useFetchCategories()
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 gap-4 max-w-2xl w-full">
       <label className="block">
         <div className="font-semibold mb-1">
           Фамилия <Asterisk />
