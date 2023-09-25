@@ -3,8 +3,10 @@ interface IReportEditContextProviderProps extends React.PropsWithChildren {
 }
 
 interface IReportEditContextValue extends IEditContextValue {
-  report: Partial<IReport>
+  report: IEditableReport
   update(updated: DispatchEditableEntity<IEditableReport>): void
 }
 
-interface IEditableReport extends Partial<IReport> {}
+interface IEditableReport extends Partial<IReport> {
+  file_del?: EntityId[]
+}

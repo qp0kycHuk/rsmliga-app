@@ -22,7 +22,7 @@ export function FileFieldSingle({ doc, schema, onChange }: IProps) {
   return (
     <div className="flex items-center mb-4">
       <FileAddIcon className="mr-2 text-xl text-primary" />
-      <div className="underline underline-offset-4">{schema.title}</div>
+      <div className="underline underline-offset-4">{schema.name}</div>
       {doc?.path || doc?.file ? (
         <>
           <Button variant="text" className="ml-4 border-b" onClick={openDeleteDialog}>

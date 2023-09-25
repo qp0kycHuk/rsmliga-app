@@ -3,6 +3,7 @@ import { Uploader } from '@features/uploader'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
 import { SERVER_URL } from '@utils/index'
+import { id } from '@utils/helpers/id'
 
 interface IImagesProps extends React.PropsWithChildren {
   keyOfImages: IImagesKey
@@ -15,7 +16,7 @@ export function Images({ children, keyOfImages, max }: IImagesProps) {
 
   const fileItems = useMemo(() => {
     return report?.[keyOfImages]?.map((item) => ({
-      id: item.fid || item.id,
+      id: id(item),
       src: (item.file ? '' : SERVER_URL) + (item.path || item.src),
     }))
   }, [report[keyOfImages]])
@@ -34,7 +35,8 @@ export function Images({ children, keyOfImages, max }: IImagesProps) {
 
   function removeHandler(fileItem: IFile) {
     update({
-      [keyOfImages]: report?.[keyOfImages]?.filter((item) => (item.fid || item.id) !== fileItem.id),
+      [keyOfImages]: report?.[keyOfImages]?.filter((item) => id(item) !== id(fileItem)),
+      file_del: [...(report.file_del || []), ...(fileItem.id ? [fileItem.id] : [])],
     })
   }
 

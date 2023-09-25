@@ -1,5 +1,5 @@
 import { PaperClipIcon, PlusIcon } from '@assets/icons/fill'
-import { Button, DialogErrors, DialogHeader, DialogTitle, Select } from '@features/ui'
+import { Button, DialogErrors, DialogHeader, DialogTitle, Select, SelectField } from '@features/ui'
 import { useState } from 'react'
 import { useReportEditContext } from './ReportEdit.Context'
 import { getFileItems } from '@utils/helpers/files'
@@ -8,6 +8,7 @@ import { FileDrop } from 'react-file-drop'
 import { docExtention } from '@features/uploader/extentions'
 import { filterFiles } from '@features/uploader/helpers'
 import { toast } from '@lib/Toast'
+import { useFetchReportDocuments } from '../../service/documents'
 
 interface IDocumentsDialogProps {
   onClose: () => void
@@ -16,8 +17,10 @@ interface IDocumentsDialogProps {
 export function DocumentsDialog({ onClose }: IDocumentsDialogProps) {
   const { report, update } = useReportEditContext()
   const [errors, setErrors] = useState<string[]>([])
-  const [selectedFileName, setSelectedFileName] = useState<string>()
+  const [selectedFileType, setSelectedFileType] = useState<string>()
   const [selectedFile, setSelectedFile] = useState<File>()
+
+  const { data: schemaData } = useFetchReportDocuments()
 
   function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.files?.[0]) {
@@ -43,7 +46,7 @@ export function DocumentsDialog({ onClose }: IDocumentsDialogProps) {
   async function submitHandler() {
     const checkErrors = []
 
-    if (!selectedFileName) {
+    if (!selectedFileType) {
       checkErrors.push('Выберите название')
     }
 
@@ -53,23 +56,23 @@ export function DocumentsDialog({ onClose }: IDocumentsDialogProps) {
 
     setErrors(checkErrors)
 
-    if (!selectedFileName || checkErrors.length > 0) {
+    if (!selectedFileType || checkErrors.length > 0) {
       return
     }
 
-    const currentFileItems = report?.documents?.[selectedFileName] || []
+    const currentFileItems = report?.documents?.['doc_' + selectedFileType] || []
 
     const fileItems = (await getFileItems(Array.from(selectedFile ? [selectedFile] : []))).map(
       (item, index) => ({
         ...item,
-        name: (currentFileItems.length + index + 1).toString(),
+        number: (currentFileItems.length + index + 1).toString(),
       })
     )
 
     update({
       documents: {
         ...report.documents,
-        [selectedFileName]: [...currentFileItems, ...fileItems],
+        ['doc_' + selectedFileType]: [...currentFileItems, ...fileItems],
       },
     })
 
@@ -104,20 +107,22 @@ export function DocumentsDialog({ onClose }: IDocumentsDialogProps) {
           </Button>
         )}
 
-        <Select
+        <SelectField
           placeholder="Выберите название файла"
           className="mt-8 w-full"
           inputProps={{
-            value: selectedFileName,
-            onChange: (event) => setSelectedFileName(event.target.value),
+            value: selectedFileType,
+            onChange: (event) => setSelectedFileType(event.target.value),
           }}
         >
-          {Object.values(documentsSchema).map(({ name, title }) => (
-            <option value={name} key={name}>
-              {title}
-            </option>
-          ))}
-        </Select>
+          {schemaData?.items
+            .filter(({ multi }) => multi)
+            .map(({ id, name }) => (
+              <option value={id} key={id}>
+                {name}
+              </option>
+            ))}
+        </SelectField>
 
         <div className="grid grid-cols-2 mt-6 gap-4 w-full">
           <Button onClick={submitHandler}>Добавить</Button>

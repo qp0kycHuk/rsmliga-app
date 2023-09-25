@@ -1,6 +1,8 @@
 import { rootApi } from '@admin/service/api'
 import { REPORT_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
+import { fetchReportDocuments } from './documents'
+import { dateToSQLFormatString } from '@utils/helpers/dates'
 
 export const REPORTS_KEY = 'reports'
 
@@ -27,13 +29,18 @@ export async function fetchReports({
   return data
 }
 
-export async function upsertReport(data: IReport) {
+export async function upsertReport(data: IEditableReport) {
   const formData = new FormData()
 
   formData.append('id', data.id as string)
   formData.append('action', 'edit')
-  formData.append('comment', data.comment)
-  formData.append('location', data.location)
+  formData.append('comment', data.comment || '')
+  formData.append('location', data.location || '')
+  formData.append('area', (data.area_id as string) || '')
+
+  if (data.date) {
+    formData.append('date', dateToSQLFormatString(new Date(data.date)) || '')
+  }
 
   data.group_photos?.forEach((item) => {
     if (item.file) {
@@ -59,6 +66,20 @@ export async function upsertReport(data: IReport) {
     } else if (item.path) {
       formData.append('teams_photo[]', item.path)
     }
+  })
+
+  const schemaData = await fetchReportDocuments()
+
+  schemaData.items.map((schema) => {
+    data.documents?.['doc_' + schema.id]?.map((item) => {
+      if (item.file) {
+        formData.append('doc_' + schema.id + (schema.multi ? '[]' : ''), item.file)
+      }
+    })
+  })
+
+  data.file_del?.forEach((fid) => {
+    formData.append('file_del[]', fid as string)
   })
 
   return await rootApi.post<IItemResponse<IReport>>('/reports_handler.php', formData)

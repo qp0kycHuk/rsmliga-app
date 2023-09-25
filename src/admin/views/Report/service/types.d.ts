@@ -6,3 +6,9 @@ interface IFetchParams {
   turnier?: EntityId
   stage?: EntityId
 }
+
+interface IReportDocument {
+  id: EntityId
+  name: string
+  multi: boolean
+}

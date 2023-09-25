@@ -1,6 +1,13 @@
 interface IDocSchema {
+  id?: EntityId
   name: string
-  title: string
+  /**
+   * @deprecated
+   */
+  title?: string
+  /**
+   * @deprecated
+   */
   required?: boolean
 }
 

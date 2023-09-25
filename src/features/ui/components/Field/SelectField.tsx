@@ -3,12 +3,14 @@ import classnames from 'classnames'
 import { FieldWrapper } from '../Field/FieldWrapper'
 import type { IProps } from '../Input/Input'
 import { ToRightIcon } from '@assets/icons/fill'
+import classes from './Field.module.scss'
 
 export function SelectField({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
   const selectRef = React.createRef<HTMLSelectElement>()
   const [isLabelShow, setIsLabelShow] = useState(
     props.placeholder
-      ? inputProps?.defaultValue === props.placeholder || !inputProps?.defaultValue
+      ? (inputProps?.defaultValue || inputProps?.value) === props.placeholder ||
+          !(inputProps?.defaultValue || inputProps?.value)
       : false
   )
 
@@ -23,13 +25,17 @@ export function SelectField({ children, fieldChildren, inputProps, ...props }: I
     <FieldWrapper
       isLabelShow={isLabelShow}
       {...props}
-      className={classnames(props.className, 'cursor-pointer group')}
+      className={classnames(
+        props.className,
+        'cursor-pointer group',
+        inputProps?.value || inputProps?.defaultValue ? classes.active : ''
+      )}
       input={
         <select
           ref={selectRef}
           placeholder=""
           {...inputProps}
-          defaultValue={inputProps?.defaultValue || props.placeholder}
+          defaultValue={inputProps?.defaultValue || inputProps?.value || props.placeholder}
           onChange={changeHandler}
           className={classnames(
             'input w-full border-none focus:shadow-none appearance-none cursor-pointer',

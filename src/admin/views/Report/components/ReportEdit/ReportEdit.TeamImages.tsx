@@ -16,9 +16,12 @@ export function TeamImages() {
     competition: report.competition_id,
   })
 
-  function removeHandler(removeId: EntityId) {
+  function removeHandler({ fid, id }: { fid?: EntityId; id?: EntityId }) {
     update({
-      teams_photo: (report.teams_photo || []).filter(({ id, fid }) => removeId != (fid || id)),
+      teams_photo: (report.teams_photo || []).filter(
+        (item) => (item.id || item.fid) != (fid || id)
+      ),
+      file_del: [...(report.file_del || []), ...(fid ? [fid] : [])],
     })
   }
 
@@ -38,7 +41,7 @@ export function TeamImages() {
               />
 
               <Button
-                onClick={() => removeHandler((fid || id) as EntityId)}
+                onClick={() => removeHandler({ fid, id })}
                 className="absolute rounded-full right-1 top-1"
                 color="red"
                 size="xs"

@@ -40,6 +40,7 @@ interface IFile {
   src?: string
   path?: string
   name?: string
+  number?: string
   file?: File
 }
 
