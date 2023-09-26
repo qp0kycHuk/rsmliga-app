@@ -95,7 +95,7 @@ export function ReportTableItem({ item }: IProps) {
           className="container max-w-6xl p-10"
         >
           <Suspense fallback="Loading...">
-            <ReportView contest={item} />
+            <ReportView item={item} />
           </Suspense>
         </Dialog>
 

@@ -7,10 +7,11 @@ import { ConfirmDialog } from '../ConfirmDialog'
 interface IProps {
   doc: IFile | null
   schema: IDocSchema
-  onChange?: (file: IFile | null) => void
+  onChange?: (file: IFile) => void
+  onRemove?: (file: IFile) => void
 }
 
-export function FileFieldSingle({ doc, schema, onChange }: IProps) {
+export function FileFieldSingle({ doc, schema, onChange, onRemove }: IProps) {
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
   async function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
@@ -39,7 +40,7 @@ export function FileFieldSingle({ doc, schema, onChange }: IProps) {
               cancelText="Отмена"
               onConfirm={() => {
                 closeDeleteDialog()
-                onChange?.(null)
+                onRemove?.(doc)
               }}
               onCancel={closeDeleteDialog}
             />

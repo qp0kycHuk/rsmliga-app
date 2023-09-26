@@ -2,10 +2,10 @@ import { Separator } from '../../../../components/Separator'
 import { ReportViewDocuments } from './ReportView.Documents'
 
 interface IReportViewProps {
-  contest: IContest
+  item: IReport
 }
 
-export function ReportView({ contest }: IReportViewProps) {
+export function ReportView({ item }: IReportViewProps) {
   return (
     <>
       <div className="mb-8 text-2xl font-bold">Отчет о проведении соревнований</div>
@@ -14,43 +14,43 @@ export function ReportView({ contest }: IReportViewProps) {
         <div className="col-span-2 p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Соревнование: </span>
-            {contest.name}
+            {item.competition}
           </div>
         </div>
         <div className="col-span-2 p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Этап: </span>
-            {contest.step}
+            {item.stage}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Город/район: </span>
-            {contest.area}
+            {item.location}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Сезон: </span>
-            {contest.season}
+            {item.season}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Место проведения: </span>
-            {contest.place}
+            {item.area}
           </div>
         </div>
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Дата проведения: </span>
-            {contest.date}
+            {item.date}
           </div>
         </div>
       </div>
 
       <Separator />
-      <ReportViewDocuments report={contest.report as IReport} />
+      <ReportViewDocuments report={item} />
     </>
   )
 }

@@ -3,6 +3,7 @@ import { REPORT_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
 import { fetchReportDocuments } from './documents'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
+import { fetchReportStatuses } from './statuses'
 
 export const REPORTS_KEY = 'reports'
 
@@ -74,6 +75,12 @@ export async function upsertReport(data: IEditableReport) {
     data.documents?.['doc_' + schema.id]?.map((item) => {
       if (item.file) {
         formData.append('doc_' + schema.id + (schema.multi ? '[]' : ''), item.file)
+      } else if (item.path) {
+        formData.append('doc_' + schema.id, item.path)
+      }
+
+      if (schema.multi) {
+        formData.append('doc_' + schema.id + '_numbers[]', item.number || '')
       }
     })
   })
@@ -81,6 +88,11 @@ export async function upsertReport(data: IEditableReport) {
   data.file_del?.forEach((fid) => {
     formData.append('file_del[]', fid as string)
   })
+
+  const statusesData = await fetchReportStatuses()
+
+  const checkingId = statusesData.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
+  formData.append('status', (checkingId as string) || '')
 
   return await rootApi.post<IItemResponse<IReport>>('/reports_handler.php', formData)
 }

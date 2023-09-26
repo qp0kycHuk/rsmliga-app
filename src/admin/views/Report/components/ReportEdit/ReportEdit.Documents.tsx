@@ -7,6 +7,7 @@ import { DocumentsDialog } from './ReportEdit.DocumentsDialog'
 import { useFetchReportDocuments } from '../../service/documents'
 import { FileFieldSingle } from '@admin/components/FileField/FileFieldSingle'
 import { FileFieldMultiple } from '@admin/components/FileField/FileFieldMultiple'
+import { id } from '@utils/helpers/id'
 
 export function Documents() {
   const { report, update } = useReportEditContext()
@@ -24,6 +25,16 @@ export function Documents() {
             schema={item}
             key={item.id}
             docs={report.documents?.['doc_' + item.id] || []}
+            onRemove={(file) =>
+              update({
+                documents: {
+                  ...report.documents,
+                  ['doc_' + item.id]:
+                    report.documents?.['doc_' + item.id].filter((d) => id(d) !== id(file)) || [],
+                },
+                file_del: [...(report.file_del || []), ...(file.fid ? [file.fid] : [])],
+              })
+            }
             onChange={(files) => {
               update({
                 documents: {
@@ -38,11 +49,20 @@ export function Documents() {
             key={item.id}
             schema={item}
             doc={report.documents?.['doc_' + item.id][0] || null}
+            onRemove={(file) => {
+              update({
+                documents: {
+                  ...report.documents,
+                  ['doc_' + item.id]: [],
+                },
+                file_del: [...(report.file_del || []), ...(file.fid ? [file.fid] : [])],
+              })
+            }}
             onChange={(file) => {
               update({
                 documents: {
                   ...report.documents,
-                  ['doc_' + item.id]: file ? [file] : [],
+                  ['doc_' + item.id]: [file],
                 },
               })
             }}

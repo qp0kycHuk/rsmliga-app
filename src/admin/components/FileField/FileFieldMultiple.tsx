@@ -6,9 +6,10 @@ interface IFileFieldMultipleProps {
   schema: IDocSchema
   docs: IFile[]
   onChange?: (files: IFile[]) => void
+  onRemove?: (file: IFile) => void
 }
 
-export function FileFieldMultiple({ schema, docs, onChange }: IFileFieldMultipleProps) {
+export function FileFieldMultiple({ schema, docs, onChange, onRemove }: IFileFieldMultipleProps) {
   return docs.map?.((file) => (
     <div className="flex items-center mb-4" key={id(file)}>
       <FileAddIcon className="mr-2 text-xl text-primary" />
@@ -26,11 +27,7 @@ export function FileFieldMultiple({ schema, docs, onChange }: IFileFieldMultiple
         />
         )
       </div>
-      <Button
-        variant="text"
-        className="ml-4 border-b"
-        onClick={() => onChange?.(docs.filter((d) => id(d) !== id(file)))}
-      >
+      <Button variant="text" className="ml-4 border-b" onClick={() => onRemove?.(file)}>
         Удалить
       </Button>
     </div>
