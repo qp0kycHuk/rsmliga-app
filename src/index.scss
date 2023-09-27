@@ -4,6 +4,7 @@
 @import 'tippy.js/dist/tippy.css';
 @import 'tippy.js/dist/backdrop.css';
 @import 'tippy.js/animations/shift-away.css';
+@import 'tippy.js/themes/material.css';
 @import 'react-toastify/dist/ReactToastify.css';
 @import "@fancyapps/ui/dist/fancybox/fancybox.css";
 @import '@ui/index.scss';
@@ -16,11 +17,16 @@ body {
   display       : flex;
   flex-direction: column;
   min-height    : 100vh;
-  background    : #F5F7FB;
+  background    : theme('colors.light.300');
   font-family   : var(--font-base);
 
   * {
     outline: none;
+  }
+
+  &.dark {
+    background: theme('colors.dark.300');
+    color: #fff;
   }
 }
 
@@ -58,3 +64,4 @@ body {
   --adp-day-name-color                      : theme(colors.yellow);
   --adp-day-name-color-hover                : theme(colors.primary / 10%);
 }
+

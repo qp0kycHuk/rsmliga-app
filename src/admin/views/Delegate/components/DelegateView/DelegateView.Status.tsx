@@ -13,7 +13,7 @@ export function Status({ item, className }: IStatusProps) {
     <div
       className={classNames(
         className,
-        ' bg-gray-light rounded-full py-1 px-2 flex items-center gap-1 cursor-default'
+        ' bg-gray-light dark:bg-dark-300 rounded-full py-1 px-2 flex items-center gap-1 cursor-default'
       )}
     >
       {item.status === 'no' && (

@@ -38,6 +38,7 @@ module.exports = plugin.withOptions(
           display: 'block',
           height: sizeVar,
           border: "1px solid theme('colors.black / 40%')",
+          background: "theme('colors.light.100')",
           outline: 'none !important',
           lineHeight: '1',
           padding: 'calc((var(--tw-input-size) - 1.2em) / 2) 15px',
@@ -51,6 +52,12 @@ module.exports = plugin.withOptions(
 
           '&:disabled': {
             opacity: options.disabledOpacity,
+          },
+
+          '&:is(.dark &)': {
+            borderColor: "theme('colors.white / 40%')",
+            background: "theme('colors.dark.100')",
+            color: '#fff',
           },
         },
       })

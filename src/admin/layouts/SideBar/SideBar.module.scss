@@ -1,4 +1,6 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
   position     : fixed;
   top          : 0;
   left         : 0;
@@ -8,7 +10,6 @@
   padding-top  : 60px;
   padding-right: 8px;
   padding-left : 8px;
-  background   : #fff;
   transition   : .3s;
   z-index      : theme('zIndex[4]');
 

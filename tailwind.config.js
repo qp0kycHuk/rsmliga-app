@@ -4,6 +4,9 @@ const { ui } = require('./src/features/ui/config.ts')
 export default {
   darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     screens: ui.screens,
     container: ui.container,

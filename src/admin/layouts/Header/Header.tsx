@@ -8,7 +8,12 @@ export function Header() {
   const { data } = useFetchCurrentUser()
 
   return (
-    <header className={classnames(classes.header, 'flex items-center py-2')}>
+    <header
+      className={classnames(
+        classes.header,
+        'flex items-center py-2 bg-light-100 dark:bg-dark-100 dark:border-white dark:border-opacity-20'
+      )}
+    >
       <div className={classnames(classes.user, 'flex items-center gap-2')}>
         <Avatar src={data?.item.imgPath} />
 

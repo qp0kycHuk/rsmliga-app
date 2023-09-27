@@ -38,7 +38,7 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               <DialogWrap.Panel
                 className={classnames(
                   className,
-                  'w-full m-auto transition-all  bg-white shadow-xl rounded-2xl'
+                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl'
                 )}
               >
                 <div className="fixed -z-1" tabIndex={0}></div>

@@ -10,6 +10,20 @@ export const colors = {
   red: '#d63031',
   gray: '#DDD',
   ['gray-light']: '#F5F7FB',
+
+  light: {
+    100: '#FFFFFF',
+    200: '#F6F6F6',
+    300: '#F5F7FB',
+    400: '#ccc',
+  },
+
+  dark: {
+    100: '#323232',
+    200: '#303030',
+    300: '#282828',
+    400: '#181818',
+  },
 }
 
 export const elementsSizes = {

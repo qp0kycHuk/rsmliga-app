@@ -31,7 +31,7 @@ export function SideBarButton({ title, icon: Icon, to, sub }: IProps) {
         variant="none"
       >
         <Icon className={classNames('flex-shrink-0 ', sub ? 'text-xs' : 'text-2xl')} />
-        {isOpen && <div className="ml-2 text-base text-black">{title}</div>}
+        {isOpen && <div className="ml-2 text-base text-black dark:text-white">{title}</div>}
       </Button>
     </Tooltip>
   )

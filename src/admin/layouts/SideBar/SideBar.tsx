@@ -6,6 +6,7 @@ import { SidebarContextProvider, useSidebarContext } from './SidebarContext'
 import { SideBarButton } from './SideBarButton'
 import { icons } from './SidebarIcons'
 import classes from './SideBar.module.scss'
+import { Theme } from './SideBar.Theme'
 
 function SideBarInner() {
   const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()
@@ -23,7 +24,7 @@ function SideBarInner() {
   return (
     <>
       <div
-        className={classnames(classes.sidebar, {
+        className={classnames(classes.sidebar, 'bg-light-100 dark:bg-dark-100', {
           [classes.open]: isOpen,
         })}
       >
@@ -33,7 +34,7 @@ function SideBarInner() {
           onClick={toggleSidebar}
         >
           <MenuIcon className="flex-shrink-0 text-2xl" />
-          {isOpen && <div className="ml-2 text-base text-black">Свернуть меню</div>}
+          {isOpen && <div className="ml-2 text-base text-black dark:text-white">Свернуть меню</div>}
         </Button>
         {flatItems?.map((item) => (
           <SideBarButton
@@ -44,6 +45,8 @@ function SideBarInner() {
             sub={item.isSub}
           />
         ))}
+
+        <Theme />
       </div>
 
       <div
