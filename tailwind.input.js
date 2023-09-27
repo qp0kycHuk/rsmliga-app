@@ -50,7 +50,7 @@ module.exports = plugin.withOptions(
             color: '#fff',
           },
 
-          '&:focus, &:focus-within': {
+          '&:focus, &:focus-within, &:is(.dark &):focus, &:is(.dark &):focus-within': {
             borderColor: colorVar,
             boxShadow: '0 0 0 1px ' + colorVar,
             zIndex: 2,

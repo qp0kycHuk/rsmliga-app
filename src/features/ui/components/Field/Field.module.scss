@@ -54,7 +54,7 @@
   // &:not(.inactive).active .fieldset,
   &:focus-within .fieldset {
     border-width: 2px;
-    border-color: var(--tw-input-color);
+    border-color: var(--tw-input-color) !important;
     z-index     : 2;
   }
 
@@ -65,15 +65,21 @@
     opacity: 1 !important;
   }
 
+  select,
+  input {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
   .input {
     box-shadow: none;
   }
 
   &.inactive :is(input, select) {
-    color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0) !important;
 
     option {
-      color: var(--text-color);
+      color: var(--text-color) !important;
 
     }
 
