@@ -12,7 +12,7 @@ import { useFetchCities } from '@admin/service/cities'
 import classes from '@ui/components/Field/Field.module.scss'
 
 export function Form() {
-  const { report, update, submit } = useReportEditContext()
+  const { report, update, submit, loading } = useReportEditContext()
 
   const { data: CitiesData } = useFetchCities()
 
@@ -122,7 +122,7 @@ export function Form() {
 
       <div className="flex gap-4 mt-8">
         <Button>Отправить отчет в департамент проведения соревнований</Button>
-        <Button type="submit" variant="contur">
+        <Button type="submit" variant="contur" disabled={loading}>
           Сохранить
         </Button>
         <Button variant="light">Отмена</Button>

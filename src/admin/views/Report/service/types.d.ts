@@ -4,7 +4,7 @@ interface IFetchParams {
   search?: string
   sezon?: EntityId
   turnier?: EntityId
-  stage?: EntityId
+  location?: EntityId
 }
 
 interface IReportDocument {

@@ -13,7 +13,7 @@ export async function fetchReports({
   search = '',
   sezon = '',
   turnier = '',
-  stage = '',
+  location = '',
 }: IFetchParams): Promise<IFetchResponse> {
   const { data } = await rootApi.get<IFetchResponse>('/reports_handler.php', {
     params: {
@@ -23,7 +23,7 @@ export async function fetchReports({
       search,
       sezon,
       turnier,
-      stage,
+      location,
     },
   })
 
@@ -95,6 +95,17 @@ export async function upsertReport(data: IEditableReport) {
   formData.append('status', (checkingId as string) || '')
 
   return await rootApi.post<IItemResponse<IReport>>('/reports_handler.php', formData)
+}
+
+export async function deleteReport(id: EntityId) {
+  const { data } = await rootApi.get<IFetchResponse>('/reports_handler.php', {
+    params: {
+      action: 'delete',
+      id,
+    },
+  })
+
+  return data
 }
 
 export function useFetchReports(params: IFetchParams) {

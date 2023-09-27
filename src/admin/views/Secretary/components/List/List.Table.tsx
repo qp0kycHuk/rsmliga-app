@@ -1,5 +1,6 @@
 import { Cell, Row, Table } from '@admin/index'
 import { Item } from './List.Item'
+import { Empty } from '@admin/components/Empty'
 
 interface ITableProps {
   items: ISecretary[]
@@ -8,7 +9,7 @@ interface ITableProps {
 
 export function ListTable({ items, className }: ITableProps) {
   if (!items || items.length == 0) {
-    return <div className={className}>Здесь ничего нет</div>
+    return <Empty className={className} />
   }
 
   return (

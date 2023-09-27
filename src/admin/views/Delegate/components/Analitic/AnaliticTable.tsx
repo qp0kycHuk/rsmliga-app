@@ -1,17 +1,19 @@
 import { Cell, Row, Table } from '@admin/index'
 import { useFetchCities } from '@admin/service/cities'
 import { useFetchCategories } from '../../service/categories'
+import { Empty } from '@admin/components/Empty'
 
 interface IAnaliticTableProps {
   items: IDelegate[]
+  className?: string
 }
 
-export function AnaliticTable({ items }: IAnaliticTableProps) {
+export function AnaliticTable({ items, className }: IAnaliticTableProps) {
   const { data: citiesData } = useFetchCities()
   const { data: categoriesData } = useFetchCategories()
 
   if (!items || items.length == 0) {
-    return 'Здесь ничего нет'
+    return <Empty className={className} />
   }
 
   return (

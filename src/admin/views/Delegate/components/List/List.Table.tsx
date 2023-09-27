@@ -2,6 +2,7 @@ import { Table, Row, Cell } from '@admin/index'
 import { ListItem } from './List.Item'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { Empty } from '@admin/components/Empty'
 
 interface IListTableProps {
   items: IDelegate[]
@@ -12,7 +13,7 @@ export function ListTable({ items, className }: IListTableProps) {
   const { isAccess } = useUserAccess(canEditGroups)
 
   if (!items || items.length == 0) {
-    return <div className={className}>Здесь ничего нет</div>
+    return <Empty className={className} />
   }
 
   return (

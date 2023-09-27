@@ -13,7 +13,7 @@ export { toast } from 'react-toastify'
 const contextClass = {
   success: 'bg-green text-white',
   error: 'bg-red text-white',
-  info: 'bg-primary text-white',
+  info: 'bg-gray-light text-primary',
   warning: 'bg-yellow text-white',
   default: 'bg-white dark:bg-gray-900 text-black dark:text-white',
   dark: 'bg-black text-white',
@@ -31,7 +31,7 @@ const CloseButton = ({ closeToast, type }: CloseButtonProps) => {
       size="sm"
       color={type === 'default' ? 'primary' : 'gray'}
     >
-      <CrossIcon className={type !== 'default' ? 'text-white' : ''} />
+      <CrossIcon className={type !== 'default' && type !== 'info' ? 'text-white' : 'text-red'} />
     </Button>
   )
 }

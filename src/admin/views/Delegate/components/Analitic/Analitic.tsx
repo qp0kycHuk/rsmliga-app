@@ -14,7 +14,11 @@ function AnaliticInner() {
       <div className="mb-5 text-3xl font-bold">Аналитика по сезонам</div>
 
       <Filter />
-      {loading ? 'loading...' : <AnaliticTable items={delegates} />}
+      {loading ? (
+        'loading...'
+      ) : (
+        <AnaliticTable items={delegates} className={loading ? 'hidden' : ''} />
+      )}
       <Pagination />
     </>
   )

@@ -1,5 +1,6 @@
 import { Table, Row, Cell } from '@admin/index'
 import { ReportTableItem } from './List.Table.Item'
+import { Empty } from '@admin/components/Empty'
 
 interface Iprops {
   items: IReport[]
@@ -7,6 +8,10 @@ interface Iprops {
 }
 
 export function ListTable({ items, className }: Iprops) {
+  if (!items || items.length == 0) {
+    return <Empty className={className} />
+  }
+
   return (
     <Table className={className}>
       <Row>

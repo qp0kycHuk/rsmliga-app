@@ -4,6 +4,10 @@ import { useToggle } from '@hooks/useToggle'
 import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { Suspense, lazy } from 'react'
+import { id } from '@utils/helpers/id'
+import { REPORTS_KEY, deleteReport } from '../../service/api'
+import { useQueryClient } from 'react-query'
+import { toast } from '@lib/Toast'
 // import { useFetchStages } from '@admin/service/stages'
 
 const ReportEdit = lazy(() =>
@@ -18,10 +22,21 @@ export function ReportTableItem({ item }: IProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
-
+  const queryClient = useQueryClient()
   // const { data: stagesData } = useFetchStages()
 
   const formattedDate = new Date(item.date).toLocaleDateString()
+
+  async function deleteHandler() {
+    const itemId = id(item)
+    if (!itemId) return
+
+    const data = await deleteReport(itemId)
+
+    toast.info('Успешно удалено')
+    queryClient.invalidateQueries(REPORTS_KEY)
+    closeDeleteDialog()
+  }
 
   return (
     <Row>
@@ -96,6 +111,9 @@ export function ReportTableItem({ item }: IProps) {
         >
           <Suspense fallback="Loading...">
             <ReportView item={item} />
+            <Button className="mt-8 px-10" onClick={closeViewDialog}>
+              Закрыть
+            </Button>
           </Suspense>
         </Dialog>
 
@@ -104,6 +122,7 @@ export function ReportTableItem({ item }: IProps) {
             title="Удалить отчет?"
             confirmText="Удалить"
             cancelText="Отмена"
+            onConfirm={deleteHandler}
             onCancel={closeDeleteDialog}
           />
         </Dialog>

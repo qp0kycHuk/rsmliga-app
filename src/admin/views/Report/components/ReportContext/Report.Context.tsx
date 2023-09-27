@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from 'react'
+import { createContext, useContext } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { usePagesQuery } from '@hooks/usePagesQuery'
 import { changeSearchParams } from '@utils/helpers/changeSearchParams'
@@ -15,7 +15,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
   // Filters
   const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
-  const stageId = searchParams.get('stage') || ''
+  const locationId = searchParams.get('location') || ''
 
   // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
@@ -26,7 +26,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
     itemsPerPage: REPORT_PER_PAGE,
     sezon: seasonId,
     turnier: turnierId,
-    stage: stageId,
+    location: locationId,
   })
 
   const pagesCount = data?.NavPageCount || 0
@@ -39,7 +39,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
       return
     }
 
-    setSearchParams(changeSearchParams([key, value], false, ['sezon', 'turnier', 'stage']))
+    setSearchParams(changeSearchParams([key, value], false, ['sezon', 'turnier', 'location']))
   }
 
   return (
@@ -50,7 +50,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
 
         seasonId,
         turnierId,
-        stageId,
+        locationId,
         changeFilterParam,
 
         pages,
@@ -69,7 +69,7 @@ interface IReportContextValue {
 
   seasonId: EntityId
   turnierId: EntityId
-  stageId: EntityId
+  locationId: EntityId
   changeFilterParam(key: FilterKey, value: string): void
 
   pages: number[]
@@ -77,4 +77,4 @@ interface IReportContextValue {
   changePageQuery(newPage: number): void
 }
 
-type FilterKey = 'sezon' | 'turnier' | 'stage'
+type FilterKey = 'sezon' | 'turnier' | 'location'

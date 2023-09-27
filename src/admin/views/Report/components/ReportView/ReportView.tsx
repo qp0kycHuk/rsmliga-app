@@ -1,5 +1,8 @@
 import { Separator } from '../../../../components/Separator'
+import { ContestImages } from './ReportView.ContestImages'
 import { ReportViewDocuments } from './ReportView.Documents'
+import { GeneralImages } from './ReportView.GeneralImages'
+import { TeamImages } from './ReportView.TeamImages'
 
 interface IReportViewProps {
   item: IReport
@@ -44,13 +47,30 @@ export function ReportView({ item }: IReportViewProps) {
         <div className="p-4 rounded-md bg-gray bg-opacity-40">
           <div className="text-lg leading-none">
             <span className="font-semibold">Дата проведения: </span>
-            {item.date}
+            {new Date(item.date).toLocaleDateString()}
           </div>
         </div>
       </div>
 
       <Separator />
-      <ReportViewDocuments report={item} />
+      <ReportViewDocuments item={item} />
+
+      <Separator />
+      <TeamImages item={item} />
+
+      <Separator />
+      <GeneralImages item={item} />
+
+      <Separator />
+      <ContestImages item={item} />
+
+      <Separator />
+      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+        <div className="text-lg leading-none">
+          <span className="font-semibold">Комментарий: </span>
+          {item.comment}
+        </div>
+      </div>
     </>
   )
 }
