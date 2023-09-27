@@ -10,6 +10,7 @@ import { useQueryClient } from 'react-query'
 import { toast } from '@lib/Toast'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { useFetchReportStatuses } from '../../service/statuses'
 // import { useFetchStages } from '@admin/service/stages'
 
 const ReportEdit = lazy(() =>
@@ -28,6 +29,10 @@ export function ReportTableItem({ item }: IProps) {
   const { isAccess } = useUserAccess(canEditGroups)
 
   const formattedDate = new Date(item.date).toLocaleDateString()
+
+  const { data: statusesData } = useFetchReportStatuses()
+  const noneStatusId = statusesData?.items.find((status) => status.XML_ID == 'none')?.ID
+  const isStatusNone = !item.status_id || item.status_id == noneStatusId
 
   async function deleteHandler() {
     const itemId = id(item)
@@ -53,11 +58,9 @@ export function ReportTableItem({ item }: IProps) {
       </Cell>
       <Cell className="text-sm">{formattedDate}</Cell>
       <Cell className="w-40 text-sm">
-        <div className={!item.status_id ? 'opacity-60' : ''}>
-          {!item.status_id ? 'Отсутствует' : item.status}
-        </div>
+        <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
         <div className="flex mt-1.5 gap-1">
-          {!item.status_id ? (
+          {isStatusNone ? (
             isAccess && (
               <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
                 +
