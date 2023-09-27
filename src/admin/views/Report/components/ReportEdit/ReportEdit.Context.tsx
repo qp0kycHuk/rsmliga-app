@@ -10,7 +10,11 @@ const ReportEditContext = createContext<IReportEditContextValue>({} as IReportEd
 
 export const useReportEditContext = () => useContext(ReportEditContext)
 
-export function ReportEditContextProvider({ children, item }: IReportEditContextProviderProps) {
+export function ReportEditContextProvider({
+  children,
+  item,
+  onCancel,
+}: IReportEditContextProviderProps) {
   const queryClient = useQueryClient()
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
   const [editableReport, update] = useEditableEntity<IEditableReport>(item || {})
@@ -41,6 +45,7 @@ export function ReportEditContextProvider({ children, item }: IReportEditContext
         loadingStart,
         loadingEnd,
         submit,
+        onCancel,
       }}
     >
       {children}

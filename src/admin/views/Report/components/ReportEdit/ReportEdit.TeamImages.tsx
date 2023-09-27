@@ -59,7 +59,7 @@ export function TeamImages() {
           className="relative z-10 flex h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20 w-48 rounded-xl self-end flex-col items-center justify-center "
         >
           <CameraIcon className="text-5xl text-primary" />
-          <div className="text-lg text-primary">Добавить</div>
+          <div className="text-lg text-primary dark:text-white">Добавить</div>
         </button>
       </div>
 

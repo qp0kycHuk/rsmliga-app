@@ -54,7 +54,7 @@ export function ReportTableItem({ item }: IProps) {
       <Cell className="text-sm">{item.stage || '-'}</Cell>
       <Cell className="text-sm">{item.area}</Cell>
       <Cell className="w-[228px] max-w-[228px] text-sm">
-        <CellTooltip>{item.location}</CellTooltip>
+        {item.location && <CellTooltip>{item.location}</CellTooltip>}
       </Cell>
       <Cell className="text-sm">{formattedDate}</Cell>
       <Cell className="w-40 text-sm">

@@ -7,17 +7,15 @@ import classes from './Field.module.scss'
 
 export function SelectField({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
   const selectRef = React.createRef<HTMLSelectElement>()
-  const [isLabelShow, setIsLabelShow] = useState(
-    props.placeholder
-      ? (inputProps?.defaultValue || inputProps?.value) === props.placeholder ||
-          !(inputProps?.defaultValue || inputProps?.value)
-      : false
-  )
+  const isLabelShow = props.placeholder
+    ? (inputProps?.defaultValue || inputProps?.value) === props.placeholder ||
+      !(inputProps?.defaultValue || inputProps?.value)
+    : false
 
   function changeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     const target = event.target as HTMLSelectElement
     target.blur()
-    setIsLabelShow(target?.value === props.placeholder)
+
     inputProps?.onChange?.(event)
   }
 

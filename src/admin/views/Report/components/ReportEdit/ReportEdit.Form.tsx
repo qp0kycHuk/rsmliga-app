@@ -12,7 +12,7 @@ import { useFetchCities } from '@admin/service/cities'
 import classes from '@ui/components/Field/Field.module.scss'
 
 export function Form() {
-  const { report, update, submit, loading } = useReportEditContext()
+  const { report, update, submit, loading, onCancel } = useReportEditContext()
 
   const { data: CitiesData } = useFetchCities()
 
@@ -125,7 +125,9 @@ export function Form() {
         <Button type="submit" variant="contur" disabled={loading}>
           Сохранить
         </Button>
-        <Button variant="light">Отмена</Button>
+        <Button variant="light" onClick={onCancel}>
+          Отмена
+        </Button>
       </div>
     </form>
   )

@@ -44,6 +44,12 @@ module.exports = plugin.withOptions(
           padding: 'calc((var(--tw-input-size) - 1.2em) / 2) 15px',
           ...options.baseCss,
 
+          '&:is(.dark &)': {
+            borderColor: "theme('colors.white / 40%')",
+            background: "theme('colors.dark.100')",
+            color: '#fff',
+          },
+
           '&:focus, &:focus-within': {
             borderColor: colorVar,
             boxShadow: '0 0 0 1px ' + colorVar,
@@ -52,12 +58,6 @@ module.exports = plugin.withOptions(
 
           '&:disabled': {
             opacity: options.disabledOpacity,
-          },
-
-          '&:is(.dark &)': {
-            borderColor: "theme('colors.white / 40%')",
-            background: "theme('colors.dark.100')",
-            color: '#fff',
           },
         },
       })

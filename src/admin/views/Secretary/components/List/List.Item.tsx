@@ -7,6 +7,7 @@ import { Suspense, lazy } from 'react'
 import { SERVER_URL } from '@utils/index'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+import classNames from 'classnames'
 
 interface IItemProps {
   item: ISecretary
@@ -48,15 +49,29 @@ export function Item({ item }: IItemProps) {
       <Cell>{item.category}</Cell>
       <Cell>{item.email || '-'}</Cell>
       <Cell>{item.phone || '-'}</Cell>
-      <Cell className="btn-group cursor-pointer" onClick={openContestsDialog}>
-        <Button size="xs" className="w-full">
-          Открыть
-        </Button>
+      <Cell
+        className={classNames('btn-group ', item.competitions.length > 0 ? 'cursor-pointer' : null)}
+        onClick={item.competitions.length > 0 ? openContestsDialog : undefined}
+      >
+        {item.competitions.length > 0 ? (
+          <Button size="xs" className="w-full">
+            Открыть
+          </Button>
+        ) : (
+          '-'
+        )}
       </Cell>
-      <Cell className="btn-group cursor-pointer" onClick={openLocationsDialog}>
-        <Button size="xs" className="w-full">
-          Открыть
-        </Button>
+      <Cell
+        className={classNames('btn-group ', item.locations.length > 0 ? 'cursor-pointer' : null)}
+        onClick={item.locations.length > 0 ? openLocationsDialog : undefined}
+      >
+        {item.locations.length > 0 ? (
+          <Button size="xs" className="w-full">
+            Открыть
+          </Button>
+        ) : (
+          '-'
+        )}
       </Cell>
 
       <Cell hidden>
