@@ -8,6 +8,8 @@ import { id } from '@utils/helpers/id'
 import { REPORTS_KEY, deleteReport } from '../../service/api'
 import { useQueryClient } from 'react-query'
 import { toast } from '@lib/Toast'
+import { canEditGroups } from '../../const'
+import { useUserAccess } from '@admin/hooks/useUserAccess'
 // import { useFetchStages } from '@admin/service/stages'
 
 const ReportEdit = lazy(() =>
@@ -19,11 +21,11 @@ const ReportView = lazy(() =>
 )
 
 export function ReportTableItem({ item }: IProps) {
+  const queryClient = useQueryClient()
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
-  const queryClient = useQueryClient()
-  // const { data: stagesData } = useFetchStages()
+  const { isAccess } = useUserAccess(canEditGroups)
 
   const formattedDate = new Date(item.date).toLocaleDateString()
 
@@ -56,9 +58,11 @@ export function ReportTableItem({ item }: IProps) {
         </div>
         <div className="flex mt-1.5 gap-1">
           {!item.status_id ? (
-            <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
-              +
-            </Button>
+            isAccess && (
+              <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
+                +
+              </Button>
+            )
           ) : (
             <>
               <Button
@@ -70,24 +74,28 @@ export function ReportTableItem({ item }: IProps) {
               >
                 <EyeIcon className="text-primary text-lg" />
               </Button>
-              <Button
-                size={null}
-                icon
-                className="btn-[22px]"
-                color="gray-light"
-                onClick={openEditDialog}
-              >
-                <PencilIcon className="text-primary text-lg" />
-              </Button>
-              <Button
-                size={null}
-                icon
-                className="btn-[22px]"
-                color="gray-light"
-                onClick={openDeleteDialog}
-              >
-                <TrashIcon className="text-primary text-lg" />
-              </Button>
+              {isAccess && (
+                <Button
+                  size={null}
+                  icon
+                  className="btn-[22px]"
+                  color="gray-light"
+                  onClick={openEditDialog}
+                >
+                  <PencilIcon className="text-primary text-lg" />
+                </Button>
+              )}
+              {isAccess && (
+                <Button
+                  size={null}
+                  icon
+                  className="btn-[22px]"
+                  color="gray-light"
+                  onClick={openDeleteDialog}
+                >
+                  <TrashIcon className="text-primary text-lg" />
+                </Button>
+              )}
             </>
           )}
         </div>

@@ -53,9 +53,9 @@ export async function upsertSecretary(data: ISecretary) {
     formData.append('PERSONAL_PHOTO', '')
   }
 
-  formData.append('NAME', data.name || '')
-  formData.append('LAST_NAME', data.surname || '')
-  formData.append('SECOND_NAME', data.patronymic || '')
+  formData.append('NAME', data.name.trim() || '')
+  formData.append('LAST_NAME', data.surname.trim() || '')
+  formData.append('SECOND_NAME', data.patronymic.trim() || '')
   formData.append('EMAIL', data.email || '')
   formData.append('PERSONAL_BIRTHDAY', dateToSQLFormatString(new Date(data.birthdate)))
   formData.append('CATEGORY', data.category_id || '')
@@ -63,6 +63,7 @@ export async function upsertSecretary(data: ISecretary) {
   formData.append('COMMENT', data.comment || '')
   formData.append('SEX', (data.sex as string) || '')
   formData.append('PHONE', data.phone || '')
+  formData.append('EDUCATION', (data.education_id as string) || '')
   formData.append('EDUCATION', (data.education_id as string) || '')
 
   Object.entries(data.documents || {}).forEach(([key, item]) => {

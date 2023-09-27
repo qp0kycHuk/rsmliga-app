@@ -13,6 +13,7 @@
     "@fancyapps/ui": "^5.0.22",
     "@headlessui/react": "^1.7.17",
     "@qpokychuk/fonts": "^1.0.9",
+    "@qpokychuk/tailwind-ratio-plugin": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
     "air-datepicker": "^3.4.0",
     "axios": "^1.4.0",
