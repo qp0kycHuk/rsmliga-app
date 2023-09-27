@@ -1,24 +1,11 @@
-import { useQuery } from 'react-query'
-import { rootApi } from './api'
-import { getEntities, getIds } from '@utils/helpers/entites'
+import { createFetchEntitiesService } from './api'
 
-export async function fetchStages(): Promise<IStageFetchResponse> {
-  const { data } = await rootApi.get<IListResponse<IStage>>('/list_filter_blocks.php', {
-    params: {
-      action: 'stage',
-    },
-  })
+const KEY = 'stages'
 
-  return {
-    ...data,
-    ids: getIds(data.items),
-    entites: getEntities(data.items),
+export const [fetchStages, useFetchStages] = createFetchEntitiesService<ISchool>(
+  '/list_filter_blocks.php',
+  KEY,
+  {
+    action: 'stage',
   }
-}
-
-export function useFetchStages() {
-  return useQuery('stages', fetchStages, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
-}
+)

@@ -1,4 +1,3 @@
-import { FileField } from '@admin/components/FileField/FileField'
 import { useReportEditContext } from './ReportEdit.Context'
 import { PaperClipIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'

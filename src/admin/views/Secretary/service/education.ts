@@ -1,24 +1,11 @@
-import { useQuery } from 'react-query'
-import { getEntities, getIds } from '@utils/helpers/entites'
-import { rootApi } from '@admin/service/api'
+import { createFetchEntitiesService } from '@admin/service/api'
 
-export async function fetchEducation(): Promise<IEducationFetchResponse> {
-  const { data } = await rootApi.get<IListResponse<IEducation>>('/get_fields.php', {
-    params: {
-      action: 'education_secretary_list',
-    },
-  })
+const KEY = 'secretary-education'
 
-  return {
-    ...data,
-    ids: getIds(data.items),
-    entites: getEntities(data.items),
+export const [fetchEducation, useFetchEducation] = createFetchEntitiesService<IEducation>(
+  '/get_fields.php',
+  KEY,
+  {
+    action: 'education_secretary_list',
   }
-}
-
-export function useFetchEducation() {
-  return useQuery('secretary-education', fetchEducation, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
-}
+)

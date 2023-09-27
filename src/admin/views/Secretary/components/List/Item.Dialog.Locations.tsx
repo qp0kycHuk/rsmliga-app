@@ -1,4 +1,4 @@
-import { Table, Row, Cell, CellTooltip } from '@admin/index'
+import { Table, Row, Cell } from '@admin/index'
 import { useFetchCities } from '@admin/service/cities'
 
 interface IProps {

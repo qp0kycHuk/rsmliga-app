@@ -1,4 +1,3 @@
-import { FileFieldView } from '@admin/components/FileField/FileField'
 import { documentsSchema } from '../../service/schema'
 import { FileViewSingle } from '@admin/components/FileField/FileViewSingle'
 

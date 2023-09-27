@@ -1,4 +1,4 @@
-import { Separator } from '../../../../components/Separator'
+import { Separator } from '@admin/components/Separator'
 import { ContestImages } from './ReportView.ContestImages'
 import { ReportViewDocuments } from './ReportView.Documents'
 import { GeneralImages } from './ReportView.GeneralImages'

@@ -1,24 +1,11 @@
-import { useQuery } from 'react-query'
-import { rootApi } from './api'
-import { getEntities, getIds } from '@utils/helpers/entites'
+import { createFetchEntitiesService } from './api'
 
-export async function fetchTournaments(): Promise<ITournamentFetchResponse> {
-  const { data } = await rootApi.get<IListResponse<ITournament>>('/list_filter_blocks.php', {
-    params: {
-      action: 'turnier',
-    },
-  })
+const KEY = 'tournaments'
 
-  return {
-    ...data,
-    ids: getIds(data.items),
-    entites: getEntities(data.items),
+export const [fetchTournaments, useFetchTournaments] = createFetchEntitiesService<ISchool>(
+  '/list_filter_blocks.php',
+  KEY,
+  {
+    action: 'turnier',
   }
-}
-
-export function useFetchTournaments() {
-  return useQuery('tournaments', fetchTournaments, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
-}
+)

@@ -1,24 +1,11 @@
-import { useQuery } from 'react-query'
-import { getEntities, getIds } from '@utils/helpers/entites'
-import { rootApi } from '@admin/service/api'
+import { createFetchEntitiesService } from '@admin/service/api'
 
-export async function fetchCategories(): Promise<ICategoryFetchResponse> {
-  const { data } = await rootApi.get<IListResponse<ICategory>>('/get_fields.php', {
-    params: {
-      action: 'category_judge_list',
-    },
-  })
+const KEY = 'delegate-categories'
 
-  return {
-    ...data,
-    ids: getIds(data.items),
-    entites: getEntities(data.items),
+export const [fetchCategories, useFetchCategories] = createFetchEntitiesService<ICategory>(
+  '/get_fields.php',
+  KEY,
+  {
+    action: 'category_judge_list',
   }
-}
-
-export function useFetchCategories() {
-  return useQuery('delegate-categories', fetchCategories, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
-}
+)

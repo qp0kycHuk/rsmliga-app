@@ -1,4 +1,4 @@
-import { Cell, CellTooltip, Row } from '@admin/index'
+import { Cell, Row } from '@admin/index'
 import { Avatar, Button, Dialog } from '@features/ui'
 import { CompetitionsDialog } from './Item.Dialog.Competitions'
 import { useToggle } from '@hooks/useToggle'

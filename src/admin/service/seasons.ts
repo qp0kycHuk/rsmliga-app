@@ -1,24 +1,11 @@
-import { useQuery } from 'react-query'
-import { rootApi } from './api'
-import { getEntities, getIds } from '@utils/helpers/entites'
+import { createFetchEntitiesService } from './api'
 
-export async function fetchSeasons(): Promise<ISeasonFetchResponse> {
-  const { data } = await rootApi.get<IListResponse<ISeason>>('/list_filter_blocks.php', {
-    params: {
-      action: 'sezon',
-    },
-  })
+const KEY = 'seasons'
 
-  return {
-    ...data,
-    ids: getIds(data.items),
-    entites: getEntities(data.items),
+export const [fetchSeasons, useFetchSeasons] = createFetchEntitiesService<ISchool>(
+  '/list_filter_blocks.php',
+  KEY,
+  {
+    action: 'sezon',
   }
-}
-
-export function useFetchSeasons() {
-  return useQuery('seasons', fetchSeasons, {
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
-}
+)
