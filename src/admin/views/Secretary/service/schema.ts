@@ -1,4 +1,9 @@
 export const documentsSchema: Record<SecretaryDocName, IDocSchema> = {
+  SPORT: {
+    name: 'Спортивный отчет',
+    title: 'Спортивный отчет',
+    required: true,
+  },
   LICHNOST: {
     name: 'Документ подтверждающий личность',
     title: 'Документ подтверждающий личность',

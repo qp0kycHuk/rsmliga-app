@@ -28,7 +28,7 @@ export function ReportTableItem({ item }: IProps) {
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
   const { isAccess } = useUserAccess(canEditGroups)
 
-  const formattedDate = new Date(item.date).toLocaleDateString()
+  const formattedDate = item.date ? new Date(item.date).toLocaleDateString() : '-'
 
   const { data: statusesData } = useFetchReportStatuses()
   const noneStatusId = statusesData?.items.find((status) => status.XML_ID == 'none')?.ID
@@ -111,7 +111,7 @@ export function ReportTableItem({ item }: IProps) {
           className="container max-w-6xl p-10"
         >
           <Suspense fallback="Loading...">
-            <ReportEdit item={item} />
+            <ReportEdit item={item} onCancel={closeEditDialog} />
           </Suspense>
         </Dialog>
 
