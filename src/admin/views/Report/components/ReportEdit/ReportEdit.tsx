@@ -2,7 +2,7 @@ import { ReportEditContextProvider } from './ReportEdit.Context'
 import { Form } from './ReportEdit.Form'
 
 interface IReportEditProps {
-  item: IReport
+  item?: IReport
   onCancel?(): void
 }
 

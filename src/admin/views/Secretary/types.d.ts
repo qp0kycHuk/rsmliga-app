@@ -23,4 +23,4 @@ interface ISecretary {
   image_delete?: boolean
 }
 
-type SecretaryDocName = 'SPORT' | 'LICHNOST' | 'PERDAN' | 'FILE_1' | 'FILE_2'
+type SecretaryDocName = 'LICHNOST' | 'PERDAN' | 'FILE_1' | 'FILE_2'

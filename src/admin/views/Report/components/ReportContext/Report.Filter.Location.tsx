@@ -1,6 +1,6 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { useReportContext } from './Report.Context'
-import { useFetchCities } from '@admin/service/cities'
+import { useFetchCities } from '../../service/cities'
 
 export function Location() {
   const { locationId, changeFilterParam } = useReportContext()

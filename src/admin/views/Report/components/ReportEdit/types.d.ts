@@ -1,5 +1,5 @@
 interface IReportEditContextProviderProps extends React.PropsWithChildren {
-  item: IReport
+  item?: IReport
   onCancel?(): void
 }
 

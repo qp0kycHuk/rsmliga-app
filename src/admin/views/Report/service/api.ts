@@ -23,7 +23,7 @@ export async function fetchReports({
       search,
       sezon,
       turnier,
-      location,
+      location: location || null,
     },
   })
 
@@ -33,8 +33,17 @@ export async function fetchReports({
 export async function upsertReport(data: IEditableReport) {
   const formData = new FormData()
 
-  formData.append('id', data.id as string)
-  formData.append('action', 'edit')
+  if (data.id) {
+    formData.append('id', data.id as string)
+    formData.append('action', 'edit')
+  } else {
+    formData.append('action', 'save')
+    formData.append('season_id', (data.season_id as string) || '')
+    formData.append('competition_id', (data.competition_id as string) || '')
+    formData.append('stage_id', (data.stage_id as string) || '')
+    formData.append('area_id', (data.area_id as string) || '')
+  }
+
   formData.append('comment', data.comment || '')
   formData.append('location', data.location || '')
   formData.append('area', (data.area_id as string) || '')

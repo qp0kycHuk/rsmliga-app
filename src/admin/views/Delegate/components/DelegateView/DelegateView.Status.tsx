@@ -19,7 +19,7 @@ export function Status({ item, className }: IStatusProps) {
       {item.status === 'no' && (
         <>
           <CircleCrossIcon className="text-red" />
-          <span className="text-sm opacity-80">Не заявлен</span>
+          <span className="text-sm opacity-80">Не действующий</span>
         </>
       )}
       {item.status === 'check' && (
@@ -31,7 +31,7 @@ export function Status({ item, className }: IStatusProps) {
       {item.status === 'zayav' && (
         <>
           <CircleCheckIcon className="text-green" />
-          <span className="text-sm opacity-80">Заявлен </span>
+          <span className="text-sm opacity-80">Действующий </span>
         </>
       )}
     </div>
