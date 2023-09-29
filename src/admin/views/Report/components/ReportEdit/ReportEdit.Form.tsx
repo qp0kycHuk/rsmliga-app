@@ -8,7 +8,7 @@ import { TeamImages } from './ReportEdit.TeamImages'
 import { Fields } from './ReportEdit.Fields/Fields'
 
 export function Form() {
-  const { report, update, submit, loading, onCancel } = useReportEditContext()
+  const { report, update, submit, send, loading, onCancel } = useReportEditContext()
 
   return (
     <form onSubmit={submit}>
@@ -41,7 +41,9 @@ export function Form() {
       />
 
       <div className="flex gap-4 mt-8">
-        <Button>Отправить отчет в департамент проведения соревнований</Button>
+        <Button onClick={send} disabled={loading}>
+          Отправить отчет в департамент проведения соревнований
+        </Button>
         <Button type="submit" variant="contur" disabled={loading}>
           Сохранить
         </Button>

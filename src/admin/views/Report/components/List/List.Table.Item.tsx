@@ -32,7 +32,11 @@ export function ReportTableItem({ item }: IProps) {
 
   const { data: statusesData } = useFetchReportStatuses()
   const noneStatusId = statusesData?.items.find((status) => status.XML_ID == 'none')?.ID
+  const checkingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
+  const checkedId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checked')?.ID
   const isStatusNone = !item.status_id || item.status_id == noneStatusId
+
+  const isStatusEditable = item.status_id != checkingId && item.status_id != checkedId
 
   async function deleteHandler() {
     const itemId = id(item)
@@ -61,7 +65,8 @@ export function ReportTableItem({ item }: IProps) {
         <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
         <div className="flex mt-1.5 gap-1">
           {isStatusNone ? (
-            isAccess && (
+            isAccess &&
+            isStatusEditable && (
               <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
                 +
               </Button>
@@ -77,7 +82,7 @@ export function ReportTableItem({ item }: IProps) {
               >
                 <EyeIcon className="text-primary text-lg" />
               </Button>
-              {isAccess && (
+              {isAccess && isStatusEditable && (
                 <Button
                   size={null}
                   icon
@@ -105,15 +110,17 @@ export function ReportTableItem({ item }: IProps) {
       </Cell>
 
       <Cell hidden>
-        <Dialog
-          isOpen={isEditDialogOpen}
-          onClose={closeEditDialog}
-          className="container max-w-6xl p-10"
-        >
-          <Suspense fallback="Loading...">
-            <ReportEdit item={item} onCancel={closeEditDialog} />
-          </Suspense>
-        </Dialog>
+        {isStatusEditable && (
+          <Dialog
+            isOpen={isEditDialogOpen}
+            onClose={closeEditDialog}
+            className="container max-w-6xl p-10"
+          >
+            <Suspense fallback="Loading...">
+              <ReportEdit item={item} onCancel={closeEditDialog} />
+            </Suspense>
+          </Dialog>
+        )}
 
         <Dialog
           isOpen={isViewDialogOpen}

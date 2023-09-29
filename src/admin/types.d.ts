@@ -18,7 +18,7 @@ interface ILoadingContext {
 }
 
 interface IEditContextValue extends ILoadingContext {
-  submit(event: React.FormEvent): void
+  submit(event?: React.FormEvent): void
 }
 
 /**

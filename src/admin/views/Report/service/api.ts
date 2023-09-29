@@ -47,6 +47,7 @@ export async function upsertReport(data: IEditableReport) {
   formData.append('comment', data.comment || '')
   formData.append('location', data.location || '')
   formData.append('area', (data.area_id as string) || '')
+  formData.append('status', (data.newStatus as string) || '')
 
   if (data.date) {
     formData.append('date', dateToSQLFormatString(new Date(data.date)) || '')
@@ -97,11 +98,6 @@ export async function upsertReport(data: IEditableReport) {
   data.file_del?.forEach((fid) => {
     formData.append('file_del[]', fid as string)
   })
-
-  const statusesData = await fetchReportStatuses()
-
-  const checkingId = statusesData.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
-  formData.append('status', (checkingId as string) || '')
 
   return await rootApi.post<IItemResponse<IReport>>('/reports_handler.php', formData)
 }

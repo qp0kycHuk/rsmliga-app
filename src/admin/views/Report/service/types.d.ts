@@ -19,7 +19,7 @@ interface IReportStatus {
   VALUE: string
   DEF: BitrixBoolean
   SORT: number
-  XML_ID: 'checking' | 'deny' | 'uploaded' | 'checked' | 'none'
+  XML_ID: 'checking' | 'deny' | 'uploaded' | 'checked' | 'none' | 'editing'
   TMP_ID: EntityId
   EXTERNAL_ID: EntityId
   PROPERTY_NAME: string
