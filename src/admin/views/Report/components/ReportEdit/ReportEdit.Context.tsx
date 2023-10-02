@@ -21,30 +21,13 @@ export function ReportEditContextProvider({
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
   const [editableReport, update] = useEditableEntity<IEditableReport>(item || EMPTY_OBJECT)
 
-  const { data: statusesData } = useFetchReportStatuses()
-
-  const checkingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
-  const editingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'editing')?.ID
-
   // Сохранить
-  async function save(event?: React.FormEvent) {
-    event?.preventDefault()
+  async function submit(additionallyData: IEditableReport) {
     const data = editableReport as IReport
 
-    upsert({
+    await upsert({
       ...data,
-      newStatus: editingId as string,
-    })
-  }
-
-  // Отправить отчет в департамент проведения соревнований
-  function send(event?: React.FormEvent) {
-    event?.preventDefault()
-    const data = editableReport as IReport
-
-    upsert({
-      ...data,
-      newStatus: checkingId as string,
+      ...additionallyData,
     })
   }
 
@@ -70,8 +53,7 @@ export function ReportEditContextProvider({
         loading,
         loadingStart,
         loadingEnd,
-        submit: save,
-        send: send,
+        submit: submit,
         onCancel,
       }}
     >

@@ -11,6 +11,7 @@ import { toast } from '@lib/Toast'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
 import { useFetchReportStatuses } from '../../service/statuses'
+import { useReportStatus } from '../../hooks/useReportStatus'
 // import { useFetchStages } from '@admin/service/stages'
 
 const ReportEdit = lazy(() =>
@@ -30,13 +31,7 @@ export function ReportTableItem({ item }: IProps) {
 
   const formattedDate = item.date ? new Date(item.date).toLocaleDateString() : '-'
 
-  const { data: statusesData } = useFetchReportStatuses()
-  const noneStatusId = statusesData?.items.find((status) => status.XML_ID == 'none')?.ID
-  const checkingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
-  const checkedId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checked')?.ID
-  const isStatusNone = !item.status_id || item.status_id == noneStatusId
-
-  const isStatusEditable = item.status_id != checkingId && item.status_id != checkedId
+  const { isStatusNone, isStatusEditable } = useReportStatus(item)
 
   async function deleteHandler() {
     const itemId = id(item)
@@ -110,17 +105,15 @@ export function ReportTableItem({ item }: IProps) {
       </Cell>
 
       <Cell hidden>
-        {isStatusEditable && (
-          <Dialog
-            isOpen={isEditDialogOpen}
-            onClose={closeEditDialog}
-            className="container max-w-6xl p-10"
-          >
-            <Suspense fallback="Loading...">
-              <ReportEdit item={item} onCancel={closeEditDialog} />
-            </Suspense>
-          </Dialog>
-        )}
+        <Dialog
+          isOpen={isEditDialogOpen}
+          onClose={closeEditDialog}
+          className="container max-w-6xl p-10"
+        >
+          <Suspense fallback="Loading...">
+            <ReportEdit item={item} onCancel={closeEditDialog} />
+          </Suspense>
+        </Dialog>
 
         <Dialog
           isOpen={isViewDialogOpen}

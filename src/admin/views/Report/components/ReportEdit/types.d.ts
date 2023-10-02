@@ -7,7 +7,7 @@ interface IReportEditContextValue extends IEditContextValue {
   report: IEditableReport
   update(updated: DispatchEditableEntity<IEditableReport>): void
   onCancel?(): void
-  send?(event?: React.FormEvent): void
+  submit(additionallyData?: IEditableReport): void
 }
 
 interface IEditableReport extends Partial<IReport> {
