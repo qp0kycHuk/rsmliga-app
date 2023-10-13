@@ -6,7 +6,7 @@ import { Separator } from '@admin/components/Separator'
 import { Title } from '../SecretaryView/SecretaryView.Title'
 import { Fields } from './SecretaryEdit.Fields'
 import { Contacts } from './SecretaryEdit.Contacts'
-import { Locations } from '../SecretaryView/SecretaryView.Locations'
+import { Locations } from './SecretaryEdit.Locations'
 
 export function Form() {
   const { loading, item, submit, onCancel } = useSecretaryEditContext()
@@ -22,7 +22,7 @@ export function Form() {
       </div>
 
       <Separator />
-      <Locations item={item as ISecretary} />
+      <Locations />
 
       <Separator />
       <Contacts />

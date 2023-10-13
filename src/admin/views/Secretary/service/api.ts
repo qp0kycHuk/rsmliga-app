@@ -80,5 +80,9 @@ export async function upsertSecretary(data: ISecretary) {
     }
   })
 
+  data.locations.forEach((locationId) => {
+    formData.append('LOCATION[]', locationId as string)
+  })
+
   return await rootApi.post<IItemResponse<ISecretary>>('/secretary_handler.php', formData)
 }

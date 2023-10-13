@@ -5,3 +5,4 @@ export const routes = {
 }
 
 export const canEditGroups = [1, 8, 9]
+export const canEditLocationsGroups = [1, 9]
