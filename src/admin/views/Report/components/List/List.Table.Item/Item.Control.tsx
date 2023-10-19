@@ -1,37 +1,26 @@
-import { Row, Cell, CellTooltip } from '@admin/index'
+import { ConfirmDialog } from '@admin/components/ConfirmDialog'
+import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { Cell } from '@admin/index'
+import { canEditGroups } from '@admin/views/Report/const'
+import { useReportStatus } from '@admin/views/Report/hooks/useReportStatus'
+import { deleteReport, REPORTS_KEY } from '@admin/views/Report/service/api'
+import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-import { EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
-import { ConfirmDialog } from '@admin/components/ConfirmDialog'
-import { Suspense, lazy } from 'react'
 import { id } from '@utils/helpers/id'
-import { REPORTS_KEY, deleteReport } from '../../service/api'
+import { Suspense } from 'react'
 import { useQueryClient } from 'react-query'
-import { toast } from '@lib/Toast'
-import { canEditGroups } from '../../const'
-import { useUserAccess } from '@admin/hooks/useUserAccess'
-import { useFetchReportStatuses } from '../../service/statuses'
-import { useReportStatus } from '../../hooks/useReportStatus'
-// import { useFetchStages } from '@admin/service/stages'
+import { toast } from 'react-toastify'
+import { ReportEdit } from '../../ReportEdit/ReportEdit'
+import { ReportView } from '../../ReportView/ReportView'
 
-const ReportEdit = lazy(() =>
-  import('../ReportEdit/ReportEdit').then((m) => ({ default: m.ReportEdit }))
-)
-
-const ReportView = lazy(() =>
-  import('../ReportView/ReportView').then((m) => ({ default: m.ReportView }))
-)
-
-export function ReportTableItem({ item }: IProps) {
-  const queryClient = useQueryClient()
+export function Control({ item }: IProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
-  const { isAccess } = useUserAccess(canEditGroups)
-
-  const formattedDate = item.date ? new Date(item.date).toLocaleDateString() : '-'
-
+  const queryClient = useQueryClient()
   const { isStatusNone, isStatusEditable } = useReportStatus(item)
+  const { isAccess } = useUserAccess(canEditGroups)
 
   async function deleteHandler() {
     const itemId = id(item)
@@ -45,17 +34,7 @@ export function ReportTableItem({ item }: IProps) {
   }
 
   return (
-    <Row>
-      <Cell className="text-sm">{item.season}</Cell>
-      <Cell className="w-[264px] max-w-[264px] text-sm">
-        <CellTooltip>{item.competition}</CellTooltip>
-      </Cell>
-      <Cell className="text-sm">{item.stage || '-'}</Cell>
-      <Cell className="text-sm">{item.area}</Cell>
-      <Cell className="w-[228px] max-w-[228px] text-sm">
-        {item.location && <CellTooltip>{item.location}</CellTooltip>}
-      </Cell>
-      <Cell className="text-sm">{formattedDate}</Cell>
+    <>
       <Cell className="w-40 text-sm">
         <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
         <div className="flex mt-1.5 gap-1">
@@ -103,7 +82,6 @@ export function ReportTableItem({ item }: IProps) {
           )}
         </div>
       </Cell>
-
       <Cell hidden>
         <Dialog
           isOpen={isEditDialogOpen}
@@ -138,7 +116,7 @@ export function ReportTableItem({ item }: IProps) {
           />
         </Dialog>
       </Cell>
-    </Row>
+    </>
   )
 }
 

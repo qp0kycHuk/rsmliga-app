@@ -21,13 +21,14 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
   const [currentPage, changePageQuery] = usePagesQuery()
 
   // Fetcing
-  const { data, isFetching } = useFetchReports({
+  const params = {
     page: currentPage,
     itemsPerPage: REPORT_PER_PAGE,
     sezon: seasonId,
     turnier: turnierId,
     location: locationId,
-  })
+  }
+  const { data, isFetching } = useFetchReports(params)
 
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)

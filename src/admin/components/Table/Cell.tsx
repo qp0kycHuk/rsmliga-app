@@ -13,10 +13,8 @@ export function Cell({ children, className, head, ...props }: ICellProps) {
       className={classnames(
         classes.cell,
         className,
-        'bg-light-100 dark:bg-dark-100 dark:border-white dark:border-opacity-20',
-        {
-          [classes.head]: head,
-        }
+        ' dark:bg-dark-100 dark:border-white dark:border-opacity-20',
+        head ? classes.head : 'bg-light-100'
       )}
     >
       {children}
