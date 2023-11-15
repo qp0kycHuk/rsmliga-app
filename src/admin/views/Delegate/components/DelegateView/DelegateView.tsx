@@ -7,6 +7,7 @@ import { canEditGroups } from '../../const'
 import { Documents } from './DelegateView.Documents'
 import { Title } from './DelegateView.Title'
 import { Contacts } from './DelegateView.Contacts'
+import { Statistic } from './DelegateView.Statistic/Statistic'
 
 interface IDelegateViewProps {
   item: IDelegate
@@ -41,6 +42,9 @@ export function DelegateView({ item }: IDelegateViewProps) {
           <Contacts item={item} />
         </>
       )}
+
+      <Separator />
+      <Statistic delegate={item} />
     </>
   )
 }
