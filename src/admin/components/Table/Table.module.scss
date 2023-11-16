@@ -7,18 +7,26 @@
 }
 
 .table-wrapper {
-  width   : calc(100% + 30px);
-  overflow: auto;
-  margin-left: -15px;
+  width        : calc(100% + 30px);
+  overflow     : auto;
+  margin-left  : -15px;
   padding-right: 15px;
-  padding-left: 15px;
+  padding-left : 15px;
 }
 
 .cell {
-  min-width: max-content;
+  min-width : max-content;
   padding   : 8px 12px;
   background: #fff;
   border    : 1px solid #DDDDDD;
+}
+
+.table.x-borderless .cell:not(:first-of-type) {
+  border-left : none;
+}
+
+.table.x-borderless .cell:not(:last-of-type) {
+  border-right: none;
 }
 
 .row {
@@ -27,4 +35,4 @@
 
 .head {
   background: #F4F5F6;
-} 
+}

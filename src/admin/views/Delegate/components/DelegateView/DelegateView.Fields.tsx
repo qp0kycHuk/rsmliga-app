@@ -1,3 +1,4 @@
+import { FieldView } from '@admin/components/FieldView'
 import { useFetchCategories } from '../../service/categories'
 import { useFetchSex } from '../../service/sex'
 
@@ -11,42 +12,42 @@ export function Fields({ item }: IFieldsProps) {
 
   return (
     <div className="grid grid-cols-2 gap-4 max-w-2xl w-full">
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Фамилия: </span>
           {item.surname}
         </div>
-      </div>
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      </FieldView>
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Имя: </span>
           {item.name}
         </div>
-      </div>
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      </FieldView>
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Отчество: </span>
           {item.patronymic}
         </div>
-      </div>
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      </FieldView>
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Дата рождения: </span>
           {new Date(item.birthdate).toLocaleDateString()}
         </div>
-      </div>
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      </FieldView>
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Пол: </span>
           {sexData?.entites[item.sex]?.VALUE || '-'}
         </div>
-      </div>
-      <div className="p-4 rounded-md bg-gray bg-opacity-40">
+      </FieldView>
+      <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Категория: </span>
           {categoriesData?.entites[item.category]?.VALUE || '-'}
         </div>
-      </div>
+      </FieldView>
     </div>
   )
 }

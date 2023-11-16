@@ -5,7 +5,9 @@ import { useFetchSeasons } from '@admin/service/seasons'
 import { useFetchStages } from '@admin/service/stages'
 import { useFetchTournaments } from '@admin/service/tournaments'
 import { useFetchStatisticDetail } from '@admin/views/Delegate/service/statistic'
+
 import { useState } from 'react'
+import { DetailItem } from './Statistic.Detail.Item'
 
 interface IProps {
   item: StatisticTournier
@@ -74,19 +76,7 @@ export function Detail({ item, delegate }: IProps) {
           <Cell head>Пред / Уд</Cell>
         </Row>
         {filteredItems.map((game, i) => (
-          <Row key={game.match_id} className="text-center text-sm">
-            <Cell>{i + 1}</Cell>
-            <Cell>{game.role} </Cell>
-            <Cell>{new Date(game.date).toLocaleDateString()} </Cell>
-            <Cell>{game.time} </Cell>
-            <Cell>{game.location}</Cell>
-            <Cell>{stageData?.entites[game.stage].VALUE}</Cell>
-            <Cell>{game.match_stage || '-'}</Cell>
-            <Cell>{game.team_1}</Cell>
-            <Cell>{game.team_2}</Cell>
-            <Cell>{game.score}</Cell>
-            <Cell>{'-'}</Cell>
-          </Row>
+          <DetailItem index={i + 1} key={game.match_id} game={game} />
         ))}
 
         {!isLoading && filteredItems.length == 0 && (
