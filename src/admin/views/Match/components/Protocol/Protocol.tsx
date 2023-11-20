@@ -2,10 +2,11 @@ import { FieldView } from '@admin/components/FieldView'
 import { Separator } from '@admin/components/Separator'
 import { Cell, CellTooltip, Row, Table } from '@admin/index'
 import { PrintIcon } from '@assets/icons/fill'
-import { Avatar, Button } from '@features/ui'
+import { Button } from '@features/ui'
 import { useFetchProtocol } from '../../service/protocol'
-import { useFetchTournaments } from '@admin/service/tournaments'
 import { useFetchCities } from '@admin/service/cities'
+import { TeamData } from './Protocol.TeamInfo'
+import { TeamTable } from './Protocol.TeamTable'
 
 interface IProps {
   matchId: EntityId
@@ -20,10 +21,9 @@ export function Protocol({ matchId }: IProps) {
 
   return (
     <div>
-      {/* <pre>{JSON.stringify(data.item, null, 2)}</pre> */}
       <div className="grid grid-cols-4 gap-6">
         <div className="col-span-2">
-          <div className="font-semibold mb-2">Соревнование #{matchId}</div>
+          <div className="font-semibold mb-2 print:text-sm">Соревнование #{matchId}</div>
           <FieldView>
             <div className="text-sm leading-none">
               <CellTooltip>{data?.item.competition_name}</CellTooltip>
@@ -31,25 +31,25 @@ export function Protocol({ matchId }: IProps) {
           </FieldView>
         </div>
         <div className="col-span-2">
-          <div className="font-semibold mb-2">Этап</div>
+          <div className="font-semibold mb-2 print:text-sm">Этап</div>
           <FieldView>
-            <div className="text-sm leading-none">{data?.item.stage_name}</div>
+            <div className="text-sm leading-none">{data?.item.stage_name || '-'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Город или район</div>
+          <div className="font-semibold mb-2 print:text-sm">Город или район</div>
           <FieldView>
             <div className="text-sm leading-none">{area || '-'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Место проведения</div>
+          <div className="font-semibold mb-2 print:text-sm">Место проведения</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.location || '-'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Дата проведения</div>
+          <div className="font-semibold mb-2 print:text-sm">Дата проведения</div>
           <FieldView>
             <div className="text-sm leading-none">
               {new Date(data?.item.date || 0)?.toLocaleDateString()}
@@ -57,67 +57,45 @@ export function Protocol({ matchId }: IProps) {
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Время проведения</div>
+          <div className="font-semibold mb-2 print:text-sm">Время проведения</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.time}</div>
           </FieldView>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-6 mt-10">
-        <div className="flex flex-col gap-1">
-          <div className="font-semibold mb-2">Команда 1</div>
-          <FieldView className="pl-4 py-1 pr-1  flex items-center">
-            <div className="text-sm leading-none">{data?.item.team_1_info.name}</div>
-            <div className="bg-gray dark:bg-dark-100 dark:bg-opacity-40 p-1 pr-4 rounded-md ml-auto flex items-center gap-2">
-              <div
-                className="w-7 h-7 rounded-md"
-                style={{ background: '#' + data?.item.team_1_info.color }}
-              />
-              <div className="text-sm">Красный</div>
-            </div>
-          </FieldView>
-          <FieldView>
-            <div className="text-sm leading-none">Веселовский район</div>
-          </FieldView>
+        {/* Команда 1 */}
+        <div>
+          <div className="font-semibold mb-2 print:text-sm">Команда 1</div>
+          <TeamData team={data?.item.team_1_info} />
         </div>
-        <div className="flex flex-col gap-1">
-          <div className="font-semibold mb-2">Команда 2</div>
-          <FieldView className="pl-4 py-1 pr-1  flex items-center">
-            <div className="text-sm leading-none">{data?.item.team_2_info.name}</div>
-            <div className="bg-gray dark:bg-dark-100 dark:bg-opacity-40 p-1 pr-4 rounded-md ml-auto flex items-center gap-2">
-              <div
-                className="w-7 h-7 rounded-md"
-                style={{ background: '#' + data?.item.team_2_info.color }}
-              />
-              <div className="text-sm">Синий</div>
-            </div>
-          </FieldView>
-          <FieldView>
-            <div className="text-sm leading-none">Веселовский район</div>
-          </FieldView>
+        {/* Команда 2 */}
+        <div>
+          <div className="font-semibold mb-2 print:text-sm">Команда 2</div>
+          <TeamData team={data?.item.team_2_info} />
         </div>
       </div>
       <div className="grid grid-cols-2 gap-6 mt-10">
         <div>
-          <div className="font-semibold mb-2">Судья</div>
+          <div className="font-semibold mb-2 print:text-sm">Судья</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.judge || 'Нет'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Делегат</div>
+          <div className="font-semibold mb-2 print:text-sm">Делегат</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.delegate || 'Нет'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Помощник судьи 1</div>
+          <div className="font-semibold mb-2 print:text-sm">Помощник судьи 1</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.helper_1 || 'Нет'}</div>
           </FieldView>
         </div>
         <div>
-          <div className="font-semibold mb-2">Помощник судьи 2</div>
+          <div className="font-semibold mb-2 print:text-sm">Помощник судьи 2</div>
           <FieldView>
             <div className="text-sm leading-none">{data?.item.helper_2 || 'Нет'}</div>
           </FieldView>
@@ -126,8 +104,8 @@ export function Protocol({ matchId }: IProps) {
 
       <Separator />
 
-      <div className="text-3xl font-bold mb-8">Инфо о матче</div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Инфо о матче</div>
+      <div className="grid grid-cols-3 items-end gap-6">
         <div>
           <div className="font-semibold mb-4">Счет после первого тайма</div>
           <div className="grid grid-cols-2 gap-4">
@@ -193,35 +171,50 @@ export function Protocol({ matchId }: IProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mt-7">
+      <div className="grid grid-cols-2 gap-6 mt-7 break-inside-avoid-page">
         <div>
           <div className="font-semibold mb-4">Команда 1</div>
-          <TeamTable />
+          <TeamTable team={data?.item.team_1_info} />
         </div>
         <div>
           <div className="font-semibold mb-4">Команда 2</div>
-          <TeamTable />
+          <TeamTable team={data?.item.team_2_info} />
         </div>
       </div>
 
       <Separator />
 
-      <div className="text-3xl font-bold mb-8">Представители</div>
-      <div className="grid grid-cols-2 gap-6 mt-10">
+      <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Представители</div>
+      <div className="grid grid-cols-2 gap-6 ">
         <div>
-          <div className="font-semibold mb-2">Представитель 1 команды</div>
-          <FieldView>
-            <div className="text-sm leading-none">Воловик Вячеслав</div>
-          </FieldView>
+          <div className="font-semibold mb-2 print:text-sm">Представитель 1 команды</div>
+          {data?.item.team_1_info.preds.map((name, index) => (
+            <FieldView key={index} className="mt-1">
+              <div className="text-sm leading-none">{name}</div>
+            </FieldView>
+          ))}
+          {data?.item.team_1_info.preds.length == 0 && (
+            <FieldView>
+              <div className="text-sm leading-none">Нет</div>
+            </FieldView>
+          )}
         </div>
         <div>
-          <div className="font-semibold mb-2">Представитель 2 команды</div>
-          <FieldView>
-            <div className="text-sm leading-none">Воловик Вячеслав</div>
-          </FieldView>
+          <div className="font-semibold mb-2 print:text-sm">Представитель 2 команды</div>
+          {data?.item.team_2_info.preds.map((name, index) => (
+            <FieldView key={index} className="mt-1">
+              <div className="text-sm leading-none">{name}</div>
+            </FieldView>
+          ))}
+          {data?.item.team_2_info.preds.length == 0 && (
+            <FieldView>
+              <div className="text-sm leading-none">Нет</div>
+            </FieldView>
+          )}
         </div>
       </div>
 
+      {/* Предупреждения */}
       <div className="mt-7">
         <div className="font-semibold mb-4">Предупреждения</div>
         <Table>
@@ -233,15 +226,23 @@ export function Protocol({ matchId }: IProps) {
             <Cell head>Команда</Cell>
             <Cell head>Причина</Cell>
           </Row>
-          <Row className="text-sm">
-            <Cell>Щербаков Иван </Cell>
-            <Cell className="text-center">33</Cell>
-            <Cell>Щербаков Иван </Cell>
-            <Cell>Щербаков Иван </Cell>
-          </Row>
+          {data?.item.warnings.map((item, i) => (
+            <Row className="text-sm" key={i}>
+              <Cell>{item.name}</Cell>
+              <Cell className="text-center">{i + 1}</Cell>
+              <Cell>{item.team} </Cell>
+              <Cell>{item.text} </Cell>
+            </Row>
+          ))}
+          {data?.item.warnings.length == 0 && (
+            <Row className="text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
         </Table>
       </div>
 
+      {/* Удаления */}
       <div className="mt-7">
         <div className="font-semibold mb-4">Удаления</div>
         <Table>
@@ -253,26 +254,51 @@ export function Protocol({ matchId }: IProps) {
             <Cell head>Команда</Cell>
             <Cell head>Причина</Cell>
           </Row>
-          <Row className="text-sm">
-            <Cell>Щербаков Иван </Cell>
-            <Cell className="text-center">33</Cell>
-            <Cell>Щербаков Иван </Cell>
-            <Cell>Щербаков Иван </Cell>
-          </Row>
+          {data?.item.deletes.map((item, i) => (
+            <Row className="text-sm" key={i}>
+              <Cell>{item.name}</Cell>
+              <Cell className="text-center">{i + 1}</Cell>
+              <Cell>{item.team}</Cell>
+              <Cell>{item.text}</Cell>
+            </Row>
+          ))}
+          {data?.item.deletes.length == 0 && (
+            <Row className="text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
         </Table>
       </div>
 
+      {/* Травматические случаи */}
       <div className="mt-7">
         <div className="font-semibold mb-4">Травматические случаи</div>
-        <FieldView>
-          <div className="text-sm ">
-            Далеко-далеко за словесными горами в стране гласных и согласных, живут рыбные тексты.
-            Переулка она безорфографичный текстами бросил предложения, щеке последний, составитель
-            инициал дал рыбными использовало вдали пустился наш пояс это встретил до.
-          </div>
-        </FieldView>
+        <Table>
+          <Row className="text-sm font-semibold">
+            <Cell head>Фамилия Имя</Cell>
+            <Cell head className="">
+              Минута матча
+            </Cell>
+            <Cell head>Характер повреждения, причины, диагноз</Cell>
+            <Cell head>Какая оказана помощь</Cell>
+          </Row>
+          {data?.item.trauma.map((item, i) => (
+            <Row className="text-sm" key={i}>
+              <Cell>{item.name}</Cell>
+              <Cell>{item.time}</Cell>
+              <Cell>{item.text}</Cell>
+              <Cell>{item.help}</Cell>
+            </Row>
+          ))}
+          {data?.item.trauma.length == 0 && (
+            <Row className="text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
+        </Table>
       </div>
 
+      {/* Прочие замечания */}
       <div className="mt-7">
         <div className="font-semibold mb-4">Прочие замечания</div>
         <FieldView>
@@ -282,55 +308,18 @@ export function Protocol({ matchId }: IProps) {
 
       <div className="mt-10 flex gap-8">
         <div className="text-xl font-semibold">Протокол заполнен верно</div>
-        <div className="text-xl">Карагодин В. О.</div>
+        {/* <div className="text-xl">Карагодин В. О.</div> */}
       </div>
 
-      <div className="flex gap-4 mt-7">
+      <div className="flex gap-4 mt-7 print:hidden">
         <Button variant="light" className="px-16">
           Закрыть
         </Button>
-        <Button variant="contur" className="gap-2 px-16 ml-auto">
+        <Button variant="contur" className="gap-2 px-16 ml-auto" onClick={() => window.print()}>
           <PrintIcon />
           Печать
         </Button>
       </div>
     </div>
-  )
-}
-
-function TeamTable() {
-  return (
-    <Table xBorderLess>
-      <Row className="text-sm font-semibold">
-        <Cell head className="text-center w-14">
-          №
-        </Cell>
-        <Cell head>{/* image */}</Cell>
-        <Cell head>Фамилия Имя</Cell>
-        <Cell head className="w-24 text-center">
-          Попытки
-        </Cell>
-      </Row>
-      {new Array(5).fill(true).map((_, index) => (
-        <TeamItem key={index} />
-      ))}
-    </Table>
-  )
-}
-
-function TeamItem() {
-  return (
-    <Row className="text-sm">
-      <Cell className="text-center">33</Cell>
-      <Cell className="w-12 py-1 px-0">
-        <Avatar size="lg" src="/img/test.gif" />
-      </Cell>
-      <Cell>Щербаков Иван </Cell>
-      <Cell className="py-0">
-        <FieldView>
-          <div className="text-sm leading-none text-center">3</div>
-        </FieldView>
-      </Cell>
-    </Row>
   )
 }

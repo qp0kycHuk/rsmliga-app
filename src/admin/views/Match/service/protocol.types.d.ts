@@ -1,4 +1,4 @@
-interface Protocol {
+export interface Protocol {
   competition_id: EntityId
   competition_name: string
   stage_id: EntityId
@@ -17,6 +17,9 @@ interface Protocol {
   team_1_info: TeamInfo
   team_2_info: TeamInfo
   other_remarks: null
+  deletes: Sanction[]
+  trauma: Trauma[]
+  warnings: Sanction[]
 }
 
 interface Score {
@@ -24,9 +27,33 @@ interface Score {
   team_2: null | string
 }
 
-interface TeamInfo {
+export interface TeamInfo {
   id: string
   name: string
   color: string
-  members: any[]
+  color_name: string
+  location: string
+  members: Member[]
+  preds: string[]
+}
+
+export interface Member {
+  id: EntityId
+  number: string
+  avatar: string
+  FIO: string
+  try: number
+}
+
+interface Sanction {
+  name: string
+  team: string
+  text: string
+}
+
+interface Trauma {
+  name: string
+  time: string
+  text: string
+  help: string
 }

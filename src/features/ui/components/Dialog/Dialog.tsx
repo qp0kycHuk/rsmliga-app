@@ -2,7 +2,7 @@ import { Transition, Dialog as DialogWrap } from '@headlessui/react'
 import classnames from 'classnames'
 import { Fragment } from 'react'
 
-interface IDialogProps extends React.PropsWithChildren {
+export interface IDialogProps extends React.PropsWithChildren {
   isOpen: boolean
   onClose: () => unknown
   className?: string
@@ -21,11 +21,11 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-50" />
+          <div className="fixed inset-0 bg-black bg-opacity-50 print:hidden" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full p-4">
+        <div className="fixed print:relative inset-0 overflow-y-auto print:overflow-auto">
+          <div className="flex min-h-full p-4 print:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -38,7 +38,7 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               <DialogWrap.Panel
                 className={classnames(
                   className,
-                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl'
+                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl print:bg-transparent'
                 )}
               >
                 <div className="fixed -z-1" tabIndex={0}></div>

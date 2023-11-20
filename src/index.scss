@@ -21,6 +21,7 @@ body {
   background    : theme('colors.light.300');
   font-family   : var(--font-base);
 
+
   * {
     outline: none;
   }
@@ -29,6 +30,19 @@ body {
     --text-color: #fff;
     background  : theme('colors.dark.300');
     color       : #fff;
+  }
+}
+
+@media print {
+  body {
+    --text-color: #000;
+    background  : none;
+    color       : var(--text-color);
+  }
+
+  [data-headlessui-portal][aria-hidden="true"],
+  .root[aria-hidden="true"] {
+    display: none;
   }
 }
 

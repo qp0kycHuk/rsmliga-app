@@ -1,6 +1,7 @@
 import { Row, Cell } from '@admin/index'
 import { useFetchStages } from '@admin/service/stages'
 import { Protocol } from '@admin/views/Match/components/Protocol/Protocol'
+import { ProtocolDialog } from '@admin/views/Match/components/Protocol/Protocol.Dialog'
 import { Button, Dialog, DialogHeader } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 
@@ -32,14 +33,7 @@ export function DetailItem({ game, index }: IDetailItemProps) {
       <Cell>{'-'}</Cell>
 
       <Cell hidden>
-        <Dialog isOpen={isProtocolOpen} onClose={closeProtocol} className="container max-w-6xl p-0">
-          <DialogHeader>
-            <div className="text-center text-3xl font-bold">Протокол</div>
-          </DialogHeader>
-          <div className="p-10">
-            <Protocol matchId={game.match_id}></Protocol>
-          </div>
-        </Dialog>
+        <ProtocolDialog id={game.match_id} isOpen={isProtocolOpen} onClose={closeProtocol} />
       </Cell>
     </Row>
   )
