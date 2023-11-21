@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import { Button } from '@features/ui'
 import { MenuIcon } from '@assets/icons/fill'
 import { useFetchMenu } from '@admin/service/menu'
-import { SidebarContextProvider, useSidebarContext } from './SidebarContext'
+import { useSidebarContext } from './SidebarContext'
 import { SideBarButton } from './SideBarButton'
 import { icons } from './SidebarIcons'
 import classes from './SideBar.module.scss'
@@ -29,12 +29,15 @@ function SideBarInner() {
         })}
       >
         <Button
-          className="justify-start w-full pl-3 mb-1 whitespace-nowrap"
+          className="justify-start w-full pl-3 mb-1 whitespace-nowrap max-md:hidden"
           variant="none"
           onClick={toggleSidebar}
         >
           <MenuIcon className="flex-shrink-0 text-2xl" />
           {isOpen && <div className="ml-2 text-base text-black dark:text-white">Свернуть меню</div>}
+        </Button>
+        <Button as="a" href="/" size="sm" className="w-full md:hidden shrink-0">
+          На сайт
         </Button>
         {flatItems?.map((item) => (
           <SideBarButton
@@ -60,9 +63,5 @@ function SideBarInner() {
 }
 
 export function SideBar() {
-  return (
-    <SidebarContextProvider>
-      <SideBarInner />
-    </SidebarContextProvider>
-  )
+  return <SideBarInner />
 }

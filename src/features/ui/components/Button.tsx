@@ -1,6 +1,5 @@
 import React from 'react'
 import classnames from 'classnames'
-import { ripplePointerdownHandler } from '../utils/ripple'
 import type { Color, Size } from '../types'
 import BaseButton, { BaseComponentProps, BaseComponent } from './Base'
 
@@ -15,7 +14,7 @@ const variantClassNames: Record<Variant, string> = {
   none: 'btn-default',
 }
 
-const colorClassNames: PartialRecord<Color, string> = {
+const colorClassNames = {
   white: 'btn-white',
   black: 'btn-black',
   green: 'btn-green',
@@ -26,7 +25,7 @@ const colorClassNames: PartialRecord<Color, string> = {
   ['gray-light']: 'btn-gray-light',
 }
 
-const sizeClassNames: PartialRecord<Size, string> = {
+const sizeClassNames: Record<Size, string> = {
   xs: 'btn-xs',
   sm: 'btn-sm',
   base: 'btn-base',

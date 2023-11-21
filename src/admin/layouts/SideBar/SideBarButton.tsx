@@ -25,7 +25,7 @@ export function SideBarButton({ title, icon: Icon, to, sub }: IProps) {
         href={to}
         to={to}
         className={classNames(
-          'justify-start w-full  mb-1 whitespace-nowrap',
+          'justify-start w-full  mb-1 whitespace-nowrap shrink-0',
           sub ? 'pl-10' : 'pl-3'
         )}
         variant="none"

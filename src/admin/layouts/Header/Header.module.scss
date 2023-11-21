@@ -1,9 +1,12 @@
 .header {
   position     : sticky;
   top          : 0;
-  padding-left : 0;
   border-bottom: 1px solid theme('colors.gray');
   z-index      : theme('zIndex[5]');
+
+  @media(min-width:theme('screens.md')) {
+    padding-left: 0;
+  }
 
   @media(min-width: 1350px) {
     --section-width: 1320px;
@@ -17,4 +20,8 @@
   padding-right: 8px;
   padding-left : 16px;
 
+  @media(max-width:theme('screens.md')) {
+    width  : 100%;
+    padding: 0;
+  }
 }

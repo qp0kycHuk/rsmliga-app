@@ -23,7 +23,7 @@ function ListInner() {
 
   return (
     <>
-      <div className="mb-5 text-3xl font-bold">Список судей и делегатов </div>
+      <div className="mb-5 text-xl md:text-3xl font-bold">Список судей и делегатов </div>
       <Filter>
         {isAccess && (
           <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">

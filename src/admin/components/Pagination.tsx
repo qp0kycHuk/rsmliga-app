@@ -1,6 +1,7 @@
 import { ToRightIcon } from '@assets/icons/fill'
 import { Button } from '@features/ui'
 import classNames from 'classnames'
+import { useEffect, useMemo, useState } from 'react'
 
 interface IPaginationProps {
   pages: number[]
@@ -10,8 +11,19 @@ interface IPaginationProps {
 }
 
 export function Pagination({ pages, currentPage, onChange, className }: IPaginationProps) {
-  // const sliced = slicePages(currentPage, pages.length)
-  const sliced = pages
+  const sliced = useMemo(() => slicePages(currentPage, pages.length), [currentPage, pages])
+  // const sliced = pages
+  const [cleanPages, setPages] = useState<(number | null)[]>([])
+
+  function pagesHandler() {
+    setPages(window.screen.width > 769 ? pages : sliced)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', pagesHandler)
+    pagesHandler()
+    return () => window.removeEventListener('resize', pagesHandler)
+  }, [sliced])
 
   return (
     <div className={classNames(className, 'flex items-center gap-2 justify-center')}>
@@ -20,20 +32,20 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
         variant="whitebg"
         size="sm"
         icon
-        className="border border-gray dark:border-white dark:border-opacity-20"
+        className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
         onClick={() => onChange(currentPage - 1)}
       >
         <ToRightIcon className="-scale-x-100" />
       </Button>
 
-      {sliced.map((page, index) =>
+      {cleanPages.map((page, index) =>
         page ? (
           <Button
             variant={currentPage == page ? 'fill' : 'whitebg'}
             size="sm"
             icon
             key={index}
-            className="border border-gray dark:border-white dark:border-opacity-20"
+            className={classNames('border border-gray dark:border-white dark:border-opacity-20')}
             onClick={() => onChange(page)}
           >
             {page}
@@ -48,7 +60,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
         variant="whitebg"
         size="sm"
         icon
-        className="border border-gray dark:border-white dark:border-opacity-20"
+        className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
         onClick={() => onChange(currentPage + 1)}
       >
         <ToRightIcon />
