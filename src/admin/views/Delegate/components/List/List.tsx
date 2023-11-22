@@ -42,7 +42,11 @@ function ListInner() {
       <Pagination />
 
       {isAccess && (
-        <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container max-w-6xl p-10">
+        <Dialog
+          isOpen={isDialogOpen}
+          onClose={closeDialog}
+          className="container max-w-6xl px-4 py-10 md:p-10"
+        >
           <Suspense fallback="Loading...">
             <DelegateEdit onCancel={closeDialog} />
           </Suspense>

@@ -23,7 +23,7 @@ function ListInner() {
 
   return (
     <>
-      <div className="mb-5 text-3xl font-bold">Общий список секретарей</div>
+      <div className="mb-5 text-xl sm:text-3xl font-bold">Общий список секретарей</div>
       <Filter>
         {isAccess && (
           <Button
@@ -36,14 +36,18 @@ function ListInner() {
           </Button>
         )}
       </Filter>
-      {loading ? 'loading...' : null}
-      <ListTable items={items} className={loading ? 'hidden' : ''} />
+
+      <ListTable items={items} className={loading ? 'opacity-40 pointer-events-none' : ''} />
 
       <div className="mt-8"></div>
       <Pagination />
 
       {isAccess && (
-        <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container max-w-6xl p-10">
+        <Dialog
+          isOpen={isDialogOpen}
+          onClose={closeDialog}
+          className="container max-w-6xl px-4 py-10 md:p-10"
+        >
           <Suspense fallback="Loading...">
             <SecretaryEdit onCancel={closeDialog} />
           </Suspense>

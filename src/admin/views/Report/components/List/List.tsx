@@ -17,7 +17,7 @@ function ListInner() {
 
   return (
     <>
-      <div className="mb-5 text-3xl font-bold">Отчеты</div>
+      <div className="mb-5 text-xl sm:text-3xl font-bold">Отчеты</div>
       <Filter>
         {isAccess && (
           <Button

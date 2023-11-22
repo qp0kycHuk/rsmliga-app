@@ -81,7 +81,7 @@ export function Item({ item }: IItemProps) {
         <Dialog
           isOpen={isContestsDialogOpen}
           onClose={closeContestsDialog}
-          className="max-w-4xl p-10"
+          className="max-w-4xl px-4 py-10 md:p-10"
         >
           <CompetitionsDialog item={item} />
           <Button className="mt-6" onClick={closeContestsDialog}>
@@ -93,7 +93,7 @@ export function Item({ item }: IItemProps) {
         <Dialog
           isOpen={isLocationsDialogOpen}
           onClose={closeLocationsDialog}
-          className="max-w-4xl p-10"
+          className="max-w-4xl px-4 py-10 md:p-10"
         >
           <LocationsDialog item={item} />
           <Button className="mt-6" onClick={closeLocationsDialog}>
