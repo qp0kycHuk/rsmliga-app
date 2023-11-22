@@ -37,10 +37,11 @@ export function Search({ value, onChange, className, placeholder = 'Поиск' 
       <Input
         required
         placeholder={placeholder}
-        className="w-full"
+        className="w-full appearance-none"
         size="sm"
         defaultValue={value}
         ref={inputRef}
+        type="search"
       />
       <div className="flex items-center gap-1 absolute right-1 top-1">
         {value.length > 0 && (

@@ -29,11 +29,11 @@ export function TeamImages() {
     <>
       <div className="flex flex-wrap gap-3">
         {report?.teams_photo?.map(({ id, fid, src, path, description, file }) => (
-          <div className="relative z-10 w-48" key={fid || id}>
+          <div className="relative z-10 w-32 sm:w-48" key={fid || id}>
             <CellTooltip className="text-lg font-semibold mb-3">
               {schoolsData?.entites[description]?.short_name}
             </CellTooltip>
-            <div className="relative w-full h-32">
+            <div className="relative w-full h-24 sm:h-32">
               <img
                 className="object-cover w-full h-full rounded-xl"
                 src={(file ? '' : SERVER_URL) + (src || path)}
@@ -56,10 +56,10 @@ export function TeamImages() {
         <button
           type="button"
           onClick={openDialog}
-          className="relative z-10 flex h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20 w-48 rounded-xl self-end flex-col items-center justify-center "
+          className="relative z-10 flex h-24 sm:h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20 w-32 sm:w-48 rounded-xl self-end flex-col items-center justify-center "
         >
-          <CameraIcon className="text-5xl text-primary" />
-          <div className="text-lg text-primary dark:text-white">Добавить</div>
+          <CameraIcon className="text-3xl sm:text-5xl text-primary" />
+          <div className="sm:text-lg text-primary dark:text-white">Добавить</div>
         </button>
       </div>
 

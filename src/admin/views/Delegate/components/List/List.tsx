@@ -26,16 +26,19 @@ function ListInner() {
       <div className="mb-5 text-xl md:text-3xl font-bold">Список судей и делегатов </div>
       <Filter>
         {isAccess && (
-          <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
+          <Button
+            variant="text"
+            onClick={openDialog}
+            className="gap-3 font-semibold max-lg:mr-auto"
+          >
             <CirclePlusIcon className="text-2xl" />
             Добавить судью
           </Button>
         )}
       </Filter>
-      {loading ? 'loading...' : null}
-      <ListTable items={delegates} className={loading ? 'hidden' : ''} />
 
-      <div className="mt-8"></div>
+      <ListTable items={delegates} className={loading ? 'opacity-40 pointer-events-none' : ''} />
+
       <Pagination />
 
       {isAccess && (

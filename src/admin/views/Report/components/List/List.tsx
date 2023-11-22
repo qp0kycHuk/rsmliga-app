@@ -20,18 +20,25 @@ function ListInner() {
       <div className="mb-5 text-3xl font-bold">Отчеты</div>
       <Filter>
         {isAccess && (
-          <Button variant="text" onClick={openDialog} className="gap-3 font-semibold ml-auto">
+          <Button
+            variant="text"
+            onClick={openDialog}
+            className="gap-3 font-semibold lg:ml-auto max-lg:mr-auto"
+          >
             <CirclePlusIcon className="text-2xl" />
             Добавить отчет
           </Button>
         )}
       </Filter>
-      {loading ? 'loading...' : null}
-      <ListTable items={items} className={loading ? 'hidden' : ''} />
+      <ListTable items={items} className={loading ? 'opacity-40 pointer-events-none' : ''} />
 
       <Pagination />
 
-      <Dialog isOpen={isDialogOpen} onClose={closeDialog} className="container max-w-6xl p-10">
+      <Dialog
+        isOpen={isDialogOpen}
+        onClose={closeDialog}
+        className="container max-w-6xl px-4 py-10 md:p-10"
+      >
         <Suspense fallback="Loading...">
           <ReportEdit onCancel={closeDialog} />
         </Suspense>

@@ -1,6 +1,8 @@
 import { Transition, Dialog as DialogWrap } from '@headlessui/react'
 import classnames from 'classnames'
 import { Fragment } from 'react'
+import { Button } from '../Button'
+import { CrossIcon } from '@assets/icons/fill'
 
 export interface IDialogProps extends React.PropsWithChildren {
   isOpen: boolean
@@ -38,10 +40,20 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               <DialogWrap.Panel
                 className={classnames(
                   className,
-                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl print:bg-transparent'
+                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl print:bg-transparent relative'
                 )}
               >
                 <div className="fixed -z-1" tabIndex={0}></div>
+                <Button
+                  className="absolute right-1 top-1 rounded-full btn-dark dark:btn-white"
+                  icon
+                  size="sm"
+                  variant="none"
+                  color="none"
+                  onClick={onClose}
+                >
+                  <CrossIcon />
+                </Button>
                 {children}
               </DialogWrap.Panel>
             </Transition.Child>

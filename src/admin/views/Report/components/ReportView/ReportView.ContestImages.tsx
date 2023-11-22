@@ -7,7 +7,7 @@ interface IProps {
 export function ContestImages({ item }: IProps) {
   return (
     <Images item={item} keyOfImages="competition_photo">
-      <div className="text-lg font-semibold mb-4">Фото с соревнований</div>
+      <div className="sm:text-lg font-semibold mb-4">Фото с соревнований</div>
     </Images>
   )
 }

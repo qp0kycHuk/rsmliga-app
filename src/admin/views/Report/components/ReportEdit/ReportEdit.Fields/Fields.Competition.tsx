@@ -9,7 +9,7 @@ export function Competition() {
   const { data } = useFetchTournaments()
 
   return report.id ? (
-    <div className="text-lg leading-none p-4 rounded-md bg-gray bg-opacity-40">
+    <div className="sm:text-lg leading-none p-4 rounded-md bg-gray bg-opacity-40">
       <span className="font-semibold">Соревнование: </span>
       {data?.entites[report.competition_id || '']?.NAME}
     </div>

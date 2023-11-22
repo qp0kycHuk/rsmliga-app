@@ -26,46 +26,55 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
   }, [sliced])
 
   return (
-    <div className={classNames(className, 'flex items-center gap-2 justify-center')}>
-      <Button
-        disabled={currentPage <= 1}
-        variant="whitebg"
-        size="sm"
-        icon
-        className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
-        onClick={() => onChange(currentPage - 1)}
-      >
-        <ToRightIcon className="-scale-x-100" />
-      </Button>
+    <>
+      <div className="mt-8"></div>
 
-      {cleanPages.map((page, index) =>
-        page ? (
-          <Button
-            variant={currentPage == page ? 'fill' : 'whitebg'}
-            size="sm"
-            icon
-            key={index}
-            className={classNames('border border-gray dark:border-white dark:border-opacity-20')}
-            onClick={() => onChange(page)}
-          >
-            {page}
-          </Button>
-        ) : (
-          '...'
-        )
-      )}
-
-      <Button
-        disabled={currentPage >= pages.length}
-        variant="whitebg"
-        size="sm"
-        icon
-        className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
-        onClick={() => onChange(currentPage + 1)}
+      <div
+        className={classNames(
+          className,
+          'flex items-center gap-2 justify-center max-md:sticky bottom-5'
+        )}
       >
-        <ToRightIcon />
-      </Button>
-    </div>
+        <Button
+          disabled={currentPage <= 1}
+          variant="whitebg"
+          size="sm"
+          icon
+          className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
+          onClick={() => onChange(currentPage - 1)}
+        >
+          <ToRightIcon className="-scale-x-100" />
+        </Button>
+
+        {cleanPages.map((page, index) =>
+          page ? (
+            <Button
+              variant={currentPage == page ? 'fill' : 'whitebg'}
+              size="sm"
+              icon
+              key={index}
+              className={classNames('border border-gray dark:border-white dark:border-opacity-20')}
+              onClick={() => onChange(page)}
+            >
+              {page}
+            </Button>
+          ) : (
+            '...'
+          )
+        )}
+
+        <Button
+          disabled={currentPage >= pages.length}
+          variant="whitebg"
+          size="sm"
+          icon
+          className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
+          onClick={() => onChange(currentPage + 1)}
+        >
+          <ToRightIcon />
+        </Button>
+      </div>
+    </>
   )
 }
 

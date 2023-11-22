@@ -42,7 +42,7 @@ export function Buttons({ item }: IProps) {
 
   return (
     <Cell>
-      <div className="flex gap-3">
+      <div className="flex gap-1 md:gap-3">
         <Tooltip content="Принять">
           <Button
             icon
@@ -50,8 +50,9 @@ export function Buttons({ item }: IProps) {
             variant="light"
             onClick={!isStatusChecked ? accept : null}
             disabled={loading || isStatusChecked}
+            className="max-md:btn-sm"
           >
-            <CircleCheckIcon className="text-3xl" />
+            <CircleCheckIcon className="text-2xl md:text-3xl" />
           </Button>
         </Tooltip>
         <Tooltip content="Отклонить">
@@ -61,8 +62,9 @@ export function Buttons({ item }: IProps) {
             variant="light"
             onClick={!isStatusDeny ? deny : null}
             disabled={loading || isStatusDeny}
+            className="max-md:btn-sm"
           >
-            <CircleCrossIcon className="text-3xl" />
+            <CircleCrossIcon className="text-2xl md:text-3xl" />
           </Button>
         </Tooltip>
       </div>

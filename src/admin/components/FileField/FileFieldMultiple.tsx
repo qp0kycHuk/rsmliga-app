@@ -12,8 +12,8 @@ interface IFileFieldMultipleProps {
 export function FileFieldMultiple({ schema, docs, onChange, onRemove }: IFileFieldMultipleProps) {
   return docs.map?.((file) => (
     <div className="flex items-center mb-4" key={id(file)}>
-      <FileAddIcon className="mr-2 text-xl text-primary" />
-      <div className="underline underline-offset-4">
+      <FileAddIcon className="mr-2 text-xl text-primary shrink-0" />
+      <div className="max-sm:text-sm underline underline-offset-4">
         {schema.name} (Файл{' '}
         <Input
           className="inline w-8 px-1 text-sm text-center"

@@ -1,5 +1,5 @@
 import { CircleCheckIcon, CircleCrossIcon, EyeIcon } from '@assets/icons/fill'
-import classNames from 'classnames'
+import { twMerge } from 'tailwind-merge'
 
 interface IStatusProps {
   item: IDelegate
@@ -11,9 +11,9 @@ export function Status({ item, className }: IStatusProps) {
 
   return (
     <div
-      className={classNames(
-        className,
-        ' bg-gray-light dark:bg-dark-300 rounded-full py-1 px-2 flex items-center gap-1 cursor-default'
+      className={twMerge(
+        'bg-gray-light dark:bg-dark-300 rounded-full py-1 px-2 flex items-center gap-1 cursor-default',
+        className
       )}
     >
       {item.status === 'no' && (

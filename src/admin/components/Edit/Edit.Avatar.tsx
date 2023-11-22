@@ -75,7 +75,7 @@ export function EditAvatar({ item, update, placeholder }: IProps) {
 
   return (
     <div className="relative">
-      <div className="w-60 h-60 rounded-full flex bg-primary bg-opacity-20 hover:bg-opacity-30 overflow-hidden">
+      <div className="w-40 h-40 sm:w-60 sm:h-60 rounded-full flex bg-primary bg-opacity-20 hover:bg-opacity-30 overflow-hidden">
         {item?.image_src ? (
           <img
             className="w-full h-full object-cover"

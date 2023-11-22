@@ -1,17 +1,19 @@
 import { FieldView } from '@admin/components/FieldView'
 import { useFetchCategories } from '../../service/categories'
 import { useFetchSex } from '../../service/sex'
+import { twMerge } from 'tailwind-merge'
 
 interface IFieldsProps {
   item: IDelegate
+  className?: string
 }
 
-export function Fields({ item }: IFieldsProps) {
+export function Fields({ item, className }: IFieldsProps) {
   const { data: sexData } = useFetchSex()
   const { data: categoriesData } = useFetchCategories()
 
   return (
-    <div className="grid grid-cols-2 gap-4 max-w-2xl w-full">
+    <div className={twMerge('grid md:grid-cols-2 gap-4 max-w-2xl w-full', className)}>
       <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">Фамилия: </span>

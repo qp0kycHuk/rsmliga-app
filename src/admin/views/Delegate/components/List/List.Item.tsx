@@ -36,10 +36,10 @@ export function ListItem({ item }: IListTableItemProps) {
   const isCompetitions = item.competitions.length > 0
 
   return (
-    <Row>
-      <Cell className="text-sm text-center w-12">{item.number}</Cell>
-      <Cell className="text-sm max-w-[90px] w-[90px] truncate">{item.id}</Cell>
-      <Cell className="text-sm w-80 cursor-pointer hover:underline" onClick={openViewDialog}>
+    <Row className="text-xs sm:text-sm">
+      <Cell className="text-center w-12">{item.number}</Cell>
+      <Cell className="max-w-[90px] w-[90px] truncate">{item.id}</Cell>
+      <Cell className="w-80 cursor-pointer hover:underline" onClick={openViewDialog}>
         <div>
           {item.surname} {item.name} {item.patronymic}
         </div>
@@ -59,12 +59,12 @@ export function ListItem({ item }: IListTableItemProps) {
           '-'
         )}
       </Cell>
-      <Cell className="text-sm ">{categoriesData?.entites[item.category]?.VALUE || '-'}</Cell>
-      <Cell className="text-sm ">{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
-      <Cell className="text-sm ">{new Date(item.birthdate).toLocaleDateString()}</Cell>
-      <Cell className="text-sm ">{item.matchesCount || '-'}</Cell>
+      <Cell>{categoriesData?.entites[item.category]?.VALUE || '-'}</Cell>
+      <Cell>{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
+      <Cell>{new Date(item.birthdate).toLocaleDateString()}</Cell>
+      <Cell>{item.matchesCount || '-'}</Cell>
       {isAccess && (
-        <Cell className="text-sm btn-group cursor-pointer w-14" onClick={openEditDialog}>
+        <Cell className="btn-group cursor-pointer w-14" onClick={openEditDialog}>
           <Button size={null} icon className="btn-[28px] mx-auto" color="gray-light">
             <SettingsIcon className="text-primary text-lg" />
           </Button>
@@ -75,7 +75,7 @@ export function ListItem({ item }: IListTableItemProps) {
         <Dialog
           isOpen={isContestsDialogOpen}
           onClose={closeContestsDialog}
-          className="max-w-4xl p-10"
+          className="max-w-4xl px-4 py-10 md:p-10"
         >
           <DelegateContests delegate={item} />
           <Button className="mt-6" onClick={closeContestsDialog}>
@@ -88,7 +88,7 @@ export function ListItem({ item }: IListTableItemProps) {
           <Dialog
             isOpen={isEditDialogOpen}
             onClose={closeEditDialog}
-            className="container max-w-6xl p-10"
+            className="container max-w-6xl px-4 py-10 md:p-10"
           >
             <Suspense fallback="Loading...">
               <DelegateEdit delegate={item} onCancel={closeEditDialog} />
@@ -100,7 +100,7 @@ export function ListItem({ item }: IListTableItemProps) {
         <Dialog
           isOpen={isViewDialogOpen}
           onClose={closeViewDialog}
-          className="container max-w-6xl p-10"
+          className="container max-w-6xl px-4 py-10 md:p-10"
         >
           <Suspense fallback="Loading...">
             <DelegateView item={item} />

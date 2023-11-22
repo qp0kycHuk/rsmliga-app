@@ -27,7 +27,7 @@ export function FileField({ docs, schema, onChange }: IFileFieldProps) {
   if (schema.required) {
     return (
       <div className="flex items-center mb-4">
-        <FileAddIcon className="mr-2 text-xl text-primary" />
+        <FileAddIcon className="mr-2 text-xl text-primary shrink-0" />
         <div className="underline underline-offset-4">{schema.title}</div>
         {docs?.length > 0 ? (
           <>

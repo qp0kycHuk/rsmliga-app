@@ -36,7 +36,7 @@ export function Form() {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="mb-8 text-2xl font-bold">Отчет о проведении соревнований</div>
+      <div className="mb-8 text-xl sm:text-2xl font-bold">Отчет о проведении соревнований</div>
 
       <Fields />
 
@@ -64,7 +64,7 @@ export function Form() {
         }
       />
 
-      <div className="flex gap-4 mt-8">
+      <div className="flex max-lg:flex-col gap-4 mt-8">
         <Button
           type="submit"
           disabled={loading || !isStatusEditable}

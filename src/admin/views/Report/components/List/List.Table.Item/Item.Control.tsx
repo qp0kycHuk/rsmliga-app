@@ -35,7 +35,7 @@ export function Control({ item }: IProps) {
 
   return (
     <>
-      <Cell className="w-40 text-sm">
+      <Cell className="w-40 text-xs sm:text-sm">
         <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
         <div className="flex mt-1.5 gap-1">
           {isStatusNone ? (
@@ -86,7 +86,7 @@ export function Control({ item }: IProps) {
         <Dialog
           isOpen={isEditDialogOpen}
           onClose={closeEditDialog}
-          className="container max-w-6xl p-10"
+          className="container max-w-6xl px-4 py-10 md:p-10"
         >
           <Suspense fallback="Loading...">
             <ReportEdit item={item} onCancel={closeEditDialog} />
@@ -96,7 +96,7 @@ export function Control({ item }: IProps) {
         <Dialog
           isOpen={isViewDialogOpen}
           onClose={closeViewDialog}
-          className="container max-w-6xl p-10"
+          className="container max-w-6xl px-4 py-10 md:p-10"
         >
           <Suspense fallback="Loading...">
             <ReportView item={item} />

@@ -18,13 +18,14 @@ export function DelegateView({ item }: IDelegateViewProps) {
 
   return (
     <>
-      <div className="flex items-start gap-9">
+      <div className="flex items-center lg:items-start max-md:flex-col gap-9">
         <Avatar item={item} />
-        <div className="flex-grow">
+        <div className="flex-grow max-md:w-full">
           <Title item={item} />
-          <Fields item={item} />
+          <Fields item={item} className="max-lg:hidden" />
         </div>
       </div>
+      <Fields item={item} className="lg:hidden mt-6 max-w-full" />
 
       <Separator />
       <Location item={item} />

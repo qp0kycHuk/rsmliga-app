@@ -19,32 +19,32 @@ export function ListTable({ items, className }: IListTableProps) {
   return (
     <Table className={className}>
       <Row>
-        <Cell head className="text-sm font-medium text-center">
+        <Cell head className="text-xs sm:text-sm font-medium text-center">
           №
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           ID
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           ФИО
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           Соревнование
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           Категория
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           Населенный пункт
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           Дата рождения
         </Cell>
-        <Cell head className="text-sm font-medium">
+        <Cell head className="text-xs sm:text-sm font-medium">
           Матчей проведено
         </Cell>
         {isAccess && (
-          <Cell head className="text-sm font-medium">
+          <Cell head className="text-xs sm:text-sm font-medium">
             {/* for button */}
           </Cell>
         )}

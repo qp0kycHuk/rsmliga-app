@@ -14,8 +14,8 @@ export function UploaderItem({ item, extention, rounded, remove }: IUpliaderItem
   const isMedia = extention?.type === 'image' || extention?.type === 'video'
 
   return (
-    <div className={`relative z-10 ${rounded ? 'w-32' : 'w-48'}`}>
-      <div className="relative w-full h-32">
+    <div className={`relative z-10 ${rounded ? 'w-24 sm:w-32' : 'w-32 sm:w-48'}`}>
+      <div className="relative w-full h-24 sm:h-32">
         {item.src && isMedia ? (
           <img
             className={`object-cover w-full h-full ${rounded ? 'rounded-full' : 'rounded-xl'}`}

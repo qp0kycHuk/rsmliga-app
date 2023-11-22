@@ -7,7 +7,7 @@ export function Search() {
   return (
     <SearchComponent
       placeholder="Поиск по фамилии"
-      className="w-64"
+      className="md:w-64"
       value={searchQuery}
       onChange={changeSearchQuery}
     />

@@ -6,7 +6,7 @@ interface IContactsProps {
 
 export function Contacts({ item }: IContactsProps) {
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid md:grid-cols-2 gap-4">
       <FieldView>
         <div className="text-lg leading-none">
           <span className="font-semibold">E-mail: </span>
@@ -19,7 +19,7 @@ export function Contacts({ item }: IContactsProps) {
           {item.phone}
         </div>
       </FieldView>
-      <FieldView className="col-span-2">
+      <FieldView className="md:col-span-2">
         <div className="text-lg leading-none">
           <span className="font-semibold">Комментарий: </span>
           {item.comment}

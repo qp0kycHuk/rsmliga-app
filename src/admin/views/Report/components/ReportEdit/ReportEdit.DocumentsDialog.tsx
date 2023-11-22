@@ -83,7 +83,7 @@ export function DocumentsDialog({ onClose }: IDocumentsDialogProps) {
       <DialogHeader>
         <DialogTitle>Загрузить документ</DialogTitle>
       </DialogHeader>
-      <div className="p-16 pt-8 flex flex-col items-start">
+      <div className="py-5 px-4 sm:p-16 sm:pt-8 flex flex-col items-start">
         <DialogErrors errors={errors} />
 
         {selectedFile ? (

@@ -13,15 +13,15 @@ export function TeamImages({ item }: ITeamImagesProps) {
   return (
     <Fancybox className="flex flex-wrap gap-3">
       {item.teams_photo?.map(({ id, fid, src, path, description }) => (
-        <div className="relative z-10 w-48" key={fid || id}>
-          <CellTooltip className="text-lg font-semibold mb-3">
+        <div className="relative z-10 w-32 sm:w-48" key={fid || id}>
+          <CellTooltip className="text-sm sm:text-lg font-semibold mb-3">
             {schoolsData?.entites[description]?.short_name}
           </CellTooltip>
           <a
             href={(import.meta.env.PROD ? '' : SERVER_URL) + (src || path)}
             data-fancybox="TeamImages"
             data-caption={schoolsData?.entites[description]?.short_name}
-            className="relative w-full h-32 block"
+            className="relative w-full h-24 sm:h-32 block"
           >
             <img
               className="object-cover w-full h-full rounded-xl"

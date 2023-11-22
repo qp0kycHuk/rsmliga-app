@@ -9,7 +9,7 @@ export function Stage() {
   const { data } = useFetchStages()
 
   return report.id ? (
-    <div className="text-lg leading-none p-4 rounded-md bg-gray bg-opacity-40">
+    <div className="sm:text-lg leading-none p-4 rounded-md bg-gray bg-opacity-40">
       <span className="font-semibold">Этап: </span>
       {data?.entites[report.stage_id || '']?.VALUE}
     </div>

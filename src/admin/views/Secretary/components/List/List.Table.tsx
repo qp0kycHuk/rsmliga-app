@@ -14,7 +14,7 @@ export function ListTable({ items, className }: ITableProps) {
 
   return (
     <Table className={className}>
-      <Row className="text-sm font-medium">
+      <Row className="text-xs sm:text-sm font-medium">
         <Cell head></Cell>
         <Cell head>ФИО</Cell>
         <Cell head>Категория</Cell>

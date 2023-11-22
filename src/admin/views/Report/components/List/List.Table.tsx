@@ -18,28 +18,14 @@ export function ListTable({ items, className }: Iprops) {
 
   return (
     <Table className={className}>
-      <Row>
-        <Cell head className="text-sm font-medium">
-          Сезон
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Соревнование
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Этап
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Город/Район/Конференция
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Место проведения
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Дата проведения
-        </Cell>
-        <Cell head className="text-sm font-medium">
-          Отчет
-        </Cell>
+      <Row className="text-xs sm:text-sm font-medium">
+        <Cell head>Сезон</Cell>
+        <Cell head>Соревнование</Cell>
+        <Cell head>Этап</Cell>
+        <Cell head>Город/Район/Конференция</Cell>
+        <Cell head>Место проведения</Cell>
+        <Cell head>Дата проведения</Cell>
+        <Cell head>Отчет</Cell>
         {isAdminAccess && <Cell head></Cell>}
       </Row>
       {items.map((item, index) => (

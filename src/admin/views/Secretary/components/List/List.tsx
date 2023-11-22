@@ -26,7 +26,11 @@ function ListInner() {
       <div className="mb-5 text-3xl font-bold">Общий список секретарей</div>
       <Filter>
         {isAccess && (
-          <Button variant="text" onClick={openDialog} className="gap-3 font-semibold">
+          <Button
+            variant="text"
+            onClick={openDialog}
+            className="gap-3 font-semibold max-lg:mr-auto"
+          >
             <CirclePlusIcon className="text-2xl" />
             Добавить секретаря
           </Button>

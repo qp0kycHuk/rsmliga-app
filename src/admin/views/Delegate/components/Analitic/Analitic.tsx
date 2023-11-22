@@ -14,11 +14,11 @@ function AnaliticInner() {
       <div className="mb-5 text-3xl font-bold">Аналитика по сезонам</div>
 
       <Filter />
-      {loading ? (
-        'loading...'
-      ) : (
-        <AnaliticTable items={delegates} className={loading ? 'hidden' : ''} />
-      )}
+
+      <AnaliticTable
+        items={delegates}
+        className={loading ? 'opacity-40 pointer-events-none' : ''}
+      />
       <Pagination />
     </>
   )

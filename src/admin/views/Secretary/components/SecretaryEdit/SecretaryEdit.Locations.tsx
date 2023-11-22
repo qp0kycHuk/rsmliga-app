@@ -10,12 +10,13 @@ export function Locations() {
   const { item, update } = useSecretaryEditContext()
   const { isAccess } = useUserAccess(canEditLocationsGroups)
   const { data } = useFetchCities()
+
   const filteredItems =
-    data?.items.filter((city) => !item.locations?.includes(id(city) as EntityId)) || []
+    data?.items.filter((city) => !item.locations?.includes?.(id(city) as EntityId)) || []
 
   return (
     <div className="space-y-4">
-      {item.locations?.map((id, index) => (
+      {item.locations?.map?.((id, index) => (
         <div className="flex gap-3" key={id}>
           <div className="p-4 rounded-md bg-gray bg-opacity-40 flex-grow">
             <div className="text-lg leading-none">
@@ -30,7 +31,7 @@ export function Locations() {
               icon
               onClick={() =>
                 update({
-                  locations: item.locations?.filter((cityId) => cityId != id) || [],
+                  locations: item.locations?.filter?.((cityId) => cityId != id) || [],
                 })
               }
             >

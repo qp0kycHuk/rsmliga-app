@@ -23,8 +23,10 @@ const SecretaryView = lazy(() =>
 
 export function Item({ item }: IItemProps) {
   const { isAccess, userData } = useUserAccess(canEditGroups)
-  const canEdit =
-    isAccess || (userData?.item.id == item.user_id && userData.item.userGroups.includes('12'))
+  const canEdit = !(
+    isAccess ||
+    (userData?.item.id == item.user_id && userData.item.userGroups.includes('12'))
+  )
 
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
@@ -32,7 +34,7 @@ export function Item({ item }: IItemProps) {
   const [isLocationsDialogOpen, , openLocationsDialog, closeLocationsDialog] = useToggle(false)
 
   return (
-    <Row className="text-sm ">
+    <Row className="text-xs sm:text-sm">
       <Cell className="w-16">
         <Avatar
           src={item.image_src ? SERVER_URL + item.image_src : ''}
@@ -42,13 +44,13 @@ export function Item({ item }: IItemProps) {
       </Cell>
       <Cell
         onClick={canEdit ? openEditDialog : openViewDialog}
-        className="cursor-pointer underline"
+        className="cursor-pointer underline whitespace-nowrap"
       >
         {item.surname} {item.name} {item.patronymic}
       </Cell>
       <Cell>{item.category}</Cell>
       <Cell>{item.email || '-'}</Cell>
-      <Cell>{item.phone || '-'}</Cell>
+      <Cell className="whitespace-nowrap">{item.phone || '-'}</Cell>
       <Cell
         className={classNames('btn-group ', item.competitions.length > 0 ? 'cursor-pointer' : null)}
         onClick={item.competitions.length > 0 ? openContestsDialog : undefined}
@@ -104,7 +106,7 @@ export function Item({ item }: IItemProps) {
           <Dialog
             isOpen={isEditDialogOpen}
             onClose={closeEditDialog}
-            className="container max-w-6xl p-10"
+            className="container max-w-6xl px-4 py-10 md:p-10"
           >
             <Suspense fallback="Loading...">
               <SecretaryEdit item={item} onCancel={closeEditDialog} />
@@ -117,7 +119,7 @@ export function Item({ item }: IItemProps) {
           <Dialog
             isOpen={isViewDialogOpen}
             onClose={closeViewDialog}
-            className="container max-w-6xl p-10"
+            className="container max-w-6xl px-4 py-10 md:p-10"
           >
             <Suspense fallback="Loading...">
               <SecretaryView item={item} />

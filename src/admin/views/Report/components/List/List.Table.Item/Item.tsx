@@ -6,17 +6,17 @@ export function ReportTableItem({ item }: IProps) {
   const formattedDate = item.date ? new Date(item.date).toLocaleDateString() : '-'
 
   return (
-    <Row>
-      <Cell className="text-sm">{item.season}</Cell>
-      <Cell className="w-[264px] max-w-[264px] text-sm">
+    <Row className="text-xs sm:text-sm">
+      <Cell className="">{item.season}</Cell>
+      <Cell className="w-[264px] max-w-[264px] ">
         <CellTooltip>{item.competition}</CellTooltip>
       </Cell>
-      <Cell className="text-sm">{item.stage || '-'}</Cell>
-      <Cell className="text-sm">{item.area}</Cell>
-      <Cell className="w-[228px] max-w-[228px] text-sm">
+      <Cell className="">{item.stage || '-'}</Cell>
+      <Cell className="">{item.area}</Cell>
+      <Cell className="w-[228px] max-w-[228px] ">
         {item.location && <CellTooltip>{item.location}</CellTooltip>}
       </Cell>
-      <Cell className="text-sm">{formattedDate}</Cell>
+      <Cell className="">{formattedDate}</Cell>
 
       <Control item={item} />
       <Buttons item={item} />

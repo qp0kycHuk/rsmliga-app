@@ -17,8 +17,8 @@ export function AnaliticTable({ items, className }: IAnaliticTableProps) {
   }
 
   return (
-    <Table>
-      <Row className="text-sm font-medium text-center">
+    <Table className={className}>
+      <Row className="text-xs sm:text-sm font-medium text-center">
         <Cell head rowSpan={2}>
           №
         </Cell>
@@ -41,13 +41,13 @@ export function AnaliticTable({ items, className }: IAnaliticTableProps) {
           Всего <br /> матчей
         </Cell>
       </Row>
-      <Row className="text-sm font-medium text-center">
+      <Row className="text-xs sm:text-sm font-medium text-center">
         <Cell head>Главный судья</Cell>
         <Cell head>Помощник судьи</Cell>
         <Cell head>Делегат</Cell>
       </Row>
       {items.map((delegate) => (
-        <Row key={delegate.id} className="text-sm text-center">
+        <Row key={delegate.id} className="text-xs sm:text-sm text-center">
           <Cell>{delegate.number}</Cell>
           <Cell className="text-left">
             {delegate.surname} {delegate.name} {delegate.patronymic}

@@ -13,13 +13,14 @@ export function Form() {
 
   return (
     <form onSubmit={submit}>
-      <div className="flex items-start gap-9">
+      <div className="flex items-center lg:items-start max-md:flex-col gap-9">
         <Avatar />
-        <div className="flex-grow">
+        <div className="flex-grow max-md:w-full">
           <Title item={item as ISecretary} />
-          <Fields />
+          <Fields className="max-lg:hidden" />
         </div>
       </div>
+      <Fields className="lg:hidden mt-6 max-w-full" />
 
       <Separator />
       <Locations />
