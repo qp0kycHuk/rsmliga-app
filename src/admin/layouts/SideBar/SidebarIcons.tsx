@@ -5,6 +5,7 @@ import {
   CollectionIcon,
   FileDocIcon,
   FileFolderIcon,
+  HomeIcon,
   MenuAltIcon,
   PlayingRugbyIcon,
   UserGroupIcon,
@@ -22,4 +23,5 @@ export const icons: Record<string, React.FunctionComponent<React.SVGProps<SVGSVG
   sub: CircleIcon,
   folder: FileFolderIcon,
   collection: CollectionIcon,
+  handbook: HomeIcon,
 }

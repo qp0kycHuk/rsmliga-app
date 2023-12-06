@@ -15,3 +15,7 @@ export const DelegateList = lazy(() =>
 export const SecretaryList = lazy(() =>
   import('./views/Secretary/pages/SecretaryList').then((m) => ({ default: m.SecretaryList }))
 )
+
+export const InstitutionList = lazy(() =>
+  import('./views/Institution/pages/InstitutionList').then((m) => ({ default: m.InstitutionList }))
+)
