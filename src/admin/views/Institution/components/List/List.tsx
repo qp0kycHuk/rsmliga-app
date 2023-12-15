@@ -15,7 +15,7 @@ function ListInner() {
 
   return (
     <>
-      <div className="mb-5 text-xl sm:text-3xl font-bold">Общий список секретарей</div>
+      <div className="mb-5 text-xl sm:text-3xl font-bold">Справочник учебных заведений</div>
       <Filter></Filter>
 
       <ListTable items={items} className={loading ? 'opacity-40 pointer-events-none' : ''} />
