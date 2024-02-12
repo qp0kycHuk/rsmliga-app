@@ -3,16 +3,20 @@ import { ITEMS_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
 import { IFetchParams, IFetchResponse } from './api.types'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
+import { AxiosRequestConfig } from 'axios'
 
 export const KEY = 'institutions'
 
-export async function fetchInstitutions({
-  page = 1,
-  itemsPerPage = ITEMS_PER_PAGE,
-  search = '',
-  conference = '',
-  city = '',
-}: IFetchParams): Promise<IFetchResponse> {
+export async function fetchInstitutions(
+  {
+    page = 1,
+    itemsPerPage = ITEMS_PER_PAGE,
+    search = '',
+    conference = '',
+    city = '',
+  }: IFetchParams,
+  config?: AxiosRequestConfig<any>
+): Promise<IFetchResponse> {
   const { data } = await rootApi.get<IFetchResponse>('/school_handbook.php', {
     params: {
       action: 'getlist',
@@ -22,13 +26,14 @@ export async function fetchInstitutions({
       conference,
       city,
     },
+    ...config,
   })
 
   return data
 }
 
 export function useFetchInstitutions(params: IFetchParams) {
-  return useQuery([KEY, params], fetchInstitutions.bind(null, params), {
+  return useQuery([KEY, params], ({ signal }) => fetchInstitutions(params, { signal }), {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
   })

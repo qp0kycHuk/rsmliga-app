@@ -2,15 +2,19 @@ import { useQuery } from 'react-query'
 import { DELEGATES_PER_PAGE } from '../const'
 import { rootApi } from '@admin/service/api'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
+import { AxiosRequestConfig } from 'axios'
 
-export async function fetchDelegates({
-  page = 1,
-  itemsPerPage = DELEGATES_PER_PAGE,
-  search = '',
-  sezon = '',
-  turnier = '',
-  stage = '',
-}: IFetchParams): Promise<IFetchResponse> {
+export async function fetchDelegates(
+  {
+    page = 1,
+    itemsPerPage = DELEGATES_PER_PAGE,
+    search = '',
+    sezon = '',
+    turnier = '',
+    stage = '',
+  }: IFetchParams,
+  config?: AxiosRequestConfig<any>
+): Promise<IFetchResponse> {
   const { data } = await rootApi.get<IFetchResponse>('/list_of_judges.php', {
     params: {
       action: 'getlist',
@@ -21,13 +25,14 @@ export async function fetchDelegates({
       turnier,
       stage,
     },
+    ...config,
   })
 
   return data
 }
 
 export function useFetchDelegates(params: IFetchParams) {
-  return useQuery(['delegates', params], fetchDelegates.bind(null, params), {
+  return useQuery(['delegates', params], ({ signal }) => fetchDelegates(params, { signal }), {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
   })

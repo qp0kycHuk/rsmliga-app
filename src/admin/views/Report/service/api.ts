@@ -3,18 +3,23 @@ import { REPORT_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
 import { fetchReportDocuments } from './documents'
 import { dateToSQLFormatString } from '@utils/helpers/dates'
-import { fetchReportStatuses } from './statuses'
+import { AxiosRequestConfig } from 'axios'
 
 export const REPORTS_KEY = 'reports'
 
-export async function fetchReports({
-  page = 1,
-  itemsPerPage = REPORT_PER_PAGE,
-  search = '',
-  sezon = '',
-  turnier = '',
-  location = '',
-}: IFetchParams): Promise<IFetchResponse> {
+export async function fetchReports(
+  params: IFetchParams,
+  config?: AxiosRequestConfig<any>
+): Promise<IFetchResponse> {
+  const {
+    page = 1,
+    itemsPerPage = REPORT_PER_PAGE,
+    search = '',
+    sezon = '',
+    turnier = '',
+    location = '',
+    status = '',
+  } = params
   const { data } = await rootApi.get<IFetchResponse>('/reports_handler.php', {
     params: {
       action: 'getlist',
@@ -23,8 +28,10 @@ export async function fetchReports({
       search,
       sezon,
       turnier,
+      status,
       location: location || null,
     },
+    ...config,
   })
 
   return data
@@ -114,7 +121,7 @@ export async function deleteReport(id: EntityId) {
 }
 
 export function useFetchReports(params: IFetchParams) {
-  return useQuery([REPORTS_KEY, params], fetchReports.bind(null, params), {
+  return useQuery([REPORTS_KEY, params], ({ signal }) => fetchReports(params, { signal }), {
     refetchOnWindowFocus: false,
   })
 }

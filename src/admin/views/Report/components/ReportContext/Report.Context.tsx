@@ -13,6 +13,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   // Filters
+  const statusId = searchParams.get('status') || ''
   const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
   const locationId = searchParams.get('location') || ''
@@ -27,6 +28,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
     sezon: seasonId,
     turnier: turnierId,
     location: locationId,
+    status: statusId,
   }
   const { data, isFetching } = useFetchReports(params)
 
@@ -40,7 +42,9 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
       return
     }
 
-    setSearchParams(changeSearchParams([key, value], false, ['sezon', 'turnier', 'location']))
+    setSearchParams(
+      changeSearchParams([key, value], false, ['sezon', 'turnier', 'location', 'status'])
+    )
   }
 
   return (
@@ -52,6 +56,7 @@ export function ReportContextProvider({ children }: React.PropsWithChildren) {
         seasonId,
         turnierId,
         locationId,
+        statusId,
         changeFilterParam,
 
         pages,
@@ -71,6 +76,7 @@ interface IReportContextValue {
   seasonId: EntityId
   turnierId: EntityId
   locationId: EntityId
+  statusId: EntityId
   changeFilterParam(key: FilterKey, value: string): void
 
   pages: number[]
@@ -78,4 +84,4 @@ interface IReportContextValue {
   changePageQuery(newPage: number): void
 }
 
-type FilterKey = 'sezon' | 'turnier' | 'location'
+type FilterKey = 'sezon' | 'turnier' | 'location' | 'status'

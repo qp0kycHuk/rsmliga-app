@@ -16,9 +16,9 @@ export function Item({ item }: IItemProps) {
     <Row className="text-xs sm:text-sm">
       <Cell className="w-56">{item.short_name}</Cell>
       <Cell className="w-[440px]">{item.full_name}</Cell>
-      <Cell>{conferenceData?.entites[item.conference].VALUE}</Cell>
-      <Cell>{citiesData?.entites[item.city].NAME}</Cell>
-      <Cell>{schoolTypesData?.entites[item.type].VALUE}</Cell>
+      <Cell>{conferenceData?.entites[item.conference]?.VALUE}</Cell>
+      <Cell>{citiesData?.entites[item.city]?.NAME}</Cell>
+      <Cell>{schoolTypesData?.entites[item.type]?.VALUE}</Cell>
     </Row>
   )
 }
