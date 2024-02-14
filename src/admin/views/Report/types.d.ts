@@ -5,6 +5,8 @@ interface IReport {
   season: string
   competition_id: EntityId
   competition: string
+  conference_id: EntityId
+  conference: string
   stage_id: EntityId
   stage: string
   area_id: EntityId

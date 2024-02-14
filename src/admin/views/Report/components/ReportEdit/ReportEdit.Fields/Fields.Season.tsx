@@ -9,7 +9,7 @@ export function Season() {
   const { data } = useFetchSeasons()
 
   return report.id ? (
-    <div className="sm:text-lg leading-none p-4 rounded-md bg-gray bg-opacity-40">
+    <div className="sm:text-lg/none leading-none p-4 rounded-md bg-gray bg-opacity-40">
       <span className="font-semibold">Сезон: </span>
       {data?.entites[report.season_id || '']?.NAME}
     </div>

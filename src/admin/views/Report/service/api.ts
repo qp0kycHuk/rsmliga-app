@@ -48,8 +48,10 @@ export async function upsertReport(data: IEditableReport) {
     formData.append('season_id', (data.season_id as string) || '')
     formData.append('competition_id', (data.competition_id as string) || '')
     formData.append('stage_id', (data.stage_id as string) || '')
-    formData.append('area_id', (data.area_id as string) || '')
   }
+
+  formData.append('conference_id', (data.conference_id as string) || '')
+  formData.append('area_id', (data.area_id as string) || '')
 
   formData.append('comment', data.comment || '')
   formData.append('location', data.location || '')

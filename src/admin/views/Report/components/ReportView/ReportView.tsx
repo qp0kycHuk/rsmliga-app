@@ -4,12 +4,17 @@ import { ReportViewDocuments } from './ReportView.Documents'
 import { GeneralImages } from './ReportView.GeneralImages'
 import { TeamImages } from './ReportView.TeamImages'
 import { FieldView } from '@admin/components/FieldView'
+import { useFetchStages } from '@admin/service/stages'
 
 interface IReportViewProps {
   item: IReport
 }
 
 export function ReportView({ item }: IReportViewProps) {
+  const { data } = useFetchStages()
+
+  const isZoneStage = data?.entites[item.stage_id || '']?.XML_ID == 'zon'
+
   return (
     <>
       <div className="mb-8 text-2xl font-bold">Отчет о проведении соревнований</div>
@@ -27,12 +32,21 @@ export function ReportView({ item }: IReportViewProps) {
             {item.stage}
           </div>
         </FieldView>
-        <FieldView className="">
-          <div className="sm:text-lg leading-none">
-            <span className="font-semibold">Город/район: </span>
-            {item.location}
-          </div>
-        </FieldView>
+        {isZoneStage ? (
+          <FieldView className="">
+            <div className="sm:text-lg leading-none">
+              <span className="font-semibold">Конференция: </span>
+              {item.conference}
+            </div>
+          </FieldView>
+        ) : (
+          <FieldView className="">
+            <div className="sm:text-lg leading-none">
+              <span className="font-semibold">Город/район: </span>
+              {item.location}
+            </div>
+          </FieldView>
+        )}
         <FieldView className="">
           <div className="sm:text-lg leading-none">
             <span className="font-semibold">Сезон: </span>
