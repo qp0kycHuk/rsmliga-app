@@ -10,4 +10,8 @@
   @media(min-width:theme('screens.md')) and (max-width: 1457px) {
     padding-left: 67px;
   }
+
+  @media print {
+    padding: 0;
+  }
 }

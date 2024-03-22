@@ -4,6 +4,7 @@ export interface IFetchParams {
   search?: string
   conference?: EntityId
   city?: EntityId
+  schooltype?: EntityId
 }
 
 export interface IFetchResponse extends IListResponse<IInstitution> {

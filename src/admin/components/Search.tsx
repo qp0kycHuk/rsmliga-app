@@ -33,7 +33,7 @@ export function Search({ value, onChange, className, placeholder = 'Поиск' 
   }
 
   return (
-    <form className={classNames(className, 'relative')} onSubmit={searchSubmitHandler}>
+    <form className={classNames(className, 'relative print:hidden')} onSubmit={searchSubmitHandler}>
       <Input
         required
         placeholder={placeholder}

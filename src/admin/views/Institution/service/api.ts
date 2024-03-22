@@ -14,6 +14,7 @@ export async function fetchInstitutions(
     search = '',
     conference = '',
     city = '',
+    schooltype = '',
   }: IFetchParams,
   config?: AxiosRequestConfig<any>
 ): Promise<IFetchResponse> {
@@ -25,6 +26,7 @@ export async function fetchInstitutions(
       search,
       conference,
       city,
+      school_type: schooltype,
     },
     ...config,
   })

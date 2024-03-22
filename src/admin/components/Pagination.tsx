@@ -26,10 +26,13 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
 
   return (
     <>
-      <div className="mt-8"></div>
+      <div className="mt-8 print:hidden"></div>
 
       <div
-        className={classNames(className, 'flex items-center gap-2 justify-center sticky bottom-5')}
+        className={classNames(
+          className,
+          'flex items-center gap-2 justify-center sticky bottom-5 print:hidden'
+        )}
       >
         <Button
           disabled={currentPage <= 1}

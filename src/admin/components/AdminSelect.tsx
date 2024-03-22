@@ -30,7 +30,7 @@ export function AdminSelect({
 
   if (hasTouch) {
     return (
-      <label className={classnames(className, 'flex items-center gap-2')}>
+      <label className={classnames(className, 'flex items-center gap-2 print:hidden')}>
         <div>{label}</div>
         <div className="flex gap-2 items-center">
           <select

@@ -24,7 +24,7 @@ function SideBarInner() {
   return (
     <>
       <div
-        className={classnames(classes.sidebar, 'bg-light-100 dark:bg-dark-100', {
+        className={classnames(classes.sidebar, 'bg-light-100 dark:bg-dark-100 print:hidden', {
           [classes.open]: isOpen,
         })}
       >
@@ -54,7 +54,7 @@ function SideBarInner() {
 
       <div
         onClick={closeSidebar}
-        className={classnames(classes['sidebar-shadow'], {
+        className={classnames('print:hidden', classes['sidebar-shadow'], {
           [classes.open]: isOpen,
         })}
       ></div>

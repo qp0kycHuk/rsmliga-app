@@ -18,6 +18,7 @@ export function InstitutionsContextProvider({ children }: React.PropsWithChildre
   // Filters
   const conferenceId = searchParams.get('conference') || ''
   const cityId = searchParams.get('city') || ''
+  const schooltypeId = searchParams.get('schooltype') || ''
 
   // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
@@ -34,6 +35,7 @@ export function InstitutionsContextProvider({ children }: React.PropsWithChildre
     search: searchQuery,
     conference: conferenceId,
     city: cityId,
+    schooltype: schooltypeId,
   })
 
   const pagesCount = data?.NavPageCount || 0
@@ -49,6 +51,7 @@ export function InstitutionsContextProvider({ children }: React.PropsWithChildre
         items: data?.items || [],
         loading: isFetching,
 
+        schooltypeId,
         conferenceId,
         cityId,
         changeFilterParam,
@@ -70,6 +73,7 @@ interface IInstitutionsContextValue {
   items: IInstitution[]
   loading: boolean
 
+  schooltypeId: EntityId
   conferenceId: EntityId
   cityId: EntityId
   changeFilterParam(key: FilterKey, value: string): void
@@ -82,4 +86,4 @@ interface IInstitutionsContextValue {
   changeSearchQuery(query: string): void
 }
 
-type FilterKey = 'conference' | 'city'
+type FilterKey = 'conference' | 'city' | 'schooltype'

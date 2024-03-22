@@ -1,5 +1,5 @@
 .table {
-  // display: grid;
+  page-break-inside:auto;
   width       : 100%;
   // tbody {
   //   display: contents;
@@ -34,7 +34,8 @@
 }
 
 .row {
-  // display: contents;
+  page-break-inside:avoid; 
+  page-break-after:auto;
 }
 
 .head {
