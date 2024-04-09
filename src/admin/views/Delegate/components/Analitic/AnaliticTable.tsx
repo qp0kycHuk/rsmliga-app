@@ -17,35 +17,41 @@ export function AnaliticTable({ items, className }: IAnaliticTableProps) {
   }
 
   return (
-    <Table className={className}>
-      <Row className="text-xs sm:text-sm font-medium text-center">
-        <Cell head rowSpan={2}>
-          №
-        </Cell>
-        <Cell head rowSpan={2}>
-          ФИО
-        </Cell>
-        <Cell head rowSpan={2}>
-          Дата рождения
-        </Cell>
-        <Cell head rowSpan={2}>
-          Населенный пункт
-        </Cell>
-        <Cell head rowSpan={2}>
-          Категория
-        </Cell>
-        <Cell head colSpan={3}>
-          Роль
-        </Cell>
-        <Cell head rowSpan={2}>
-          Всего <br /> матчей
-        </Cell>
-      </Row>
-      <Row className="text-xs sm:text-sm font-medium text-center">
-        <Cell head>Главный судья</Cell>
-        <Cell head>Помощник судьи</Cell>
-        <Cell head>Делегат</Cell>
-      </Row>
+    <Table
+      className={className}
+      head={
+        <>
+          <Row className="text-xs sm:text-sm font-medium text-center">
+            <Cell head rowSpan={2}>
+              №
+            </Cell>
+            <Cell head rowSpan={2}>
+              ФИО
+            </Cell>
+            <Cell head rowSpan={2}>
+              Дата рождения
+            </Cell>
+            <Cell head rowSpan={2}>
+              Населенный пункт
+            </Cell>
+            <Cell head rowSpan={2}>
+              Категория
+            </Cell>
+            <Cell head colSpan={3}>
+              Роль
+            </Cell>
+            <Cell head rowSpan={2}>
+              Всего <br /> матчей
+            </Cell>
+          </Row>
+          <Row className="text-xs sm:text-sm font-medium text-center">
+            <Cell head>Главный судья</Cell>
+            <Cell head>Помощник судьи</Cell>
+            <Cell head>Делегат</Cell>
+          </Row>
+        </>
+      }
+    >
       {items.map((delegate) => (
         <Row key={delegate.id} className="text-xs sm:text-sm text-center">
           <Cell>{delegate.number}</Cell>

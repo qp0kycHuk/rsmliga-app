@@ -6,4 +6,5 @@ interface IInstitution {
   conference: EntityId
   city: EntityId
   type: EntityId
+  url: null | string
 }
