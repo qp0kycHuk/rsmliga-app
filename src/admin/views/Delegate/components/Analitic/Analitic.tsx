@@ -17,7 +17,7 @@ function AnaliticInner() {
         <div className="text-3xl font-bold">Аналитика по сезонам</div>
         <Button
           variant="text"
-          className="ml-auto gap-2 print:hidden"
+          className="gap-2 ml-auto print:hidden"
           onClick={() => window.print()}
           disabled={loading}
         >
@@ -26,7 +26,7 @@ function AnaliticInner() {
         </Button>
       </div>
 
-      <div className="print:hidden">
+      <div>
         <Filter />
       </div>
 

@@ -30,9 +30,9 @@ export function AdminSelect({
 
   if (hasTouch) {
     return (
-      <label className={classnames(className, 'flex items-center gap-2 print:hidden')}>
+      <label className={classnames(className, 'flex items-center gap-2')}>
         <div>{label}</div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <select
             onChange={(e) => onChange?.(e.target.value)}
             value={value}
