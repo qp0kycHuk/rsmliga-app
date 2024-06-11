@@ -21,7 +21,7 @@ export default {
     require('@qpokychuk/tailwind-button-plugin')({
       withFocusStyles: false,
     }),
-    require('./tailwind.input.js'),
+    require('@qpokychuk/tailwind-input-plugin'),
     require('@qpokychuk/tailwind-ratio-plugin'),
   ],
 }

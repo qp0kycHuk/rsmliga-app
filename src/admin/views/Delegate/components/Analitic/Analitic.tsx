@@ -30,10 +30,7 @@ function AnaliticInner() {
         <Filter />
       </div>
 
-      <AnaliticTable
-        items={delegates}
-        className={loading ? 'opacity-40 pointer-events-none' : ''}
-      />
+      <AnaliticTable items={delegates} className={loading ? 'pointer-events-none' : ''} />
       <Pagination />
     </>
   )

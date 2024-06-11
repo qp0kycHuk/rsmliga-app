@@ -289,6 +289,7 @@
   "files.exclude": {
     ".vscode": true,
     ".github": true,
+    "dist": true,
     ".gitignore": true,
     "node_modules": true,
     "package-lock.json": true,

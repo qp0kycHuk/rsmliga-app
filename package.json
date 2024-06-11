@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "serve": "vite",
+    "dev": "vite",
     "build": "vite build --base=/app/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@qpokychuk/tailwind-button-plugin": "^2.0.2",
+    "@qpokychuk/tailwind-input-plugin": "^1.0.0",
     "@types/convert-layout": "^0.5.1",
     "@types/detect-touch": "^1.1.2",
     "@types/js-cookie": "^3.0.4",
