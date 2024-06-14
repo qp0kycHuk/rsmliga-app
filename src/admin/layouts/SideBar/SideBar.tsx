@@ -7,10 +7,11 @@ import { SideBarButton } from './SideBarButton'
 import { icons } from './SidebarIcons'
 import classes from './SideBar.module.scss'
 import { Theme } from './SideBar.Theme'
+import { CirclePreloader } from '@components/CirclePreloader/CirclePreloader'
 
 function SideBarInner() {
   const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()
-  const { data } = useFetchMenu()
+  const { data, isLoading } = useFetchMenu()
   const flatItems = data?.items?.reduce((acc: IMenuItem[], item) => {
     acc.push(item)
 
@@ -39,6 +40,13 @@ function SideBarInner() {
         <Button as="a" href="/" size="sm" className="w-full md:hidden shrink-0">
           На сайт
         </Button>
+
+        {isLoading && (
+          <div className="p-3 px-2 bg-primary/10 rounded-md mb-1">
+            <CirclePreloader className="text-2xl text-primary mx-auto" />
+          </div>
+        )}
+
         {flatItems?.map((item) => (
           <SideBarButton
             key={item.link + (item.isSub ? '/sub' : '')}

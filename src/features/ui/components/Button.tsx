@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import type { Color, Size } from '../types'
+import type { Size } from '../types'
 import BaseButton, { BaseComponentProps, BaseComponent } from './Base'
 
 const baseClassName = 'btn'

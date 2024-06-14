@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { Button, Tooltip } from '@features/ui'
 import { useSidebarContext } from './SidebarContext'
 import { Link } from 'react-router-dom'
+import { twMerge } from 'tailwind-merge'
 
 interface IProps {
   icon: IconComponent
@@ -24,9 +25,10 @@ export function SideBarButton({ title, icon: Icon, to, sub }: IProps) {
         as={to.includes('/dashboard/') ? Link : 'a'}
         href={to}
         to={to}
-        className={classNames(
-          'justify-start w-full  mb-1 whitespace-nowrap shrink-0',
-          sub ? 'pl-10' : 'pl-3'
+        className={twMerge(
+          'justify-start w-full mb-1 whitespace-nowrap shrink-0',
+          sub ? 'pl-10' : 'pl-3',
+          isOpen ? 'pl-3' : 'pl-2 pr-2 justify-center'
         )}
         variant="none"
       >
