@@ -27,8 +27,8 @@ export function SideBarButton({ title, icon: Icon, to, sub }: IProps) {
         to={to}
         className={twMerge(
           'justify-start w-full mb-1 whitespace-nowrap shrink-0',
-          sub ? 'pl-10' : 'pl-3',
-          isOpen ? 'pl-3' : 'pl-2 pr-2 justify-center'
+          isOpen ? 'pl-3' : 'pl-2.5 pr-2.5 ',
+          sub ? 'pl-10' : ''
         )}
         variant="none"
       >

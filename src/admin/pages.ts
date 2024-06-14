@@ -19,3 +19,7 @@ export const SecretaryList = lazy(() =>
 export const InstitutionList = lazy(() =>
   import('./views/Institution/pages/InstitutionList').then((m) => ({ default: m.InstitutionList }))
 )
+
+export const MatchList = lazy(() =>
+  import('./views/Match/pages/MatchList').then((m) => ({ default: m.MatchList }))
+)

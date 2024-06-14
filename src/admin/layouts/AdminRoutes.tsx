@@ -1,9 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
 import { AdminLayout } from './AdminLayout'
-import { DelegateAnalitic, DelegateList, InstitutionList, Report, SecretaryList } from '../pages'
+import {
+  DelegateAnalitic,
+  DelegateList,
+  InstitutionList,
+  MatchList,
+  Report,
+  SecretaryList,
+} from '../pages'
 import { routes as delegateRoutes } from '../views/Delegate/const'
 import { routes as secretaryRoutes } from '../views/Secretary/const'
 import { routes as institutionRoutes } from '@admin/views/Institution/const'
+import { routes as matchRoutes } from '@admin/views/Match/const'
 // import { ProtocolDialog } from '@admin/views/Match/components/Protocol/Protocol.Dialog'
 
 export function AdminRoutes() {
@@ -16,6 +24,7 @@ export function AdminRoutes() {
           <Route path={delegateRoutes.analitic} element={<DelegateAnalitic />}></Route>
           <Route path={secretaryRoutes.list} element={<SecretaryList />}></Route>
           <Route path={institutionRoutes.list} element={<InstitutionList />}></Route>
+          <Route path={matchRoutes.list} element={<MatchList />}></Route>
         </Route>
       </Routes>
 

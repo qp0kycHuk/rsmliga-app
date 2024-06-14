@@ -8,6 +8,7 @@ import { icons } from './SidebarIcons'
 import classes from './SideBar.module.scss'
 import { Theme } from './SideBar.Theme'
 import { CirclePreloader } from '@components/CirclePreloader/CirclePreloader'
+import { twMerge } from 'tailwind-merge'
 
 function SideBarInner() {
   const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()
@@ -30,7 +31,10 @@ function SideBarInner() {
         })}
       >
         <Button
-          className="justify-start w-full pl-3 mb-1 whitespace-nowrap max-md:hidden"
+          className={twMerge(
+            'justify-start w-full mb-1 whitespace-nowrap max-md:hidden',
+            isOpen ? 'pl-3' : 'pl-2.5 pr-2.5 '
+          )}
           variant="none"
           onClick={toggleSidebar}
         >
