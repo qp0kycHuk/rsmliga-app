@@ -1,4 +1,5 @@
-export interface Protocol {
+interface Protocol {
+  conference_id: EntityId
   competition_id: EntityId
   competition_name: string
   stage_id: EntityId
@@ -27,7 +28,7 @@ interface Score {
   team_2: null | string
 }
 
-export interface TeamInfo {
+interface TeamInfo {
   id: string
   name: string
   color: string
@@ -37,7 +38,7 @@ export interface TeamInfo {
   preds: string[]
 }
 
-export interface Member {
+interface Member {
   id: EntityId
   number: string
   avatar: string

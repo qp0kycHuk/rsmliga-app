@@ -1,6 +1,5 @@
 import { rootApi } from '@admin/service/api'
 import { useQuery } from 'react-query'
-import { Protocol } from './protocol.types'
 
 export async function fetchProtocol({ id = '' }: IParams): Promise<IItemResponse<Protocol>> {
   const { data } = await rootApi.get<IItemResponse<Protocol>>('/protocol_handler.php', {

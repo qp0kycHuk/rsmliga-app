@@ -46,7 +46,7 @@ function SideBarInner() {
         </Button>
 
         {isLoading && (
-          <div className="p-3 px-2 bg-primary/10 rounded-md mb-1">
+          <div className="p-3 px-2 mb-1">
             <CirclePreloader className="text-2xl text-primary mx-auto" />
           </div>
         )}
