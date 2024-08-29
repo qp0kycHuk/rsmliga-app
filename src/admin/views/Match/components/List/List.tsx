@@ -1,15 +1,12 @@
-import { Button, Dialog } from '@features/ui'
-import { MatchContextProvider } from '../Context/Match.Context'
+import { Button } from '@features/ui'
+import { MatchContextProvider, useMatchContext } from '../Context/Match.Context'
 import { Filter } from '../Context/Match.Filter'
 import { Pagination } from '../Context/Match.Pagination'
 import { CirclePlusIcon } from '@assets/icons/fill'
-import { Suspense } from 'react'
-import { ProtocolEdit } from '../ProtocolEdit/ProtocolEdit'
-import { useToggle } from '@hooks/useToggle'
-import { MatchEdit } from '../MatchEdit/MatchEdit'
+import { ListTable } from './List.Table'
 
 function ListInner() {
-  const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(true)
+  const { items } = useMatchContext()
 
   return (
     <>
@@ -21,17 +18,9 @@ function ListInner() {
         </Button>
       </Filter>
 
-      <Pagination />
+      <ListTable items={items} />
 
-      <Dialog
-        isOpen={isEditDialogOpen}
-        onClose={closeEditDialog}
-        className="container max-w-lg px-4 py-10 md:px-8"
-      >
-        <Suspense fallback="Loading...">
-          <MatchEdit onCancel={closeEditDialog} />
-        </Suspense>
-      </Dialog>
+      <Pagination />
     </>
   )
 }

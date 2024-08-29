@@ -3,9 +3,9 @@ interface IStage {
   VALUE: string
   DEF: BitrixBoolean
   SORT: string
-  XML_ID?: EntityId
+  XML_ID?: 'mun' | 'zon' | 'fin' | 'school' | 'base' | 'qual' | 'select' | 'elite'
   TMP_ID?: EntityId
-  EXTERNAL_ID?: EntityId
+  EXTERNAL_ID?: 'mun' | 'zon' | 'fin' | 'school' | 'base' | 'qual' | 'select' | 'elite'
   PROPERTY_NAME: string
   PROPERTY_CODE: string
   PROPERTY_SORT: string

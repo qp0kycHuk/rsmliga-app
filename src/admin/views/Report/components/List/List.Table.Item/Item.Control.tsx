@@ -10,9 +10,10 @@ import { useToggle } from '@hooks/useToggle'
 import { id } from '@utils/helpers/id'
 import { Suspense } from 'react'
 import { useQueryClient } from 'react-query'
-import { toast } from 'react-toastify'
+
 import { ReportEdit } from '../../ReportEdit/ReportEdit'
 import { ReportView } from '../../ReportView/ReportView'
+import { toast } from '@lib/Toast'
 
 export function Control({ item }: IProps) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)

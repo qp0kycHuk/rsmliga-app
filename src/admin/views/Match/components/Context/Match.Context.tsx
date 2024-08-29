@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom'
 import { createContext, useContext } from 'react'
 import { MATCH_PER_PAGE } from '../../const'
 import { useFetchDelegates } from '@admin/views/Delegate/service/api'
+import { usefetchMatches } from '../../service/api'
 
 const MatchContext = createContext<IMatchContextValue>({} as IMatchContextValue)
 export const useMatchContext = () => useContext(MatchContext)
@@ -20,7 +21,7 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const [currentPage, changePageQuery] = usePagesQuery()
 
   // Fetching TODO
-  const { data, isLoading, isFetching } = useFetchDelegates({
+  const { data, isLoading, isFetching } = usefetchMatches({
     page: currentPage,
     itemsPerPage: MATCH_PER_PAGE,
     sezon: seasonId,
@@ -30,7 +31,6 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
 
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
-  console.log(pages)
 
   function changeFilterParam(key: FilterKey, value: string) {
     setSearchParams(changeSearchParams([key, value], true))
@@ -57,7 +57,7 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
 }
 
 interface IMatchContextValue {
-  items: any[]
+  items: Match[]
   loading: boolean
 
   turnierId: EntityId

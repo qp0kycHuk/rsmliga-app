@@ -1,32 +1,36 @@
 import { Select } from '@features/ui'
-import { useFetchTournaments } from '@admin/service/tournaments'
 import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
+import { useFetchConference } from '@admin/service/conference'
 
-export function Competition() {
+export function Conference({ name = 'conference' }: Props) {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchTournaments()
+  const { data } = useFetchConference()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Соревнование</div>
+      <div className="text-sm font-semibold mb-2">Конференция</div>
       <Select
-        placeholder="Соревнование:"
+        placeholder="Конференция:"
         required
-        value={item?.competition || ''}
+        value={item?.[name] || ''}
         onChange={(event) => {
           update({
-            competition: event.target.value,
+            [name]: event.target.value,
           })
         }}
       >
         {data?.items.map((item) => (
           <option key={id(item)} value={id(item)}>
-            {item.NAME}
+            {item.VALUE}
           </option>
         ))}
       </Select>
     </div>
   )
+}
+
+type Props = {
+  name?: 'conf1' | 'conf2' | 'conference'
 }

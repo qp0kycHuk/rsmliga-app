@@ -9,8 +9,20 @@
 @import "@fancyapps/ui/dist/fancybox/fancybox.css";
 @import '@ui/index.scss';
 
+@function cl($hex) {
+  @return red($hex),
+  green($hex),
+  blue($hex);
+}
+
 :root {
-  --font-base: 'SF Pro Display', Arial, Helvetica, sans-serif;
+  --default-rgb: #{cl(#181818)};
+  --font-base  : 'SF Pro Display', Arial, Helvetica, sans-serif;
+}
+
+.dark {
+  --default-rgb: #fff;
+
 }
 
 body {

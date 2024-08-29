@@ -1,29 +1,29 @@
 import { Select } from '@features/ui'
-import { useFetchTournaments } from '@admin/service/tournaments'
 import { id } from '@utils/helpers/id'
+import { useFetchPhases } from '@admin/service/phase'
 import { useMatchEditContext } from '../MatchEdit.Context'
 
-export function Competition() {
+export function Phase() {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchTournaments()
+  const { data } = useFetchPhases()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Соревнование</div>
+      <div className="text-sm font-semibold mb-2">Стадия</div>
       <Select
-        placeholder="Соревнование:"
+        placeholder="Стадия:"
         required
-        value={item?.competition || ''}
+        value={item?.phase_id || ''}
         onChange={(event) => {
           update({
-            competition: event.target.value,
+            phase_id: event.target.value,
           })
         }}
       >
         {data?.items.map((item) => (
           <option key={id(item)} value={id(item)}>
-            {item.NAME}
+            {item.VALUE}
           </option>
         ))}
       </Select>

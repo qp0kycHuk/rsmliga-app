@@ -10,7 +10,7 @@ export function Stage() {
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Соревнование</div>
+      <div className="text-sm font-semibold mb-2">Этап</div>
       <Select
         placeholder="Этап:"
         required

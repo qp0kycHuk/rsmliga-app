@@ -1,32 +1,32 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
+import { useFetchTeams } from '@admin/service/teams'
 import { useMatchEditContext } from '../MatchEdit.Context'
-import { useFetchCities } from '@admin/service/cities'
 
-export function Area() {
+export function Team() {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchCities()
+  const { data } = useFetchTeams()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Город</div>
+      <div className="text-sm font-semibold mb-2">Команда {item?.team_1}</div>
       <Select
-        placeholder="Город:"
+        placeholder="Команда:"
         required
-        value={item?.area_id || ''}
+        value={item?.team_1 || ''}
         onChange={(event) => {
           update({
-            area_id: event.target.value,
+            team_1: event.target.value,
           })
         }}
       >
         {data?.items.map((item) => (
           <option key={id(item)} value={id(item)}>
-            {item.NAME}
+            {item.VALUE}
           </option>
         ))}
-      </Select>{' '}
+      </Select>
     </div>
   )
 }

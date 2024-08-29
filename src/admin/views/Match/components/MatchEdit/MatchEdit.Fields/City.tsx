@@ -1,23 +1,23 @@
 import { Select } from '@features/ui'
-import { useFetchTournaments } from '@admin/service/tournaments'
 import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
+import { useFetchCities } from '@admin/service/cities'
 
-export function Competition() {
+export function City() {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchTournaments()
+  const { data } = useFetchCities()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Соревнование</div>
+      <div className="text-sm font-semibold mb-2">Город</div>
       <Select
-        placeholder="Соревнование:"
+        placeholder="Город:"
         required
-        value={item?.competition || ''}
+        value={item?.city || ''}
         onChange={(event) => {
           update({
-            competition: event.target.value,
+            city: event.target.value,
           })
         }}
       >

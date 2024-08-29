@@ -9,10 +9,10 @@ export function Number() {
       <div className="text-sm font-semibold mb-2">Номер матча(Протокола)</div>
       <Field
         inputProps={{
-          value: item?.location || '',
+          value: item?.match_number || '',
           onChange: (event) => {
             update({
-              location: event.target.value,
+              match_number: event.target.value,
             })
           },
         }}

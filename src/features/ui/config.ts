@@ -10,6 +10,7 @@ export const colors = {
   red: '#d63031',
   gray: '#DDD',
   ['gray-light']: '#F5F7FB',
+  default: withOpacity('--default-rgb'),
 
   light: {
     100: '#FFFFFF',
@@ -60,4 +61,14 @@ export const ui = {
   screens,
   container,
   zIndex,
+}
+
+function withOpacity(variableName: string) {
+  return ({ opacityValue }: { opacityValue: number }) => {
+    if (opacityValue !== undefined) {
+      return 'rgba(var(' + variableName + '), ' + opacityValue + ')'
+    }
+
+    return 'rgba(var(' + variableName + '), 1)'
+  }
 }

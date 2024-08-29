@@ -1,5 +1,5 @@
 interface MatchContextProps extends React.PropsWithChildren {
-  item?: IReport
+  item?: MatchDetail
   onCancel?(): void
 }
 
@@ -10,7 +10,7 @@ interface MatchContextValue extends IEditContextValue {
   submit(additionallyData?: EditableMatch): void
 }
 
-interface EditableMatch extends Partial<Match> {
+interface EditableMatch extends Partial<MatchDetail> {
   file_del?: EntityId[]
   newStatus?: string
 }
