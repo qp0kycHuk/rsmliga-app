@@ -3,21 +3,21 @@ import { id } from '@utils/helpers/id'
 import { useFetchTeams } from '@admin/service/teams'
 import { useMatchEditContext } from '../MatchEdit.Context'
 
-export function Team() {
+export function Team({ name, city }: Props) {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchTeams()
+  const { data } = useFetchTeams({ city })
 
   return (
-    <div>
-      <div className="text-sm font-semibold mb-2">Команда {item?.team_1}</div>
+    <label className="block">
+      <div className="text-sm font-semibold mb-2">Команда</div>
       <Select
         placeholder="Команда:"
         required
-        value={item?.team_1 || ''}
+        value={item?.[name] || ''}
         onChange={(event) => {
           update({
-            team_1: event.target.value,
+            [name]: event.target.value,
           })
         }}
       >
@@ -27,6 +27,11 @@ export function Team() {
           </option>
         ))}
       </Select>
-    </div>
+    </label>
   )
+}
+
+type Props = {
+  name: 'team_1' | 'team_2'
+  city?: EntityId
 }

@@ -1,9 +1,10 @@
 interface ICity {
   ID: string
-  NAME: string
-  SECTION: string
-  CONFERENCE: string
-  AREA?: string
+  VALUE: string
 }
 
 type ICityFetchResponse = IListResponse<ICity> & IEntitesAdapter<ICity>
+
+type CityFetchPayload = {
+  conference?: EntityId
+}

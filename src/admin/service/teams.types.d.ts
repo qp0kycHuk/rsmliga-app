@@ -1,5 +1,5 @@
 type FetchTeamsPayload = {
-  city: EntityId
+  city?: EntityId
 }
 
 type Team = {

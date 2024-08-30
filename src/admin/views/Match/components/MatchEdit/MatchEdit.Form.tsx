@@ -1,4 +1,4 @@
-import { getIsXMLId, useFetchStages } from '@admin/service/stages'
+import { STAGE_XML_IDS, useFetchStages } from '@admin/service/stages'
 import { useMatchEditContext } from './MatchEdit.Context'
 import { Competition } from './MatchEdit.Fields/Competition'
 import { Date } from './MatchEdit.Fields/Date'
@@ -11,19 +11,42 @@ import { City } from './MatchEdit.Fields/City'
 import { Conference } from './MatchEdit.Fields/Conference'
 import { Phase } from './MatchEdit.Fields/Phase'
 import { Team } from './MatchEdit.Fields/Team'
+import { Judge } from './MatchEdit.Fields/Judge'
+import { Status } from './MatchEdit.Fields/Status'
+import { getIsXMLId } from '@utils/helpers/getIsXMLId'
+import { PHASE_XML_IDS, useFetchPhases } from '@admin/service/phase'
+import { Division } from './MatchEdit.Fields/Division'
+import { Tour } from './MatchEdit.Fields/Tour'
+import { Group } from './MatchEdit.Fields/Group'
+import { SemiFinal } from './MatchEdit.Fields/Group.SemiFinal'
+import { Final } from './MatchEdit.Fields/Group.Final'
 
 export function MatchEditForm() {
   const { item } = useMatchEditContext()
 
   const { data: stagesData } = useFetchStages()
+  const { data: phasesData } = useFetchPhases()
+
   const currentStage = item.stage_id ? stagesData?.entites[item.stage_id] : null
+  const currentPhase = item.phase_id ? phasesData?.entites[item.phase_id] : null
 
-  const isXmlId = getIsXMLId(currentStage?.XML_ID || '')
+  const isStage = getIsXMLId(STAGE_XML_IDS, currentStage?.XML_ID || '')
+  const isPhase = getIsXMLId(PHASE_XML_IDS, currentPhase?.XML_ID || '')
 
-  const showSingleCity = isXmlId.mun || isXmlId.school || isXmlId.qual || isXmlId.elite
-  const showSingleConference = isXmlId.zon
-  const showSeparateCity = isXmlId.zon || isXmlId.fin || isXmlId.base
-  const showSeparateConference = isXmlId.fin || isXmlId.base
+  const showSingleCity = isStage.mun || isStage.school || isStage.qual || isStage.elite
+  const showSingleConference = isStage.zon
+  const showSeparateCity = isStage.zon || isStage.fin || isStage.base
+  const showSeparateConference = isStage.fin || isStage.base
+  const showDivisions = isStage.select
+  const showTours = isStage.elite
+
+  const conf1 =
+    (showSeparateConference && item.conf1) || (showSingleConference && item.conference) || undefined
+  const conf2 =
+    (showSeparateConference && item.conf2) || (showSingleConference && item.conference) || undefined
+
+  const city1 = (showSeparateCity && item.city1) || (showSingleCity && item.city) || undefined
+  const city2 = (showSeparateCity && item.city2) || (showSingleCity && item.city) || undefined
 
   return (
     <div>
@@ -32,11 +55,16 @@ export function MatchEditForm() {
       <div className="flex flex-col gap-4">
         <Competition />
         <Stage />
-        {showSingleCity && <City />}
+        {showDivisions && <Division />}
+        {showTours && <Tour />}
         {showSingleConference && <Conference />}
+        {showSingleCity && <City />}
 
         <Number />
         <Phase />
+        {isPhase.group && <Group />}
+        {isPhase.semifinal && <SemiFinal />}
+        {isPhase.final && <Final />}
 
         {showSeparateConference && (
           <div className="grid grid-cols-2 gap-3">
@@ -47,20 +75,25 @@ export function MatchEditForm() {
 
         {showSeparateCity && (
           <div className="grid grid-cols-2 gap-3">
-            <City />
-            <City />
+            <City name="city1" conference={conf1} />
+            <City name="city2" conference={conf2} />
           </div>
         )}
 
         <div className="grid grid-cols-2 gap-3">
-          <Team />
-          <Team />
+          <Team name="team_1" city={city1} />
+          <Team name="team_2" city={city2} />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <Date />
           <Time />
         </div>
+        <Judge />
+        <Judge name="delegate" label="Делегат" />
+        <Judge name="assistant_1" label="Помощник 1" />
+        <Judge name="assistant_2" label="Помощник 2" />
         <Location />
+        <Status />
         <Video />
       </div>
     </div>

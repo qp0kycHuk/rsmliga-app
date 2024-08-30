@@ -1,23 +1,23 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
+import { useFetchGroupFinal } from '@admin/service/groups'
 import { useMatchEditContext } from '../MatchEdit.Context'
-import { useFetchCities } from '@admin/service/cities'
 
-export function City({ name = 'city', conference }: Props) {
+export function Final() {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchCities({ conference })
+  const { data } = useFetchGroupFinal()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Город</div>
+      <div className="text-sm font-semibold mb-2">Финал</div>
       <Select
-        placeholder="Город:"
+        placeholder="Финал:"
         required
-        value={item?.[name] || ''}
+        value={item?.group_id || ''}
         onChange={(event) => {
           update({
-            [name]: event.target.value,
+            group_id: event.target.value,
           })
         }}
       >
@@ -29,9 +29,4 @@ export function City({ name = 'city', conference }: Props) {
       </Select>
     </div>
   )
-}
-
-type Props = {
-  name?: 'city1' | 'city2' | 'city'
-  conference?: EntityId
 }

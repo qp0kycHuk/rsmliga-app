@@ -29,8 +29,11 @@ type MatchDetail = Match & {
   conf1: EntityId
   conf2: EntityId
   conference: EntityId
+  division: EntityId
+  tour: EntityId
   final: string
   group: string
+  group_id: EntityId
   group_pf: string
   playoff: string
   stream_link: string

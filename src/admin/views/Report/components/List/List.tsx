@@ -30,7 +30,7 @@ function ListInner() {
           </Button>
         )}
       </Filter>
-      <ListTable items={items} className={loading ? 'pointer-events-none' : ''} />
+      <ListTable items={items} className={loading ? 'pointer-events-none opacity-40' : ''} />
 
       <Pagination />
 

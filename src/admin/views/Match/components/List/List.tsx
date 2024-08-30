@@ -6,7 +6,7 @@ import { CirclePlusIcon } from '@assets/icons/fill'
 import { ListTable } from './List.Table'
 
 function ListInner() {
-  const { items } = useMatchContext()
+  const { items, loading } = useMatchContext()
 
   return (
     <>
@@ -18,7 +18,7 @@ function ListInner() {
         </Button>
       </Filter>
 
-      <ListTable items={items} />
+      <ListTable items={items} className={loading ? 'pointer-events-none opacity-40' : ''} />
 
       <Pagination />
     </>

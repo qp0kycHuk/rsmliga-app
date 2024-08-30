@@ -1,23 +1,23 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
-import { useFetchCities } from '@admin/service/cities'
+import { useFetchStatus } from '@admin/views/Match/service/status'
 
-export function City({ name = 'city', conference }: Props) {
+export function Status() {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchCities({ conference })
+  const { data } = useFetchStatus()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Город</div>
+      <div className="text-sm font-semibold mb-2">Статус</div>
       <Select
-        placeholder="Город:"
+        placeholder="Статус"
         required
-        value={item?.[name] || ''}
+        value={item?.status || ''}
         onChange={(event) => {
           update({
-            [name]: event.target.value,
+            status: event.target.value,
           })
         }}
       >
@@ -29,9 +29,4 @@ export function City({ name = 'city', conference }: Props) {
       </Select>
     </div>
   )
-}
-
-type Props = {
-  name?: 'city1' | 'city2' | 'city'
-  conference?: EntityId
 }

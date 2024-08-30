@@ -1,6 +1,6 @@
 import { createFetchEntitiesService } from './api'
 
-export const [fetchCities, useFetchCities] = createFetchEntitiesService<ICity>(
+export const [fetchCities, useFetchCities] = createFetchEntitiesService<ICity, CityFetchPayload>(
   '/get_fields.php',
   'cities',
   {

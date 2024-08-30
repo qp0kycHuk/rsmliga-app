@@ -5,16 +5,18 @@ export function Location() {
   const { item, update } = useMatchEditContext()
 
   return (
-    <Field
-      placeholder="Место проведения:"
-      inputProps={{
-        value: item?.location || '',
-        onChange: (event) => {
-          update({
-            location: event.target.value,
-          })
-        },
-      }}
-    />
+    <label className="block">
+      <div className="text-sm font-semibold mb-2">Место проведения</div>
+      <Field
+        inputProps={{
+          value: item?.location || '',
+          onChange: (event) => {
+            update({
+              location: event.target.value,
+            })
+          },
+        }}
+      />
+    </label>
   )
 }

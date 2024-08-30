@@ -5,16 +5,18 @@ export function Video() {
   const { item, update } = useMatchEditContext()
 
   return (
-    <Field
-      placeholder="Ссылка на прямой эфир"
-      inputProps={{
-        value: item?.video || '',
-        onChange: (event) => {
-          update({
-            video: event.target.value,
-          })
-        },
-      }}
-    />
+    <label className="block">
+      <div className="text-sm font-semibold mb-2">Ссылка на прямой эфир</div>
+      <Field
+        inputProps={{
+          value: item?.video || '',
+          onChange: (event) => {
+            update({
+              video: event.target.value,
+            })
+          },
+        }}
+      />
+    </label>
   )
 }

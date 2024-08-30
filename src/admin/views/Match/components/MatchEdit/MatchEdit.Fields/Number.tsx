@@ -10,6 +10,7 @@ export function Number() {
       <Field
         inputProps={{
           value: item?.match_number || '',
+          type: 'number',
           onChange: (event) => {
             update({
               match_number: event.target.value,

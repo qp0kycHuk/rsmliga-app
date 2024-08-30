@@ -1,18 +1,18 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
+import { useFetchJudges } from '@admin/service/judges'
 import { useMatchEditContext } from '../MatchEdit.Context'
-import { useFetchCities } from '@admin/service/cities'
 
-export function City({ name = 'city', conference }: Props) {
+export function Judge({ name = 'judge', label = 'Судья' }: Props) {
   const { item, update } = useMatchEditContext()
 
-  const { data } = useFetchCities({ conference })
+  const { data } = useFetchJudges()
 
   return (
     <div>
-      <div className="text-sm font-semibold mb-2">Город</div>
+      <div className="text-sm font-semibold mb-2">{label}</div>
       <Select
-        placeholder="Город:"
+        placeholder={label}
         required
         value={item?.[name] || ''}
         onChange={(event) => {
@@ -32,6 +32,6 @@ export function City({ name = 'city', conference }: Props) {
 }
 
 type Props = {
-  name?: 'city1' | 'city2' | 'city'
-  conference?: EntityId
+  name?: 'judge' | 'delegate' | 'assistant_1' | 'assistant_2'
+  label?: string
 }

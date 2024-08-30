@@ -20,14 +20,3 @@ export const STAGE_XML_IDS = {
   base: 'base',
   select: 'select',
 }
-
-export function getIsXMLId(id: string) {
-  return Object.keys(STAGE_XML_IDS).reduce<Record<keyof typeof STAGE_XML_IDS, boolean>>(
-    (acc, current) => {
-      const key = current as keyof typeof STAGE_XML_IDS
-      acc[key] = id === STAGE_XML_IDS[key]
-      return acc
-    },
-    {} as Record<keyof typeof STAGE_XML_IDS, boolean>
-  )
-}

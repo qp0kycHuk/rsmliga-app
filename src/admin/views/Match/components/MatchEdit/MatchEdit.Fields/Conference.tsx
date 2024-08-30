@@ -1,7 +1,7 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
-import { useFetchConference } from '@admin/service/conference'
+import { useFetchConference } from '@admin/views/Match/service/conference'
 
 export function Conference({ name = 'conference' }: Props) {
   const { item, update } = useMatchEditContext()
@@ -33,4 +33,5 @@ export function Conference({ name = 'conference' }: Props) {
 
 type Props = {
   name?: 'conf1' | 'conf2' | 'conference'
+  // clearKeys?: string[] TODO
 }
