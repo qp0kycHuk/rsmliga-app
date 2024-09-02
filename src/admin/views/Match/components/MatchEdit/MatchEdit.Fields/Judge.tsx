@@ -13,7 +13,6 @@ export function Judge({ name = 'judge', label = 'Судья' }: Props) {
       <div className="text-sm font-semibold mb-2">{label}</div>
       <Select
         placeholder={label}
-        required
         value={item?.[name] || ''}
         onChange={(event) => {
           update({

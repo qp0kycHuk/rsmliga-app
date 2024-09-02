@@ -1,0 +1,38 @@
+.lk-tabs {
+  display      : flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding-left : 24px;
+  background   : theme('colors.white');
+  border-radius: 12px;
+
+  @media(max-width: 729.98px) {
+    width        : calc(100% + 30px);
+    margin-left  : -15px;
+    padding-right: 15px;
+    padding-left : 15px;
+    border-radius: 0
+  }
+
+  &-item {
+    padding-top   : 12px;
+    padding-bottom: 12px;
+    position      : relative;
+    font-size: 14px;
+
+    &.active {
+      font-weight: 600;
+    }
+
+    &.active:before {
+      content      : "";
+      position     : absolute;
+      bottom       : 0;
+      left         : 0;
+      width        : 100%;
+      height       : 3px;
+      background   : theme('colors.primary');
+      border-radius: 2px 2px 0 0
+    }
+  }
+}

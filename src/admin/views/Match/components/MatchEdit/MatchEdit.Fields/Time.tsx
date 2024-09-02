@@ -11,6 +11,7 @@ export function Time() {
         inputProps={{
           type: 'time',
           value: item?.time || '',
+          required: true,
           onChange: (event) => {
             update({
               time: event.target.value,

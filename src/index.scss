@@ -8,6 +8,7 @@
 @import 'react-toastify/dist/ReactToastify.css';
 @import "@fancyapps/ui/dist/fancybox/fancybox.css";
 @import '@ui/index.scss';
+@import '@assets/style.scss';
 
 @function cl($hex) {
   @return red($hex),

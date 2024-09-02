@@ -12,6 +12,7 @@ export function Team({ name, city }: Props) {
     <label className="block">
       <div className="text-sm font-semibold mb-2">Команда</div>
       <Select
+        disabled={!city}
         placeholder="Команда:"
         required
         value={item?.[name] || ''}

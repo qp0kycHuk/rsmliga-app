@@ -13,6 +13,7 @@ interface Props {
 
 export function MatchTableItem({ item }: Props) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
+
   return (
     <Row className="text-xs sm:text-sm">
       <Cell>{item.number}</Cell>

@@ -10,6 +10,7 @@ export function Location() {
       <Field
         inputProps={{
           value: item?.location || '',
+          required: true,
           onChange: (event) => {
             update({
               location: event.target.value,

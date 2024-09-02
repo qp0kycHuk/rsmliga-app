@@ -3,10 +3,16 @@ import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
 import { useFetchConference } from '@admin/views/Match/service/conference'
 
-export function Conference({ name = 'conference' }: Props) {
+export function Conference({ name = 'conference', clearKeys = [] }: Props) {
   const { item, update } = useMatchEditContext()
 
   const { data } = useFetchConference()
+
+  const clear: Record<string, undefined> = {}
+
+  for (const key of clearKeys) {
+    clear[key] = undefined
+  }
 
   return (
     <div>
@@ -18,6 +24,7 @@ export function Conference({ name = 'conference' }: Props) {
         onChange={(event) => {
           update({
             [name]: event.target.value,
+            ...clear,
           })
         }}
       >
@@ -33,5 +40,5 @@ export function Conference({ name = 'conference' }: Props) {
 
 type Props = {
   name?: 'conf1' | 'conf2' | 'conference'
-  // clearKeys?: string[] TODO
+  clearKeys?: string[]
 }

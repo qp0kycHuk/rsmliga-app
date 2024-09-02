@@ -1,18 +1,28 @@
-import { Button } from '@features/ui'
+import { Button, Dialog } from '@features/ui'
 import { MatchContextProvider, useMatchContext } from '../Context/Match.Context'
 import { Filter } from '../Context/Match.Filter'
 import { Pagination } from '../Context/Match.Pagination'
 import { CirclePlusIcon } from '@assets/icons/fill'
 import { ListTable } from './List.Table'
+import { Tabs } from './List.Tabs'
+import { Suspense } from 'react'
+import { MatchEdit } from '../MatchEdit/MatchEdit'
+import { useToggle } from '@hooks/useToggle'
 
 function ListInner() {
   const { items, loading } = useMatchContext()
+  const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
 
   return (
     <>
       <div className="mb-5 text-xl md:text-3xl font-bold">Матчи </div>
+      <Tabs />
       <Filter>
-        <Button variant="text" className="gap-3 font-semibold max-lg:mr-auto">
+        <Button
+          variant="text"
+          className="gap-3 font-semibold max-lg:mr-auto"
+          onClick={openEditDialog}
+        >
           <CirclePlusIcon className="text-2xl" />
           Добавить матч
         </Button>
@@ -21,6 +31,16 @@ function ListInner() {
       <ListTable items={items} className={loading ? 'pointer-events-none opacity-40' : ''} />
 
       <Pagination />
+
+      <Dialog
+        isOpen={isEditDialogOpen}
+        onClose={closeEditDialog}
+        className="container max-w-xl px-4 py-10 md:px-8"
+      >
+        <Suspense fallback="Loading...">
+          <MatchEdit onCancel={closeEditDialog} />
+        </Suspense>
+      </Dialog>
     </>
   )
 }

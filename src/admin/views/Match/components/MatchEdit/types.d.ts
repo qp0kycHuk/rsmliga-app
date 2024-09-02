@@ -7,7 +7,7 @@ interface MatchContextValue extends IEditContextValue {
   item: EditableMatch
   update(updated: DispatchEditableEntity<EditableMatch>): void
   onCancel?(): void
-  submit(additionallyData?: EditableMatch): void
+  // submit(additionallyData?: EditableMatch): void
 }
 
 interface EditableMatch extends Partial<MatchDetail> {

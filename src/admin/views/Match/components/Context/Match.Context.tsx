@@ -13,9 +13,9 @@ export const useMatchContext = () => useContext(MatchContext)
 export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
   // Filters
-  const seasonId = searchParams.get('sezon') || ''
   const turnierId = searchParams.get('turnier') || ''
   const stageId = searchParams.get('stage') || ''
+  const tabId = (searchParams.get('tab') || 'A') as 'A' | 'P' | 'F'
 
   // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
@@ -24,9 +24,9 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const { data, isLoading, isFetching } = usefetchMatches({
     page: currentPage,
     itemsPerPage: MATCH_PER_PAGE,
-    sezon: seasonId,
     turnier: turnierId,
     stage: stageId,
+    tab: tabId,
   })
 
   const pagesCount = data?.NavPageCount || 0
@@ -44,6 +44,7 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
 
         turnierId,
         stageId,
+        tabId,
         changeFilterParam,
 
         pages,
@@ -62,6 +63,7 @@ interface IMatchContextValue {
 
   turnierId: EntityId
   stageId: EntityId
+  tabId: 'A' | 'P' | 'F'
   changeFilterParam(key: FilterKey, value: string): void
 
   pages: number[]
@@ -69,4 +71,4 @@ interface IMatchContextValue {
   changePageQuery(newPage: number): void
 }
 
-type FilterKey = 'turnier' | 'stage'
+type FilterKey = 'turnier' | 'stage' | 'tab'

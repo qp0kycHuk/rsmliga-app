@@ -3,10 +3,14 @@ import { id } from '@utils/helpers/id'
 import { useMatchEditContext } from '../MatchEdit.Context'
 import { useFetchCities } from '@admin/service/cities'
 
-export function City({ name = 'city', conference }: Props) {
+export function City({ name = 'city', conference, clearKeys = [] }: Props) {
   const { item, update } = useMatchEditContext()
-
   const { data } = useFetchCities({ conference })
+  const clear: Record<string, undefined> = {}
+
+  for (const key of clearKeys) {
+    clear[key] = undefined
+  }
 
   return (
     <div>
@@ -18,6 +22,7 @@ export function City({ name = 'city', conference }: Props) {
         onChange={(event) => {
           update({
             [name]: event.target.value,
+            ...clear,
           })
         }}
       >
@@ -34,4 +39,5 @@ export function City({ name = 'city', conference }: Props) {
 type Props = {
   name?: 'city1' | 'city2' | 'city'
   conference?: EntityId
+  clearKeys?: string[]
 }

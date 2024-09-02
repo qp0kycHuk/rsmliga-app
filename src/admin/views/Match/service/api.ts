@@ -2,9 +2,18 @@ import { useQuery } from 'react-query'
 import { MATCH_PER_PAGE } from '../const'
 import { rootApi } from '@admin/service/api'
 import { AxiosRequestConfig } from 'axios'
+import { dateToSQLFormatString } from '@utils/helpers/dates'
+
+export const MATCHES_KEY = 'matches'
 
 export async function fetchMatches(
-  { page = 1, itemsPerPage = MATCH_PER_PAGE, turnier = '', stage = '' }: MatchFetchParams,
+  {
+    page = 1,
+    itemsPerPage = MATCH_PER_PAGE,
+    turnier = '',
+    stage = '',
+    tab = 'A',
+  }: MatchFetchParams,
   config?: AxiosRequestConfig<any>
 ): Promise<MatchFetchResponse> {
   const { data } = await rootApi.get<MatchFetchResponse>('/manager/matches/matches_handler.php', {
@@ -14,7 +23,7 @@ export async function fetchMatches(
       nPageSize: itemsPerPage,
       competition: turnier,
       stage,
-      tab: 'P', // TODO
+      tab,
     },
     ...config,
   })
@@ -23,7 +32,7 @@ export async function fetchMatches(
 }
 
 export function usefetchMatches(params: MatchFetchParams) {
-  return useQuery(['matches', params], ({ signal }) => fetchMatches(params, { signal }), {
+  return useQuery([MATCHES_KEY, params], ({ signal }) => fetchMatches(params, { signal }), {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
   })
@@ -50,4 +59,39 @@ export function usefetchMatchById(id?: EntityId) {
     refetchOnWindowFocus: false,
     keepPreviousData: true,
   })
+}
+
+export async function upsertMatch(data: EditableMatch) {
+  const formData = new FormData()
+
+  for (const [key, value] of Object.entries(data)) {
+    if (key === 'date') {
+      formData.append(key, dateToSQLFormatString(new Date(value)) || '')
+      continue
+    }
+
+    formData.append(key, value)
+  }
+
+  if (data.id) {
+    return await rootApi.post<{ id: EntityId; error?: string }>(
+      '/manager/matches/matches_handler.php',
+      formData,
+      {
+        params: {
+          action: 'edit_match',
+        },
+      }
+    )
+  } else {
+    return await rootApi.post<{ id: EntityId; error?: string }>(
+      '/manager/matches/matches_handler.php',
+      formData,
+      {
+        params: {
+          action: 'add_match',
+        },
+      }
+    )
+  }
 }

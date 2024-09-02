@@ -14,10 +14,10 @@ export function Phase() {
       <Select
         placeholder="Стадия:"
         required
-        value={item?.phase_id || ''}
+        value={item?.playoff || ''}
         onChange={(event) => {
           update({
-            phase_id: event.target.value,
+            playoff: event.target.value,
           })
         }}
       >

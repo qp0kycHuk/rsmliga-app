@@ -1,5 +1,6 @@
 import { Table, Row, Cell } from '@admin/index'
 import { MatchTableItem } from './List.Table.Item/Item'
+import { Empty } from '@admin/components/Empty'
 
 interface Props {
   items: Match[]
@@ -7,6 +8,10 @@ interface Props {
 }
 
 export function ListTable({ items, className }: Props) {
+  if (!items || items.length == 0) {
+    return <Empty className={className} />
+  }
+
   return (
     <Table className={className}>
       <Row className="text-xs  font-medium">

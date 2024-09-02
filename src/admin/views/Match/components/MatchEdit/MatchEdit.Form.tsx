@@ -20,15 +20,16 @@ import { Tour } from './MatchEdit.Fields/Tour'
 import { Group } from './MatchEdit.Fields/Group'
 import { SemiFinal } from './MatchEdit.Fields/Group.SemiFinal'
 import { Final } from './MatchEdit.Fields/Group.Final'
+import { Button } from '@features/ui'
 
 export function MatchEditForm() {
-  const { item } = useMatchEditContext()
+  const { item, submit, loading } = useMatchEditContext()
 
   const { data: stagesData } = useFetchStages()
   const { data: phasesData } = useFetchPhases()
 
   const currentStage = item.stage_id ? stagesData?.entites[item.stage_id] : null
-  const currentPhase = item.phase_id ? phasesData?.entites[item.phase_id] : null
+  const currentPhase = item.playoff ? phasesData?.entites[item.playoff] : null
 
   const isStage = getIsXMLId(STAGE_XML_IDS, currentStage?.XML_ID || '')
   const isPhase = getIsXMLId(PHASE_XML_IDS, currentPhase?.XML_ID || '')
@@ -40,6 +41,9 @@ export function MatchEditForm() {
   const showDivisions = isStage.select
   const showTours = isStage.elite
 
+  const isPhaseNull = !isPhase.group && !isPhase.final && !isPhase.semifinal
+  const showGroup = isPhase.group || isPhaseNull
+
   const conf1 =
     (showSeparateConference && item.conf1) || (showSingleConference && item.conference) || undefined
   const conf2 =
@@ -48,35 +52,43 @@ export function MatchEditForm() {
   const city1 = (showSeparateCity && item.city1) || (showSingleCity && item.city) || undefined
   const city2 = (showSeparateCity && item.city2) || (showSingleCity && item.city) || undefined
 
+  if (!item) return 'loading...'
+
   return (
     <div>
-      <div className="text-2xl font-semibold mb-6">Добавить матч </div>
+      <div className="text-2xl font-semibold mb-6">
+        {item.id ? 'Редактировать' : 'Добавить'} матч
+      </div>
 
-      <div className="flex flex-col gap-4">
+      <form onSubmit={submit} className="flex flex-col gap-4">
         <Competition />
         <Stage />
         {showDivisions && <Division />}
         {showTours && <Tour />}
-        {showSingleConference && <Conference />}
-        {showSingleCity && <City />}
+        {showSingleConference && (
+          <Conference clearKeys={['city1', 'city2', 'city', 'team_1', 'team_2']} />
+        )}
+        {showSingleCity && <City clearKeys={['team_1', 'team_2']} />}
 
         <Number />
         <Phase />
-        {isPhase.group && <Group />}
-        {isPhase.semifinal && <SemiFinal />}
-        {isPhase.final && <Final />}
+        <div className={isPhaseNull ? 'pointer-events-none opacity-60' : ''}>
+          {showGroup && <Group />}
+          {isPhase.semifinal && <SemiFinal />}
+          {isPhase.final && <Final />}
+        </div>
 
         {showSeparateConference && (
           <div className="grid grid-cols-2 gap-3">
-            <Conference name="conf1" />
-            <Conference name="conf2" />
+            <Conference name="conf1" clearKeys={['city1', 'team_1']} />
+            <Conference name="conf2" clearKeys={['city2', 'team_2']} />
           </div>
         )}
 
         {showSeparateCity && (
           <div className="grid grid-cols-2 gap-3">
-            <City name="city1" conference={conf1} />
-            <City name="city2" conference={conf2} />
+            <City name="city1" conference={conf1} clearKeys={['team_1']} />
+            <City name="city2" conference={conf2} clearKeys={['team_2']} />
           </div>
         )}
 
@@ -95,7 +107,15 @@ export function MatchEditForm() {
         <Location />
         <Status />
         <Video />
-      </div>
+        <div className="grid grid-cols-2 gap-3">
+          <Button type="submit" disabled={loading}>
+            Сохранить
+          </Button>
+          <Button variant="light" disabled={loading}>
+            Отмена
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }
