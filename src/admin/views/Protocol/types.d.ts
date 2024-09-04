@@ -4,14 +4,19 @@ interface Protocol {
   competition_name: string
   stage_id: EntityId
   stage_name: string
+  area: string
   area_id: EntityId
   location: string
   date: BitrixDate
   time: string
   judge: string
+  judge_id: EntityId
   delegate: string
+  delegate_id: EntityId
   helper_1: string
+  helper_1_id: EntityId
   helper_2: string
+  helper_2_id: EntityId
   score_first_half: Score
   total_score: Score
   score_overtime: Score
@@ -21,11 +26,14 @@ interface Protocol {
   deletes: Sanction[]
   trauma: Trauma[]
   warnings: Sanction[]
+
+  tour: EntityId // TODO
+  division: EntityId // TODO
 }
 
 interface Score {
-  team_1: null | string
-  team_2: null | string
+  team_1?: string
+  team_2?: string
 }
 
 interface TeamInfo {

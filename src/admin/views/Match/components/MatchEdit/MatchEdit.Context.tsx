@@ -14,6 +14,8 @@ export function MatchEditContextProvider({ children, item, onCancel }: MatchCont
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
   const [editableMatch, update] = useEditableEntity<EditableMatch>(item)
 
+  console.log(item)
+
   async function submit(event: FormEvent) {
     event.preventDefault()
     loadingStart()

@@ -2,6 +2,7 @@ type Match = {
   city: EntityId
   date: BitrixDate
   id: EntityId
+  judge_id: EntityId
   judge: string
   location: string
   match_number: string

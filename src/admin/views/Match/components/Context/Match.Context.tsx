@@ -4,7 +4,6 @@ import { changeSearchParams } from '@utils/helpers/changeSearchParams'
 import { useSearchParams } from 'react-router-dom'
 import { createContext, useContext } from 'react'
 import { MATCH_PER_PAGE } from '../../const'
-import { useFetchDelegates } from '@admin/views/Delegate/service/api'
 import { usefetchMatches } from '../../service/api'
 
 const MatchContext = createContext<IMatchContextValue>({} as IMatchContextValue)
@@ -21,7 +20,7 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const [currentPage, changePageQuery] = usePagesQuery()
 
   // Fetching TODO
-  const { data, isLoading, isFetching } = usefetchMatches({
+  const { data, isFetching } = usefetchMatches({
     page: currentPage,
     itemsPerPage: MATCH_PER_PAGE,
     turnier: turnierId,
@@ -32,8 +31,8 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
-  function changeFilterParam(key: FilterKey, value: string) {
-    setSearchParams(changeSearchParams([key, value], true))
+  function changeFilterParam(key: FilterKey, value: string, saveAll: boolean = true) {
+    setSearchParams(changeSearchParams([key, value], saveAll))
   }
 
   return (
@@ -64,7 +63,7 @@ interface IMatchContextValue {
   turnierId: EntityId
   stageId: EntityId
   tabId: 'A' | 'P' | 'F'
-  changeFilterParam(key: FilterKey, value: string): void
+  changeFilterParam(key: FilterKey, value: string, saveAll?: boolean): void
 
   pages: number[]
   currentPage: number

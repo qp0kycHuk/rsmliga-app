@@ -3,64 +3,52 @@ import { Separator } from '@admin/components/Separator'
 import { Cell, CellTooltip, Row, Table } from '@admin/index'
 import { PrintIcon } from '@assets/icons/fill'
 import { Button } from '@features/ui'
-import { useFetchProtocol } from '../../service/protocol'
 import { useFetchCities } from '@admin/service/cities'
-import { TeamData } from './Protocol.TeamInfo'
+import { TeamData } from './Protocol.TeamData'
 import { TeamTable } from './Protocol.TeamTable'
+import { useFetchProtocol } from '../../service/api'
 
 interface IProps {
   matchId: EntityId
 }
 
-export function Protocol({ matchId }: IProps) {
+export function ProtocolView({ matchId }: IProps) {
   const { data } = useFetchProtocol({ id: matchId })
 
   const { data: cityData } = useFetchCities()
 
-  const area = cityData?.entites[data?.item.area_id || '']?.NAME
+  const area = cityData?.entites[data?.item.area_id || '']?.VALUE
 
   return (
     <div>
       <div className="grid grid-cols-4 gap-6">
         <div className="col-span-2">
           <div className="font-semibold mb-2 print:text-sm">Соревнование #{matchId}</div>
-          <FieldView>
-            <div className="text-sm leading-none">
-              <CellTooltip>{data?.item.competition_name}</CellTooltip>
-            </div>
+          <FieldView className="text-sm leading-none">
+            <CellTooltip>{data?.item.competition_name}</CellTooltip>
           </FieldView>
         </div>
         <div className="col-span-2">
           <div className="font-semibold mb-2 print:text-sm">Этап</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.stage_name || '-'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.stage_name || '-'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Город или район</div>
-          <FieldView>
-            <div className="text-sm leading-none">{area || '-'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{area || '-'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Место проведения</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.location || '-'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.location || '-'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Дата проведения</div>
-          <FieldView>
-            <div className="text-sm leading-none">
-              {new Date(data?.item.date || 0)?.toLocaleDateString()}
-            </div>
+          <FieldView className="text-sm leading-none">
+            <div>{new Date(data?.item.date || 0)?.toLocaleDateString()}</div>
           </FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Время проведения</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.time}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.time}</FieldView>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-6 mt-10">
@@ -78,27 +66,19 @@ export function Protocol({ matchId }: IProps) {
       <div className="grid grid-cols-2 gap-6 mt-10">
         <div>
           <div className="font-semibold mb-2 print:text-sm">Судья</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.judge || 'Нет'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.judge || 'Нет'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Делегат</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.delegate || 'Нет'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.delegate || 'Нет'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Помощник судьи 1</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.helper_1 || 'Нет'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.helper_1 || 'Нет'}</FieldView>
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Помощник судьи 2</div>
-          <FieldView>
-            <div className="text-sm leading-none">{data?.item.helper_2 || 'Нет'}</div>
-          </FieldView>
+          <FieldView className="text-sm leading-none">{data?.item.helper_2 || 'Нет'}</FieldView>
         </div>
       </div>
 
@@ -189,27 +169,23 @@ export function Protocol({ matchId }: IProps) {
         <div>
           <div className="font-semibold mb-2 print:text-sm">Представитель 1 команды</div>
           {data?.item.team_1_info.preds.map((name, index) => (
-            <FieldView key={index} className="mt-1">
-              <div className="text-sm leading-none">{name}</div>
+            <FieldView key={index} className="mt-1 text-sm leading-none">
+              {name}
             </FieldView>
           ))}
           {data?.item.team_1_info.preds.length == 0 && (
-            <FieldView>
-              <div className="text-sm leading-none">Нет</div>
-            </FieldView>
+            <FieldView className="text-sm leading-none">Нет</FieldView>
           )}
         </div>
         <div>
           <div className="font-semibold mb-2 print:text-sm">Представитель 2 команды</div>
           {data?.item.team_2_info.preds.map((name, index) => (
-            <FieldView key={index} className="mt-1">
-              <div className="text-sm leading-none">{name}</div>
+            <FieldView key={index} className="mt-1 text-sm leading-none">
+              {name}
             </FieldView>
           ))}
           {data?.item.team_2_info.preds.length == 0 && (
-            <FieldView>
-              <div className="text-sm leading-none">Нет</div>
-            </FieldView>
+            <FieldView className="text-sm leading-none">Нет</FieldView>
           )}
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Button, Dialog } from '@features/ui'
 import { MatchEdit } from '../../MatchEdit/MatchEdit'
 import { Suspense } from 'react'
 import { useToggle } from '@hooks/useToggle'
+import { Judge } from './Item.Judge'
 
 interface Props {
   item: Match
@@ -23,7 +24,9 @@ export function MatchTableItem({ item }: Props) {
 
       <Cell>{item.score}</Cell>
       <Cell>{item.date}</Cell>
-      <Cell>{item.judge}</Cell>
+      <Cell>
+        <Judge item={item} />
+      </Cell>
       <Cell>{item.location}</Cell>
       <Cell>{item.stage}</Cell>
       <Cell className="text-center">{item.phase}</Cell>

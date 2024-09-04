@@ -1,5 +1,4 @@
 import { FieldView } from '@admin/components/FieldView'
-import { TeamInfo } from '../../service/protocol.types'
 import { useFetchCities } from '@admin/service/cities'
 
 interface IInfoProps {
@@ -20,7 +19,7 @@ export function TeamData({ team }: IInfoProps) {
       </FieldView>
       <FieldView>
         <div className="text-sm leading-none">
-          {cityData?.entites[team?.location as string]?.NAME || '-'}
+          {cityData?.entites[team?.location as string]?.VALUE || '-'}
         </div>
       </FieldView>
     </div>

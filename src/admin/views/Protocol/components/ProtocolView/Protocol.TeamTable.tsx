@@ -1,7 +1,6 @@
 import { FieldView } from '@admin/components/FieldView'
 import { Table, Row, Cell } from '@admin/index'
 import { Avatar } from '@features/ui'
-import { TeamInfo } from '../../service/protocol.types'
 import { Empty } from '@admin/components/Empty'
 
 interface ITeamTableProps {

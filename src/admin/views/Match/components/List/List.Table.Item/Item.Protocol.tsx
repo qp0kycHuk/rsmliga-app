@@ -2,10 +2,10 @@ import { DownloadIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { Suspense } from 'react'
-import { ProtocolEdit } from '../../ProtocolEdit/ProtocolEdit'
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { toast } from '@lib/Toast'
 import { id } from '@utils/helpers/id'
+import { ProtocolEdit } from '@admin/views/Protocol/components/ProtocolEdit/ProtocolEdit'
 
 export function Protocol({ item }: Props) {
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
@@ -37,7 +37,7 @@ export function Protocol({ item }: Props) {
         </Button>
         <Button onClick={openEditDialog} size={null} icon className="btn-[22px]" color="gray-light">
           <PencilIcon className="text-primary text-lg" />
-        </Button>{' '}
+        </Button>
         <Button
           size={null}
           icon
@@ -52,10 +52,10 @@ export function Protocol({ item }: Props) {
       <Dialog
         isOpen={isEditDialogOpen}
         onClose={closeEditDialog}
-        className="container max-w-6xl px-4 py-10 md:px-8"
+        className="container max-w-6xl px-4 py-10 md:px-8 print:p-0"
       >
         <Suspense fallback="Loading...">
-          <ProtocolEdit onCancel={closeEditDialog} />
+          <ProtocolEdit matchId={item.id} onCancel={closeEditDialog} />
         </Suspense>
       </Dialog>
 

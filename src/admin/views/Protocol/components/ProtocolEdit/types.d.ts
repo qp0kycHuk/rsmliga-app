@@ -1,5 +1,5 @@
 interface ProtocolContextProps extends React.PropsWithChildren {
-  item?: IReport
+  item?: Protocol
   onCancel?(): void
 }
 

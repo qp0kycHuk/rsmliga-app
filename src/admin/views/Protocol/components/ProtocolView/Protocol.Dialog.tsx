@@ -1,5 +1,5 @@
 import { Dialog, DialogHeader, DialogTitle } from '@features/ui'
-import { Protocol } from './Protocol'
+import { ProtocolView } from './ProtocolView'
 import { IDialogProps } from '@features/ui/components/Dialog/Dialog'
 
 export function ProtocolDialog({ id, ...props }: IDialogProps & { id: EntityId }) {
@@ -9,7 +9,7 @@ export function ProtocolDialog({ id, ...props }: IDialogProps & { id: EntityId }
         <DialogTitle>Протокол</DialogTitle>
       </DialogHeader>
       <div className="p-10 print:p-0">
-        <Protocol matchId={id}></Protocol>
+        <ProtocolView matchId={id}></ProtocolView>
       </div>
     </Dialog>
   )

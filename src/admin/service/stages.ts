@@ -12,11 +12,11 @@ export const [fetchStages, useFetchStages] = createFetchEntitiesService<IStage>(
 
 export const STAGE_XML_IDS = {
   mun: 'mun',
-  school: 'school',
-  qual: 'qual',
-  elite: 'elite',
   zon: 'zon',
   fin: 'fin',
+  school: 'school',
   base: 'base',
+  qual: 'qual',
   select: 'select',
+  elite: 'elite',
 }
