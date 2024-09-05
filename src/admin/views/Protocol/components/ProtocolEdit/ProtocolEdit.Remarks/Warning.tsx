@@ -11,7 +11,7 @@ export function Warning({ warningsKey }: Props) {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
   const { item, update } = useProtocolEditContext()
 
-  async function add(memberId: string) {
+  function add(memberId: string) {
     const warnings = item[warningsKey] || []
     const newWarning = {
       name: '',

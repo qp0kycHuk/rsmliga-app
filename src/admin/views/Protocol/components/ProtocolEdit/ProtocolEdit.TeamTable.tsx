@@ -1,7 +1,8 @@
 import { Table, Row, Cell } from '@admin/index'
-import { Avatar, Field } from '@features/ui'
+import { Avatar, Button, Field, Menu, MenuButton, MenuItem, MenuItems } from '@features/ui'
 import { Empty } from '@admin/components/Empty'
 import { useProtocolEditContext } from './ProtocolEdit.Context'
+import { CirclePlusIcon, DeleteIcon, MedKitIcon, WarningIcon } from '@assets/icons/fill'
 
 interface ITeamTableProps {
   name: 'team_1_info' | 'team_2_info'
@@ -29,8 +30,35 @@ export function TeamTable({ name }: ITeamTableProps) {
     })
   }
 
+  function addWarning(member: Member, warningsKey: 'warnings' | 'deletes') {
+    const warnings = item[warningsKey] || []
+    const newWarning = {
+      name: member.FIO,
+      text: '',
+      team: team?.name || '',
+    }
+
+    update({
+      [warningsKey]: [...warnings, newWarning],
+    })
+  }
+
+  function addTrauma(member: Member, traumaKey: 'trauma' = 'trauma') {
+    const trauma = item[traumaKey] || []
+    const newTrauma = {
+      name: member.FIO,
+      time: '0',
+      text: '',
+      help: '',
+    }
+
+    update({
+      [traumaKey]: [...trauma, newTrauma],
+    })
+  }
+
   return (
-    <Table xBorderLess>
+    <Table xBorderLess className="overflow-visible">
       <Row className="text-sm font-semibold">
         <Cell head className="text-center w-14">
           №
@@ -40,6 +68,7 @@ export function TeamTable({ name }: ITeamTableProps) {
         <Cell head className="w-24 text-center">
           Попытки
         </Cell>
+        <Cell head>{/* remark */}</Cell>
       </Row>
       {team?.members.map((member) => (
         <Row key={member.id} className="text-sm">
@@ -59,6 +88,54 @@ export function TeamTable({ name }: ITeamTableProps) {
                 },
               }}
             />
+          </Cell>
+          <Cell className="print:hidden w-12">
+            <Menu>
+              <MenuButton as={Button} variant="light" icon className="" size="sm">
+                <CirclePlusIcon className="text-xl" />
+              </MenuButton>
+              <MenuItems className="p-1 right-0 left-auto w-52">
+                <MenuItem>
+                  <Button
+                    variant="none"
+                    size="xs"
+                    className="w-full justify-start gap-2 btn-red px-1"
+                    onClick={addWarning.bind(null, member, 'deletes')}
+                  >
+                    <div className="p-1 rounded bg-red/20 text-red">
+                      <DeleteIcon />
+                    </div>
+                    <span className="text-black">Удаление</span>
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    variant="none"
+                    size="xs"
+                    className="w-full justify-start gap-2 btn-yellow px-1"
+                    onClick={addWarning.bind(null, member, 'warnings')}
+                  >
+                    <div className="p-1 rounded bg-yellow/20 text-yellow">
+                      <WarningIcon />
+                    </div>
+                    <span className="text-black">Предупреждение</span>
+                  </Button>
+                </MenuItem>
+                <MenuItem>
+                  <Button
+                    variant="none"
+                    size="xs"
+                    className="w-full justify-start gap-2 btn-blue px-1"
+                    onClick={addTrauma.bind(null, member, 'trauma')}
+                  >
+                    <div className="p-1 rounded bg-blue/20 text-blue">
+                      <MedKitIcon />
+                    </div>
+                    <span className="text-black">Травматический случай</span>
+                  </Button>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
           </Cell>
         </Row>
       ))}

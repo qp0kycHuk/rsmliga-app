@@ -9,7 +9,7 @@ export function Comment() {
       <div className="text-sm font-semibold mb-2">Прочие замечания</div>
       <Textarea
         className="w-full min-h-32 max-h-64"
-        value={item.other_remarks}
+        value={item.other_remarks || ''}
         onChange={(event) =>
           update({
             other_remarks: event.target.value,

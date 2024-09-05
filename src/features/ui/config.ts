@@ -5,6 +5,7 @@ export const colors = {
   transparent: 'rgba(0,0,0,0)',
   green: '#009432',
   yellow: '#f79f1f',
+  blue: '#497AC2',
   // primary: '#778beb', // Фиолетовый
   // primary: '#10ac84', // Бирюзовый
   red: '#d63031',

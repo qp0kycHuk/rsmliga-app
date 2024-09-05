@@ -15,6 +15,7 @@ const colorClassNames: Record<Color, string> = {
   default: 'input-default',
   light: 'input-light',
   dark: 'input-dark',
+  blue: 'input-blue',
   ['gray-light']: 'input-gray-light',
   transparent: '',
 }

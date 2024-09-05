@@ -21,6 +21,7 @@ const colorClassNames = {
   yellow: 'btn-yellow',
   primary: 'btn-primary',
   red: 'btn-red',
+  blue: 'btn-blue',
   gray: 'btn-gray',
   ['gray-light']: 'btn-gray-light',
   none: '',
