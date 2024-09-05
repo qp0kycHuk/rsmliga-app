@@ -6,8 +6,12 @@ import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { toast } from '@lib/Toast'
 import { id } from '@utils/helpers/id'
 import { ProtocolEdit } from '@admin/views/Protocol/components/ProtocolEdit/ProtocolEdit'
+import { deleteProtocol } from '@admin/views/Protocol/service/api'
+import { MATCHES_KEY } from '@admin/views/Match/service/api'
+import { useQueryClient } from 'react-query'
 
 export function Protocol({ item }: Props) {
+  const queryClient = useQueryClient()
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
@@ -15,38 +19,52 @@ export function Protocol({ item }: Props) {
     const itemId = id(item)
     if (!itemId) return
 
-    // const data = await deleteReport(itemId)
+    const response = await deleteProtocol({ match_id: itemId })
 
-    toast.info('Успешно удалено')
-    // queryClient.invalidateQueries(REPORTS_KEY)
-    closeDeleteDialog()
+    if (response.data.error) {
+      toast.error(response.data.error)
+    } else {
+      toast.info('Успешно удалено')
+      queryClient.invalidateQueries(MATCHES_KEY)
+      closeDeleteDialog()
+    }
   }
 
   return (
     <>
       <div className="flex items-center gap-2">
+        {item.protocol && (
+          <Button
+            as="a"
+            href={'/manager/matches/protocol.php?id=' + item.id}
+            size={null}
+            icon
+            className="btn-[22px]"
+            color="gray-light"
+          >
+            <DownloadIcon className="text-primary text-lg" />
+          </Button>
+        )}
         <Button
-          as="a"
-          href={'/manager/matches/protocol.php?id=' + item.id}
+          onClick={openEditDialog}
           size={null}
           icon
           className="btn-[22px]"
-          color="gray-light"
+          color={item.protocol ? 'gray-light' : 'primary'}
         >
-          <DownloadIcon className="text-primary text-lg" />
+          {item.protocol ? <PencilIcon className="text-primary text-lg" /> : '+'}
         </Button>
-        <Button onClick={openEditDialog} size={null} icon className="btn-[22px]" color="gray-light">
-          <PencilIcon className="text-primary text-lg" />
-        </Button>
-        <Button
-          size={null}
-          icon
-          className="btn-[22px]"
-          color="gray-light"
-          onClick={openDeleteDialog}
-        >
-          <TrashIcon className="text-primary text-lg" />
-        </Button>
+        {item.protocol && (
+          <Button
+            size={null}
+            icon
+            className="btn-[22px]"
+            color="gray-light"
+            onClick={openDeleteDialog}
+          >
+            <TrashIcon className="text-primary text-lg" />
+          </Button>
+        )}
       </div>
 
       <Dialog

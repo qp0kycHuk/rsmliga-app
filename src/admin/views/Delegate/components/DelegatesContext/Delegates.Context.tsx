@@ -41,12 +41,12 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
 
   function changeFilterParam(key: FilterKey, value: string) {
     if (key === 'sezon') {
-      setSearchParams(changeSearchParams([key, value]))
+      setSearchParams(changeSearchParams([[key, value]]))
 
       return
     }
 
-    setSearchParams(changeSearchParams([key, value], false, ['sezon', 'turnier', 'stage']))
+    setSearchParams(changeSearchParams([[key, value]], false, ['sezon', 'turnier', 'stage']))
   }
 
   return (

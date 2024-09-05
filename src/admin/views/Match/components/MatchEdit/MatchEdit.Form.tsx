@@ -23,7 +23,7 @@ import { Final } from './MatchEdit.Fields/Group.Final'
 import { Button } from '@features/ui'
 
 export function MatchEditForm() {
-  const { item, submit, loading } = useMatchEditContext()
+  const { item, submit, loading, onCancel } = useMatchEditContext()
 
   const { data: stagesData } = useFetchStages()
   const { data: phasesData } = useFetchPhases()
@@ -111,7 +111,7 @@ export function MatchEditForm() {
           <Button type="submit" disabled={loading}>
             Сохранить
           </Button>
-          <Button variant="light" disabled={loading}>
+          <Button variant="light" disabled={loading} onClick={onCancel}>
             Отмена
           </Button>
         </div>

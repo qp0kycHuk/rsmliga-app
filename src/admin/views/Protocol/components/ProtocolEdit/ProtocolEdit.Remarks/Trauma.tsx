@@ -16,7 +16,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
     const members = [...(item.team_1_info?.members || []), ...(item.team_2_info?.members || [])]
     const newTrauma = {
       name: '',
-      time: '',
+      time: '0',
       text: '',
       help: '',
     }
@@ -55,11 +55,15 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
     <>
       <Table>
         <Row className="text-sm font-medium">
-          <Cell head>Минута матча</Cell>
+          <Cell head className="w-28 px-2">
+            Минута матча
+          </Cell>
           <Cell head>Фамилия Имя</Cell>
           <Cell head>Характер повреждения, причины, диагноз</Cell>
           <Cell head>Какая оказана помощь</Cell>
-          <Cell head>{/* delete */}</Cell>
+          <Cell head className="print:hidden">
+            {/* delete */}
+          </Cell>
         </Row>
 
         {item[traumaKey]?.length === 0 && (
@@ -68,7 +72,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
             <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
-            <Cell className="p-1 w-12">
+            <Cell className="p-1 w-12 print:hidden">
               <Button variant="light" icon disabled>
                 <TrashIcon className="text-lg" />
               </Button>
@@ -82,9 +86,10 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
               <Field
                 inputProps={{
                   value: trauma.time,
-                  type: 'time',
+                  required: true,
+                  type: 'number',
                   onChange(event) {
-                    changeHandler(index, 'time', event.target.value)
+                    changeHandler(index, 'time', Math.max(Number(event.target.value), 0).toString())
                   },
                 }}
               />
@@ -94,6 +99,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
               <Field
                 inputProps={{
                   value: trauma.text,
+                  required: true,
                   onChange(event) {
                     changeHandler(index, 'text', event.target.value)
                   },
@@ -104,13 +110,14 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
               <Field
                 inputProps={{
                   value: trauma.help,
+                  required: true,
                   onChange(event) {
                     changeHandler(index, 'help', event.target.value)
                   },
                 }}
               />
             </Cell>
-            <Cell className="p-1 w-12">
+            <Cell className="p-1 w-12 print:hidden">
               <Button variant="light" icon onClick={deleteHandler.bind(null, index)}>
                 <TrashIcon className="text-lg" />
               </Button>
@@ -119,7 +126,11 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
         ))}
       </Table>
 
-      <Button variant="text" className="gap-1 font-semibold ml-auto mt-2" onClick={openDialog}>
+      <Button
+        variant="text"
+        className="gap-1 font-semibold ml-auto mt-2 print:hidden"
+        onClick={openDialog}
+      >
         <CirclePlusIcon className="" />
         Добавить
       </Button>

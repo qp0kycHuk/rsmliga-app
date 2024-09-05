@@ -61,13 +61,15 @@ export function Warning({ warningsKey }: Props) {
     <>
       <Table>
         <Row className="text-sm font-medium">
-          <Cell head className="text-center">
+          <Cell head className="text-center w-12">
             №
           </Cell>
           <Cell head>Фамилия Имя</Cell>
           <Cell head>Команда</Cell>
           <Cell head>Причина</Cell>
-          <Cell head>{/* delete */}</Cell>
+          <Cell head className="print:hidden">
+            {/* delete */}
+          </Cell>
         </Row>
 
         {item[warningsKey]?.length === 0 && (
@@ -76,7 +78,7 @@ export function Warning({ warningsKey }: Props) {
             <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
-            <Cell className="p-1 w-12">
+            <Cell className="p-1 w-12 print:hidden">
               <Button variant="light" icon disabled>
                 <TrashIcon className="text-lg" />
               </Button>
@@ -93,13 +95,14 @@ export function Warning({ warningsKey }: Props) {
               <Field
                 inputProps={{
                   value: warn.text,
+                  required: true,
                   onChange(event) {
                     changeHandler(index, event.target.value)
                   },
                 }}
               />
             </Cell>
-            <Cell className="p-1 w-12">
+            <Cell className="p-1 w-12 print:hidden">
               <Button variant="light" icon onClick={deleteHandler.bind(null, index)}>
                 <TrashIcon className="text-lg" />
               </Button>
@@ -108,7 +111,11 @@ export function Warning({ warningsKey }: Props) {
         ))}
       </Table>
 
-      <Button variant="text" className="gap-1 font-semibold ml-auto mt-2" onClick={openDialog}>
+      <Button
+        variant="text"
+        className="gap-1 font-semibold ml-auto mt-2 print:hidden"
+        onClick={openDialog}
+      >
         <CirclePlusIcon className="" />
         Добавить
       </Button>

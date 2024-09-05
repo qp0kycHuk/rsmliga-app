@@ -42,7 +42,7 @@ export function InstitutionsContextProvider({ children }: React.PropsWithChildre
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
   function changeFilterParam(key: FilterKey, value: string) {
-    setSearchParams(changeSearchParams([key, value], false, ['conference', 'city']))
+    setSearchParams(changeSearchParams([[key, value]], false, ['conference', 'city']))
   }
 
   return (

@@ -14,8 +14,6 @@ export function MatchEditContextProvider({ children, item, onCancel }: MatchCont
   const [loading, , loadingStart, loadingEnd] = useToggle(false)
   const [editableMatch, update] = useEditableEntity<EditableMatch>(item)
 
-  console.log(item)
-
   async function submit(event: FormEvent) {
     event.preventDefault()
     loadingStart()
@@ -29,6 +27,8 @@ export function MatchEditContextProvider({ children, item, onCancel }: MatchCont
       toast.success('Успешно сохранено')
       queryClient.invalidateQueries(MATCHES_KEY)
     }
+
+    onCancel?.()
   }
 
   return (

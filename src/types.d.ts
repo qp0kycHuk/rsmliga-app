@@ -52,3 +52,5 @@ type IconComponent = React.FunctionComponent<
     title?: string | undefined
   }
 >
+
+type Order = 'asc' | 'desc'

@@ -23,7 +23,7 @@ export function MatchTableItem({ item }: Props) {
       </Cell>
 
       <Cell>{item.score}</Cell>
-      <Cell>{item.date}</Cell>
+      <Cell>{new Date(item.date).toLocaleDateString()}</Cell>
       <Cell>
         <Judge item={item} />
       </Cell>

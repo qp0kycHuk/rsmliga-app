@@ -1,7 +1,7 @@
 import type { URLSearchParamsInit } from 'react-router-dom'
 
 export function changeSearchParams(
-  [key, value]: [string, string],
+  entries: [string, string][],
   saveAll: boolean = false,
   savedKeys: string[] = []
 ) {
@@ -19,7 +19,9 @@ export function changeSearchParams(
       })
     }
 
-    params[key] = value
+    for (const [key, value] of entries) {
+      params[key] = value
+    }
 
     return params
   }

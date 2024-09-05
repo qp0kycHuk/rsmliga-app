@@ -19,7 +19,7 @@ export function useSearchQuery({
   const searchQuery = searchParams.get(key) || ''
 
   function changeSearchQuery(query: string) {
-    setSearchParams(changeSearchParams([key, query], saveAll, savedKeys))
+    setSearchParams(changeSearchParams([[key, query]], saveAll, savedKeys))
   }
 
   return [searchQuery, changeSearchQuery]

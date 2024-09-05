@@ -15,6 +15,9 @@ export default {
     extend: {
       btnSize: ui.btnSize,
       inputSize: ui.inputSize,
+      fontSize: {
+        '2xs': 10 / 16 + 'rem',
+      },
     },
   },
   plugins: [

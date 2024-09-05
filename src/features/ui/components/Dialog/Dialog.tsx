@@ -45,7 +45,7 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               >
                 <div className="fixed -z-1" tabIndex={0}></div>
                 <Button
-                  className="absolute right-1 top-1 rounded-full btn-dark dark:btn-white"
+                  className="absolute right-1 top-1 rounded-full btn-dark dark:btn-white print:hidden"
                   icon
                   size="sm"
                   variant="none"

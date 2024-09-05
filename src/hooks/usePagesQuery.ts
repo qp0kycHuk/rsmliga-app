@@ -18,7 +18,7 @@ export function usePagesQuery({
   const currentPage = +(searchParams.get(key) || 1)
 
   function changePageQuery(newPage: number) {
-    setSearchParams(changeSearchParams([key, newPage.toString()], saveAll, savedKeys))
+    setSearchParams(changeSearchParams([[key, newPage.toString()]], saveAll, savedKeys))
   }
 
   return [currentPage, changePageQuery]

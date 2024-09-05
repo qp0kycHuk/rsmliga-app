@@ -22,7 +22,7 @@ interface Protocol {
   score_overtime: Score
   team_1_info: TeamInfo
   team_2_info: TeamInfo
-  other_remarks: null
+  other_remarks: string
   deletes: Sanction[]
   trauma: Trauma[]
   warnings: Sanction[]

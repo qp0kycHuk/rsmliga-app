@@ -12,7 +12,7 @@ export function Select({
     <label className={twMerge('cursor-pointer group relative', className)}>
       <select
         className={twMerge(
-          'input w-full appearance-none cursor-pointer truncate pr-12',
+          'input w-full appearance-none cursor-pointer truncate pr-12 print:pr-3',
           inputClassName
         )}
         {...props}
@@ -22,7 +22,7 @@ export function Select({
         </option>
         {children}
       </select>
-      <div className="absolute top-0 right-0 flex items-center h-full pr-4 pointer-events-none">
+      <div className="absolute top-0 right-0 flex items-center h-full pr-4 pointer-events-none print:hidden">
         <ToRightIcon className="text-lg transition-transform opacity-40 group-focus-within:-rotate-90" />
       </div>
       {fieldChildren}

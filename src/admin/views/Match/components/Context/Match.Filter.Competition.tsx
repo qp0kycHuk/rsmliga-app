@@ -2,8 +2,8 @@ import { AdminSelect } from '@admin/components/AdminSelect'
 import { useFetchTournaments } from '@admin/service/tournaments'
 import { useMatchContext } from './Match.Context'
 
-export function Tournaments() {
-  const { turnierId, changeFilterParam } = useMatchContext()
+export function Competition() {
+  const { competitionId, changeFilterParam } = useMatchContext()
   const { data: tournamentsData } = useFetchTournaments()
 
   return (
@@ -11,9 +11,9 @@ export function Tournaments() {
       itemsClassName="max-h-80 w-96 overflow-auto"
       label="Соревнование"
       placeholder="Любое"
-      value={turnierId}
+      value={competitionId}
       items={tournamentsData?.ids || []}
-      onChange={(value) => changeFilterParam('turnier', value?.toString() || '')}
+      onChange={(value) => changeFilterParam([['competition', value?.toString() || '']])}
       renderItem={(id) => tournamentsData?.entites[id]?.NAME || ''}
     />
   )

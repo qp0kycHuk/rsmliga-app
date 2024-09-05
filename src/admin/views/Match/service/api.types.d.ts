@@ -1,12 +1,17 @@
 interface MatchFetchParams {
   page: number
   itemsPerPage?: number
-  search?: string
-  sezon?: EntityId
-  turnier?: EntityId
+  competition?: EntityId
   stage?: EntityId
-  status?: EntityId
+
+  conference?: EntityId
+  location?: EntityId // город
+  division?: EntityId
+  tour?: EntityId
+
   tab?: 'A' | 'P' | 'F'
+  order?: Order
+  order_by?: MatchOrderKey
 }
 
 interface MatchFetchResponse extends IListResponse<Match> {
@@ -14,3 +19,5 @@ interface MatchFetchResponse extends IListResponse<Match> {
 }
 
 type MatchGetResponse = IItemResponse<MatchDetail>
+
+type MatchOrderKey = 'PROPERTY_MATCH_NUMBER' | 'PROPERTY_DATE'

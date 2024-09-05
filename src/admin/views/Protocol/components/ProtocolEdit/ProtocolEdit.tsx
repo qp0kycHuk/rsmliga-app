@@ -15,7 +15,7 @@ export function ProtocolEdit({ onCancel, matchId }: Props) {
   }
 
   return (
-    <ProtocolEditContextProvider item={data?.item} onCancel={onCancel}>
+    <ProtocolEditContextProvider item={data?.item} onCancel={onCancel} matchId={matchId}>
       <ProtocolEditForm></ProtocolEditForm>
     </ProtocolEditContextProvider>
   )

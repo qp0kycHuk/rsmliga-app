@@ -10,20 +10,32 @@ export async function fetchMatches(
   {
     page = 1,
     itemsPerPage = MATCH_PER_PAGE,
-    turnier = '',
+    competition = '',
     stage = '',
+    conference = '',
+    location = '',
+    division = '',
+    tour = '',
     tab = 'A',
+    order,
+    order_by,
   }: MatchFetchParams,
-  config?: AxiosRequestConfig<any>
+  config?: AxiosRequestConfig<unknown>
 ): Promise<MatchFetchResponse> {
   const { data } = await rootApi.get<MatchFetchResponse>('/manager/matches/matches_handler.php', {
     params: {
       action: 'get_list',
       PAGEN_1: page,
       nPageSize: itemsPerPage,
-      competition: turnier,
+      competition,
       stage,
+      conference,
+      location,
+      division,
+      tour,
       tab,
+      order,
+      order_by,
     },
     ...config,
   })

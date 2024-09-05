@@ -12,9 +12,15 @@ export const useMatchContext = () => useContext(MatchContext)
 export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
   // Filters
-  const turnierId = searchParams.get('turnier') || ''
+  const competitionId = searchParams.get('competition') || ''
   const stageId = searchParams.get('stage') || ''
-  const tabId = (searchParams.get('tab') || 'A') as 'A' | 'P' | 'F'
+  const conferenceId = searchParams.get('conference') || ''
+  const locationId = searchParams.get('location') || ''
+  const divisionId = searchParams.get('division') || ''
+  const tourId = searchParams.get('tour') || ''
+  const tabId = (searchParams.get('tab') || 'P') as 'A' | 'P' | 'F'
+  const order = (searchParams.get('order') || 'asc') as Order
+  const orderBy = (searchParams.get('order_by') || 'PROPERTY_DATE') as MatchOrderKey
 
   // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
@@ -23,16 +29,34 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   const { data, isFetching } = usefetchMatches({
     page: currentPage,
     itemsPerPage: MATCH_PER_PAGE,
-    turnier: turnierId,
+    competition: competitionId,
     stage: stageId,
+    conference: conferenceId,
+    location: locationId,
+    division: divisionId,
+    tour: tourId,
     tab: tabId,
+    order,
+    order_by: orderBy,
   })
 
   const pagesCount = data?.NavPageCount || 0
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
-  function changeFilterParam(key: FilterKey, value: string, saveAll: boolean = true) {
-    setSearchParams(changeSearchParams([key, value], saveAll))
+  function changeFilterParam(
+    entries: [FilterKey, string][],
+    saveAll: boolean = true,
+    savedKeys?: FilterKey[]
+  ) {
+    setSearchParams(changeSearchParams(entries, saveAll, savedKeys))
+  }
+
+  function changeOrder(newOrderBy: MatchOrderKey) {
+    const newOrder = orderBy === newOrderBy ? (order === 'asc' ? 'desc' : 'asc') : 'asc'
+    changeFilterParam([
+      ['order_by', newOrderBy],
+      ['order', newOrder],
+    ])
   }
 
   return (
@@ -41,10 +65,18 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
         items: data?.items || [],
         loading: isFetching,
 
-        turnierId,
+        competitionId,
         stageId,
+        conferenceId,
+        locationId,
+        divisionId,
+        tourId,
         tabId,
         changeFilterParam,
+
+        order,
+        orderBy,
+        changeOrder,
 
         pages,
         currentPage,
@@ -60,14 +92,35 @@ interface IMatchContextValue {
   items: Match[]
   loading: boolean
 
-  turnierId: EntityId
+  competitionId: EntityId
   stageId: EntityId
+  conferenceId: EntityId
+  locationId: EntityId
+  divisionId: EntityId
+  tourId: EntityId
   tabId: 'A' | 'P' | 'F'
-  changeFilterParam(key: FilterKey, value: string, saveAll?: boolean): void
+  changeFilterParam(
+    entries: [FilterKey, string][],
+    saveAll?: boolean,
+    savedKeys?: FilterKey[]
+  ): void
+
+  order: Order
+  orderBy: MatchOrderKey
+  changeOrder(newOrderBy: MatchOrderKey): void
 
   pages: number[]
   currentPage: number
   changePageQuery(newPage: number): void
 }
 
-type FilterKey = 'turnier' | 'stage' | 'tab'
+type FilterKey =
+  | 'competition'
+  | 'stage'
+  | 'tab'
+  | 'order'
+  | 'order_by'
+  | 'conference'
+  | 'location'
+  | 'division'
+  | 'tour'

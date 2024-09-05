@@ -7,19 +7,19 @@ export function Tabs() {
   return (
     <div className="lk-tabs ">
       <button
-        onClick={() => changeFilterParam('tab', 'A', false)}
+        onClick={() => changeFilterParam([['tab', 'A']], false)}
         className={twMerge('lk-tabs-item', tabId === 'A' ? 'active' : '')}
       >
         Активные
       </button>
       <button
-        onClick={() => changeFilterParam('tab', 'P', false)}
+        onClick={() => changeFilterParam([['tab', 'P']], false)}
         className={twMerge('lk-tabs-item', tabId === 'P' ? 'active' : '')}
       >
         Прошедшие
       </button>
       <button
-        onClick={() => changeFilterParam('tab', 'F', false)}
+        onClick={() => changeFilterParam([['tab', 'F']], false)}
         className={twMerge('lk-tabs-item', tabId === 'F' ? 'active' : '')}
       >
         Будущие

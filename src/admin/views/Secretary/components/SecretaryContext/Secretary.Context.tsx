@@ -38,7 +38,7 @@ export function SecretariesContextProvider({ children }: React.PropsWithChildren
   const pages = new Array(pagesCount).fill(true).map((_, index) => index + 1)
 
   function changeFilterParam(key: FilterKey, value: string) {
-    setSearchParams(changeSearchParams([key, value], false, ['turnier', 'location']))
+    setSearchParams(changeSearchParams([[key, value]], false, ['turnier', 'location']))
   }
 
   return (

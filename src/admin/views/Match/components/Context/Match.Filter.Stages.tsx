@@ -13,7 +13,14 @@ export function Stages() {
       placeholder="Любой"
       value={stageId}
       items={stagesData?.ids || []}
-      onChange={(value) => changeFilterParam('stage', value?.toString() || '')}
+      onChange={(value) =>
+        changeFilterParam([['stage', value?.toString() || '']], false, [
+          'competition',
+          'tab',
+          'order',
+          'order_by',
+        ])
+      }
       renderItem={(id) => stagesData?.entites[id]?.VALUE || ''}
     />
   )
