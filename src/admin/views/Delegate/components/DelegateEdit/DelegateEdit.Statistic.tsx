@@ -2,7 +2,7 @@ import { Cell, Row, Table } from '@admin/index'
 import { useDelegateEditContext } from './DelegateEdit.Context'
 
 export function Statistic() {
-  const { delegate, update } = useDelegateEditContext()
+  const { delegate } = useDelegateEditContext()
 
   return (
     <>

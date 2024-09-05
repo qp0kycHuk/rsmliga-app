@@ -7,7 +7,6 @@ import { Separator } from '@admin/components/Separator'
 import { TeamImages } from './ReportEdit.TeamImages'
 import { Fields } from './ReportEdit.Fields/Fields'
 import { useToggle } from '@hooks/useToggle'
-import { useFetchReportStatuses } from '../../service/statuses'
 import { useRef } from 'react'
 import { useReportStatus } from '../../hooks/useReportStatus'
 
@@ -15,7 +14,7 @@ export function Form() {
   const { report, update, submit, loading, onCancel } = useReportEditContext()
   const [isSendDialogOpen, , openSendDialog, closeSendDialog] = useToggle(false)
 
-  const { data: statusesData, isStatusNone, isStatusEditable } = useReportStatus(report as IReport)
+  const { data: statusesData, isStatusEditable } = useReportStatus(report as IReport)
 
   const checkingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'checking')?.ID
   const editingId = statusesData?.items.find(({ XML_ID }) => XML_ID == 'editing')?.ID

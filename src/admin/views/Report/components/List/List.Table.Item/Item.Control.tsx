@@ -27,7 +27,7 @@ export function Control({ item }: IProps) {
     const itemId = id(item)
     if (!itemId) return
 
-    const data = await deleteReport(itemId)
+    await deleteReport(itemId)
 
     toast.info('Успешно удалено')
     queryClient.invalidateQueries(REPORTS_KEY)

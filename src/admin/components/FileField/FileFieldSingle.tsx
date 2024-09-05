@@ -1,5 +1,5 @@
 import { FileAddIcon } from '@assets/icons/fill'
-import { Button, Dialog, Input } from '@features/ui'
+import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { getFileItems } from '@utils/helpers/files'
 import { ConfirmDialog } from '../ConfirmDialog'

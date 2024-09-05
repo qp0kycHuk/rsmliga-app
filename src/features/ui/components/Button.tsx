@@ -23,6 +23,7 @@ const colorClassNames = {
   red: 'btn-red',
   gray: 'btn-gray',
   ['gray-light']: 'btn-gray-light',
+  none: '',
 }
 
 const sizeClassNames: Record<Size, string> = {
@@ -69,7 +70,7 @@ export const Button = React.forwardRef(ButtonComponent)
 type Variant = 'fill' | 'light' | 'contur' | 'text' | 'whitebg' | 'none'
 
 interface IProps {
-  color?: keyof typeof colorClassNames
+  color?: keyof typeof colorClassNames | 'none'
   size?: keyof typeof sizeClassNames
   variant?: Variant
   icon?: boolean

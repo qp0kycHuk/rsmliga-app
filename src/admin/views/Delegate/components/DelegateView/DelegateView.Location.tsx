@@ -12,7 +12,7 @@ export function Location({ item }: ILocationProps) {
     <FieldView>
       <div className="text-lg leading-none">
         <span className="font-semibold">Населенный пункт: </span>
-        {data?.entites[item.location]?.NAME || '-'}
+        {data?.entites[item.location]?.VALUE || '-'}
       </div>
     </FieldView>
   )

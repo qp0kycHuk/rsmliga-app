@@ -27,7 +27,7 @@ export function DelegatesContextProvider({ children }: React.PropsWithChildren) 
   })
 
   // Fetcing
-  const { data, isLoading, isFetching } = useFetchDelegates({
+  const { data, isFetching } = useFetchDelegates({
     page: currentPage,
     itemsPerPage: DELEGATES_PER_PAGE,
     search: searchQuery,

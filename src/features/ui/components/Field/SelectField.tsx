@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import { FieldWrapper } from '../Field/FieldWrapper'
 import type { IProps } from '../Input/Input'

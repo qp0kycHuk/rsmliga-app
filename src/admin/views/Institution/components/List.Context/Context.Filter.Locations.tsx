@@ -14,7 +14,7 @@ export function Locations() {
       value={cityId}
       items={locationsData?.ids || []}
       onChange={(value) => changeFilterParam('city', value?.toString() || '')}
-      renderItem={(id) => locationsData?.entites[id]?.NAME || ''}
+      renderItem={(id) => locationsData?.entites[id]?.VALUE || ''}
     />
   )
 }

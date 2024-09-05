@@ -2,7 +2,6 @@ import { rootApi } from '@admin/service/api'
 import { ITEMS_PER_PAGE } from '../const'
 import { useQuery } from 'react-query'
 import { IFetchParams, IFetchResponse } from './api.types'
-import { dateToSQLFormatString } from '@utils/helpers/dates'
 import { AxiosRequestConfig } from 'axios'
 
 export const KEY = 'institutions'
@@ -16,7 +15,7 @@ export async function fetchInstitutions(
     city = '',
     schooltype = '',
   }: IFetchParams,
-  config?: AxiosRequestConfig<any>
+  config?: AxiosRequestConfig<unknown>
 ): Promise<IFetchResponse> {
   const { data } = await rootApi.get<IFetchResponse>('/school_handbook.php', {
     params: {

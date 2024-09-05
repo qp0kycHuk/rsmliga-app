@@ -26,7 +26,7 @@ export function SecretariesContextProvider({ children }: React.PropsWithChildren
   })
 
   // Fetcing
-  const { data, isLoading, isFetching } = useFetchSecretaries({
+  const { data, isFetching } = useFetchSecretaries({
     page: currentPage,
     itemsPerPage: SECRETARIES_PER_PAGE,
     search: searchQuery,

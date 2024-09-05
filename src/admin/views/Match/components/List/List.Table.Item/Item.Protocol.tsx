@@ -37,7 +37,7 @@ export function Protocol({ item }: Props) {
           <Button
             as="a"
             href={'/manager/matches/protocol.php?id=' + item.id}
-            size={null}
+            size={undefined}
             icon
             className="btn-[22px]"
             color="gray-light"
@@ -47,7 +47,7 @@ export function Protocol({ item }: Props) {
         )}
         <Button
           onClick={openEditDialog}
-          size={null}
+          size={undefined}
           icon
           className="btn-[22px]"
           color={item.protocol ? 'gray-light' : 'primary'}
@@ -56,7 +56,7 @@ export function Protocol({ item }: Props) {
         </Button>
         {item.protocol && (
           <Button
-            size={null}
+            size={undefined}
             icon
             className="btn-[22px]"
             color="gray-light"

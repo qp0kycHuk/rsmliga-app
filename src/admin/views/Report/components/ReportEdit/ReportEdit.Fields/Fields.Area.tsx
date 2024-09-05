@@ -21,7 +21,7 @@ export function Area() {
     >
       {data?.items.map((item) => (
         <option key={id(item)} value={id(item)}>
-          {item.NAME}
+          {item.VALUE}
         </option>
       ))}
     </Select>

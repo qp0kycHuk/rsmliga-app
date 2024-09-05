@@ -29,7 +29,7 @@ export function InstitutionsContextProvider({ children }: React.PropsWithChildre
   })
 
   // Fetcing
-  const { data, isLoading, isFetching } = useFetchInstitutions({
+  const { data, isFetching } = useFetchInstitutions({
     page: currentPage,
     itemsPerPage: ITEMS_PER_PAGE,
     search: searchQuery,

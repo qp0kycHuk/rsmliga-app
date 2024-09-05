@@ -1,12 +1,6 @@
-import { FieldView } from '@admin/components/FieldView'
-import { useProtocolEditContext } from '../ProtocolEdit.Context'
-import { Field } from '@features/ui'
 import { InfoField } from './Info.Field'
-import { Debug } from '@admin/components/Debug'
 
 export function Info() {
-  // const { item, update } = useProtocolEditContext()
-
   return (
     <>
       <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Инфо о матче</div>

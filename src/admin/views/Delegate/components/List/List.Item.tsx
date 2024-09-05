@@ -60,7 +60,7 @@ export function ListItem({ item }: IListTableItemProps) {
         )}
       </Cell>
       <Cell>{categoriesData?.entites[item.category]?.VALUE || '-'}</Cell>
-      <Cell>{citiesData?.entites[item.location]?.NAME || '-'}</Cell>
+      <Cell>{citiesData?.entites[item.location]?.VALUE || '-'}</Cell>
       <Cell>{new Date(item.birthdate).toLocaleDateString()}</Cell>
       <Cell>{item.matchesCount || '-'}</Cell>
       {isAccess && (

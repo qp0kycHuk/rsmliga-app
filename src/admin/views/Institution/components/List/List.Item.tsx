@@ -32,7 +32,7 @@ export function Item({ item }: IItemProps) {
         </a>
       </Cell>
       <Cell>{conferenceData?.entites[item.conference]?.VALUE}</Cell>
-      <Cell>{citiesData?.entites[item.city]?.NAME}</Cell>
+      <Cell>{citiesData?.entites[item.city]?.VALUE}</Cell>
       <Cell>{schoolTypesData?.entites[item.type]?.VALUE}</Cell>
     </Row>
   )

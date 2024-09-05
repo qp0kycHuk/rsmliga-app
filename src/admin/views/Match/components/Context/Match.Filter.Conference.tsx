@@ -1,6 +1,6 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { useMatchContext } from './Match.Context'
-import { useFetchConference } from '@admin/service/conference'
+import { useFetchConference } from '@admin/views/Match/service/conference'
 
 export function Conference() {
   const { conferenceId, changeFilterParam } = useMatchContext()

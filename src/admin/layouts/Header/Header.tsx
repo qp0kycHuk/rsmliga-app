@@ -7,7 +7,7 @@ import { useSidebarContext } from '../SideBar/SidebarContext'
 
 export function Header() {
   const { data } = useFetchCurrentUser()
-  const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()
+  const { isOpen, toggleSidebar } = useSidebarContext()
 
   return (
     <header

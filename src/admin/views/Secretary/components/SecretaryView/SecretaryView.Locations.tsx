@@ -17,7 +17,7 @@ export function Locations({ item }: ICompetitionsProps) {
         <div className="p-4 rounded-md bg-gray bg-opacity-40" key={id}>
           <div className="text-lg leading-none">
             <span className="font-semibold">{index + 1}. Город/район: </span>
-            {data?.entites[id].NAME}
+            {data?.entites[id].VALUE}
           </div>
         </div>
       ))}

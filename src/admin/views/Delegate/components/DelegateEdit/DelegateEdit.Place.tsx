@@ -15,7 +15,7 @@ export function Place() {
       >
         {data?.items.map((city) => (
           <option key={city.ID} value={city.ID}>
-            {city.NAME}
+            {city.VALUE}
           </option>
         ))}
       </Select>

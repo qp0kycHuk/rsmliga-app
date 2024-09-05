@@ -29,7 +29,7 @@ export function LocationsDialog({ item }: IProps) {
             <Cell>
               {item.surname} {item.name} {item.patronymic}
             </Cell>
-            <Cell className="w-[366px] max-w-[366px]">{data?.entites[locationId].NAME}</Cell>
+            <Cell className="w-[366px] max-w-[366px]">{data?.entites[locationId].VALUE}</Cell>
           </Row>
         ))}
       </Table>

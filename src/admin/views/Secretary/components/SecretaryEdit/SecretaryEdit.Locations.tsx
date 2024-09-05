@@ -21,7 +21,7 @@ export function Locations() {
           <div className="p-4 rounded-md bg-gray bg-opacity-40 flex-grow">
             <div className="text-lg leading-none">
               <span className="font-semibold">{index + 1}. Город/район: </span>
-              {data?.entites[id].NAME}
+              {data?.entites[id].VALUE}
             </div>
           </div>
           {isAccess && (
@@ -55,7 +55,7 @@ export function Locations() {
           >
             {filteredItems.map((city) => (
               <option key={id(city)} value={id(city)}>
-                {city.NAME}
+                {city.VALUE}
               </option>
             ))}
           </Select>

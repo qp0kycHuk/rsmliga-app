@@ -1,7 +1,7 @@
 import { Select } from '@features/ui'
 import { id } from '@utils/helpers/id'
 import { useProtocolEditContext } from '../ProtocolEdit.Context'
-import { useFetchConference } from '@admin/service/conference'
+import { useFetchConference } from '@admin/views/Match/service/conference'
 
 export function Conference() {
   const { item, update } = useProtocolEditContext()

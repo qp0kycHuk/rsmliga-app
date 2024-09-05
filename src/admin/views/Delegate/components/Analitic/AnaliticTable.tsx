@@ -59,7 +59,7 @@ export function AnaliticTable({ items, className }: IAnaliticTableProps) {
             {delegate.surname} {delegate.name} {delegate.patronymic}
           </Cell>
           <Cell>{new Date(delegate.birthdate).toLocaleDateString()}</Cell>
-          <Cell>{citiesData?.entites[delegate.location]?.NAME || '-'}</Cell>
+          <Cell>{citiesData?.entites[delegate.location]?.VALUE || '-'}</Cell>
           <Cell>{categoriesData?.entites[delegate.category]?.VALUE || '-'}</Cell>
           <Cell>{delegate.analytics?.main_judge || '-'}</Cell>
           <Cell>{delegate.analytics?.judge_helper || '-'}</Cell>
