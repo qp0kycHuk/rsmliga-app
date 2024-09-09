@@ -55,12 +55,14 @@ interface Member {
 }
 
 interface Sanction {
+  player_id: EntityId
   name: string
   team: string
   text: string
 }
 
 interface Trauma {
+  player_id: EntityId
   name: string
   time: string
   text: string

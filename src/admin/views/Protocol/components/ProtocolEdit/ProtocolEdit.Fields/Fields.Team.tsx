@@ -34,7 +34,7 @@ export function Team({ name, label = 'Команда' }: Props) {
             })
           }
           renderItem={(id) => (
-            <div className="flex items-center gap-3 text-black">
+            <div className="flex items-center gap-3 text-default">
               <div
                 className="size-6 rounded-md border border-gray"
                 style={{ background: '#' + (colorsData?.entites[id]?.XML_ID || 'eee') }}

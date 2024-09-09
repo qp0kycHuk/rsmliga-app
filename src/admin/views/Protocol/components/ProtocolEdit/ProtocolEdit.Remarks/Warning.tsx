@@ -14,6 +14,7 @@ export function Warning({ warningsKey }: Props) {
   function add(memberId: string) {
     const warnings = item[warningsKey] || []
     const newWarning = {
+      player_id: memberId,
       name: '',
       text: '',
       team: '',

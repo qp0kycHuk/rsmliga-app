@@ -69,14 +69,16 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
   }
 
   // предупреждения
-  for (const warning of data.warnings || []) {
-    formData.append('warnUF_NAME[]', warning.name)
-    formData.append('warnUF_TEAM[]', warning.team)
-    formData.append('warnUF_TEXT[]', warning.text)
+  for (const item of data.warnings || []) {
+    formData.append('warning_player_id[]', item.player_id.toString())
+    formData.append('warnUF_NAME[]', item.name)
+    formData.append('warnUF_TEAM[]', item.team)
+    formData.append('warnUF_TEXT[]', item.text)
   }
 
   // удаления
   for (const item of data.deletes || []) {
+    formData.append('delete_player_id[]', item.player_id.toString())
     formData.append('remUF_NAME[]', item.name)
     formData.append('remUF_TEAM[]', item.team)
     formData.append('remUF_TEXT[]', item.text)
@@ -84,6 +86,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
 
   // травмы
   for (const trauma of data.trauma || []) {
+    formData.append('trauma_player_id[]', trauma.player_id.toString())
     formData.append('trUF_NAME[]', trauma.name)
     formData.append('trUF_TIMING[]', trauma.time)
     formData.append('trUF_DIAGNOSIS[]', trauma.text)

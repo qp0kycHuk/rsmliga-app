@@ -15,6 +15,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
     const trauma = item[traumaKey] || []
     const members = [...(item.team_1_info?.members || []), ...(item.team_2_info?.members || [])]
     const newTrauma = {
+      player_id: memberId,
       name: '',
       time: '0',
       text: '',
