@@ -9,6 +9,7 @@ import classes from './SideBar.module.scss'
 import { Theme } from './SideBar.Theme'
 import { CirclePreloader } from '@components/CirclePreloader/CirclePreloader'
 import { twMerge } from 'tailwind-merge'
+import { ThemeColor } from '@components/ThemeColor'
 
 function SideBarInner() {
   const { isOpen, toggleSidebar, closeSidebar } = useSidebarContext()
@@ -39,7 +40,7 @@ function SideBarInner() {
           onClick={toggleSidebar}
         >
           <MenuIcon className="flex-shrink-0 text-2xl" />
-          {isOpen && <div className="ml-2 text-base text-black dark:text-white">Свернуть меню</div>}
+          {isOpen && <div className="ml-2 text-base text-default">Свернуть меню</div>}
         </Button>
         <Button as="a" href="/" size="sm" className="w-full md:hidden shrink-0">
           На сайт
@@ -61,7 +62,10 @@ function SideBarInner() {
           />
         ))}
 
-        <Theme />
+        <div className="flex gap-4 mt-auto items-center">
+          <Theme />
+          <div className="ml-auto mr-2">{isOpen && <ThemeColor />}</div>
+        </div>
       </div>
 
       <div

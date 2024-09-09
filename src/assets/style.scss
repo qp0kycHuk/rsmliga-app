@@ -1,26 +1,54 @@
 @import 'functions';
 
 :root {
-  --primary-rgb     : #{cl(#d21c4b)};
-  --green-rgb     : #{cl(#009432)};
-  --yellow-rgb     : #{cl(#f79f1f)};
-  --blue-rgb     : #{cl(#497AC2)};
+  // colors
+  --primary-rgb : #{cl(#d21c4b)};
+  --green-rgb   : #{cl(#009432)};
+  --yellow-rgb  : #{cl(#f79f1f)};
+  --blue-rgb    : #{cl(#497AC2)};
   --red-rgb     : #{cl(#d63031)};
-  --bg1-rgb     : #{cl(#F5F7FB)};
-  --bg2-rgb     : #{cl(#F6F6F6)};
-  --bg3-rgb     : #{cl(#fff)};
-  --default-rgb : #{cl(#373737)};
   --white-rgb   : #{cl(#fff)};
   --black-rgb   : #{cl(#000)};
 
-  --font-base   : 'SF Pro Display', Arial, Helvetica, sans-serif;
+  // light / dark scheme
+  --bg1-rgb     : #{cl(#F5F7FB)};
+  --bg2-rgb     : #{cl(#F6F8FC)};
+  --bg3-rgb     : #{cl(#fff)};
+  --default-rgb : #{cl(#373737)};
+
+  --font-base: 'SF Pro Display', Arial, Helvetica, sans-serif;
 }
 
 .dark {
+  // light / dark scheme
   --bg1-rgb     : #{cl(#282828)};
   --bg2-rgb     : #{cl(#303030)};
   --bg3-rgb     : #{cl(#323232)};
   --default-rgb : #{cl(#fff)};
+}
+
+.default {
+  --primary-rgb : #{cl(#d21c4b)};
+}
+
+.red {
+  --primary-rgb : #{cl(#EA2027)};
+}
+
+.grass {
+  --primary-rgb : #{cl(#009432)};
+}
+
+.purple {
+  --primary-rgb : #{cl(#778beb)};
+}
+
+.sea {
+  --primary-rgb : #{cl(#1289A7)};
+}
+
+.orange {
+  --primary-rgb : #{cl(#d35400)};
 }
 
 body {
@@ -29,31 +57,34 @@ body {
   flex-direction: column;
   min-height    : 100vh;
   background    : theme('colors.l1');
-  color: theme('colors.default');
+  color         : theme('colors.default');
   font-family   : var(--font-base);
 
 
   * {
     outline: none;
   }
-
-  &.dark {
-    --text-color: #fff;
-
-  }
 }
 
 @layer components {
   .input {
-    &:is(.dark &) {
-      background  : theme('colors.dark.100');
-      border-color: theme('colors.white / 20%');
-      color       : theme('colors.white');
-    }
+    background  : theme('colors.l3');
+    border-color: theme('colors.default / 20%');
+    color       : theme('colors.default');
   }
 }
 
 @media print {
+  // temp
+
+  .dark,
+  :root {
+    --bg1-rgb     : #{cl(#F5F7FB)};
+    --bg2-rgb     : #{cl(#F6F8FC)};
+    --bg3-rgb     : #{cl(#fff)};
+    --default-rgb : #{cl(#373737)};
+  }
+
   body {
     --text-color: #000;
     background  : none;
@@ -107,8 +138,6 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-
-
 
 .lk-tabs {
   display      : flex;

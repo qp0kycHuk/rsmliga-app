@@ -8,15 +8,7 @@ interface ICellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
 
 export function Cell({ children, className, head, ...props }: ICellProps) {
   return (
-    <td
-      {...props}
-      className={twMerge(
-        classes.cell,
-        className,
-        'dark:bg-dark-100 dark:border-white dark:border-opacity-20',
-        head ? classes.head : 'bg-light-100'
-      )}
-    >
+    <td {...props} className={twMerge(classes.cell, className, head ? 'bg-l2' : 'bg-l3')}>
       {children}
     </td>
   )

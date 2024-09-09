@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import classnames from 'classnames'
 import React from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface IMenuItemsProps extends React.PropsWithChildren {
   className?: string
@@ -18,8 +18,8 @@ export function MenuItems({ children, className }: IMenuItemsProps) {
       leaveTo="transform opacity-0 scale-95"
     >
       <Menu.Items
-        className={classnames(
-          'z-1 absolute left-0 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg top-full',
+        className={twMerge(
+          'z-1 absolute left-0 w-56 mt-2 origin-top-right bg-l3 rounded-md shadow-lg top-full',
           className
         )}
       >

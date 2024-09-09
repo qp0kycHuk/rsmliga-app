@@ -40,12 +40,12 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               <DialogWrap.Panel
                 className={classnames(
                   className,
-                  'w-full m-auto transition-all  bg-light-100 dark:bg-dark-100 shadow-xl rounded-2xl print:bg-transparent relative'
+                  'w-full m-auto transition-all  bg-l3 shadow-xl rounded-2xl print:bg-transparent relative'
                 )}
               >
                 <div className="fixed -z-1" tabIndex={0}></div>
                 <Button
-                  className="absolute right-1 top-1 rounded-full btn-dark dark:btn-white print:hidden"
+                  className="absolute right-1 top-1 rounded-full btn-default print:hidden"
                   icon
                   size="sm"
                   variant="none"

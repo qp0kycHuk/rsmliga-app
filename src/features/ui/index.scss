@@ -20,7 +20,6 @@
 }
 
 .btn-whitebg {
-  &:is(.dark &) {
-    background: theme('colors.dark.100');
-  }
+  background: theme('colors.l3');
+
 }

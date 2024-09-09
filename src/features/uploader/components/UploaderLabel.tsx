@@ -34,7 +34,7 @@ export function UploaderLabel({ uploader }: IUploaderLabelProps) {
         uploader.label
       ) : (
         <>
-          <CameraIcon className="text-3xl sm:text-5xl text-primary" />
+          <CameraIcon className="text-3xl sm:text-5xl text-primary dark:text-white" />
           <div className="sm:text-lg text-primary dark:text-white">Добавить</div>
         </>
       )}

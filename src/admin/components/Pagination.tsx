@@ -39,7 +39,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
           variant="whitebg"
           size="sm"
           icon
-          className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
+          className="border border-default/20 max-sm:hidden"
           onClick={() => onChange(currentPage - 1)}
         >
           <ToRightIcon className="-scale-x-100" />
@@ -52,7 +52,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
               size="sm"
               icon
               key={index}
-              className={classNames('border border-gray dark:border-white dark:border-opacity-20')}
+              className={classNames('border border-default/20')}
               onClick={() => onChange(page)}
             >
               {page}
@@ -67,7 +67,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
           variant="whitebg"
           size="sm"
           icon
-          className="border border-gray dark:border-white dark:border-opacity-20 max-sm:hidden"
+          className="border border-default/20 max-sm:hidden"
           onClick={() => onChange(currentPage + 1)}
         >
           <ToRightIcon />

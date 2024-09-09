@@ -17,8 +17,8 @@
 .cell {
   min-width : max-content;
   padding   : 8px 12px;
-  background: #fff;
-  border    : 1px solid #DDDDDD;
+  background: theme('colors.l3');
+  border    : 1px solid theme('colors.default / 15%');
 
   @media (max-width:theme('screens.sm')) {
     padding: 4px 6px;
@@ -36,8 +36,4 @@
 .row {
   page-break-inside:avoid; 
   page-break-after:auto;
-}
-
-.head {
-  background: #F4F5F6;
 }

@@ -2,23 +2,24 @@
   width  : 0;
   height : 0;
   opacity: 0;
+  display: none;
 }
 
 .toggle {
-  --width      : 1em;
-  --padding    : 2px;
-  --height     : calc(var(--width) / 2 + var(--padding));
+  --width  : 1em;
+  --padding: 2px;
+  --height : calc(var(--width) / 2 + var(--padding));
 
-  display      : inline-block;
+  display      : block;
   position     : relative;
   width        : var(--width);
   height       : var(--height);
   overflow     : hidden;
   background   : #211042;
   border-radius: var(--height);
-  
-  cursor       : pointer;
-  transition   : background 500ms;
+
+  cursor    : pointer;
+  transition: background 500ms;
 }
 
 .button {
@@ -111,21 +112,21 @@
 }
 
 .star-2 {
-  top: 52%;
-  right: 9%;
+  top   : 52%;
+  right : 9%;
   width : 5%;
   height: 9%;
 }
 
 .star-3 {
-  right: 30%;
+  right : 30%;
   bottom: 18%;
   width : 2%;
   height: 4%;
 }
 
 .star-4 {
-  right: 35%;
+  right : 35%;
   bottom: 75%;
   width : 2%;
   height: 4%;

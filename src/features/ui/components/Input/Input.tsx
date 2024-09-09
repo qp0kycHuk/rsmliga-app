@@ -1,12 +1,10 @@
 import React from 'react'
 import classnames from 'classnames'
-import type { Color, Size } from '../../types'
+import type { Size } from '../../types'
 
 const baseClassName = 'input'
 
-const colorClassNames: Record<Color, string> = {
-  white: 'input-white',
-  black: 'input-black',
+const colorClassNames: Record<string, string> = {
   green: 'input-green',
   yellow: 'input-yellow',
   primary: 'input-primary',
@@ -14,10 +12,7 @@ const colorClassNames: Record<Color, string> = {
   gray: 'input-gray',
   default: 'input-default',
   light: 'input-light',
-  dark: 'input-dark',
   blue: 'input-blue',
-  ['gray-light']: 'input-gray-light',
-  transparent: '',
 }
 
 const sizeClassNames: Record<Size, string> = {

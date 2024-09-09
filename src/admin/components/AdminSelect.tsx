@@ -4,13 +4,13 @@ import { hasTouch } from 'detect-touch'
 import classnames from 'classnames'
 import { twMerge } from 'tailwind-merge'
 
-interface IAdminSelectProps {
+interface IAdminSelectProps<T = EntityId> {
   label?: string
   placeholder?: string
-  value?: EntityId
-  items: EntityId[]
-  onChange?: (value?: EntityId) => void
-  renderItem?: (value: EntityId) => string | JSX.Element
+  value?: T
+  items: T[]
+  onChange?: (value?: T) => void
+  renderItem?: (value: T) => string | JSX.Element
   className?: string
   itemsClassName?: string
   underline?: boolean
@@ -75,29 +75,28 @@ export function AdminSelect({
           </MenuButton>
 
           <MenuItems
-            className={classnames(
-              itemsClassName,
-              'p-1 left-0 sm:-translate-x-1/2 sm:left-1/2 w-52 '
-            )}
+            className={twMerge('p-1 left-0 sm:-translate-x-1/2 sm:left-1/2 w-52', itemsClassName)}
           >
-            <MenuItem>
-              {({ active }) => (
-                <Button
-                  onClick={() => onChange?.()}
-                  className="justify-start w-full h-auto px-2 py-1 text-left text-black"
-                  size="sm"
-                  variant={active ? 'light' : 'none'}
-                >
-                  {placeholder}
-                </Button>
-              )}
-            </MenuItem>
+            {placeholder && (
+              <MenuItem>
+                {({ active }) => (
+                  <Button
+                    onClick={() => onChange?.()}
+                    className="justify-start w-full h-auto px-2 py-1 text-left text-default"
+                    size="sm"
+                    variant={active ? 'light' : 'none'}
+                  >
+                    {placeholder}
+                  </Button>
+                )}
+              </MenuItem>
+            )}
             {items.map((item) => (
               <MenuItem key={item}>
                 {({ active }) => (
                   <Button
                     onClick={() => onChange?.(item)}
-                    className="justify-start w-full h-auto px-2 py-1 text-left text-black"
+                    className="justify-start w-full h-auto px-2 py-1 text-left text-default"
                     size="sm"
                     disabled={value === item}
                     variant={active || item === value ? 'light' : 'none'}

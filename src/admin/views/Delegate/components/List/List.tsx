@@ -37,7 +37,7 @@ function ListInner() {
         )}
       </Filter>
 
-      <ListTable items={delegates} className={loading ? 'pointer-events-none' : ''} />
+      <ListTable items={delegates} className={loading ? 'pointer-events-none opacity-60' : ''} />
 
       <Pagination />
 

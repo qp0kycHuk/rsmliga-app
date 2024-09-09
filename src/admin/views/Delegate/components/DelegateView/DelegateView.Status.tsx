@@ -12,7 +12,7 @@ export function Status({ item, className }: IStatusProps) {
   return (
     <div
       className={twMerge(
-        'bg-gray-light dark:bg-dark-300 rounded-full py-1 px-2 flex items-center gap-1 cursor-default',
+        'bg-default/5 rounded-full py-1 px-2 flex items-center gap-1 cursor-default',
         className
       )}
     >

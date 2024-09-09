@@ -7,3 +7,8 @@ export const [fetchCities, useFetchCities] = createFetchEntitiesService<ICity>(
     action: 'secretary_city_list',
   }
 )
+
+interface ICity {
+  ID: EntityId
+  NAME: string
+}

@@ -58,7 +58,7 @@ export function TeamImages() {
           onClick={openDialog}
           className="relative z-10 flex h-24 sm:h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20 w-32 sm:w-48 rounded-xl self-end flex-col items-center justify-center "
         >
-          <CameraIcon className="text-3xl sm:text-5xl text-primary" />
+          <CameraIcon className="text-3xl sm:text-5xl text-primary dark:text-white" />
           <div className="sm:text-lg text-primary dark:text-white">Добавить</div>
         </button>
       </div>
