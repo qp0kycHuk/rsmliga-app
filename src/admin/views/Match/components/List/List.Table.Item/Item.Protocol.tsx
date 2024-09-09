@@ -36,6 +36,7 @@ export function Protocol({ item }: Props) {
         {item.protocol && (
           <Button
             as="a"
+            target="_blank"
             href={'/manager/matches/protocol.php?id=' + item.id}
             size={undefined}
             icon

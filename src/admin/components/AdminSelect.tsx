@@ -54,7 +54,7 @@ export function AdminSelect({
               </option>
             ))}
           </select>
-          <TriangleDownIcon className="text-xs text-primary" />
+          <TriangleDownIcon className="text-xs text-primary print:hidden" />
         </div>
       </label>
     )
@@ -69,7 +69,9 @@ export function AdminSelect({
                 <div className={twMerge(' max-w-[200px] truncate', underline ? 'border-b' : '')}>
                   {value ? (renderItem ? renderItem(value) : value) : placeholder}
                 </div>
-                <TriangleDownIcon className={classnames('text-xs', open ? '-rotate-180' : '')} />
+                <TriangleDownIcon
+                  className={classnames('text-xs print:hidden', open ? '-rotate-180' : '')}
+                />
               </>
             )}
           </MenuButton>

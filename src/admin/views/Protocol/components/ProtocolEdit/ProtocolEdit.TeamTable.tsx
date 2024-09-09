@@ -75,7 +75,9 @@ export function TeamTable({ name }: ITeamTableProps) {
         <Cell head className="w-24 text-center">
           Попытки
         </Cell>
-        <Cell head>{/* remark */}</Cell>
+        <Cell head className="print:hidden">
+          {/* remark */}
+        </Cell>
       </Row>
       {team?.members.map((member) => (
         <Row key={member.id} className="text-sm">
@@ -131,7 +133,7 @@ export function TeamTable({ name }: ITeamTableProps) {
                     <div className="p-1 rounded bg-red/20 text-red">
                       <DeleteIcon />
                     </div>
-                    <span className="text-black">Удаление</span>
+                    <span className="text-default">Удаление</span>
                   </Button>
                 </MenuItem>
                 <MenuItem>
@@ -144,7 +146,7 @@ export function TeamTable({ name }: ITeamTableProps) {
                     <div className="p-1 rounded bg-yellow/20 text-yellow">
                       <WarningIcon />
                     </div>
-                    <span className="text-black">Предупреждение</span>
+                    <span className="text-default">Предупреждение</span>
                   </Button>
                 </MenuItem>
                 <MenuItem>
@@ -157,7 +159,7 @@ export function TeamTable({ name }: ITeamTableProps) {
                     <div className="p-1 rounded bg-blue/20 text-blue">
                       <MedKitIcon />
                     </div>
-                    <span className="text-black">Травматический случай</span>
+                    <span className="text-default">Травматический случай</span>
                   </Button>
                 </MenuItem>
               </MenuItems>
