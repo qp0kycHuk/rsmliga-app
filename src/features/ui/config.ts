@@ -1,16 +1,19 @@
 export const colors = {
-  primary: '#d21c4b',
+  primary: withOpacity('--primary-rgb'),
+  green: withOpacity('--green-rgb'),
+  yellow: withOpacity('--yellow-rgb'),
+  blue: withOpacity('--blue-rgb'),
+  red: withOpacity('--red-rgb'),
+  // primary: '#778beb', // Фиолетовый
+  // primary: '#10ac84', // Бирюзовый
+  gray: '#DDD',
   white: '#fff',
   black: '#242424',
   transparent: 'rgba(0,0,0,0)',
-  green: '#009432',
-  yellow: '#f79f1f',
-  blue: '#497AC2',
-  // primary: '#778beb', // Фиолетовый
-  // primary: '#10ac84', // Бирюзовый
-  red: '#d63031',
-  gray: '#DDD',
   ['gray-light']: '#F5F7FB',
+  l1: withOpacity('--bg1-rgb'),
+  l2: withOpacity('--bg2-rgb'),
+  l3: withOpacity('--bg3-rgb'),
   default: withOpacity('--default-rgb'),
 
   light: {

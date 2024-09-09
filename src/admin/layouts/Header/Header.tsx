@@ -13,7 +13,7 @@ export function Header() {
     <header
       className={classnames(
         classes.header,
-        'flex items-center py-2 bg-light-100 dark:bg-dark-100 dark:border-white dark:border-opacity-20 print:hidden'
+        'flex items-center py-2 bg-l3 border-default/20 print:hidden'
       )}
     >
       <div className={classnames(classes.user, 'flex items-center gap-2')}>

@@ -26,7 +26,7 @@ function SideBarInner() {
   return (
     <>
       <div
-        className={classnames(classes.sidebar, 'bg-light-100 dark:bg-dark-100 print:hidden', {
+        className={classnames(classes.sidebar, 'bg-l3 print:hidden', {
           [classes.open]: isOpen,
         })}
       >
