@@ -6,7 +6,7 @@ export { MenuButton, MenuItem } from '@headlessui/react'
 
 export function Menu({ children, className }: IMenuProps) {
   return (
-    <MenuWrap as="div" className={classnames('relative', className)}>
+    <MenuWrap as="div" className={classnames('relative group', className)}>
       {children}
     </MenuWrap>
   )

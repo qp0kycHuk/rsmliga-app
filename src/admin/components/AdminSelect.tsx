@@ -65,7 +65,7 @@ export function AdminSelect({
     )
   } else {
     return (
-      <div className={classnames(className, 'flex items-center gap-2')}>
+      <div className={twMerge('flex items-center gap-2', className)}>
         {label && <div>{label}</div>}
         <Menu className={menuClassName}>
           <MenuButton
@@ -74,16 +74,12 @@ export function AdminSelect({
             className="gap-2 w-full"
             disabled={items.length === 0}
           >
-            {({ open }) => (
-              <>
-                <div className={twMerge('max-w-[200px] truncate', underline ? 'border-b' : '')}>
-                  {value ? (renderItem ? renderItem(value) : value) : placeholder}
-                </div>
-                <TriangleDownIcon
-                  className={classnames('text-xs print:hidden ml-auto', open ? '-rotate-180' : '')}
-                />
-              </>
-            )}
+            <div className={twMerge('max-w-[200px] truncate', underline ? 'border-b' : '')}>
+              {value ? (renderItem ? renderItem(value) : value) : placeholder}
+            </div>
+            <TriangleDownIcon
+              className={'text-xs print:hidden ml-auto group-data-[open]:-rotate-180'}
+            />
           </MenuButton>
 
           <MenuItems anchor={anchor || 'bottom'} className={twMerge('p-1 w-52', itemsClassName)}>
