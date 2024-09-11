@@ -3,7 +3,7 @@ import { TriangleDownIcon } from '@assets/icons/fill'
 import { hasTouch } from 'detect-touch'
 import classnames from 'classnames'
 import { twMerge } from 'tailwind-merge'
-import { AnchorProps } from 'node_modules/@headlessui/react/dist/internal/floating'
+import type { AnchorString } from '@features/ui/components/Menu/MenuItems'
 
 interface IAdminSelectProps<T = EntityId> {
   label?: string
@@ -17,7 +17,7 @@ interface IAdminSelectProps<T = EntityId> {
   menuClassName?: string
   underline?: boolean
   touchSupport?: boolean
-  anchor?: AnchorProps | undefined
+  anchor?: AnchorString
 }
 
 export function AdminSelect({
@@ -76,7 +76,7 @@ export function AdminSelect({
           >
             {({ open }) => (
               <>
-                <div className={twMerge(' max-w-[200px] truncate', underline ? 'border-b' : '')}>
+                <div className={twMerge('max-w-[200px] truncate', underline ? 'border-b' : '')}>
                   {value ? (renderItem ? renderItem(value) : value) : placeholder}
                 </div>
                 <TriangleDownIcon

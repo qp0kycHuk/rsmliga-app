@@ -1,8 +1,7 @@
-import { Transition, Dialog as DialogWrap, TransitionChild, DialogPanel } from '@headlessui/react'
-import classnames from 'classnames'
-import { Fragment } from 'react'
+import { Dialog as DialogWrap, DialogPanel, DialogBackdrop } from '@headlessui/react'
 import { Button } from '../Button'
 import { CrossIcon } from '@assets/icons/fill'
+import { twMerge } from 'tailwind-merge'
 
 export interface IDialogProps extends React.PropsWithChildren {
   isOpen: boolean
@@ -12,54 +11,35 @@ export interface IDialogProps extends React.PropsWithChildren {
 
 export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <DialogWrap as="div" className="relative z-8" onClose={onClose}>
-        <TransitionChild
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black bg-opacity-50 print:hidden" />
-        </TransitionChild>
+    <DialogWrap className="relative z-8" open={isOpen} onClose={onClose}>
+      <DialogBackdrop
+        className="fixed inset-0 bg-black/50 print:hidden duration-300 data-[closed]:opacity-0"
+        transition
+      />
 
-        <div className="fixed print:relative inset-0 overflow-y-auto print:overflow-auto">
-          <div className="flex min-h-full p-4 print:p-0">
-            <TransitionChild
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95 translate-y-5"
-              enterTo="opacity-100 "
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 "
-              leaveTo="opacity-0 scale-95 translate-y-5"
-            >
-              <DialogPanel
-                className={classnames(
-                  className,
-                  'w-full m-auto transition-all  bg-l3 shadow-xl rounded-2xl print:bg-transparent relative'
-                )}
-              >
-                <div className="fixed -z-1" tabIndex={0}></div>
-                <Button
-                  className="absolute right-1 top-1 rounded-full btn-default print:hidden"
-                  icon
-                  size="sm"
-                  variant="none"
-                  color="none"
-                  onClick={onClose}
-                >
-                  <CrossIcon />
-                </Button>
-                {children}
-              </DialogPanel>
-            </TransitionChild>
-          </div>
-        </div>
-      </DialogWrap>
-    </Transition>
+      <div className="fixed inset-0 w-screen overflow-y-auto print:overflow-auto p-4 print:p-0 flex flex-col print:relative">
+        <DialogPanel
+          className={twMerge(
+            'w-full m-auto transition-all  bg-l3 shadow-xl rounded-2xl print:bg-transparent relative',
+            'duration-300 ease-out data-[closed]:scale-95 data-[closed]:translate-y-5 data-[closed]:opacity-0',
+            className
+          )}
+          transition
+        >
+          <div className="fixed -z-1" tabIndex={0}></div>
+          <Button
+            className="absolute right-1 top-1 rounded-full btn-default print:hidden"
+            icon
+            size="sm"
+            variant="none"
+            color="none"
+            onClick={onClose}
+          >
+            <CrossIcon />
+          </Button>
+          {children}
+        </DialogPanel>
+      </div>
+    </DialogWrap>
   )
 }

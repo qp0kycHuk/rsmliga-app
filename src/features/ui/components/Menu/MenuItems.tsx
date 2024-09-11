@@ -1,33 +1,50 @@
-import { MenuItems as Items, Transition } from '@headlessui/react'
-import React from 'react'
+import { MenuItems as Items } from '@headlessui/react'
 import { twMerge } from 'tailwind-merge'
 
 interface IMenuItemsProps extends React.ComponentProps<typeof Items> {
   className?: string
+  anchor: AnchorString
 }
 
-export function MenuItems({ children, className, ...props }: IMenuItemsProps) {
+const origin: Record<AnchorString, string> = {
+  top: 'origin-bottom',
+  right: 'origin-left',
+  bottom: 'origin-top',
+  left: 'origin-right',
+  'top start': 'origin-bottom-left',
+  'top end': 'origin-bottom-right',
+  'right start': 'origin-top-left',
+  'right end': 'origin-bottom-left',
+  'bottom start': 'origin-top-left',
+  'bottom end': 'origin-top-right',
+  'left start': 'origin-top-right',
+  'left end': 'origin-bottom-right',
+}
+
+export function MenuItems({
+  children,
+  className,
+  anchor = 'bottom start',
+  ...props
+}: IMenuItemsProps) {
   return (
-    <Transition
-      as={React.Fragment}
-      enter="transition ease-out duration-100"
-      enterFrom="transform opacity-0 scale-95"
-      enterTo="transform opacity-100 scale-100"
-      leave="transition ease-in duration-75"
-      leaveFrom="transform opacity-100 scale-100"
-      leaveTo="transform opacity-0 scale-95"
+    <Items
+      anchor={anchor}
+      modal={false}
+      {...props}
+      transition
+      className={twMerge(
+        'z-1 w-56  bg-l3 rounded-md shadow-lg [--anchor-gap:8px]',
+        'transition duration-100 data-[closed]:opacity-0 data-[closed]:scale-95',
+        origin[anchor],
+        className
+      )}
     >
-      <Items
-        anchor="bottom start"
-        modal={false}
-        {...props}
-        className={twMerge(
-          'z-6 w-56 origin-top-right bg-l3 rounded-md shadow-lg [--anchor-gap:8px]',
-          className
-        )}
-      >
-        {children}
-      </Items>
-    </Transition>
+      {children}
+    </Items>
   )
 }
+
+type Align = 'start' | 'end'
+type Placement = 'top' | 'right' | 'bottom' | 'left'
+export type AnchorString = `${Placement}` | `${Placement} ${Align}`
