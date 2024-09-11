@@ -13,6 +13,7 @@ interface IAdminSelectProps<T = EntityId> {
   renderItem?: (value: T) => string | JSX.Element
   className?: string
   itemsClassName?: string
+  menuClassName?: string
   underline?: boolean
   touchSupport?: boolean
 }
@@ -26,6 +27,7 @@ export function AdminSelect({
   renderItem,
   className,
   itemsClassName,
+  menuClassName,
   underline = true,
   touchSupport = true,
 }: IAdminSelectProps) {
@@ -37,12 +39,12 @@ export function AdminSelect({
     return (
       <label className={classnames(className, 'flex items-center gap-2')}>
         {label && <div>{label}</div>}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full">
           <select
             onChange={(e) => onChange?.(e.target.value)}
             value={value}
             className={twMerge(
-              'w-full max-w-[200px]  bg-transparent  outline-none appearance-none text-primary truncate ',
+              'w-full  max-w-[200px]  bg-transparent  outline-none appearance-none text-primary truncate ',
               underline ? 'border-b border-primary' : ''
             )}
             style={{ width: selectWidth }}
@@ -54,7 +56,7 @@ export function AdminSelect({
               </option>
             ))}
           </select>
-          <TriangleDownIcon className="text-xs text-primary print:hidden" />
+          <TriangleDownIcon className="text-xs text-primary print:hidden " />
         </div>
       </label>
     )
@@ -62,15 +64,20 @@ export function AdminSelect({
     return (
       <div className={classnames(className, 'flex items-center gap-2')}>
         {label && <div>{label}</div>}
-        <Menu>
-          <MenuButton as={Button} variant="text" className="gap-2 " disabled={items.length === 0}>
+        <Menu className={menuClassName}>
+          <MenuButton
+            as={Button}
+            variant="text"
+            className="gap-2 w-full"
+            disabled={items.length === 0}
+          >
             {({ open }) => (
               <>
                 <div className={twMerge(' max-w-[200px] truncate', underline ? 'border-b' : '')}>
                   {value ? (renderItem ? renderItem(value) : value) : placeholder}
                 </div>
                 <TriangleDownIcon
-                  className={classnames('text-xs print:hidden', open ? '-rotate-180' : '')}
+                  className={classnames('text-xs print:hidden ml-auto', open ? '-rotate-180' : '')}
                 />
               </>
             )}

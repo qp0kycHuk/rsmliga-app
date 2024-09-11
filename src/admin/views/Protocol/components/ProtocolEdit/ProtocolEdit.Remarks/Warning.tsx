@@ -61,7 +61,7 @@ export function Warning({ warningsKey }: Props) {
   return (
     <>
       <Table>
-        <Row className="text-sm font-medium">
+        <Row className="text-sm font-medium max-xs:text-xs">
           <Cell head className="text-center w-12">
             №
           </Cell>
@@ -80,7 +80,7 @@ export function Warning({ warningsKey }: Props) {
             <Cell></Cell>
             <Cell></Cell>
             <Cell className="p-1 w-12 print:hidden">
-              <Button variant="light" icon disabled>
+              <Button variant="light" icon disabled className="max-xs:btn-sm">
                 <TrashIcon className="text-lg" />
               </Button>
             </Cell>
@@ -88,7 +88,7 @@ export function Warning({ warningsKey }: Props) {
         )}
 
         {item[warningsKey]?.map((warn, index) => (
-          <Row key={index}>
+          <Row key={index} className="max-xs:text-xs">
             <Cell className="text-center">{index + 1}</Cell>
             <Cell>{warn.name}</Cell>
             <Cell>{warn.team}</Cell>
@@ -104,7 +104,12 @@ export function Warning({ warningsKey }: Props) {
               />
             </Cell>
             <Cell className="p-1 w-12 print:hidden">
-              <Button variant="light" icon onClick={deleteHandler.bind(null, index)}>
+              <Button
+                variant="light"
+                icon
+                onClick={deleteHandler.bind(null, index)}
+                className="max-xs:btn-sm"
+              >
                 <TrashIcon className="text-lg" />
               </Button>
             </Cell>

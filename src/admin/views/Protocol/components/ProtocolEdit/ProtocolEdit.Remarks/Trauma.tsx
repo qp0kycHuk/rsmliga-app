@@ -55,7 +55,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
   return (
     <>
       <Table>
-        <Row className="text-sm font-medium">
+        <Row className="text-sm font-medium max-xs:text-xs">
           <Cell head className="w-28 px-2">
             Минута матча
           </Cell>
@@ -74,7 +74,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
             <Cell></Cell>
             <Cell></Cell>
             <Cell className="p-1 w-12 print:hidden">
-              <Button variant="light" icon disabled>
+              <Button variant="light" icon disabled className="max-xs:btn-sm">
                 <TrashIcon className="text-lg" />
               </Button>
             </Cell>
@@ -82,7 +82,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
         )}
 
         {item[traumaKey]?.map((trauma, index) => (
-          <Row key={index}>
+          <Row key={index} className="max-xs:text-xs">
             <Cell className="p-1">
               <Field
                 inputProps={{
@@ -96,7 +96,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
               />
             </Cell>
             <Cell className="text-sm">{trauma.name}</Cell>
-            <Cell className="p-1 w-1/3">
+            <Cell className="p-1 w-1/3 min-w-28">
               <Field
                 inputProps={{
                   value: trauma.text,
@@ -107,7 +107,7 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
                 }}
               />
             </Cell>
-            <Cell className="p-1 w-1/4">
+            <Cell className="p-1 w-1/4 min-w-28">
               <Field
                 inputProps={{
                   value: trauma.help,
@@ -119,7 +119,12 @@ export function Trauma({ traumaKey = 'trauma' }: Props) {
               />
             </Cell>
             <Cell className="p-1 w-12 print:hidden">
-              <Button variant="light" icon onClick={deleteHandler.bind(null, index)}>
+              <Button
+                variant="light"
+                icon
+                onClick={deleteHandler.bind(null, index)}
+                className="max-xs:btn-sm"
+              >
                 <TrashIcon className="text-lg" />
               </Button>
             </Cell>

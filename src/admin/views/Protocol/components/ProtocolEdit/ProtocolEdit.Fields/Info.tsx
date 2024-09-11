@@ -4,7 +4,7 @@ export function Info() {
   return (
     <>
       <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Инфо о матче</div>
-      <div className="grid grid-cols-3 items-end gap-6">
+      <div className="grid sm:grid-cols-3 items-end gap-6">
         <div>
           <div className="font-semibold mb-4">Счет после первого тайма</div>
           <div className="grid grid-cols-2 gap-4">

@@ -17,11 +17,15 @@ export function ProtocolEditForm() {
     <form onSubmit={submit}>
       <div className="text-center text-2xl font-semibold mb-6">Протокол</div>
       <Fields />
-      <div className="grid grid-cols-2 print:grid-cols-1 gap-8 mt-8">
-        <Team name="team_1_info" label="Команда 1" />
-        <Team name="team_2_info" label="Команда 2" />
+      <div className="grid lg:grid-cols-2 print:grid-cols-1 gap-8 mt-8 ">
+        <div className="relative z-[2]">
+          <Team name="team_1_info" label="Команда 1" />
+        </div>
+        <div className="relative z-[1]">
+          <Team name="team_2_info" label="Команда 2" />
+        </div>
       </div>
-      <div className="grid grid-cols-2 gap-8 mt-8">
+      <div className="grid lg:grid-cols-2 gap-8 mt-8">
         <Judge />
         <Judge name="delegate_id" label="Делегат" />
         <Judge name="helper_1_id" label="Помощник судьи 1" />
@@ -31,7 +35,7 @@ export function ProtocolEditForm() {
       <div className="mt-8"></div>
       <Info />
 
-      <div className="grid grid-cols-2 print:grid-cols-1 gap-6 mt-7 break-inside-avoid-page">
+      <div className="grid lg:grid-cols-2 print:grid-cols-1 gap-6 mt-7 break-inside-avoid-page">
         <div>
           <div className="font-semibold mb-4">Команда 1</div>
           <TeamTable name="team_1_info" />
@@ -61,7 +65,7 @@ export function ProtocolEditForm() {
       </div>
 
       <div className="text-xl font-semibold mt-10 mb-7">Протокол заполнен верно</div>
-      <div className="flex gap-4 mt-7 print:hidden">
+      <div className="flex gap-4 mt-7 print:hidden max-sm:flex-col">
         <Button type="submit" className="px-10" disabled={loading}>
           Отправить
         </Button>
@@ -70,7 +74,7 @@ export function ProtocolEditForm() {
         </Button>
         <Button
           variant="contur"
-          className="gap-2 px-10 ml-auto"
+          className="gap-2 px-10 sm:ml-auto"
           onClick={() => window.print()}
           disabled={loading}
         >

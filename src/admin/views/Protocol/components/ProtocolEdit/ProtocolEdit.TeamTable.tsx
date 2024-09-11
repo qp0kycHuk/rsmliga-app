@@ -70,9 +70,11 @@ export function TeamTable({ name }: ITeamTableProps) {
           №
         </Cell>
         <Cell head>{/* image */}</Cell>
-        <Cell head>Фамилия Имя</Cell>
-        <Cell head></Cell>
-        <Cell head className="w-24 text-center">
+        <Cell head className="max-xs:text-xs">
+          Фамилия Имя
+        </Cell>
+        <Cell head className="max-xs:hidden"></Cell>
+        <Cell head className="w-16 xs:w-w-24 text-center max-xs:text-xs">
           Попытки
         </Cell>
         <Cell head className="print:hidden">
@@ -83,10 +85,15 @@ export function TeamTable({ name }: ITeamTableProps) {
         <Row key={member.id} className="text-sm">
           <Cell className="text-center">{member.number}</Cell>
           <Cell className="w-12 py-1 px-0">
-            <Avatar size="lg" src={member.avatar} placeholder={member.FIO} />
+            <Avatar
+              size="lg"
+              src={member.avatar}
+              placeholder={member.FIO}
+              className="max-xs:size-9"
+            />
           </Cell>
-          <Cell>{member.FIO}</Cell>
-          <Cell>
+          <Cell className="max-xs:text-xs">{member.FIO}</Cell>
+          <Cell className="max-xs:hidden">
             <div className="flex gap-2 justify-center">
               {hasRemark(member, 'deletes') && (
                 <div className="p-1 rounded bg-red/20 text-red">
@@ -99,14 +106,15 @@ export function TeamTable({ name }: ITeamTableProps) {
                 </div>
               )}
               {hasRemark(member, 'trauma') && (
-                <div className="p-1 rounded bg-blue/20 text-blue">
+                <div className="p-1 rounded bg-blue/20 text-blue ">
                   <MedKitIcon />
                 </div>
               )}
             </div>
           </Cell>
-          <Cell className="py-0 pr-0">
+          <Cell className="py-.5 pr-0">
             <Field
+              className="w-16 xs:w-w-24"
               inputProps={{
                 value: member.try || 0,
                 type: 'number',
@@ -119,7 +127,7 @@ export function TeamTable({ name }: ITeamTableProps) {
           </Cell>
           <Cell className="print:hidden w-12">
             <Menu>
-              <MenuButton as={Button} variant="light" icon className="" size="sm">
+              <MenuButton as={Button} variant="light" icon className="btn-xs xs:btn-sm">
                 <CirclePlusIcon className="text-xl" />
               </MenuButton>
               <MenuItems className="p-1 right-0 left-auto w-52">

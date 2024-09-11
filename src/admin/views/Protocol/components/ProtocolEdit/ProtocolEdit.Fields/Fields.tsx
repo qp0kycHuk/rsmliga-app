@@ -25,17 +25,17 @@ export function Fields() {
   const showNone = !showArea && !showConference && !showTour && !showDivision
 
   return (
-    <div className="grid grid-cols-2 gap-8">
+    <div className="grid lg:grid-cols-2 gap-8">
       <Competition />
       <Stage />
-      <div className={showNone ? '' : 'grid grid-cols-2 gap-8'}>
+      <div className={showNone ? '' : 'grid sm:grid-cols-2 gap-8'}>
         {showArea && <City />}
         {showConference && <Conference />}
         {showTour && <Tour />}
         {showDivision && <Division />}
         <Location />
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid sm:grid-cols-2 gap-8">
         <Date />
         <Time />
       </div>

@@ -15,14 +15,16 @@ export function Team({ name, label = 'Команда' }: Props) {
   return (
     <div>
       <div className="text-sm font-semibold mb-2">{label}</div>
-      <div className="relative z-1">
-        <div className="input w-full flex items-center">{team?.name}</div>
+      <div className="relative">
+        <div className="input w-full flex items-center max-xs:text-sm">{team?.name}</div>
 
         <AdminSelect
-          itemsClassName="max-h-80 w-96 overflow-auto"
-          className="absolute right-1 top-1/2 -translate-y-1/2 p-2 bg-default/5 rounded-md"
+          itemsClassName="max-h-80 w-96 overflow-auto max-sm:max-w-full"
+          menuClassName="grow"
+          className="sm:absolute right-1 top-1/2 sm:-translate-y-1/2 p-2 bg-default/5 rounded-md max-sm:mt-1 "
           placeholder="Нету"
           underline={false}
+          touchSupport={false}
           value={colorsData?.items.find(({ XML_ID }) => team?.color == XML_ID)?.ID || ''}
           items={colorsData?.ids || []}
           onChange={(value) =>
@@ -44,7 +46,7 @@ export function Team({ name, label = 'Команда' }: Props) {
           )}
         />
       </div>
-      <FieldView className="mt-1 py-2">{city?.VALUE}</FieldView>
+      <FieldView className="mt-1 py-2 max-xs:text-sm">{city?.VALUE}</FieldView>
     </div>
   )
 }
