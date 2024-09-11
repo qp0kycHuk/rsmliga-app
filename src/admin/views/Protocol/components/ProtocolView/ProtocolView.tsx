@@ -10,9 +10,10 @@ import { useFetchProtocol } from '../../service/api'
 
 interface IProps {
   matchId: EntityId
+  onCancel?(): void
 }
 
-export function ProtocolView({ matchId }: IProps) {
+export function ProtocolView({ matchId, onCancel }: IProps) {
   const { data } = useFetchProtocol({ id: matchId })
 
   const { data: cityData } = useFetchCities()
@@ -288,7 +289,7 @@ export function ProtocolView({ matchId }: IProps) {
       </div>
 
       <div className="flex gap-4 mt-7 print:hidden max-xs:flex-col">
-        <Button variant="light" className="px-16">
+        <Button variant="light" className="px-16" onClick={onCancel}>
           Закрыть
         </Button>
         <Button variant="contur" className="gap-2 px-16 xs:ml-auto" onClick={() => window.print()}>

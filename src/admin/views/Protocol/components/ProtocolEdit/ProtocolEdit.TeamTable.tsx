@@ -64,7 +64,7 @@ export function TeamTable({ name }: ITeamTableProps) {
   }
 
   return (
-    <Table xBorderLess className="overflow-visible">
+    <Table xBorderLess>
       <Row className="text-sm font-semibold">
         <Cell head className="text-center w-14">
           №
@@ -130,7 +130,7 @@ export function TeamTable({ name }: ITeamTableProps) {
               <MenuButton as={Button} variant="light" icon className="btn-xs xs:btn-sm">
                 <CirclePlusIcon className="text-xl" />
               </MenuButton>
-              <MenuItems className="p-1 right-0 left-auto w-52">
+              <MenuItems anchor="bottom end" className="p-1  w-52">
                 <MenuItem>
                   <Button
                     variant="none"

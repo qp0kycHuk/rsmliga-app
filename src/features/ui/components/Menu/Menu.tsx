@@ -2,8 +2,7 @@ import React from 'react'
 import { Menu as MenuWrap } from '@headlessui/react'
 import classnames from 'classnames'
 
-export const MenuButton = MenuWrap.Button
-export const MenuItem = MenuWrap.Item
+export { MenuButton, MenuItem } from '@headlessui/react'
 
 export function Menu({ children, className }: IMenuProps) {
   return (

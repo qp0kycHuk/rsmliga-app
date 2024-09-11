@@ -83,17 +83,15 @@ export function AdminSelect({
             )}
           </MenuButton>
 
-          <MenuItems
-            className={twMerge('p-1 left-0 sm:-translate-x-1/2 sm:left-1/2 w-52', itemsClassName)}
-          >
+          <MenuItems anchor="bottom" className={twMerge('p-1  w-52', itemsClassName)}>
             {placeholder && (
               <MenuItem>
-                {({ active }) => (
+                {({ focus }) => (
                   <Button
                     onClick={() => onChange?.()}
                     className="justify-start w-full h-auto px-2 py-1 text-left text-default"
                     size="sm"
-                    variant={active ? 'light' : 'none'}
+                    variant={focus ? 'light' : 'none'}
                   >
                     {placeholder}
                   </Button>
@@ -102,13 +100,13 @@ export function AdminSelect({
             )}
             {items.map((item) => (
               <MenuItem key={item}>
-                {({ active }) => (
+                {({ focus }) => (
                   <Button
                     onClick={() => onChange?.(item)}
                     className="justify-start w-full h-auto px-2 py-1 text-left text-default"
                     size="sm"
                     disabled={value === item}
-                    variant={active || item === value ? 'light' : 'none'}
+                    variant={focus || item === value ? 'light' : 'none'}
                   >
                     {renderItem ? renderItem(item) : item}
                   </Button>

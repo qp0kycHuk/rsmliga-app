@@ -11,8 +11,9 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.22",
-    "@headlessui/react": "^1.7.17",
+    "@headlessui/react": "^2.1.6",
     "@qpokychuk/fonts": "^1.0.9",
+    "@qpokychuk/sf-pro-display": "^1.0.2",
     "@tippyjs/react": "^4.2.6",
     "air-datepicker": "^3.4.0",
     "axios": "^1.4.0",

@@ -1,6 +1,6 @@
 import { Row, Cell } from '@admin/index'
 import { useFetchStages } from '@admin/service/stages'
-import { ProtocolDialog } from '@admin/views/Protocol/components/ProtocolView/Protocol.Dialog'
+import { ProtocolDialog } from '@admin/views/Protocol/'
 import { Button } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 

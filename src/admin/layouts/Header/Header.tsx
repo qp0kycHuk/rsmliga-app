@@ -4,7 +4,6 @@ import { CrossIcon, LogOutIcon, MenuIcon } from '@assets/icons/fill'
 import { useFetchCurrentUser } from '@admin/service/user'
 import classes from './Header.module.scss'
 import { useSidebarContext } from '../SideBar/SidebarContext'
-import { ThemeColor } from '@components/ThemeColor'
 
 export function Header() {
   const { data } = useFetchCurrentUser()

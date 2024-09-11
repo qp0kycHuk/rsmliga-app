@@ -1,12 +1,12 @@
-import { Menu, Transition } from '@headlessui/react'
+import { MenuItems as Items, Transition } from '@headlessui/react'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
-interface IMenuItemsProps extends React.PropsWithChildren {
+interface IMenuItemsProps extends React.ComponentProps<typeof Items> {
   className?: string
 }
 
-export function MenuItems({ children, className }: IMenuItemsProps) {
+export function MenuItems({ children, className, ...props }: IMenuItemsProps) {
   return (
     <Transition
       as={React.Fragment}
@@ -17,14 +17,16 @@ export function MenuItems({ children, className }: IMenuItemsProps) {
       leaveFrom="transform opacity-100 scale-100"
       leaveTo="transform opacity-0 scale-95"
     >
-      <Menu.Items
+      <Items
+        anchor="bottom start"
+        {...props}
         className={twMerge(
-          'z-1 absolute left-0 w-56 mt-2 origin-top-right bg-l3 rounded-md shadow-lg top-full',
+          'z-1 w-56 origin-top-right bg-l3 rounded-md shadow-lg [--anchor-gap:8px]',
           className
         )}
       >
         {children}
-      </Menu.Items>
+      </Items>
     </Transition>
   )
 }

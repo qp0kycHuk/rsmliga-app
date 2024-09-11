@@ -21,10 +21,7 @@ export function Protocol({ item }: Props) {
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
   async function deleteHandler() {
-    const itemId = id(item)
-    if (!itemId) return
-
-    const response = await deleteProtocol({ match_id: itemId })
+    const response = await deleteProtocol({ match_id: id(item) as EntityId })
 
     if (response.data.error) {
       toast.error(response.data.error)

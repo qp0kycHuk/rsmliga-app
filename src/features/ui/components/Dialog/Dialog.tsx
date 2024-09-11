@@ -1,4 +1,4 @@
-import { Transition, Dialog as DialogWrap } from '@headlessui/react'
+import { Transition, Dialog as DialogWrap, TransitionChild, DialogPanel } from '@headlessui/react'
 import classnames from 'classnames'
 import { Fragment } from 'react'
 import { Button } from '../Button'
@@ -14,7 +14,7 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <DialogWrap as="div" className="relative z-8" onClose={onClose}>
-        <Transition.Child
+        <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
@@ -24,11 +24,11 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black bg-opacity-50 print:hidden" />
-        </Transition.Child>
+        </TransitionChild>
 
         <div className="fixed print:relative inset-0 overflow-y-auto print:overflow-auto">
           <div className="flex min-h-full p-4 print:p-0">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95 translate-y-5"
@@ -37,7 +37,7 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
               leaveFrom="opacity-100 "
               leaveTo="opacity-0 scale-95 translate-y-5"
             >
-              <DialogWrap.Panel
+              <DialogPanel
                 className={classnames(
                   className,
                   'w-full m-auto transition-all  bg-l3 shadow-xl rounded-2xl print:bg-transparent relative'
@@ -55,8 +55,8 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
                   <CrossIcon />
                 </Button>
                 {children}
-              </DialogWrap.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </div>
       </DialogWrap>
