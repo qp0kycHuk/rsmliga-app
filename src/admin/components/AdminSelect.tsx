@@ -3,6 +3,7 @@ import { TriangleDownIcon } from '@assets/icons/fill'
 import { hasTouch } from 'detect-touch'
 import classnames from 'classnames'
 import { twMerge } from 'tailwind-merge'
+import { AnchorProps } from 'node_modules/@headlessui/react/dist/internal/floating'
 
 interface IAdminSelectProps<T = EntityId> {
   label?: string
@@ -16,6 +17,7 @@ interface IAdminSelectProps<T = EntityId> {
   menuClassName?: string
   underline?: boolean
   touchSupport?: boolean
+  anchor?: AnchorProps | undefined
 }
 
 export function AdminSelect({
@@ -30,6 +32,7 @@ export function AdminSelect({
   menuClassName,
   underline = true,
   touchSupport = true,
+  anchor,
 }: IAdminSelectProps) {
   const selectWidth = value
     ? (renderItem ? renderItem(value) : value)?.toString().length * 10
@@ -83,7 +86,7 @@ export function AdminSelect({
             )}
           </MenuButton>
 
-          <MenuItems anchor="bottom" className={twMerge('p-1  w-52', itemsClassName)}>
+          <MenuItems anchor={anchor || 'bottom'} className={twMerge('p-1  w-52', itemsClassName)}>
             {placeholder && (
               <MenuItem>
                 {({ focus }) => (
