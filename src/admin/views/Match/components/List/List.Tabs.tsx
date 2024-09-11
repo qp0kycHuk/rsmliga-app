@@ -5,7 +5,7 @@ export function Tabs() {
   const { tabId, changeFilterParam } = useMatchContext()
 
   return (
-    <div className="lk-tabs bg-l3">
+    <div className="lk-tabs bg-l3 print:hidden">
       <button
         onClick={() => changeFilterParam([['tab', 'A']], false)}
         className={twMerge('lk-tabs-item', tabId === 'A' ? 'active' : '')}

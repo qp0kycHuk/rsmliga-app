@@ -44,7 +44,7 @@ export function Item({ item }: IItemProps) {
       </Cell>
       <Cell
         onClick={canEdit ? openEditDialog : openViewDialog}
-        className="cursor-pointer underline whitespace-nowrap"
+        className="cursor-pointer underline print:no-underline whitespace-nowrap"
       >
         {item.surname} {item.name} {item.patronymic}
       </Cell>
@@ -52,7 +52,10 @@ export function Item({ item }: IItemProps) {
       <Cell>{item.email || '-'}</Cell>
       <Cell className="whitespace-nowrap">{item.phone || '-'}</Cell>
       <Cell
-        className={classNames('btn-group ', item.competitions.length > 0 ? 'cursor-pointer' : null)}
+        className={classNames(
+          'btn-group print:hidden',
+          item.competitions.length > 0 ? 'cursor-pointer' : null
+        )}
         onClick={item.competitions.length > 0 ? openContestsDialog : undefined}
       >
         {item.competitions.length > 0 ? (
@@ -64,7 +67,10 @@ export function Item({ item }: IItemProps) {
         )}
       </Cell>
       <Cell
-        className={classNames('btn-group ', item.locations.length > 0 ? 'cursor-pointer' : null)}
+        className={classNames(
+          'btn-group print:hidden',
+          item.locations.length > 0 ? 'cursor-pointer' : null
+        )}
         onClick={item.locations.length > 0 ? openLocationsDialog : undefined}
       >
         {item.locations.length > 0 ? (

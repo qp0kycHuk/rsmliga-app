@@ -6,7 +6,7 @@ import { Statuses } from './Report.Filter.Statuses'
 
 export function Filter({ children }: React.PropsWithChildren) {
   return (
-    <div className="flex lg:items-center max-lg:flex-col gap-5 lg:gap-10 mb-10 lg:mb-6">
+    <div className="flex lg:items-center max-lg:flex-col gap-5 lg:gap-10 mb-10 lg:mb-6 print:hidden">
       <Seasons />
       <Tournaments />
       <Location />

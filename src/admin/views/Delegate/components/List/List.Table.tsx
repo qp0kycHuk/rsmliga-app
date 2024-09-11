@@ -1,7 +1,6 @@
-import { Table, Row, Cell } from '@admin/index'
+import { Table } from '@admin/index'
 import { ListItem } from './List.Item'
-import { canEditGroups } from '../../const'
-import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { TableHead } from './List.Table.Head'
 
 interface IListTableProps {
   items: IDelegate[]
@@ -9,41 +8,8 @@ interface IListTableProps {
 }
 
 export function ListTable({ items, className }: IListTableProps) {
-  const { isAccess } = useUserAccess(canEditGroups)
-
   return (
-    <Table className={className}>
-      <Row>
-        <Cell head className="text-xs sm:text-sm font-medium text-center">
-          №
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          ID
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          ФИО
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          Соревнование
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          Категория
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          Населенный пункт
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          Дата рождения
-        </Cell>
-        <Cell head className="text-xs sm:text-sm font-medium">
-          Матчей проведено
-        </Cell>
-        {isAccess && (
-          <Cell head className="text-xs sm:text-sm font-medium">
-            {/* for button */}
-          </Cell>
-        )}
-      </Row>
+    <Table className={className} head={<TableHead />}>
       {items?.map((item) => (
         <ListItem key={item.id} item={item} />
       ))}

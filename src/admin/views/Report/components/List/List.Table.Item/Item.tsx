@@ -17,9 +17,12 @@ export function ReportTableItem({ item }: IProps) {
         {item.location && <CellTooltip>{item.location}</CellTooltip>}
       </Cell>
       <Cell className="">{formattedDate}</Cell>
-
-      <Control item={item} />
-      <Buttons item={item} />
+      <Cell className="w-40 text-xs sm:text-sm">
+        <Control item={item} />
+      </Cell>
+      <Cell className="print:hidden">
+        <Buttons item={item} />
+      </Cell>
     </Row>
   )
 }

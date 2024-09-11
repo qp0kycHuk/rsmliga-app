@@ -1,6 +1,7 @@
 import { Cell, Row, Table } from '@admin/index'
 import { useFetchCities } from '@admin/service/cities'
 import { useFetchCategories } from '../../service/categories'
+import { TableHead } from './AnaliticTable.Head'
 
 interface IAnaliticTableProps {
   items: IDelegate[]
@@ -12,41 +13,7 @@ export function AnaliticTable({ items, className }: IAnaliticTableProps) {
   const { data: categoriesData } = useFetchCategories()
 
   return (
-    <Table
-      className={className}
-      head={
-        <>
-          <Row className="text-xs sm:text-sm font-medium text-center">
-            <Cell head rowSpan={2}>
-              №
-            </Cell>
-            <Cell head rowSpan={2}>
-              ФИО
-            </Cell>
-            <Cell head rowSpan={2}>
-              Дата рождения
-            </Cell>
-            <Cell head rowSpan={2}>
-              Населенный пункт
-            </Cell>
-            <Cell head rowSpan={2}>
-              Категория
-            </Cell>
-            <Cell head colSpan={3}>
-              Роль
-            </Cell>
-            <Cell head rowSpan={2}>
-              Всего <br /> матчей
-            </Cell>
-          </Row>
-          <Row className="text-xs sm:text-sm font-medium text-center">
-            <Cell head>Главный судья</Cell>
-            <Cell head>Помощник судьи</Cell>
-            <Cell head>Делегат</Cell>
-          </Row>
-        </>
-      }
-    >
+    <Table className={className} head={<TableHead />}>
       {items.map((delegate) => (
         <Row key={delegate.id} className="text-xs sm:text-sm text-center">
           <Cell>{delegate.number}</Cell>

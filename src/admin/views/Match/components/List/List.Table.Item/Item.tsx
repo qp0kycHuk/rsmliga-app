@@ -30,14 +30,14 @@ export function MatchTableItem({ item }: Props) {
       <Cell>{item.location}</Cell>
       <Cell>{item.stage}</Cell>
       <Cell className="text-center">{item.phase}</Cell>
-      <Cell>
+      <Cell className="print:hidden">
         <Protocol item={item} />
       </Cell>
-      <Cell>
+      <Cell className="print:hidden">
         <Video item={item} />
       </Cell>
       <Cell>{item.status}</Cell>
-      <Cell>
+      <Cell className="print:hidden">
         <Button
           size={null}
           icon

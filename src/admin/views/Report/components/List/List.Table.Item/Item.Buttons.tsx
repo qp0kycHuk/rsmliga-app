@@ -1,5 +1,4 @@
 import { useUserAccess } from '@admin/hooks/useUserAccess'
-import { Cell } from '@admin/index'
 import { adminEditGroups } from '@admin/views/Report/const'
 import { useReportStatus } from '@admin/views/Report/hooks/useReportStatus'
 import { REPORTS_KEY, upsertReport } from '@admin/views/Report/service/api'
@@ -38,37 +37,35 @@ export function Buttons({ item }: IProps) {
   }
 
   if (!isAdminAccess) return null
-  if (isStatusNone) return <Cell></Cell>
+  if (isStatusNone) return null
 
   return (
-    <Cell>
-      <div className="flex gap-1 md:gap-3">
-        <Tooltip content="Принять">
-          <Button
-            icon
-            color="green"
-            variant="light"
-            onClick={!isStatusChecked ? accept : null}
-            disabled={loading || isStatusChecked}
-            className="max-md:btn-sm"
-          >
-            <CircleCheckIcon className="text-2xl md:text-3xl" />
-          </Button>
-        </Tooltip>
-        <Tooltip content="Отклонить">
-          <Button
-            icon
-            color="red"
-            variant="light"
-            onClick={!isStatusDeny ? deny : null}
-            disabled={loading || isStatusDeny}
-            className="max-md:btn-sm"
-          >
-            <CircleCrossIcon className="text-2xl md:text-3xl" />
-          </Button>
-        </Tooltip>
-      </div>
-    </Cell>
+    <div className="flex gap-1 md:gap-3">
+      <Tooltip content="Принять">
+        <Button
+          icon
+          color="green"
+          variant="light"
+          onClick={!isStatusChecked ? accept : null}
+          disabled={loading || isStatusChecked}
+          className="max-md:btn-sm"
+        >
+          <CircleCheckIcon className="text-2xl md:text-3xl" />
+        </Button>
+      </Tooltip>
+      <Tooltip content="Отклонить">
+        <Button
+          icon
+          color="red"
+          variant="light"
+          onClick={!isStatusDeny ? deny : null}
+          disabled={loading || isStatusDeny}
+          className="max-md:btn-sm"
+        >
+          <CircleCrossIcon className="text-2xl md:text-3xl" />
+        </Button>
+      </Tooltip>
+    </div>
   )
 }
 

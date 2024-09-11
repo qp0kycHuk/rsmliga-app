@@ -14,7 +14,7 @@ export function CellTooltip({ content, children, className }: ICellTooltipProps)
         <Button
           as="div"
           variant="contur"
-          className="rounded-full btn-[18px] cursor-pointer ml-auto"
+          className="rounded-full btn-[18px] cursor-pointer ml-auto print:hidden"
           icon
           size={undefined}
         >

@@ -35,7 +35,13 @@ export function Judge({ item }: Props) {
     <>
       <div className="flex items-center gap-2">
         <div className="text-sm">{item.judge}</div>
-        <Button onClick={openEditDialog} size="xs" icon color="primary" className="ml-auto text-lg">
+        <Button
+          onClick={openEditDialog}
+          size="xs"
+          icon
+          color="primary"
+          className="ml-auto text-lg print:hidden"
+        >
           {item.judge ? <PencilIcon /> : '+'}
         </Button>
       </div>

@@ -1,5 +1,6 @@
-import { Cell, Row, Table } from '@admin/index'
+import { Table } from '@admin/index'
 import { Item } from './List.Item'
+import { TableHead } from './List.Table.Head'
 
 interface ITableProps {
   items: ISecretary[]
@@ -8,16 +9,7 @@ interface ITableProps {
 
 export function ListTable({ items, className }: ITableProps) {
   return (
-    <Table className={className}>
-      <Row className="text-xs sm:text-sm font-medium">
-        <Cell head></Cell>
-        <Cell head>ФИО</Cell>
-        <Cell head>Категория</Cell>
-        <Cell head>E-mail</Cell>
-        <Cell head>Телефон</Cell>
-        <Cell head>Соревнование</Cell>
-        <Cell head>Город/район</Cell>
-      </Row>
+    <Table className={className} head={<TableHead />}>
       {items.map((item) => (
         <Item key={item.id} item={item} />
       ))}

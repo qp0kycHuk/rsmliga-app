@@ -46,7 +46,7 @@ export function ListItem({ item }: IListTableItemProps) {
       </Cell>
       <Cell
         className={classNames(
-          'text-sm font-medium w-[128px] max-w-[128px] ',
+          'text-sm font-medium w-[128px] max-w-[128px] print:hidden',
           isCompetitions ? 'btn-group cursor-pointer' : null
         )}
         onClick={isCompetitions ? openContestsDialog : undefined}
@@ -64,7 +64,7 @@ export function ListItem({ item }: IListTableItemProps) {
       <Cell>{new Date(item.birthdate).toLocaleDateString()}</Cell>
       <Cell>{item.matchesCount || '-'}</Cell>
       {isAccess && (
-        <Cell className="btn-group cursor-pointer w-14" onClick={openEditDialog}>
+        <Cell className="btn-group cursor-pointer w-14 print:hidden" onClick={openEditDialog}>
           <Button size={null} icon className="btn-[28px] mx-auto" color="gray-light">
             <SettingsIcon className="text-primary text-lg" />
           </Button>

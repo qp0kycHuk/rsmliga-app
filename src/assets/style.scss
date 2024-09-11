@@ -176,3 +176,11 @@ input[type="search"]::-webkit-search-results-decoration {
     }
   }
 }
+
+.truncate {
+  @media print {
+    overflow     : initial;
+    text-overflow: initial;
+    white-space  : initial;
+  }
+}

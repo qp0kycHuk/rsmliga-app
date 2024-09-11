@@ -1,6 +1,5 @@
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
-import { Cell } from '@admin/index'
 import { canEditGroups } from '@admin/views/Report/const'
 import { useReportStatus } from '@admin/views/Report/hooks/useReportStatus'
 import { deleteReport, REPORTS_KEY } from '@admin/views/Report/service/api'
@@ -36,87 +35,84 @@ export function Control({ item }: IProps) {
 
   return (
     <>
-      <Cell className="w-40 text-xs sm:text-sm">
-        <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
-        <div className="flex mt-1.5 gap-1">
-          {isStatusNone ? (
-            isAccess &&
-            isStatusEditable && (
-              <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
-                +
-              </Button>
-            )
-          ) : (
-            <>
+      <div className={isStatusNone ? 'opacity-60' : ''}>{item.status}</div>
+      <div className="flex mt-1.5 gap-1 print:hidden">
+        {isStatusNone ? (
+          isAccess &&
+          isStatusEditable && (
+            <Button size={null} icon className="btn-[22px]" onClick={openEditDialog}>
+              +
+            </Button>
+          )
+        ) : (
+          <>
+            <Button
+              size={null}
+              icon
+              className="btn-[22px]"
+              color="gray-light"
+              onClick={openViewDialog}
+            >
+              <EyeIcon className="text-primary text-lg" />
+            </Button>
+            {isAccess && isStatusEditable && (
               <Button
                 size={null}
                 icon
                 className="btn-[22px]"
                 color="gray-light"
-                onClick={openViewDialog}
+                onClick={openEditDialog}
               >
-                <EyeIcon className="text-primary text-lg" />
+                <PencilIcon className="text-primary text-lg" />
               </Button>
-              {isAccess && isStatusEditable && (
-                <Button
-                  size={null}
-                  icon
-                  className="btn-[22px]"
-                  color="gray-light"
-                  onClick={openEditDialog}
-                >
-                  <PencilIcon className="text-primary text-lg" />
-                </Button>
-              )}
-              {isAccess && (
-                <Button
-                  size={null}
-                  icon
-                  className="btn-[22px]"
-                  color="gray-light"
-                  onClick={openDeleteDialog}
-                >
-                  <TrashIcon className="text-primary text-lg" />
-                </Button>
-              )}
-            </>
-          )}
-        </div>
-      </Cell>
-      <Cell hidden>
-        <Dialog
-          isOpen={isEditDialogOpen}
-          onClose={closeEditDialog}
-          className="container max-w-6xl px-4 py-10 md:p-10"
-        >
-          <Suspense fallback="Loading...">
-            <ReportEdit item={item} onCancel={closeEditDialog} />
-          </Suspense>
-        </Dialog>
+            )}
+            {isAccess && (
+              <Button
+                size={null}
+                icon
+                className="btn-[22px]"
+                color="gray-light"
+                onClick={openDeleteDialog}
+              >
+                <TrashIcon className="text-primary text-lg" />
+              </Button>
+            )}
+          </>
+        )}
+      </div>
 
-        <Dialog
-          isOpen={isViewDialogOpen}
-          onClose={closeViewDialog}
-          className="container max-w-6xl px-4 py-10 md:p-10"
-        >
-          <Suspense fallback="Loading...">
-            <ReportView item={item} />
-            <Button className="mt-8 px-10" onClick={closeViewDialog}>
-              Закрыть
-            </Button>
-          </Suspense>
-        </Dialog>
+      <Dialog
+        isOpen={isEditDialogOpen}
+        onClose={closeEditDialog}
+        className="container max-w-6xl px-4 py-10 md:p-10"
+      >
+        <Suspense fallback="Loading...">
+          <ReportEdit item={item} onCancel={closeEditDialog} />
+        </Suspense>
+      </Dialog>
 
-        <Dialog isOpen={isDeleteDialogOpen} onClose={closeDeleteDialog} className="max-w-lg w-full">
-          <ConfirmDialog
-            title="Удалить отчет?"
-            confirmText="Удалить"
-            cancelText="Отмена"
-            onConfirm={deleteHandler}
-            onCancel={closeDeleteDialog}
-          />
-        </Dialog>
-      </Cell>
+      <Dialog
+        isOpen={isViewDialogOpen}
+        onClose={closeViewDialog}
+        className="container max-w-6xl px-4 py-10 md:p-10"
+      >
+        <Suspense fallback="Loading...">
+          <ReportView item={item} />
+          <Button className="mt-8 px-10" onClick={closeViewDialog}>
+            Закрыть
+          </Button>
+        </Suspense>
+      </Dialog>
+
+      <Dialog isOpen={isDeleteDialogOpen} onClose={closeDeleteDialog} className="max-w-lg w-full">
+        <ConfirmDialog
+          title="Удалить отчет?"
+          confirmText="Удалить"
+          cancelText="Отмена"
+          onConfirm={deleteHandler}
+          onCancel={closeDeleteDialog}
+        />
+      </Dialog>
     </>
   )
 }
