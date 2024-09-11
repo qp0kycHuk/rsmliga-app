@@ -1,18 +1,30 @@
-import { DownloadIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
+import { DownloadIcon, EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
-import { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import { ConfirmDialog } from '@admin/components/ConfirmDialog'
 import { toast } from '@lib/Toast'
 import { id } from '@utils/helpers/id'
-import { ProtocolEdit } from '@admin/views/Protocol/components/ProtocolEdit/ProtocolEdit'
 import { deleteProtocol } from '@admin/views/Protocol/service/api'
 import { MATCHES_KEY } from '@admin/views/Match/service/api'
 import { useQueryClient } from 'react-query'
 
+const ProtocolEdit = lazy(() =>
+  import('@admin/views/Protocol/').then((m) => ({
+    default: m.ProtocolEdit,
+  }))
+)
+
+const ProtocolView = lazy(() =>
+  import('@admin/views/Protocol/').then((m) => ({
+    default: m.ProtocolView,
+  }))
+)
+
 export function Protocol({ item }: Props) {
   const queryClient = useQueryClient()
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
+  const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
   async function deleteHandler() {
@@ -45,6 +57,17 @@ export function Protocol({ item }: Props) {
           >
             <DownloadIcon className="text-primary text-lg" />
           </Button>
+        )}{' '}
+        {item.protocol && (
+          <Button
+            size={undefined}
+            icon
+            className="btn-[22px]"
+            color="gray-light"
+            onClick={openViewDialog}
+          >
+            <EyeIcon className="text-primary text-lg" />
+          </Button>
         )}
         <Button
           onClick={openEditDialog}
@@ -75,6 +98,15 @@ export function Protocol({ item }: Props) {
       >
         <Suspense fallback="Loading...">
           <ProtocolEdit matchId={item.id} onCancel={closeEditDialog} />
+        </Suspense>
+      </Dialog>
+      <Dialog
+        isOpen={isViewDialogOpen}
+        onClose={closeViewDialog}
+        className="container max-w-6xl px-4 py-10 md:px-8 print:p-0"
+      >
+        <Suspense fallback="Loading...">
+          <ProtocolView matchId={item.id} />
         </Suspense>
       </Dialog>
 

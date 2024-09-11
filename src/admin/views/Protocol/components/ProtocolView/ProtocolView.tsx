@@ -21,7 +21,7 @@ export function ProtocolView({ matchId }: IProps) {
 
   return (
     <div>
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="col-span-2">
           <div className="font-semibold mb-2 print:text-sm">Соревнование #{matchId}</div>
           <FieldView className="text-sm leading-none">
@@ -51,7 +51,7 @@ export function ProtocolView({ matchId }: IProps) {
           <FieldView className="text-sm leading-none">{data?.item.time}</FieldView>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-6 mt-10">
+      <div className="grid lg:grid-cols-2 gap-6 mt-10">
         {/* Команда 1 */}
         <div>
           <div className="font-semibold mb-2 print:text-sm">Команда 1</div>
@@ -63,7 +63,7 @@ export function ProtocolView({ matchId }: IProps) {
           <TeamData team={data?.item.team_2_info} />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-6 mt-10">
+      <div className="grid lg:grid-cols-2 gap-6 mt-10">
         <div>
           <div className="font-semibold mb-2 print:text-sm">Судья</div>
           <FieldView className="text-sm leading-none">{data?.item.judge || 'Нет'}</FieldView>
@@ -85,7 +85,7 @@ export function ProtocolView({ matchId }: IProps) {
       <Separator />
 
       <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Инфо о матче</div>
-      <div className="grid grid-cols-3 items-end gap-6">
+      <div className="grid lg:grid-cols-3 items-end gap-6">
         <div>
           <div className="font-semibold mb-4">Счет после первого тайма</div>
           <div className="grid grid-cols-2 gap-4">
@@ -151,7 +151,7 @@ export function ProtocolView({ matchId }: IProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mt-7 break-inside-avoid-page">
+      <div className="grid lg:grid-cols-2 gap-6 mt-7 break-inside-avoid-page">
         <div>
           <div className="font-semibold mb-4">Команда 1</div>
           <TeamTable team={data?.item.team_1_info} />
@@ -165,7 +165,7 @@ export function ProtocolView({ matchId }: IProps) {
       <Separator />
 
       <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Представители</div>
-      <div className="grid grid-cols-2 gap-6 ">
+      <div className="grid lg:grid-cols-2 gap-6 ">
         <div>
           <div className="font-semibold mb-2 print:text-sm">Представитель 1 команды</div>
           {data?.item.team_1_info.preds.map((name, index) => (
@@ -194,7 +194,7 @@ export function ProtocolView({ matchId }: IProps) {
       <div className="mt-7">
         <div className="font-semibold mb-4">Предупреждения</div>
         <Table>
-          <Row className="text-sm font-semibold">
+          <Row className="text-xs xs:text-sm font-semibold">
             <Cell head>Фамилия Имя</Cell>
             <Cell head className="text-center w-11">
               №
@@ -203,7 +203,7 @@ export function ProtocolView({ matchId }: IProps) {
             <Cell head>Причина</Cell>
           </Row>
           {data?.item.warnings.map((item, i) => (
-            <Row className="text-sm" key={i}>
+            <Row className="text-xs xs:text-sm" key={i}>
               <Cell>{item.name}</Cell>
               <Cell className="text-center">{i + 1}</Cell>
               <Cell>{item.team} </Cell>
@@ -211,7 +211,7 @@ export function ProtocolView({ matchId }: IProps) {
             </Row>
           ))}
           {data?.item.warnings.length == 0 && (
-            <Row className="text-sm">
+            <Row className="text-xs xs:text-sm">
               <Cell colSpan={100}>-</Cell>
             </Row>
           )}
@@ -222,7 +222,7 @@ export function ProtocolView({ matchId }: IProps) {
       <div className="mt-7">
         <div className="font-semibold mb-4">Удаления</div>
         <Table>
-          <Row className="text-sm font-semibold">
+          <Row className="text-xs xs:text-sm font-semibold">
             <Cell head>Фамилия Имя</Cell>
             <Cell head className="text-center w-11">
               №
@@ -231,7 +231,7 @@ export function ProtocolView({ matchId }: IProps) {
             <Cell head>Причина</Cell>
           </Row>
           {data?.item.deletes.map((item, i) => (
-            <Row className="text-sm" key={i}>
+            <Row className="text-xs xs:text-sm" key={i}>
               <Cell>{item.name}</Cell>
               <Cell className="text-center">{i + 1}</Cell>
               <Cell>{item.team}</Cell>
@@ -239,7 +239,7 @@ export function ProtocolView({ matchId }: IProps) {
             </Row>
           ))}
           {data?.item.deletes.length == 0 && (
-            <Row className="text-sm">
+            <Row className="text-xs xs:text-sm">
               <Cell colSpan={100}>-</Cell>
             </Row>
           )}
@@ -250,7 +250,7 @@ export function ProtocolView({ matchId }: IProps) {
       <div className="mt-7">
         <div className="font-semibold mb-4">Травматические случаи</div>
         <Table>
-          <Row className="text-sm font-semibold">
+          <Row className="text-xs xs:text-sm font-semibold">
             <Cell head>Фамилия Имя</Cell>
             <Cell head className="">
               Минута матча
@@ -259,7 +259,7 @@ export function ProtocolView({ matchId }: IProps) {
             <Cell head>Какая оказана помощь</Cell>
           </Row>
           {data?.item.trauma.map((item, i) => (
-            <Row className="text-sm" key={i}>
+            <Row className="text-xs xs:text-sm" key={i}>
               <Cell>{item.name}</Cell>
               <Cell>{item.time}</Cell>
               <Cell>{item.text}</Cell>
@@ -287,11 +287,11 @@ export function ProtocolView({ matchId }: IProps) {
         {/* <div className="text-xl">Карагодин В. О.</div> */}
       </div>
 
-      <div className="flex gap-4 mt-7 print:hidden">
+      <div className="flex gap-4 mt-7 print:hidden max-xs:flex-col">
         <Button variant="light" className="px-16">
           Закрыть
         </Button>
-        <Button variant="contur" className="gap-2 px-16 ml-auto" onClick={() => window.print()}>
+        <Button variant="contur" className="gap-2 px-16 xs:ml-auto" onClick={() => window.print()}>
           <PrintIcon />
           Печать
         </Button>

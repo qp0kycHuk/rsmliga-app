@@ -15,8 +15,10 @@ export function TeamTable({ team }: ITeamTableProps) {
           №
         </Cell>
         <Cell head>{/* image */}</Cell>
-        <Cell head>Фамилия Имя</Cell>
-        <Cell head className="w-24 text-center">
+        <Cell head className="max-xs:text-xs">
+          Фамилия Имя
+        </Cell>
+        <Cell head className="w-16 xs:w-w-24 text-center">
           Попытки
         </Cell>
       </Row>
@@ -24,10 +26,15 @@ export function TeamTable({ team }: ITeamTableProps) {
         <Row key={member.id} className="text-sm">
           <Cell className="text-center">{member.number}</Cell>
           <Cell className="w-12 py-1 px-0">
-            <Avatar size="lg" src={member.avatar} placeholder={member.FIO} />
+            <Avatar
+              size="lg"
+              src={member.avatar}
+              placeholder={member.FIO}
+              className="max-xs:size-9"
+            />
           </Cell>
-          <Cell>{member.FIO}</Cell>
-          <Cell className="py-0">
+          <Cell className="max-xs:text-xs">{member.FIO}</Cell>
+          <Cell className="py-0.5">
             <FieldView>
               <div className="text-sm leading-none text-center">{member.try || '-'}</div>
             </FieldView>
