@@ -9,6 +9,7 @@ import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { Suspense } from 'react'
 import { ReportEdit } from '../ReportEdit/ReportEdit'
+import { ListLayout } from '@admin/components/ListLayout'
 
 function ListInner() {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
@@ -30,7 +31,10 @@ function ListInner() {
           </Button>
         )}
       </Filter>
-      <ListTable items={items} className={loading ? 'pointer-events-none opacity-40' : ''} />
+
+      <ListLayout items={items} isFetching={loading}>
+        <ListTable items={items} />
+      </ListLayout>
 
       <Pagination />
 

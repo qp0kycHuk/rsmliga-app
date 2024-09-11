@@ -19,6 +19,7 @@ export function MenuItems({ children, className, ...props }: IMenuItemsProps) {
     >
       <Items
         anchor="bottom start"
+        modal={false}
         {...props}
         className={twMerge(
           'z-6 w-56 origin-top-right bg-l3 rounded-md shadow-lg [--anchor-gap:8px]',

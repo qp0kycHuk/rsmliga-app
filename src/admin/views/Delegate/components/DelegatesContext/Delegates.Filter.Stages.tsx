@@ -8,7 +8,7 @@ export function Stages() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 overflow-auto"
+      itemsClassName="!max-h-80 overflow-auto"
       label="Этап"
       placeholder="Любой"
       value={stageId}

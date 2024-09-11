@@ -125,6 +125,7 @@ export async function deleteReport(id: EntityId) {
 export function useFetchReports(params: IFetchParams) {
   return useQuery([REPORTS_KEY, params], ({ signal }) => fetchReports(params, { signal }), {
     refetchOnWindowFocus: false,
+    keepPreviousData: true,
   })
 }
 

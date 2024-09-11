@@ -1,6 +1,5 @@
 import { Table, Row, Cell } from '@admin/index'
 import { ReportTableItem } from './List.Table.Item/Item'
-import { Empty } from '@admin/components/Empty'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
 import { adminEditGroups } from '../../const'
 
@@ -11,10 +10,6 @@ interface Iprops {
 
 export function ListTable({ items, className }: Iprops) {
   const { isAccess: isAdminAccess } = useUserAccess(adminEditGroups)
-
-  if (!items || items.length == 0) {
-    return <Empty className={className} />
-  }
 
   return (
     <Table className={className}>

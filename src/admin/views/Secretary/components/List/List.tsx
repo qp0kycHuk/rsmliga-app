@@ -11,6 +11,7 @@ import { Filter } from '../SecretaryContext/Secretary.Filter'
 import { Pagination } from '../SecretaryContext/Secretary.Pagination'
 import { ListTable } from './List.Table'
 import { canEditGroups } from '../../const'
+import { ListLayout } from '@admin/components/ListLayout'
 
 const SecretaryEdit = lazy(() =>
   import('../SecretaryEdit/SecretaryEdit').then((m) => ({ default: m.SecretaryEdit }))
@@ -37,7 +38,9 @@ function ListInner() {
         )}
       </Filter>
 
-      <ListTable items={items} className={loading ? 'pointer-events-none' : ''} />
+      <ListLayout items={items} isFetching={loading}>
+        <ListTable items={items} />
+      </ListLayout>
 
       <div className="mt-8"></div>
       <Pagination />

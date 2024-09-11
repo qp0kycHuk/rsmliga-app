@@ -25,7 +25,6 @@ export function MatchContextProvider({ children }: React.PropsWithChildren) {
   // Pagination
   const [currentPage, changePageQuery] = usePagesQuery()
 
-  // Fetching TODO
   const { data, isFetching } = usefetchMatches({
     page: currentPage,
     itemsPerPage: MATCH_PER_PAGE,

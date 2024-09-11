@@ -1,6 +1,5 @@
 import { Table, Row, Cell } from '@admin/index'
 import { MatchTableItem } from './List.Table.Item/Item'
-import { Empty } from '@admin/components/Empty'
 import { useMatchContext } from '../Context/Match.Context'
 import { TriangleDownIcon } from '@assets/icons/fill'
 import { twMerge } from 'tailwind-merge'
@@ -12,10 +11,6 @@ interface Props {
 
 export function ListTable({ items, className }: Props) {
   const { order, orderBy, changeOrder } = useMatchContext()
-
-  if (!items || items.length == 0) {
-    return <Empty className={className} />
-  }
 
   return (
     <Table className={className}>

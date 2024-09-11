@@ -8,7 +8,7 @@ export function Seasons() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 overflow-auto"
+      itemsClassName="!max-h-80 overflow-auto"
       label="Сезон"
       placeholder="Любой"
       value={seasonId}

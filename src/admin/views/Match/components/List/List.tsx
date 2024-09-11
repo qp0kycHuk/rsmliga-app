@@ -8,6 +8,7 @@ import { Tabs } from './List.Tabs'
 import { Suspense } from 'react'
 import { MatchEdit } from '../MatchEdit/MatchEdit'
 import { useToggle } from '@hooks/useToggle'
+import { ListLayout } from '@admin/components/ListLayout'
 
 function ListInner() {
   const { items, loading } = useMatchContext()
@@ -28,7 +29,9 @@ function ListInner() {
         </Button>
       </Filter>
 
-      <ListTable items={items} className={loading ? 'pointer-events-none opacity-40' : ''} />
+      <ListLayout items={items} isFetching={loading}>
+        <ListTable items={items} />
+      </ListLayout>
 
       <Pagination />
 

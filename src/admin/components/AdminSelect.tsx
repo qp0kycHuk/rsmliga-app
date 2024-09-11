@@ -86,7 +86,7 @@ export function AdminSelect({
             )}
           </MenuButton>
 
-          <MenuItems anchor={anchor || 'bottom'} className={twMerge('p-1  w-52', itemsClassName)}>
+          <MenuItems anchor={anchor || 'bottom'} className={twMerge('p-1 w-52', itemsClassName)}>
             {placeholder && (
               <MenuItem>
                 {({ focus }) => (

@@ -25,7 +25,7 @@ export function Statistic({ delegate }: IStatisticProps) {
     <>
       <div className="flex mb-6">
         <AdminSelect
-          itemsClassName="max-h-80 overflow-auto"
+          itemsClassName="!max-h-80 overflow-auto"
           label="Сезон"
           placeholder="Любой"
           value={seasonId}

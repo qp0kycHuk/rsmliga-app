@@ -8,7 +8,7 @@ export function Statuses() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 overflow-auto"
+      itemsClassName="!max-h-80 overflow-auto"
       label="Статус"
       placeholder="Любой"
       value={statusId}

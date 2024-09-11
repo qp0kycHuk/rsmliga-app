@@ -1,6 +1,5 @@
 import { Cell, Row, Table } from '@admin/index'
 import { Item } from './List.Item'
-import { Empty } from '@admin/components/Empty'
 
 interface ITableProps {
   items: ISecretary[]
@@ -8,10 +7,6 @@ interface ITableProps {
 }
 
 export function ListTable({ items, className }: ITableProps) {
-  if (!items || items.length == 0) {
-    return <Empty className={className} />
-  }
-
   return (
     <Table className={className}>
       <Row className="text-xs sm:text-sm font-medium">

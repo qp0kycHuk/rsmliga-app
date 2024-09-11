@@ -8,7 +8,7 @@ export function Tournaments() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 w-96 overflow-auto"
+      itemsClassName="!max-h-80 w-96 overflow-auto"
       label="Соревнование"
       placeholder="Любое"
       value={turnierId}

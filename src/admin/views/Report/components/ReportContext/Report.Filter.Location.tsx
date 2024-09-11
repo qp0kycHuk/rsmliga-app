@@ -8,7 +8,7 @@ export function Location() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 overflow-auto"
+      itemsClassName="!max-h-80 overflow-auto"
       label="Муниципальный район или город"
       placeholder="Любой"
       value={locationId}

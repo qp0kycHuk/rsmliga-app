@@ -8,7 +8,7 @@ export function SchoolType() {
 
   return (
     <AdminSelect
-      itemsClassName="max-h-80 w-64 overflow-auto"
+      itemsClassName="!max-h-80 w-64 overflow-auto"
       label="	Тип образовательного учреждения"
       placeholder="Любой"
       value={schooltypeId}

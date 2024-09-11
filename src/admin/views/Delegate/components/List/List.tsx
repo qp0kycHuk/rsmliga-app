@@ -11,6 +11,7 @@ import { Pagination } from '../DelegatesContext/Delegates.Pagination'
 import { Filter } from '../DelegatesContext/Delegates.Filter'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { ListLayout } from '@admin/components/ListLayout'
 
 const DelegateEdit = lazy(() =>
   import('../DelegateEdit/DelegateEdit').then((m) => ({ default: m.DelegateEdit }))
@@ -36,8 +37,9 @@ function ListInner() {
           </Button>
         )}
       </Filter>
-
-      <ListTable items={delegates} className={loading ? 'pointer-events-none opacity-60' : ''} />
+      <ListLayout items={delegates} isFetching={loading}>
+        <ListTable items={delegates} />
+      </ListLayout>
 
       <Pagination />
 

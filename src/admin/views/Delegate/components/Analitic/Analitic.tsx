@@ -7,6 +7,7 @@ import { Filter } from '../DelegatesContext/Delegates.Filter'
 import { Pagination } from '../DelegatesContext/Delegates.Pagination'
 import { Button } from '@features/ui'
 import { PrintIcon } from '@assets/icons/fill'
+import { ListLayout } from '@admin/components/ListLayout'
 
 function AnaliticInner() {
   const { loading, delegates } = useDelegatesContext()
@@ -30,7 +31,10 @@ function AnaliticInner() {
         <Filter />
       </div>
 
-      <AnaliticTable items={delegates} className={loading ? 'pointer-events-none' : ''} />
+      <ListLayout items={delegates} isFetching={loading}>
+        <AnaliticTable items={delegates} />
+      </ListLayout>
+
       <Pagination />
     </>
   )
