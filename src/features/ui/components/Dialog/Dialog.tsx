@@ -1,13 +1,7 @@
 import { Dialog as DialogWrap, DialogPanel, DialogBackdrop } from '@headlessui/react'
 import { Button } from '../Button'
 import { CrossIcon } from '@assets/icons/fill'
-import { twMerge } from 'tailwind-merge'
-
-export interface IDialogProps extends React.PropsWithChildren {
-  isOpen: boolean
-  onClose: () => unknown
-  className?: string
-}
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
   return (
@@ -19,8 +13,8 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
 
       <div className="fixed inset-0 w-screen overflow-y-auto print:overflow-auto p-4 print:p-0 flex flex-col print:relative">
         <DialogPanel
-          className={twMerge(
-            'w-full m-auto transition-all  bg-l3 shadow-xl rounded-2xl print:bg-transparent relative',
+          className={classNameJoin(
+            'w-full m-auto print:bg-transparent relative transition-all bg-l3 shadow-xl rounded-2xl',
             'duration-300 ease-out data-[closed]:scale-95 data-[closed]:translate-y-5 data-[closed]:opacity-0',
             className
           )}
@@ -42,4 +36,9 @@ export function Dialog({ children, isOpen, className, onClose }: IDialogProps) {
       </div>
     </DialogWrap>
   )
+}
+
+export type IDialogProps = BaseHtmlProps & {
+  isOpen: boolean
+  onClose: () => unknown
 }

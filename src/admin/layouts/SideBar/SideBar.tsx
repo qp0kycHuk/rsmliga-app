@@ -1,4 +1,3 @@
-import classnames from 'classnames'
 import { Button } from '@features/ui'
 import { MenuIcon } from '@assets/icons/fill'
 import { useFetchMenu } from '@admin/service/menu'
@@ -8,7 +7,7 @@ import { icons } from './SidebarIcons'
 import classes from './SideBar.module.scss'
 import { Theme } from './SideBar.Theme'
 import { CirclePreloader } from '@components/CirclePreloader/CirclePreloader'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { ThemeColor } from '@components/ThemeColor'
 
 function SideBarInner() {
@@ -27,12 +26,10 @@ function SideBarInner() {
   return (
     <>
       <div
-        className={classnames(classes.sidebar, 'bg-l3 print:hidden', {
-          [classes.open]: isOpen,
-        })}
+        className={classNameJoin(classes.sidebar, 'bg-l3 print:hidden', isOpen ? classes.open : '')}
       >
         <Button
-          className={twMerge(
+          className={classNameJoin(
             'justify-start w-full mb-1 whitespace-nowrap max-md:hidden',
             isOpen ? 'pl-3' : 'pl-2.5 pr-2.5 '
           )}
@@ -70,9 +67,11 @@ function SideBarInner() {
 
       <div
         onClick={closeSidebar}
-        className={classnames('print:hidden', classes['sidebar-shadow'], {
-          [classes.open]: isOpen,
-        })}
+        className={classNameJoin(
+          'print:hidden',
+          classes['sidebar-shadow'],
+          isOpen ? classes.open : ''
+        )}
       ></div>
     </>
   )

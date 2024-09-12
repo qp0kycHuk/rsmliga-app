@@ -1,10 +1,8 @@
-import classNames from 'classnames'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface IAsteriskProps extends React.HTMLAttributes<HTMLSpanElement> {}
-
-export function Asterisk({ className, ...props }: IAsteriskProps) {
+export function Asterisk({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
-    <span {...props} className={classNames('text-red font-semibold ', className)}>
+    <span {...props} className={classNameJoin('text-red font-semibold ', className)}>
       *
     </span>
   )

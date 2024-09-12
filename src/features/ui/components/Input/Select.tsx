@@ -1,5 +1,5 @@
 import { ToRightIcon } from '@assets/icons/fill'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function Select({
   children,
@@ -9,10 +9,10 @@ export function Select({
   ...props
 }: IFieldProps) {
   return (
-    <label className={twMerge('cursor-pointer group relative', className)}>
+    <label className={classNameJoin('cursor-pointer group relative', className)}>
       <select
-        className={twMerge(
-          'input w-full appearance-none cursor-pointer truncate pr-12 print:pr-3',
+        className={classNameJoin(
+          'input w-full appearance-none cursor-pointer pr-12 print:pr-3 truncate',
           inputClassName
         )}
         {...props}

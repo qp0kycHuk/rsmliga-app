@@ -1,9 +1,5 @@
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface ISkeletonProps {
-  className?: string
-}
-
-export function Skeleton({ className }: ISkeletonProps) {
-  return <div className={twMerge('animate-pulse bg-default/10', className)}></div>
+export function Skeleton({ className }: PropsWithClassName) {
+  return <div className={classNameJoin('animate-pulse bg-default/10', className)}></div>
 }

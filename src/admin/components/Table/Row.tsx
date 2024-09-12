@@ -1,14 +1,12 @@
-import classnames from 'classnames'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import classes from './Table.module.scss'
 
-interface IRowProps extends React.TableHTMLAttributes<HTMLTableRowElement> {
-  className?: string
-}
-
-export function Row({ children, className, ...props }: IRowProps) {
+export function Row({ children, className, ...props }: Props) {
   return (
-    <tr {...props} className={classnames(classes.row, className)}>
+    <tr {...props} className={classNameJoin(classes.row, className)}>
       {children}
     </tr>
   )
 }
+
+type Props = React.TableHTMLAttributes<HTMLTableRowElement>

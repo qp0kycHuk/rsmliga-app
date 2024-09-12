@@ -7,7 +7,7 @@ import { Suspense, lazy } from 'react'
 import { SERVER_URL } from '@utils/index'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
-import classNames from 'classnames'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 interface IItemProps {
   item: ISecretary
@@ -52,7 +52,7 @@ export function Item({ item }: IItemProps) {
       <Cell>{item.email || '-'}</Cell>
       <Cell className="whitespace-nowrap">{item.phone || '-'}</Cell>
       <Cell
-        className={classNames(
+        className={classNameJoin(
           'btn-group print:hidden',
           item.competitions.length > 0 ? 'cursor-pointer' : null
         )}
@@ -67,7 +67,7 @@ export function Item({ item }: IItemProps) {
         )}
       </Cell>
       <Cell
-        className={classNames(
+        className={classNameJoin(
           'btn-group print:hidden',
           item.locations.length > 0 ? 'cursor-pointer' : null
         )}

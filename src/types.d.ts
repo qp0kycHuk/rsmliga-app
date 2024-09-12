@@ -54,3 +54,9 @@ type IconComponent = React.FunctionComponent<
 >
 
 type Order = 'asc' | 'desc'
+
+type PropsWithClassName = {
+  className?: string
+}
+
+type BaseHtmlProps = React.PropsWithChildren & PropsWithClassName

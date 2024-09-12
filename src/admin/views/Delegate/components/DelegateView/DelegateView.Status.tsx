@@ -1,17 +1,12 @@
 import { CircleCheckIcon, CircleCrossIcon, EyeIcon } from '@assets/icons/fill'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface IStatusProps {
-  item: IDelegate
-  className?: string
-}
-
-export function Status({ item, className }: IStatusProps) {
+export function Status({ item, className }: Props) {
   if (!item?.status) return null
 
   return (
     <div
-      className={twMerge(
+      className={classNameJoin(
         'bg-default/5 rounded-full py-1 px-2 flex items-center gap-1 cursor-default',
         className
       )}
@@ -36,4 +31,8 @@ export function Status({ item, className }: IStatusProps) {
       )}
     </div>
   )
+}
+
+type Props = PropsWithClassName & {
+  item: IDelegate
 }

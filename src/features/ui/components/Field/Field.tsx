@@ -3,19 +3,23 @@ import { ComponentProps } from 'react'
 import { FieldWrapper } from './FieldWrapper'
 import classes from './Field.module.scss'
 import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function Field({ inputProps = {}, className, ...props }: IFieldProps) {
   return (
     <FieldWrapper
       {...props}
-      className={twMerge(
+      className={classNameJoin(
         inputProps.value || inputProps.defaultValue ? classes.active : '',
         className
       )}
       input={
         <Input
           {...inputProps}
-          className={twMerge('w-full border-none focus:shadow-none', inputProps.className)}
+          className={classNameJoin(
+            'focus:shadow-none border-none',
+            twMerge('w-full', inputProps.className)
+          )}
         />
       }
     ></FieldWrapper>

@@ -3,11 +3,11 @@ import { Combobox, Transition } from '@headlessui/react'
 import { Field } from './Field'
 import { Button } from '../Button'
 import { FieldWrapper } from './FieldWrapper'
-import classnames from 'classnames'
 import layouts from 'convert-layout'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function FieldCombobox({ options, inputProps, ...props }: IComboboxProps) {
-  const [selected, setSelected] = useState<string>()
+  const [selected, setSelected] = useState<string | null>()
   const [query, setQuery] = useState('')
 
   function filterOptions(option: string) {
@@ -35,10 +35,10 @@ export function FieldCombobox({ options, inputProps, ...props }: IComboboxProps)
           input={
             <Combobox.Input
               placeholder=""
-              title={selected}
+              title={selected || ''}
               {...inputProps}
               onChange={changeHandler}
-              className={classnames(
+              className={classNameJoin(
                 'input w-full border-none focus:shadow-none truncate',
                 inputProps?.className
               )}

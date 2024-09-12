@@ -5,19 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/app/",
+    "build": "tsc & vite build --base=/app/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@fancyapps/ui": "^5.0.22",
     "@headlessui/react": "^2.1.6",
-    "@qpokychuk/fonts": "^1.0.9",
     "@qpokychuk/sf-pro-display": "^1.0.2",
     "@tippyjs/react": "^4.2.6",
     "air-datepicker": "^3.4.0",
     "axios": "^1.4.0",
-    "classnames": "^2.3.2",
     "convert-layout": "^0.11.1",
     "detect-touch": "^1.1.2",
     "js-cookie": "^3.0.5",

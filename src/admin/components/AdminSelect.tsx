@@ -1,24 +1,9 @@
 import { Button, Menu, MenuButton, MenuItem, MenuItems } from '@features/ui'
 import { TriangleDownIcon } from '@assets/icons/fill'
 import { hasTouch } from 'detect-touch'
-import classnames from 'classnames'
 import { twMerge } from 'tailwind-merge'
 import type { AnchorString } from '@features/ui/components/Menu/MenuItems'
-
-interface IAdminSelectProps<T = EntityId> {
-  label?: string
-  placeholder?: string
-  value?: T
-  items: T[]
-  onChange?: (value?: T) => void
-  renderItem?: (value: T) => string | JSX.Element
-  className?: string
-  itemsClassName?: string
-  menuClassName?: string
-  underline?: boolean
-  touchSupport?: boolean
-  anchor?: AnchorString
-}
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function AdminSelect({
   items,
@@ -33,21 +18,21 @@ export function AdminSelect({
   underline = true,
   touchSupport = true,
   anchor,
-}: IAdminSelectProps) {
+}: Props) {
   const selectWidth = value
     ? (renderItem ? renderItem(value) : value)?.toString().length * 10
     : (placeholder || 'Любое').length * 10
 
   if (hasTouch && touchSupport) {
     return (
-      <label className={classnames(className, 'flex items-center gap-2')}>
+      <label className={classNameJoin(className, 'flex items-center gap-2')}>
         {label && <div>{label}</div>}
         <div className="flex items-center gap-2 w-full">
           <select
             onChange={(e) => onChange?.(e.target.value)}
             value={value}
-            className={twMerge(
-              'w-full  max-w-[200px]  bg-transparent  outline-none appearance-none text-primary truncate ',
+            className={classNameJoin(
+              'w-full max-w-[200px] bg-transparent outline-none appearance-none text-primary truncate',
               underline ? 'border-b border-primary' : ''
             )}
             style={{ width: selectWidth }}
@@ -65,7 +50,7 @@ export function AdminSelect({
     )
   } else {
     return (
-      <div className={twMerge('flex items-center gap-2', className)}>
+      <div className={classNameJoin('flex items-center gap-2', className)}>
         {label && <div>{label}</div>}
         <Menu className={menuClassName}>
           <MenuButton
@@ -117,4 +102,18 @@ export function AdminSelect({
       </div>
     )
   }
+}
+
+type Props<T = EntityId> = PropsWithClassName & {
+  label?: string
+  placeholder?: string
+  value?: T
+  items: T[]
+  onChange?: (value?: T) => void
+  renderItem?: (value: T) => string | JSX.Element
+  itemsClassName?: string
+  menuClassName?: string
+  underline?: boolean
+  touchSupport?: boolean
+  anchor?: AnchorString
 }

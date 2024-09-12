@@ -2,9 +2,8 @@ import { Table } from '@admin/index'
 import { MatchTableItem } from './List.Table.Item/Item'
 import { TableHead } from './List.Table.Head'
 
-interface Props {
+type Props = PropsWithClassName & {
   items: Match[]
-  className?: string
 }
 
 export function ListTable({ items, className }: Props) {

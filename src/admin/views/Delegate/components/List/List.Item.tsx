@@ -6,9 +6,9 @@ import { Suspense, lazy } from 'react'
 import { DelegateContests } from '../DelegateContests'
 import { useFetchCities } from '@admin/service/cities'
 import { useFetchCategories } from '../../service/categories'
-import classNames from 'classnames'
 import { canEditGroups } from '../../const'
 import { useUserAccess } from '@admin/hooks/useUserAccess'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 // import { DelegateView } from '../DelegateView/DelegateView'
 
 const DelegateEdit = lazy(() =>
@@ -45,7 +45,7 @@ export function ListItem({ item }: IListTableItemProps) {
         </div>
       </Cell>
       <Cell
-        className={classNames(
+        className={classNameJoin(
           'text-sm font-medium w-[128px] max-w-[128px] print:hidden',
           isCompetitions ? 'btn-group cursor-pointer' : null
         )}

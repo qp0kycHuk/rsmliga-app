@@ -1,20 +1,15 @@
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { useFetchCategories } from '../../service/categories'
 import { useFetchEducation } from '../../service/education'
 import { useFetchSex } from '../../service/sex'
 
-interface IFieldsProps {
-  item: ISecretary
-  className?: string
-}
-
-export function Fields({ item, className }: IFieldsProps) {
+export function Fields({ item, className }: Props) {
   const { data: sexData } = useFetchSex()
   const { data: categoriesData } = useFetchCategories()
   const { data: educationData } = useFetchEducation()
 
   return (
-    <div className={twMerge('grid md:grid-cols-2 gap-4 w-full max-w-xl', className)}>
+    <div className={classNameJoin('grid md:grid-cols-2 gap-4 w-full max-w-xl', className)}>
       <div className="p-4 rounded-md bg-gray bg-opacity-40">
         <div className="sm:text-lg leading-none">
           <span className="font-semibold">Фамилия: </span>
@@ -59,4 +54,8 @@ export function Fields({ item, className }: IFieldsProps) {
       </div>
     </div>
   )
+}
+
+type Props = PropsWithClassName & {
+  item: ISecretary
 }

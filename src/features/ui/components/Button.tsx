@@ -1,7 +1,7 @@
 import React from 'react'
-import classnames from 'classnames'
 import type { Size } from '../types'
 import BaseButton, { BaseComponentProps, BaseComponent } from './Base'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 const baseClassName = 'btn'
 
@@ -46,7 +46,7 @@ function ButtonComponent<C extends BaseComponent = 'button'>(
   }: ButtonProps<C>,
   ref: ButtonRef
 ) {
-  const classNames = classnames(
+  const classNames = classNameJoin(
     baseClassName,
     color ? colorClassNames[color] : null,
     size ? sizeClassNames[size] : null,

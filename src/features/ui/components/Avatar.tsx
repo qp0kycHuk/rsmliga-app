@@ -1,5 +1,6 @@
 import { Size } from '../types'
 import { UserIcon } from '@assets/icons/fill'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { twMerge } from 'tailwind-merge'
 
 interface IAvatarProps
@@ -21,7 +22,7 @@ const sizeClassNames: Record<Size, string> = {
 
 export function Avatar({ size = 'base', src, className, placeholder, imageProps }: IAvatarProps) {
   return (
-    <div className={twMerge(baseClassName, size ? sizeClassNames[size] : null, className)}>
+    <div className={classNameJoin(baseClassName, size ? sizeClassNames[size] : null, className)}>
       {src ? (
         <img
           {...imageProps}

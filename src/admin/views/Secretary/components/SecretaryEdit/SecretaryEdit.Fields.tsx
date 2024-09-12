@@ -6,13 +6,9 @@ import { useSecretaryEditContext } from './SecretaryEdit.Context'
 import { useFetchSex } from '../../service/sex'
 import { useFetchCategories } from '../../service/categories'
 import { useFetchEducation } from '../../service/education'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface IProps {
-  className?: string
-}
-
-export function Fields({ className }: IProps) {
+export function Fields({ className }: PropsWithClassName) {
   const { item, update } = useSecretaryEditContext()
 
   const { data: sexData } = useFetchSex()
@@ -20,7 +16,7 @@ export function Fields({ className }: IProps) {
   const { data: educationData } = useFetchEducation()
 
   return (
-    <div className={twMerge('grid md:grid-cols-2 gap-4 max-w-2xl w-full', className)}>
+    <div className={classNameJoin('grid md:grid-cols-2 gap-4 max-w-2xl w-full', className)}>
       <label className="block">
         <div className="font-semibold mb-1">
           Фамилия <Asterisk />

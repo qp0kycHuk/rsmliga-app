@@ -1,14 +1,9 @@
 import { Button, Tooltip } from '@features/ui'
-import classNames from 'classnames'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface ICellTooltipProps extends React.PropsWithChildren {
-  content?: string
-  className?: string
-}
-
-export function CellTooltip({ content, children, className }: ICellTooltipProps) {
+export function CellTooltip({ content, children, className }: Props) {
   return (
-    <div className={classNames(className, 'flex items-center gap-2')}>
+    <div className={classNameJoin('flex items-center gap-2', className)}>
       <div className="truncate">{children || content}</div>
       <Tooltip placement="bottom-end" content={content || children}>
         <Button
@@ -23,4 +18,8 @@ export function CellTooltip({ content, children, className }: ICellTooltipProps)
       </Tooltip>
     </div>
   )
+}
+
+type Props = BaseHtmlProps & {
+  content?: string
 }

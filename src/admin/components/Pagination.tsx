@@ -1,16 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ToRightIcon } from '@assets/icons/fill'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { Button } from '@features/ui'
-import classNames from 'classnames'
+import { ToRightIcon } from '@assets/icons/fill'
 
-interface IPaginationProps {
-  pages: number[]
-  currentPage: number
-  onChange(newPage: number): void
-  className?: string
-}
-
-export function Pagination({ pages, currentPage, onChange, className }: IPaginationProps) {
+export function Pagination({ pages, currentPage, onChange, className }: Props) {
   const sliced = useMemo(() => slicePages(currentPage, pages.length), [currentPage, pages])
   const [cleanPages, setPages] = useState<(number | null)[]>([])
 
@@ -29,9 +22,9 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
       <div className="mt-8 print:hidden"></div>
 
       <div
-        className={classNames(
-          className,
-          'flex items-center gap-2 justify-center sticky bottom-5 print:hidden'
+        className={classNameJoin(
+          'flex items-center gap-2 justify-center sticky bottom-5 print:hidden',
+          className
         )}
       >
         <Button
@@ -40,7 +33,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
           size="sm"
           icon
           className="border border-default/20 max-sm:hidden"
-          onClick={() => onChange(currentPage - 1)}
+          onClick={onChange.bind(null, currentPage - 1)}
         >
           <ToRightIcon className="-scale-x-100" />
         </Button>
@@ -52,8 +45,8 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
               size="sm"
               icon
               key={index}
-              className={classNames('border border-default/20')}
-              onClick={() => onChange(page)}
+              className="border border-default/20"
+              onClick={onChange.bind(null, page)}
             >
               {page}
             </Button>
@@ -68,7 +61,7 @@ export function Pagination({ pages, currentPage, onChange, className }: IPaginat
           size="sm"
           icon
           className="border border-default/20 max-sm:hidden"
-          onClick={() => onChange(currentPage + 1)}
+          onClick={onChange.bind(null, currentPage + 1)}
         >
           <ToRightIcon />
         </Button>
@@ -99,4 +92,10 @@ const slicePages = (page: number, total: number) => {
   }
 
   return sliced
+}
+
+type Props = PropsWithClassName & {
+  pages: number[]
+  currentPage: number
+  onChange(newPage: number): void
 }

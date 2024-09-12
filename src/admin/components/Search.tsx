@@ -1,16 +1,9 @@
-import { CrossIcon, SearchIcon } from '@assets/icons/fill'
-import { Button, Input } from '@features/ui'
-import classNames from 'classnames'
 import React, { useEffect } from 'react'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
+import { Button, Input } from '@features/ui'
+import { CrossIcon, SearchIcon } from '@assets/icons/fill'
 
-interface ISearchProps {
-  value: string
-  onChange(newValue: string): void
-  className?: string
-  placeholder?: string
-}
-
-export function Search({ value, onChange, className, placeholder = 'Поиск' }: ISearchProps) {
+export function Search({ value, onChange, className, placeholder = 'Поиск' }: Props) {
   const inputRef = React.createRef<HTMLInputElement>()
 
   useEffect(() => {
@@ -33,7 +26,10 @@ export function Search({ value, onChange, className, placeholder = 'Поиск' 
   }
 
   return (
-    <form className={classNames(className, 'relative print:hidden')} onSubmit={searchSubmitHandler}>
+    <form
+      className={classNameJoin('relative print:hidden', className)}
+      onSubmit={searchSubmitHandler}
+    >
       <Input
         required
         placeholder={placeholder}
@@ -55,4 +51,10 @@ export function Search({ value, onChange, className, placeholder = 'Поиск' 
       </div>
     </form>
   )
+}
+
+type Props = PropsWithClassName & {
+  value: string
+  onChange(newValue: string): void
+  placeholder?: string
 }

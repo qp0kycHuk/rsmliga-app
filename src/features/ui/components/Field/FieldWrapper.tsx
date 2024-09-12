@@ -1,7 +1,7 @@
-import classnames from 'classnames'
-import classes from './Field.module.scss'
-import { Input, IProps, getInputClassname } from '../Input/Input'
 import { ComponentProps } from 'react'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
+import { Input, IProps, getInputClassname } from '../Input/Input'
+import classes from './Field.module.scss'
 
 export function FieldWrapper({
   color = 'primary',
@@ -16,7 +16,7 @@ export function FieldWrapper({
 }: IFieldWrapperProps) {
   return (
     <label
-      className={classnames(
+      className={classNameJoin(
         classes.field,
         'block relative ',
         className,
@@ -27,7 +27,7 @@ export function FieldWrapper({
     >
       {input}
       <fieldset
-        className={classnames(
+        className={classNameJoin(
           classes.fieldset,
           placeholder ? classes['with-placeholder'] : null,
           'input',
@@ -42,9 +42,8 @@ export function FieldWrapper({
   )
 }
 
-export interface IFieldWrapperProps extends React.PropsWithChildren, IProps {
+export interface IFieldWrapperProps extends BaseHtmlProps, IProps {
   placeholder?: string
-  className?: string
   fieldClassName?: string
   inputProps?: Omit<ComponentProps<typeof Input>, 'size' | 'color'>
   input: React.ReactNode

@@ -1,6 +1,6 @@
 import React from 'react'
-import classnames from 'classnames'
 import type { Size } from '../../types'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 const baseClassName = 'input'
 
@@ -41,7 +41,7 @@ function TextareaComponent(
 }
 
 export function getInputClassname({ color = 'primary', size, className }: InputProps) {
-  return classnames(
+  return classNameJoin(
     baseClassName,
     color ? colorClassNames[color] : null,
     size ? sizeClassNames[size] : null,

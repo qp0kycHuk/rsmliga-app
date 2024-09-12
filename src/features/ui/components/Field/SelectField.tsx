@@ -1,9 +1,9 @@
 import React from 'react'
-import classnames from 'classnames'
 import { FieldWrapper } from '../Field/FieldWrapper'
 import type { IProps } from '../Input/Input'
 import { ToRightIcon } from '@assets/icons/fill'
 import classes from './Field.module.scss'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function SelectField({ children, fieldChildren, inputProps, ...props }: IFieldProps) {
   const selectRef = React.createRef<HTMLSelectElement>()
@@ -23,7 +23,7 @@ export function SelectField({ children, fieldChildren, inputProps, ...props }: I
     <FieldWrapper
       isLabelShow={isLabelShow}
       {...props}
-      className={classnames(
+      className={classNameJoin(
         props.className,
         'cursor-pointer group',
         inputProps?.value || inputProps?.defaultValue ? classes.active : ''
@@ -35,7 +35,7 @@ export function SelectField({ children, fieldChildren, inputProps, ...props }: I
           {...inputProps}
           defaultValue={inputProps?.defaultValue || inputProps?.value || props.placeholder}
           onChange={changeHandler}
-          className={classnames(
+          className={classNameJoin(
             'input w-full border-none focus:shadow-none appearance-none cursor-pointer',
             inputProps?.className
           )}

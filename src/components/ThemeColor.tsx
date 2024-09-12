@@ -1,6 +1,6 @@
 import { AdminSelect } from '@admin/components/AdminSelect'
 import { Color, colors, useThemeContext } from '@layouts/ThemeContext'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function ThemeColor() {
   const { color, changeColor } = useThemeContext()
@@ -17,7 +17,7 @@ export function ThemeColor() {
         anchor="top"
         renderItem={(key) => (
           <>
-            <div className={twMerge('size-5 rounded bg-primary', colors[key as Color])}></div>
+            <div className={classNameJoin('size-5 rounded bg-primary', colors[key as Color])}></div>
           </>
         )}
       />

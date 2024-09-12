@@ -5,20 +5,16 @@ import { dateToSQLFormatString } from '@utils/helpers/dates'
 import { Asterisk } from '@components/Asterisk'
 import { useFetchCategories } from '../../service/categories'
 import { useFetchSex } from '../../service/sex'
-import { twMerge } from 'tailwind-merge'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface IProps {
-  className?: string
-}
-
-export function Fields({ className }: IProps) {
+export function Fields({ className }: PropsWithClassName) {
   const { delegate, update } = useDelegateEditContext()
 
   const { data: sexData } = useFetchSex()
   const { data: categoriesData } = useFetchCategories()
 
   return (
-    <div className={twMerge('grid md:grid-cols-2 gap-4 max-w-2xl w-full', className)}>
+    <div className={classNameJoin('grid md:grid-cols-2 gap-4 max-w-2xl w-full', className)}>
       <label className="block">
         <div className="font-semibold mb-1">
           Фамилия <Asterisk />

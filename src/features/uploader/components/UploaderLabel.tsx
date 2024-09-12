@@ -1,7 +1,6 @@
 import { ChangeEvent } from 'react'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { CameraIcon } from '@assets/icons/fill'
-// import { Button } from '@features/ui'
-import classNames from 'classnames'
 
 interface IUploaderLabelProps {
   uploader: IUplodaer
@@ -18,9 +17,9 @@ export function UploaderLabel({ uploader }: IUploaderLabelProps) {
 
   return (
     <label
-      className={classNames(
+      className={classNameJoin(
         uploader.rounded ? 'rounded-full w-24 sm:w-32' : 'rounded-xl w-32 sm:w-48',
-        'relative z-10 flex h-24 sm:h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20  flex-col items-center justify-center'
+        'relative z-10 flex h-24 sm:h-32 transition cursor-pointer bg-primary bg-opacity-10 hover:bg-opacity-20 flex-col items-center justify-center'
       )}
     >
       <input

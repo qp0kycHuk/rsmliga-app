@@ -1,9 +1,9 @@
-import classnames from 'classnames'
 import { Avatar, Button } from '@features/ui'
 import { CrossIcon, LogOutIcon, MenuIcon } from '@assets/icons/fill'
 import { useFetchCurrentUser } from '@admin/service/user'
 import classes from './Header.module.scss'
 import { useSidebarContext } from '../SideBar/SidebarContext'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export function Header() {
   const { data } = useFetchCurrentUser()
@@ -11,12 +11,12 @@ export function Header() {
 
   return (
     <header
-      className={classnames(
+      className={classNameJoin(
         classes.header,
         'flex items-center py-2 bg-l3 border-default/20 print:hidden'
       )}
     >
-      <div className={classnames(classes.user, 'flex items-center gap-2')}>
+      <div className={classNameJoin(classes.user, 'flex items-center gap-2')}>
         <Button
           onClick={toggleSidebar}
           className="whitespace-nowrap md:hidden"

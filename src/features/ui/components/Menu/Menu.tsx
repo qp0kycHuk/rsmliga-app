@@ -1,17 +1,14 @@
-import React from 'react'
-import { Menu as MenuWrap } from '@headlessui/react'
-import classnames from 'classnames'
+import { MenuProps, Menu as MenuWrap } from '@headlessui/react'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
 export { MenuButton, MenuItem } from '@headlessui/react'
 
-export function Menu({ children, className }: IMenuProps) {
+export function Menu({ children, className, ...props }: Props) {
   return (
-    <MenuWrap as="div" className={classnames('relative group', className)}>
+    <MenuWrap as="div" className={classNameJoin('relative group', className)} {...props}>
       {children}
     </MenuWrap>
   )
 }
 
-interface IMenuProps extends React.PropsWithChildren {
-  className?: string
-}
+type Props = BaseHtmlProps & MenuProps

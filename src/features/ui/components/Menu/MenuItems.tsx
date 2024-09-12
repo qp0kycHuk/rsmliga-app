@@ -1,10 +1,6 @@
 import { MenuItems as Items } from '@headlessui/react'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 import { twMerge } from 'tailwind-merge'
-
-interface IMenuItemsProps extends React.ComponentProps<typeof Items> {
-  className?: string
-  anchor: AnchorString
-}
 
 const origin: Record<AnchorString, string> = {
   top: 'origin-bottom',
@@ -21,28 +17,26 @@ const origin: Record<AnchorString, string> = {
   'left end': 'origin-bottom-right',
 }
 
-export function MenuItems({
-  children,
-  className,
-  anchor = 'bottom start',
-  ...props
-}: IMenuItemsProps) {
+export function MenuItems({ children, className, anchor = 'bottom start', ...props }: Props) {
   return (
     <Items
       anchor={anchor}
       modal={false}
       {...props}
       transition
-      className={twMerge(
-        'z-1 w-56  bg-l3 rounded-md shadow-lg [--anchor-gap:8px]',
-        'transition duration-100 data-[closed]:opacity-0 data-[closed]:scale-95',
+      className={classNameJoin(
+        '[--anchor-gap:8px] transition duration-100 data-[closed]:opacity-0 data-[closed]:scale-95',
         origin[anchor],
-        className
+        twMerge('z-1 w-56 bg-l3 rounded-md shadow-lg', className)
       )}
     >
       {children}
     </Items>
   )
+}
+
+interface Props extends React.ComponentProps<typeof Items> {
+  anchor: AnchorString
 }
 
 type Align = 'start' | 'end'

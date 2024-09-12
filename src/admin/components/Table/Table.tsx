@@ -1,22 +1,21 @@
-import classnames from 'classnames'
 import classes from './Table.module.scss'
+import { classNameJoin } from '@utils/helpers/classNameJoin'
 
-interface ITableProps extends React.TableHTMLAttributes<HTMLTableElement> {
-  className?: string
-  xBorderLess?: boolean
-  head?: React.ReactNode
-}
-
-export function Table({ children, head, className, xBorderLess, ...props }: ITableProps) {
+export function Table({ children, head, className, xBorderLess, ...props }: Props) {
   return (
-    <div className={classnames(classes['table-wrapper'], className)}>
+    <div className={classNameJoin(classes['table-wrapper'], className)}>
       <table
         {...props}
-        className={classnames(classes.table, xBorderLess ? classes['x-borderless'] : '')}
+        className={classNameJoin(classes.table, xBorderLess ? classes['x-borderless'] : '')}
       >
         {head && <thead>{head}</thead>}
         <tbody>{children}</tbody>
       </table>
     </div>
   )
+}
+
+type Props = React.TableHTMLAttributes<HTMLTableElement> & {
+  xBorderLess?: boolean
+  head?: React.ReactNode
 }

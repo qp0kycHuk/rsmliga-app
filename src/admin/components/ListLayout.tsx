@@ -11,8 +11,7 @@ export function ListLayout({ items, isFetching, className, children }: Props) {
   return <div className={isFetching ? 'pointer-events-none opacity-40' : ''}>{children}</div>
 }
 
-type Props = React.PropsWithChildren & {
-  className?: string
+type Props = BaseHtmlProps & {
   items?: unknown[]
   isFetching?: boolean
 }
