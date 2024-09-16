@@ -3,12 +3,15 @@ import { useProtocolEditContext } from './ProtocolEdit.Context'
 import { Team } from './ProtocolEdit.Fields/Fields.Team'
 import { Judge } from './ProtocolEdit.Fields/Judge'
 import { Info } from './ProtocolEdit.Fields/Info'
-import { TeamTable } from './ProtocolEdit.TeamTable'
-import { Warning } from './ProtocolEdit.Remarks/Warning'
+import { TeamTable } from './ProtocolEdit.TeamTable/TeamTable'
+import { Remark } from './ProtocolEdit.Remarks/Remark'
 import { Trauma } from './ProtocolEdit.Remarks/Trauma'
 import { Comment } from './ProtocolEdit.Fields/Comment'
 import { Button } from '@features/ui'
-import { PrintIcon } from '@assets/icons/fill'
+import { PrintIcon, TriangleDownIcon } from '@assets/icons/fill'
+import { Achivement } from './ProtocolEdit.Remarks/Achivement'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { Separator } from '@admin/components/Separator'
 
 export function ProtocolEditForm() {
   const { submit, loading, onCancel } = useProtocolEditContext()
@@ -46,20 +49,67 @@ export function ProtocolEditForm() {
         </div>
       </div>
 
-      <div className="mt-8">
-        <div className="font-semibold mb-4">Предупреждения</div>
-        <Warning warningsKey="warnings" />
-      </div>
+      <Separator className="mb-0" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Предупреждения
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Remark name="warnings" />
+        </DisclosurePanel>
+      </Disclosure>
+      <Separator className="my-0 mt-2" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Удаления
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Remark name="deletes" />
+        </DisclosurePanel>
+      </Disclosure>
+      <Separator className="my-0 mt-2" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Травматические случаи
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Trauma traumaKey="trauma" />
+        </DisclosurePanel>
+      </Disclosure>
+      <Separator className="my-0 mt-2" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Реализации
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Achivement name="realizations" />
+        </DisclosurePanel>
+      </Disclosure>
+      <Separator className="my-0 mt-2" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Дроп-голы
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Achivement name="drop_goals" />
+        </DisclosurePanel>
+      </Disclosure>
+      <Separator className="my-0 mt-2" />
+      <Disclosure as="div">
+        <DisclosureButton className="font-semibold flex items-center w-full hover:underline py-4 group">
+          Штрафные удары
+          <TriangleDownIcon className="ml-auto group-data-[open]:rotate-180 text-xs opacity-40" />
+        </DisclosureButton>
+        <DisclosurePanel>
+          <Achivement name="penalties" />
+        </DisclosurePanel>
+      </Disclosure>
 
-      <div className="mt-8">
-        <div className="font-semibold mb-4">Удаления</div>
-        <Warning warningsKey="deletes" />
-      </div>
-
-      <div className="mt-8">
-        <div className="font-semibold mb-4">Травматические случаи</div>
-        <Trauma traumaKey="trauma" />
-      </div>
       <div className="mt-8">
         <Comment />
       </div>

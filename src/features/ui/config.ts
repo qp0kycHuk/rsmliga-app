@@ -4,6 +4,8 @@ export const colors = {
   yellow: withOpacity('--yellow-rgb'),
   blue: withOpacity('--blue-rgb'),
   red: withOpacity('--red-rgb'),
+  orange: withOpacity('--orange-rgb'),
+  purple: withOpacity('--purple-rgb'),
   // primary: '#778beb', // Фиолетовый
   // primary: '#10ac84', // Бирюзовый
   gray: '#DDD',

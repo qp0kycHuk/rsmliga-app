@@ -1,3 +1,5 @@
-export function Separator() {
-  return <div className="my-8 border-t border-default/20" />
+import { twMerge } from 'tailwind-merge'
+
+export function Separator({ className }: PropsWithClassName) {
+  return <div className={twMerge('my-8 border-t border-default/20', className)} />
 }

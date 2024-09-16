@@ -7,13 +7,13 @@ import { useToggle } from '@hooks/useToggle'
 import { useProtocolEditContext } from '../ProtocolEdit.Context'
 import { MemberDialog } from './MemberDialog'
 
-export function Warning({ warningsKey }: Props) {
+export function Remark({ name }: Props) {
   const [isDialogOpen, , openDialog, closeDialog] = useToggle(false)
   const { item, update } = useProtocolEditContext()
 
   function add(memberId: string) {
-    const warnings = item[warningsKey] || []
-    const newWarning = {
+    const remarks = item[name] || []
+    const newRemark = {
       player_id: memberId,
       name: '',
       text: '',
@@ -22,39 +22,39 @@ export function Warning({ warningsKey }: Props) {
 
     for (const member of item.team_1_info?.members || []) {
       if (member.id === memberId) {
-        newWarning.name = member.FIO
-        newWarning.team = item.team_1_info?.name || ''
+        newRemark.name = member.FIO
+        newRemark.team = item.team_1_info?.name || ''
       }
     }
 
     for (const member of item.team_2_info?.members || []) {
       if (member.id === memberId) {
-        newWarning.name = member.FIO
-        newWarning.team = item.team_2_info?.name || ''
+        newRemark.name = member.FIO
+        newRemark.team = item.team_2_info?.name || ''
       }
     }
 
     update({
-      [warningsKey]: [...warnings, newWarning],
+      [name]: [...remarks, newRemark],
     })
 
     closeDialog()
   }
 
   function deleteHandler(index: number) {
-    const warnings = item[warningsKey] || []
+    const remarks = item[name] || []
 
     update({
-      [warningsKey]: [...warnings.slice(0, index), ...warnings.slice(index + 1)],
+      [name]: [...remarks.slice(0, index), ...remarks.slice(index + 1)],
     })
   }
 
-  function changeHandler(index: number, value: string) {
-    const warnings = item[warningsKey] || []
-    warnings[index].text = value
+  function changeHandler(index: number, key: 'text' | 'time', value: string) {
+    const remark = item[name] || []
+    remark[index][key] = value
 
     update({
-      [warningsKey]: [...warnings],
+      [name]: [...remark],
     })
   }
 
@@ -65,6 +65,9 @@ export function Warning({ warningsKey }: Props) {
           <Cell head className="text-center w-12">
             №
           </Cell>
+          <Cell head className="w-28 px-2">
+            Минута матча
+          </Cell>
           <Cell head>Фамилия Имя</Cell>
           <Cell head>Команда</Cell>
           <Cell head>Причина</Cell>
@@ -73,8 +76,9 @@ export function Warning({ warningsKey }: Props) {
           </Cell>
         </Row>
 
-        {item[warningsKey]?.length === 0 && (
+        {item[name]?.length === 0 && (
           <Row>
+            <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
             <Cell></Cell>
@@ -87,18 +91,30 @@ export function Warning({ warningsKey }: Props) {
           </Row>
         )}
 
-        {item[warningsKey]?.map((warn, index) => (
+        {item[name]?.map((remark, index) => (
           <Row key={index} className="max-xs:text-xs">
             <Cell className="text-center">{index + 1}</Cell>
-            <Cell>{warn.name}</Cell>
-            <Cell>{warn.team}</Cell>
             <Cell className="p-1">
               <Field
                 inputProps={{
-                  value: warn.text,
+                  value: remark.time,
+                  required: true,
+                  type: 'number',
+                  onChange(event) {
+                    changeHandler(index, 'time', Math.max(Number(event.target.value), 0).toString())
+                  },
+                }}
+              />
+            </Cell>
+            <Cell>{remark.name}</Cell>
+            <Cell>{remark.team}</Cell>
+            <Cell className="p-1">
+              <Field
+                inputProps={{
+                  value: remark.text,
                   required: true,
                   onChange(event) {
-                    changeHandler(index, event.target.value)
+                    changeHandler(index, 'text', event.target.value)
                   },
                 }}
               />
@@ -134,5 +150,5 @@ export function Warning({ warningsKey }: Props) {
 }
 
 type Props = {
-  warningsKey: 'warnings' | 'deletes'
+  name: 'warnings' | 'deletes'
 }

@@ -26,9 +26,12 @@ interface Protocol {
   deletes: Sanction[]
   trauma: Trauma[]
   warnings: Sanction[]
+  realizations: Achivement[]
+  penalties: Achivement[]
+  drop_goals: Achivement[]
 
-  tour: EntityId // TODO
-  division: EntityId // TODO
+  tour: EntityId
+  division: EntityId
 }
 
 interface Score {
@@ -58,6 +61,7 @@ interface Sanction {
   player_id: EntityId
   name: string
   team: string
+  time: string
   text: string
 }
 
@@ -67,4 +71,11 @@ interface Trauma {
   time: string
   text: string
   help: string
+}
+
+interface Achivement {
+  player_id: EntityId
+  name: string
+  team: string
+  time: string
 }

@@ -72,6 +72,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
   for (const item of data.warnings || []) {
     formData.append('warning_player_id[]', item.player_id.toString())
     formData.append('warnUF_NAME[]', item.name)
+    formData.append('warnUF_TIMING[]', item.time)
     formData.append('warnUF_TEAM[]', item.team)
     formData.append('warnUF_TEXT[]', item.text)
   }
@@ -80,6 +81,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
   for (const item of data.deletes || []) {
     formData.append('delete_player_id[]', item.player_id.toString())
     formData.append('remUF_NAME[]', item.name)
+    formData.append('remUF_TIMING[]', item.time)
     formData.append('remUF_TEAM[]', item.team)
     formData.append('remUF_TEXT[]', item.text)
   }
@@ -91,6 +93,30 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
     formData.append('trUF_TIMING[]', trauma.time)
     formData.append('trUF_DIAGNOSIS[]', trauma.text)
     formData.append('trUF_HELP[]', trauma.help)
+  }
+
+  // дроп голы
+  for (const item of data.deletes || []) {
+    formData.append('delete_player_id[]', item.player_id.toString())
+    formData.append('dropUF_NAME[]', item.name)
+    formData.append('dropUF_TIMING[]', item.time)
+    formData.append('remUF_TEAM[]', item.team)
+  }
+
+  // реализации
+  for (const item of data.deletes || []) {
+    formData.append('drop_player_id[]', item.player_id.toString())
+    formData.append('remUF_NAME[]', item.name)
+    formData.append('remUF_TIMING[]', item.time)
+    formData.append('remUF_TEAM[]', item.team)
+  }
+
+  // штрафные удары
+  for (const item of data.deletes || []) {
+    formData.append('delete_player_id[]', item.player_id.toString())
+    formData.append('remUF_NAME[]', item.name)
+    formData.append('remUF_TIMING[]', item.time)
+    formData.append('remUF_TEAM[]', item.team)
   }
 
   return await rootApi.post<{ id: EntityId; error?: string }>('/protocol_handler.php', formData, {
