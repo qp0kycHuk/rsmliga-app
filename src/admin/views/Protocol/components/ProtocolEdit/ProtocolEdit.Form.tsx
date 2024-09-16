@@ -12,9 +12,10 @@ import { PrintIcon, TriangleDownIcon } from '@assets/icons/fill'
 import { Achivement } from './ProtocolEdit.Remarks/Achivement'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { Separator } from '@admin/components/Separator'
+import { Chronology } from '../Chronology'
 
 export function ProtocolEditForm() {
-  const { submit, loading, onCancel } = useProtocolEditContext()
+  const { item, submit, loading, onCancel } = useProtocolEditContext()
 
   return (
     <form onSubmit={submit}>
@@ -112,6 +113,10 @@ export function ProtocolEditForm() {
 
       <div className="mt-8">
         <Comment />
+      </div>
+
+      <div className="mt-8">
+        <Chronology item={item} />
       </div>
 
       <div className="text-xl font-semibold mt-10 mb-7">Протокол заполнен верно</div>

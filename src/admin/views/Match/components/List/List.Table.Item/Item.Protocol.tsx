@@ -1,4 +1,4 @@
-import { DownloadIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
+import { DownloadIcon, EyeIcon, PencilIcon, TrashIcon } from '@assets/icons/fill'
 import { Button, Dialog } from '@features/ui'
 import { useToggle } from '@hooks/useToggle'
 import { lazy, Suspense } from 'react'
@@ -15,8 +15,15 @@ const ProtocolEdit = lazy(() =>
   }))
 )
 
+// const ProtocolView = lazy(() =>
+//   import('@admin/views/Protocol/').then((m) => ({
+//     default: m.ProtocolView,
+//   }))
+// )
+
 export function Protocol({ item }: Props) {
   const queryClient = useQueryClient()
+  // const [isViewDialogOpen, , openViewDialog, closeViewDialog] = useToggle(false)
   const [isEditDialogOpen, , openEditDialog, closeEditDialog] = useToggle(false)
   const [isDeleteDialogOpen, , openDeleteDialog, closeDeleteDialog] = useToggle(false)
 
@@ -36,17 +43,28 @@ export function Protocol({ item }: Props) {
     <>
       <div className="flex items-center gap-2">
         {item.protocol && (
-          <Button
-            as="a"
-            target="_blank"
-            href={'/manager/matches/protocol.php?id=' + item.id}
-            size={undefined}
-            icon
-            className="btn-[22px]"
-            color="gray-light"
-          >
-            <DownloadIcon className="text-primary text-lg" />
-          </Button>
+          <>
+            {/* <Button
+              onClick={openViewDialog}
+              size={undefined}
+              icon
+              className="btn-[22px]"
+              color="gray-light"
+            >
+              <EyeIcon className="text-primary text-lg" />
+            </Button> */}
+            <Button
+              as="a"
+              target="_blank"
+              href={'/manager/matches/protocol.php?id=' + item.id}
+              size={undefined}
+              icon
+              className="btn-[22px]"
+              color="gray-light"
+            >
+              <DownloadIcon className="text-primary text-lg" />
+            </Button>
+          </>
         )}
         <Button
           onClick={openEditDialog}
@@ -70,6 +88,15 @@ export function Protocol({ item }: Props) {
         )}
       </div>
 
+      {/* <Dialog
+        isOpen={isViewDialogOpen}
+        onClose={closeViewDialog}
+        className="container max-w-6xl px-4 py-10 md:px-8 print:p-0"
+      >
+        <Suspense fallback="Loading...">
+          <ProtocolView matchId={item.id} onCancel={closeViewDialog} />
+        </Suspense>
+      </Dialog> */}
       <Dialog
         isOpen={isEditDialogOpen}
         onClose={closeEditDialog}

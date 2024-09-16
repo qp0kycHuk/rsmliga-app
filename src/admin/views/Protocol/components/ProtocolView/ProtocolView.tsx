@@ -7,6 +7,7 @@ import { useFetchCities } from '@admin/service/cities'
 import { TeamData } from './Protocol.TeamData'
 import { TeamTable } from './Protocol.TeamTable'
 import { useFetchProtocol } from '../../service/api'
+import { Chronology } from '../Chronology'
 
 interface IProps {
   matchId: EntityId
@@ -253,7 +254,7 @@ export function ProtocolView({ matchId, onCancel }: IProps) {
         <Table>
           <Row className="text-xs xs:text-sm font-semibold">
             <Cell head>Фамилия Имя</Cell>
-            <Cell head className="">
+            <Cell head className="w-24">
               Минута матча
             </Cell>
             <Cell head>Характер повреждения, причины, диагноз</Cell>
@@ -275,6 +276,96 @@ export function ProtocolView({ matchId, onCancel }: IProps) {
         </Table>
       </div>
 
+      {/* Реализации */}
+      <div className="mt-7">
+        <div className="font-semibold mb-4">Реализации</div>
+        <Table>
+          <Row className="text-xs xs:text-sm font-semibold">
+            <Cell head className="w-24">
+              Минута матча
+            </Cell>
+            <Cell head>Фамилия Имя</Cell>
+            <Cell head className="text-center w-11">
+              №
+            </Cell>
+            <Cell head>Команда</Cell>
+          </Row>
+          {data?.item.realizations.map((item, i) => (
+            <Row className="text-xs xs:text-sm" key={i}>
+              <Cell>{item.time}</Cell>
+              <Cell>{item.name}</Cell>
+              <Cell className="text-center">{i + 1}</Cell>
+              <Cell>{item.team}</Cell>
+            </Row>
+          ))}
+          {data?.item.realizations.length == 0 && (
+            <Row className="text-xs xs:text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
+        </Table>
+      </div>
+
+      {/* Дроп-голы */}
+      <div className="mt-7">
+        <div className="font-semibold mb-4">Дроп-голы</div>
+        <Table>
+          <Row className="text-xs xs:text-sm font-semibold">
+            <Cell head className="w-24">
+              Минута матча
+            </Cell>
+            <Cell head>Фамилия Имя</Cell>
+            <Cell head className="text-center w-11">
+              №
+            </Cell>
+            <Cell head>Команда</Cell>
+          </Row>
+          {data?.item.drop_goals.map((item, i) => (
+            <Row className="text-xs xs:text-sm" key={i}>
+              <Cell>{item.time}</Cell>
+              <Cell>{item.name}</Cell>
+              <Cell className="text-center">{i + 1}</Cell>
+              <Cell>{item.team}</Cell>
+            </Row>
+          ))}
+          {data?.item.drop_goals.length == 0 && (
+            <Row className="text-xs xs:text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
+        </Table>
+      </div>
+
+      {/* Штрафные удары */}
+      <div className="mt-7">
+        <div className="font-semibold mb-4">Штрафные удары</div>
+        <Table>
+          <Row className="text-xs xs:text-sm font-semibold">
+            <Cell head className="w-24">
+              Минута матча
+            </Cell>
+            <Cell head>Фамилия Имя</Cell>
+            <Cell head className="text-center w-11">
+              №
+            </Cell>
+            <Cell head>Команда</Cell>
+          </Row>
+          {data?.item.penalties.map((item, i) => (
+            <Row className="text-xs xs:text-sm" key={i}>
+              <Cell>{item.time}</Cell>
+              <Cell>{item.name}</Cell>
+              <Cell className="text-center">{i + 1}</Cell>
+              <Cell>{item.team}</Cell>
+            </Row>
+          ))}
+          {data?.item.penalties.length == 0 && (
+            <Row className="text-xs xs:text-sm">
+              <Cell colSpan={100}>-</Cell>
+            </Row>
+          )}
+        </Table>
+      </div>
+
       {/* Прочие замечания */}
       <div className="mt-7">
         <div className="font-semibold mb-4">Прочие замечания</div>
@@ -286,6 +377,10 @@ export function ProtocolView({ matchId, onCancel }: IProps) {
       <div className="mt-10 flex gap-8">
         <div className="text-xl font-semibold">Протокол заполнен верно</div>
         {/* <div className="text-xl">Карагодин В. О.</div> */}
+      </div>
+
+      <div className="mt-8">
+        <Chronology item={data?.item} />
       </div>
 
       <div className="flex gap-4 mt-7 print:hidden max-xs:flex-col">
