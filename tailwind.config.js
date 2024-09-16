@@ -25,6 +25,7 @@ export default {
       withFocusStyles: false,
     }),
     require('@qpokychuk/tailwind-input-plugin'),
+    require('@qpokychuk/tailwind-checkbox-plugin'),
     require('@qpokychuk/tailwind-ratio-plugin'),
   ],
 }

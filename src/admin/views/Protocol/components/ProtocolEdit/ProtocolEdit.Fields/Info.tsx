@@ -1,6 +1,9 @@
+import { useProtocolEditContext } from '../ProtocolEdit.Context'
 import { InfoField } from './Info.Field'
 
 export function Info() {
+  const { item, update } = useProtocolEditContext()
+
   return (
     <>
       <div className="text-3xl print:text-2xl font-bold mb-8 print:mb-4">Инфо о матче</div>
@@ -32,7 +35,19 @@ export function Info() {
           </div>
         </div>
         <div>
-          <div className="font-semibold mb-4">Счет после дополнительного времени</div>
+          <div className="flex items-center mb-4">
+            <div className="font-semibold">Счет после дополнительного времени</div>
+            <input
+              type="checkbox"
+              className="checkbox checkbox-primary ml-auto rounded cursor-pointer"
+              checked={item.overtime == 'Y'}
+              onChange={(e) =>
+                update({
+                  overtime: e.target.checked ? 'Y' : 'N',
+                })
+              }
+            />
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <div className="opacity-80 text-sm mb-2">Команда 1</div>

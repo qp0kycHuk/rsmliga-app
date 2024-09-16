@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@qpokychuk/tailwind-button-plugin": "^2.1.1",
+    "@qpokychuk/tailwind-checkbox-plugin": "^1.0.0",
     "@qpokychuk/tailwind-input-plugin": "^1.0.0",
     "@qpokychuk/tailwind-ratio-plugin": "^2.0.0",
     "@types/convert-layout": "^0.5.1",

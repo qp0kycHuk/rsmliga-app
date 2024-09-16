@@ -29,7 +29,7 @@ interface Protocol {
   realizations: Achivement[]
   penalties: Achivement[]
   drop_goals: Achivement[]
-
+  overtime: BitrixBoolean
   tour: EntityId
   division: EntityId
 }
