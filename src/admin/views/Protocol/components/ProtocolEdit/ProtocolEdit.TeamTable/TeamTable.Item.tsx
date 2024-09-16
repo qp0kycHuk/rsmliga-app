@@ -207,6 +207,7 @@ export function Item({ member, teamName }: Props) {
       player_id: member.id,
       name: member.FIO,
       time: '0',
+      team: team?.name || '',
     }
 
     update({

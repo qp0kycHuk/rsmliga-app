@@ -70,7 +70,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
 
   // предупреждения
   for (const item of data.warnings || []) {
-    formData.append('warning_player_id[]', item.player_id.toString())
+    formData.append('warning_player_id[]', item.player_id?.toString())
     formData.append('warnUF_NAME[]', item.name)
     formData.append('warnUF_TIMING[]', item.time)
     formData.append('warnUF_TEAM[]', item.team)
@@ -79,7 +79,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
 
   // удаления
   for (const item of data.deletes || []) {
-    formData.append('delete_player_id[]', item.player_id.toString())
+    formData.append('delete_player_id[]', item.player_id?.toString())
     formData.append('remUF_NAME[]', item.name)
     formData.append('remUF_TIMING[]', item.time)
     formData.append('remUF_TEAM[]', item.team)
@@ -88,7 +88,7 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
 
   // травмы
   for (const trauma of data.trauma || []) {
-    formData.append('trauma_player_id[]', trauma.player_id.toString())
+    formData.append('trauma_player_id[]', trauma.player_id?.toString())
     formData.append('trUF_NAME[]', trauma.name)
     formData.append('trUF_TIMING[]', trauma.time)
     formData.append('trUF_DIAGNOSIS[]', trauma.text)
@@ -96,27 +96,27 @@ export async function upsertProtocol(data: EditableProtocol, matchId: EntityId) 
   }
 
   // дроп голы
-  for (const item of data.deletes || []) {
-    formData.append('delete_player_id[]', item.player_id.toString())
+  for (const item of data.drop_goals || []) {
+    formData.append('drop_player_id[]', item.player_id?.toString())
     formData.append('dropUF_NAME[]', item.name)
     formData.append('dropUF_TIMING[]', item.time)
-    formData.append('remUF_TEAM[]', item.team)
+    formData.append('dropUF_TEAM[]', item.team)
   }
 
   // реализации
-  for (const item of data.deletes || []) {
-    formData.append('drop_player_id[]', item.player_id.toString())
-    formData.append('remUF_NAME[]', item.name)
-    formData.append('remUF_TIMING[]', item.time)
-    formData.append('remUF_TEAM[]', item.team)
+  for (const item of data.realizations || []) {
+    formData.append('realization_player_id[]', item.player_id?.toString())
+    formData.append('realizationUF_NAME[]', item.name)
+    formData.append('realizationUF_TIMING[]', item.time)
+    formData.append('realizationUF_TEAM[]', item.team)
   }
 
   // штрафные удары
-  for (const item of data.deletes || []) {
-    formData.append('delete_player_id[]', item.player_id.toString())
-    formData.append('remUF_NAME[]', item.name)
-    formData.append('remUF_TIMING[]', item.time)
-    formData.append('remUF_TEAM[]', item.team)
+  for (const item of data.penalties || []) {
+    formData.append('penalty_player_id[]', item.player_id?.toString())
+    formData.append('penaltyUF_NAME[]', item.name)
+    formData.append('penaltyUF_TIMING[]', item.time)
+    formData.append('penaltyUF_TEAM[]', item.team)
   }
 
   return await rootApi.post<{ id: EntityId; error?: string }>('/protocol_handler.php', formData, {
